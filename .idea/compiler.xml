@@ -9,5 +9,8 @@
         <module name="DIT094_Group9" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DIT094_Group9" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
