@@ -1,10 +1,9 @@
-package bank_accounts;
+package com.logic.bankwiser.bank_accounts;
 
-import transactions.Transaction;
-import loans.Loan;
+import com.logic.bankwiser.transactions.Transaction;
+import com.logic.bankwiser.loans.Loan;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.math.BigDecimal;
 
 public class BankAccount {
@@ -18,7 +17,7 @@ public class BankAccount {
     public BankAccount(int bankAccountID, String bankAccountName) {
         this.BANK_ACCOUNT_ID = bankAccountID;
         this.bankAccountName = bankAccountName;
-        this.balance = new BigDecimal(0.00);
+        this.balance = new BigDecimal("0.00");
         this.transactionList = new ArrayList<>();
         this.loanList = new ArrayList<>();
     }

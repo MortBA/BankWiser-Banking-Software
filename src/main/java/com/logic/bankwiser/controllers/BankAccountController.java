@@ -1,8 +1,8 @@
-package controllers;
+package com.logic.bankwiser.controllers;
 
-import bank_accounts.BankAccount;
-import storage.Storage;
-import java.math.BigDecimal;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.storage.Storage;
+
 import java.util.Random;
 
 public class BankAccountController {

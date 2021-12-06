@@ -1,6 +1,6 @@
-package controllers;
+package com.logic.bankwiser.controllers;
 
-import storage.Storage;
+import com.logic.bankwiser.storage.Storage;
 
 public class CardController {
 
