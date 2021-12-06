@@ -8,6 +8,8 @@ module main {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens main to javafx.fxml;
-    exports main;
+    opens com.gui.bankwiser to javafx.fxml;
+    opens com.gui.bankwiser.Controllers to javafx.fxml;
+    exports com.gui.bankwiser.Controllers;
+    exports com.gui.bankwiser;
 }

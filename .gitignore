@@ -2,7 +2,7 @@
 shelf/
 workspace.xml
 statistic.xml
-# Datasource local storage ignored files
+# Datasource local com.logic.bankwiser.storage ignored files
 dataSources/
 dataSources.local.xml
 # Editor-based HTTP Client requests
