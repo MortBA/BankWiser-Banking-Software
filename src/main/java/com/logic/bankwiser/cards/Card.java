@@ -3,15 +3,15 @@ import java.util.Random;
 
 public abstract class Card {
 
+    private final int LINKED_ACCOUNT;
     private final int CARD_NUMBER;
     private final int CCV;
-    private final int LOAN_AMOUNT;
     private final String EXPIRATION_DATE;
     private int pin;
     private String status;
 
 
-    public Card(int loanAmount, String expirationDate, int pin, String status){
+    public Card(int linkedAccount, String expirationDate, int pin, String status){
 
         int cardNumberMin = 100000;
         int cardNumberMax = 999999;
@@ -23,14 +23,15 @@ public abstract class Card {
         Random CCVRand = new Random();
         int CCV = CCVRand.nextInt((CCVMax-CCVMin)+1) + CCVMin;
 
+        this.LINKED_ACCOUNT=linkedAccount;
         this.CARD_NUMBER=cardNumber;
         this.CCV=CCV;
-        this.LOAN_AMOUNT = loanAmount;
         this.EXPIRATION_DATE = expirationDate;
         this.pin = pin;
         this.status = status;
-
     }
+
+    public int getLinkedAccount() {return LINKED_ACCOUNT;}
 
     public int getCardNumber() {
         return CARD_NUMBER;
@@ -38,10 +39,6 @@ public abstract class Card {
 
     public int CCV() {
         return CCV;
-    }
-
-    public int getLoanAmount() {
-        return LOAN_AMOUNT;
     }
 
     public String getExpirationDate() {

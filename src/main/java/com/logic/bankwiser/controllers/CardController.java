@@ -12,11 +12,24 @@ public class CardController {
         this.STORAGE = storage;
     }
 
-    public void addCard(int loanAmount,String expirationDate, int pin, String status, int maxCredit, int interest) {
-        STORAGE.addCard(new CreditCard(loanAmount, expirationDate, pin, status, maxCredit, interest));
+    public void addCard(int linkedAccount,String expirationDate, int pin, String status, int maxCredit, double interest) {
+        STORAGE.addCard(new CreditCard(linkedAccount, expirationDate, pin, status, maxCredit, interest));
     }
 
-    public void addCard(int loanAmount,String expirationDate, int pin, String status, int linkedAccount) {
-        STORAGE.addCard(new DebitCard(loanAmount, expirationDate, pin, status, linkedAccount));
+    public void addCard(int linkedAccount ,String expirationDate, int pin, String status) {
+        STORAGE.addCard(new DebitCard(linkedAccount, expirationDate, pin, status));
     }
+
+    public void modifyStatus(int cardNumber, String statusNew) {
+        STORAGE.getCard(cardNumber).setStatus(statusNew);
+    }
+
+    public void modifyPin(int cardNumber, int pinNew){
+        STORAGE.getCard(cardNumber).setPin(pinNew);
+    }
+
+
+
+
+
 }

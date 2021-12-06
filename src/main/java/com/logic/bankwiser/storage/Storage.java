@@ -21,6 +21,7 @@ public class Storage {
         bankAccountMap = new LinkedHashMap<>();
     }
 
+
     public LinkedHashMap<Integer, BankAccount> getBankAccountMap() {
         return bankAccountMap;
     }
@@ -41,4 +42,14 @@ public class Storage {
         bankAccountMap.put(bankAccountID, bankAccount);
     }
 
+    //TEMPORARY HELPER METHODS
+    public Card getCard(int cardNumber){
+        int cardIndex=0;
+        for(int i = 0; i<cardList.size();i++){
+            if(cardNumber==cardList.get(i).getCardNumber()){
+                cardIndex=i;
+            }
+        }
+        return cardList.get(cardIndex);
+    }
 }

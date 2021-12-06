@@ -3,13 +3,15 @@ package com.logic.bankwiser.cards;
 public class CreditCard extends Card {
 
     final private int MAX_CREDIT;
-    final private int INTEREST;
+    final private double INTEREST;
+    private double repayment;
 
-    public CreditCard(int loanAmount,String expirationDate, int pin, String status, int maxCredit, int interest){
+    public CreditCard(int linkedAccount, String expirationDate, int pin, String status, int maxCredit, double interest){
 
-        super(loanAmount, expirationDate, pin, status);
+        super(linkedAccount, expirationDate, pin, status);
         this.MAX_CREDIT=maxCredit;
         this.INTEREST=interest;
+        double repayment;
 
     }
 
@@ -17,7 +19,7 @@ public class CreditCard extends Card {
         return this.MAX_CREDIT;
     }
 
-    public int getInterest() {
+    public double getInterest() {
         return this.INTEREST;
     }
 
