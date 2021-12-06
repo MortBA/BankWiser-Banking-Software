@@ -1,7 +1,7 @@
 package com.logic.bankwiser.storage;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
-import com.logic.bankwiser.cards.Cards;
+import com.logic.bankwiser.cards.Card;
 import com.logic.bankwiser.loans.Loan;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Storage {
 
     private final List<Integer> caseIDList;
     private final List<Loan> loanList;
-    private final List<Cards> cardList;
+    private final List<Card> cardList;
     private final LinkedHashMap<Integer, BankAccount> bankAccountMap;
 
     public Storage() {
@@ -33,7 +33,7 @@ public class Storage {
         loanList.add(loan);
     }
 
-    public void addCard(Cards card){
+    public void addCard(Card card){
         cardList.add(card);
     }
 

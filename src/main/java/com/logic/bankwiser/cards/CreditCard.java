@@ -1,6 +1,6 @@
 package com.logic.bankwiser.cards;
 
-public class CreditCard extends Cards {
+public class CreditCard extends Card {
 
     final private int MAX_CREDIT;
     final private int INTEREST;

@@ -1,5 +1,7 @@
 package com.logic.bankwiser.controllers;
 
+import com.logic.bankwiser.cards.CreditCard;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
 
 public class CardController {
@@ -11,10 +13,10 @@ public class CardController {
     }
 
     public void addCard(int loanAmount,String expirationDate, int pin, String status, int maxCredit, int interest) {
-        STORAGE.addCard(loanAmount, expirationDate, pin, status, maxCredit, interest);
+        STORAGE.addCard(new CreditCard(loanAmount, expirationDate, pin, status, maxCredit, interest));
     }
 
     public void addCard(int loanAmount,String expirationDate, int pin, String status, int linkedAccount) {
-        STORAGE.addCard(loanAmount, expirationDate, pin, status, linkedAccount);
+        STORAGE.addCard(new DebitCard(loanAmount, expirationDate, pin, status, linkedAccount));
     }
 }

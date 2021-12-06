@@ -1,7 +1,7 @@
 package com.logic.bankwiser.cards;
 import java.util.Random;
 
-public abstract class Cards {
+public abstract class Card {
 
     private final int CARD_NUMBER;
     private final int CCV;
@@ -11,7 +11,7 @@ public abstract class Cards {
     private String status;
 
 
-    public Cards(int loanAmount,String expirationDate, int pin, String status){
+    public Card(int loanAmount, String expirationDate, int pin, String status){
 
         int cardNumberMin = 100000;
         int cardNumberMax = 999999;

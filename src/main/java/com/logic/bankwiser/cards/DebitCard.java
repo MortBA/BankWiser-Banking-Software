@@ -1,6 +1,6 @@
 package com.logic.bankwiser.cards;
 
-public class DebitCard extends Cards{
+public class DebitCard extends Card {
 
     final private int LINKED_ACCOUNT;
 
