@@ -14,4 +14,30 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EpicOneAlternativeTests {
+    static Facade facade;
+    static String[][] users = {
+            {"john.doe@email.com", "mary.jane@email.com"},
+            {"John Doe", "Mary Jane"},
+            {"Password123", "NotHarleyQueen123"},
+            {"+46 72-373 33 56", "+46 70-323 98 89"},
+            {"Gatangatan 9 1126, 422 42 Hisings Backa, Sweden", "Platsentorget 9 1123, 417 57 Lindholmen, Sweden"},
+            {"841222-7896", "001105-7896"}
+    };
+
+    @BeforeAll
+    public static void setup() {
+        facade.createUserAccount(users[0][0], users[0][1], users[0][2], users[0][2], users[0][3], users[0][4], users[0][5]);
+        facade.createUserAccount(users[1][0], users[1][1], users[1][2], users[1][2], users[1][3], users[1][4], users[1][5]);
+    }
+
+    @Test
+    public void userLoginTest() {
+        String expectedValue = "User johndoe@email.com could not be logged in. Invalid username or password.";
+        String actualValue = facade.userLogin("johndoe@email.com", "Password123");
+        assertEquals(expectedValue, actualValue);
+
+        expectedValue = "User mary.jane@email.com could not be logged in. Invalid username or password.";
+        actualValue = facade.userLogin("mary.jane@email.com","WrongPassword123");
+        assertEquals(expectedValue, actualValue);
+    }
 }
