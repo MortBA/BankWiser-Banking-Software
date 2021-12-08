@@ -1,5 +1,8 @@
 package com.logic.bankwiser.cards;
 import java.util.Random;
+import java.util.Date;
+import java.math.BigDecimal;
+//Big Decimal
 
 public abstract class Card {
 
@@ -8,10 +11,12 @@ public abstract class Card {
     private final int CCV;
     private final String EXPIRATION_DATE;
     private int pin;
-    private String status;
+    private boolean status;
+    private String region;
+    private boolean onlineStatus;
 
 
-    public Card(int linkedAccount, String expirationDate, int pin, String status){
+    public Card(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus){ //BankAccount
 
         int cardNumberMin = 100000;
         int cardNumberMax = 999999;
@@ -29,6 +34,8 @@ public abstract class Card {
         this.EXPIRATION_DATE = expirationDate;
         this.pin = pin;
         this.status = status;
+        this.region = region;
+        this.onlineStatus = onlineStatus;
     }
 
     public int getLinkedAccount() {return LINKED_ACCOUNT;}
@@ -45,16 +52,24 @@ public abstract class Card {
         return EXPIRATION_DATE;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
+    public String getRegion(){return region;}
+
+    public boolean getOnlineStatus(){return onlineStatus;}
+
     public void setPin(int pin) {
-        this.pin=pin;
+        this.pin = pin;
     }
 
-    public void setStatus(String status) {
-        this.status=status;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
+
+    public void setRegion(String region){this.region = region;}
+
+    public void setOnlineStatus(boolean onlineStatus){this.onlineStatus = onlineStatus;}
 
 }
