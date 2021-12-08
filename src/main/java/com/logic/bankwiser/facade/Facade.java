@@ -1,7 +1,5 @@
 package com.logic.bankwiser.facade;
 
-import com.logic.bankwiser.transactions.Transaction;
-
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -12,35 +10,22 @@ import java.util.ArrayList;
  * @author Daniel Dovhun, Mathias Hallander
  * @since 0.0.1
  */
-public class Facade {
 
-    //TODO: return types for all methods need to be updated
+public class Facade {
     public String userLogin(String username, String password) {
         return "";
     }
 
-    /**
-     * Example testing Javadoc
-     *
-     * @param username Username
-     * @param fullName Full name
-     * @param password Password
-     * @param confirmPwd Password repeated
-     * @param phoneNumber Phone number
-     * @param userAddress User address
-     * @param socialSecurityNumber User social security number
-     * @return String confirmation
-     */
     public String createUserAccount(String username, String fullName, String password, String confirmPwd,
                                     String phoneNumber, String userAddress, String socialSecurityNumber) {
         return "";
     }
 
-    public String deleteUserAccount(String accountId, String username, String fullName, boolean signature) {
+    public String deleteUserAccount(String username, String fullName, boolean signature) {
         return "";
     }
 
-    public String resetUserPassword(String accountId, String username, String newPwd, String newPwdConfirm) {
+    public String resetUserPassword(String username, String newPwd, String newPwdConfirm) {
         return "";
     }
 
@@ -53,13 +38,13 @@ public class Facade {
     }
 
     public HashMap<String, Double> bankAccountInformation(String accountName) {
-        HashMap<String, Double> info = new HashMap<>();
+        HashMap<String, Double> info = new HashMap<String, Double>();
 
         return info;
     }
 
     public ArrayList<String> pendingRequests() {
-        ArrayList<String> requests = new ArrayList<>();
+        ArrayList<String> requests = new ArrayList<String>();
 
         return requests;
     }
@@ -72,10 +57,10 @@ public class Facade {
         return "";
     }
 
-    public ArrayList<Transaction> viewTransactionHistory(String accountName) {
-        ArrayList<Transaction> transactions = new ArrayList<>();
+    public ArrayList<String[]> viewTransactionHistory(String accountName) {
+        ArrayList<String[]> history = new ArrayList<String[]>();
 
-        return transactions;
+        return history;
     }
 
     public String loanApplication(String username, double amount) {
@@ -87,7 +72,7 @@ public class Facade {
         return "";
     }
 
-    public String homeLoanApplication(double monthlyIncome, double monthlyExponses, double propertyPrice,
+    public String homeLoanApplication(double monthlyIncome, double montlyExponses, double propertyPrice,
                                       double propertySize, String liabilities, String homeAddress,
                                       String homeType, int storiesNum, int duration) {
         return "";
@@ -95,7 +80,7 @@ public class Facade {
 
     public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses,
                                          double millage, String liabilities, String vehicleType,
-                                         String fuelType, int yearOfManufacture) {
+                                         String fuelType, int yearOfManifacture) {
         return "";
     }
 
