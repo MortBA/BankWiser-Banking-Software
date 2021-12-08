@@ -1,5 +1,5 @@
 /*
-Alternative tests for Epic Feature 1.
+Regular tests for Epic Feature 1.
 There should be only one test for US 1.1
  */
 
@@ -10,15 +10,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EpicOneAlternativeTests {
-    static Facade facade;
+public class Epic1RegularTests {
+    static Facade facade; // Creates Facade object
+
+    // User details
     static String[][] userDetails = {
             {"john.doe@gmail.com", "mary.jane@yahoo.com"}, // Username
             {"John Doe", "Mary Jane"},                     // Full name
             {"UnknownPhantom897", "NonExistentPerson888"}, // Password
             {"+46 72-373 89 30", "+46 72-373 46 52"},      // Phone number
             {                                              // Address
-                    "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden",
+                "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden",
                     "Somethingplatsen 9 2253, 131 41 Nacka, Sweden"
             },
             {"890213-1032", "9301018956"}                  // Social security number
@@ -34,11 +36,12 @@ public class EpicOneAlternativeTests {
 
     @Test
     public void userLoginTest() {
-        String expectedValue = "User johndoe@gmail.com could not be logged in. Invalid username or password.";
-        String actualValue = facade.userLogin("johndoe@gmail.com", userDetails[0][1]);
+        String expectedValue = "User john.doe@gmail.com was logged in.";
+        String actualValue = facade.userLogin(userDetails[0][0], userDetails[2][0]);
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "User mary.jane@yahoo.com could not be logged in. Invalid username or password.";
-        actualValue = facade.userLogin(userDetails[0][1], "WrongPassword123");
+        expectedValue = "User mary.jane@yahoo.com was logged in";
+        actualValue = facade.userLogin(userDetails[0][1], userDetails[2][1]);
+        assertEquals(expectedValue, actualValue);
     }
 }
