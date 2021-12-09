@@ -33,7 +33,7 @@ public class BankAccountController {
         }
     }
 
-    //TODO Implement after UserAccount skeleton is functional -K
+    //TODO Implement after UserAccount link is functional -K
     public void deleteBankAccount() {
         /*
         The user has permission to delete any bank account they own, provided
@@ -44,6 +44,7 @@ public class BankAccountController {
          */
     }
 
+    // TODO Consider having generation of UIDs moved to a util class. -K
     public int generateBankAccountID() {
         final int MIN_BANK_ACCOUNT_ID = 10000000;
         final int MAX_BANK_ACCOUNT_ID = 99999999;
