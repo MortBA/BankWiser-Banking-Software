@@ -40,8 +40,9 @@ public class LoginScreenEmployeeController implements Initializable {
 
     //Login Button
     @FXML
-    private void LoginClicked(){
-        Error_Message.setText("not implemented yet");
+    private void LoginClicked() throws IOException {
+       BankWiserApp app = new BankWiserApp();
+       app.changeScene("EmployeeMenu.fxml");
         if(UsernameBox.getText().toString().equals("Channi")){
             buttonLogin.setStyle("-fx-background-color: #f4d3d3");
         }
@@ -101,4 +102,6 @@ public class LoginScreenEmployeeController implements Initializable {
         fade.setToValue(1.0);
         fade.play();
     }
+
+
 }

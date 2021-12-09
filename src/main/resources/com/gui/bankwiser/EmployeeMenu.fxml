@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.EmployeeMenuController">
+   <children>
+      <AnchorPane accessibleRole="MENU_ITEM" layoutX="-9.0" layoutY="186.0" prefHeight="723.0" prefWidth="1280.0" style="-fx-background-color: #5AB8BF;" />
+      <AnchorPane layoutX="-6.0" layoutY="-6.0" prefHeight="195.0" prefWidth="1280.0" style="-fx-background-color: #007C82;">
+         <children>
+            <ImageView fitHeight="83.0" fitWidth="328.0" layoutX="528.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/BwLogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="125.0" fitWidth="130.0" layoutX="1111.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/EmployeeIconBW.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="logOut" layoutX="1124.0" layoutY="149.0" onMouseClicked="#logOutClick" prefHeight="34.0" prefWidth="99.0" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="customerRequests" layoutX="27.0" layoutY="138.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="199.0" style="-fx-background-color: #007C82;" text="Customer Requests" textAlignment="CENTER" textFill="WHITE">
+              <items>
+                <MenuItem fx:id="userAccountReq" mnemonicParsing="true" onAction="#onUserAccReqClick" text="User account request" />
+                <MenuItem fx:id="loanApprovalReq" mnemonicParsing="false" onAction="#onLoanApprovalReqClick" text="Loan approval request" />
+                  <MenuItem fx:id="creditCardReq" mnemonicParsing="false" onAction="#onCreditCardReqClick" text="Credit card request" />
+              </items>
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </MenuButton>
+            <MenuButton fx:id="services" layoutX="272.0" layoutY="138.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="125.0" style="-fx-background-color: #007C82;" text="Services" textFill="WHITE">
+               <items>
+                  <MenuItem fx:id="feedback" mnemonicParsing="false" onAction="#onFeedbackClick" text="Feedback" />
+                  <MenuItem fx:id="reportError" mnemonicParsing="false" onAction="#onReportErrorClick" text="Report error" />
+               </items>
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
