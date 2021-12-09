@@ -2,18 +2,20 @@
 shelf/
 workspace.xml
 statistic.xml
-# Datasource local com.logic.bankwiser.storage ignored files
+# Datasource local storage ignored files
 dataSources/
 dataSources.local.xml
 # Editor-based HTTP Client requests
 httpRequests/
-#libraries
+# Libraries
 lib/
 libraries/
-#out
+# Out
 out/
-#target
+# Target
 target/
-#file types
+# File types
 *.jar
 *.class
+# Excplicit files
+DIT094_Group9.iml
