@@ -1,8 +1,10 @@
 package com.logic.bankwiser.cards;
 import java.util.Date;
 import java.math.BigDecimal;
+import com.logic.bankwiser.storage.Storage;
+import com.logic.bankwiser.bank_accounts.BankAccount;
 
-public class CreditCard extends Card {
+public class CreditCard extends DebitCard {
 
     final private BigDecimal MAX_CREDIT;
     final private double INTEREST;

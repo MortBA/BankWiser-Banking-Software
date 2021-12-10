@@ -1,12 +1,75 @@
 package com.logic.bankwiser.cards;
+import java.util.Random;
 import java.util.Date;
 import java.math.BigDecimal;
+//Big Decimal
 
-public class DebitCard extends Card {
+public class DebitCard {
+
+    private final int LINKED_ACCOUNT;
+    private final int CARD_NUMBER;
+    private final int CCV;
+    private final String EXPIRATION_DATE;
+    private int pin;
+    private boolean status;
+    private String region;
+    private boolean onlineStatus;
 
 
-    public DebitCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus){
-        super(linkedAccount, expirationDate, pin, status, region, onlineStatus);
+    public DebitCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus){ //BankAccount
+
+        int cardNumberMin = 100000;
+        int cardNumberMax = 999999;
+        Random cardNumberRand = new Random();
+        int cardNumber = cardNumberRand.nextInt((cardNumberMax-cardNumberMin)+1) + cardNumberMin;
+
+        int CCVMin = 100000;
+        int CCVMax = 999999;
+        Random CCVRand = new Random();
+        int CCV = CCVRand.nextInt((CCVMax-CCVMin)+1) + CCVMin;
+
+        this.LINKED_ACCOUNT=linkedAccount;
+        this.CARD_NUMBER=cardNumber;
+        this.CCV=CCV;
+        this.EXPIRATION_DATE = expirationDate;
+        this.pin = pin;
+        this.status = status;
+        this.region = region;
+        this.onlineStatus = onlineStatus;
     }
+
+    public int getLinkedAccount() {return LINKED_ACCOUNT;}
+
+    public int getCardNumber() {
+        return CARD_NUMBER;
+    }
+
+    public int CCV() {
+        return CCV;
+    }
+
+    public String getExpirationDate() {
+        return EXPIRATION_DATE;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public String getRegion(){return region;}
+
+    public boolean getOnlineStatus(){return onlineStatus;}
+
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setRegion(String region){this.region = region;}
+
+    public void setOnlineStatus(boolean onlineStatus){this.onlineStatus = onlineStatus;}
 
 }

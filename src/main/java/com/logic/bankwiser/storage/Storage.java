@@ -2,7 +2,7 @@ package com.logic.bankwiser.storage;
 
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
-import com.logic.bankwiser.cards.Card;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.loans.Loan;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Storage {
 
     private final List<Integer> caseIDList;
     private final List<Loan> loanList;
-    private final List<Card> cardList;
+    private final List<DebitCard> cardList;
     private final LinkedHashMap<Integer, BankAccount> bankAccountMap;
     private final LinkedHashMap<UUID, UserAccount> userAccountMap;
 
@@ -25,7 +25,7 @@ public class Storage {
         userAccountMap = new LinkedHashMap<>();
     }
 
-    public List<Card> getCardList() {
+    public List<DebitCard> getCardList() {
         return cardList;
     }
 
@@ -41,7 +41,7 @@ public class Storage {
         loanList.add(loan);
     }
 
-    public void addCard(Card card){
+    public void addCard(DebitCard card){
         cardList.add(card);
     }
 
@@ -54,7 +54,7 @@ public class Storage {
     }
 
     //TEMPORARY HELPER METHODS
-    public Card getCard(int cardNumber){
+    public DebitCard getCard(int cardNumber){
         int cardIndex=0;
         for(int i = 0; i<cardList.size();i++){
             if(cardNumber==cardList.get(i).getCardNumber()){
