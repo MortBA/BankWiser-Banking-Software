@@ -5,6 +5,7 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.*;
 
 public class UserAccount {
 
@@ -19,6 +20,8 @@ public class UserAccount {
 
     public UserAccount(UUID userID, String fullName, String phoneNumber, String address,
                        int socialSecurityNum, String emailID, String password) throws Exception {
+        // TODO This regex pattern is a simple one I wrote myself. Should we switch to a premade one? -KC
+        String emailPattern = "^[a-zA-Z]+@[a-zA-Z]+.[a-zA-Z]+";
 
         if (fullName.isEmpty()) {
             throw new Exception("The name field shouldn't be left blank.");
@@ -33,14 +36,54 @@ public class UserAccount {
         } else if (password.isEmpty()) {
             throw new Exception("The password field shouldn't be left blank.");
         } else {
-            this.userID = userID;
-            this.fullName = fullName;
-            this.phoneNumber = phoneNumber;
-            this.address = address;
-            this.socialSecurityNum = socialSecurityNum;
-            this.emailID = emailID;
-            this.password = password;
-            this.bankAccountList = new ArrayList<>();
+            if (!Pattern.matches(emailPattern, emailID)) {
+                throw new Exception("Email address is invalid.");
+            } else {
+                this.userID = userID;
+                this.fullName = fullName;
+                this.phoneNumber = phoneNumber;
+                this.address = address;
+                this.socialSecurityNum = socialSecurityNum;
+                this.emailID = emailID;
+                this.password = password;
+                this.bankAccountList = new ArrayList<>();
+            }
         }
+    }
+
+    public UUID getUserID() {
+        return userID;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getSocialSecurityNum() {
+        return socialSecurityNum;
+    }
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public List<BankAccount> getBankAccountList() {
+        return bankAccountList;
+    }
+
+    public void addBankAccount(BankAccount bankAccount) {
+        bankAccountList.add(bankAccount);
     }
 }

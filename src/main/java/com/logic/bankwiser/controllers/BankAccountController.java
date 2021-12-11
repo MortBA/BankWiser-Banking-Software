@@ -4,6 +4,7 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.storage.Storage;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class BankAccountController {
 
@@ -13,10 +14,15 @@ public class BankAccountController {
         this.storage = storage;
     }
 
-    public void createBankAccount(String bankAccountName) {
-        if (bankAccountName.length() <= 30){
+    public String createBankAccount(UUID UserID, String bankAccountName) {
+        try {
             int bankAccountID = generateBankAccountID();
-            storage.addBankAccount(bankAccountID, new BankAccount(bankAccountID, bankAccountName));
+            BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
+            storage.addBankAccount(bankAccountID, bankAccount);
+            storage.getUserFromMap(UserID).addBankAccount(bankAccount);
+            return "New banking account " + bankAccountName + " has been created.";
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 
