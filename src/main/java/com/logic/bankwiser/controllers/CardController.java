@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.logic.bankwiser.cards.CreditCard;
 import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
+import javafx.util.Pair;
 
 public class CardController {
 
@@ -22,8 +23,9 @@ public class CardController {
         STORAGE.addCard(new DebitCard(linkedAccount, expirationDate, pin, status, region, onlineStatus));
     }
 
-    public boolean checkPassword(int pin){
+    public Pair<Boolean, String> checkPassword(int pin){
         String pinString = "" + pin;
+        String failCause = "";
         boolean acceptablePassword = true;
 
         int pinOne = Integer.parseInt(String.valueOf(pinString.charAt(1)));
@@ -35,32 +37,35 @@ public class CardController {
             for(int y=0; y<4; i++){
                 if(Integer.parseInt(String.valueOf(pinString.charAt(i))) == Integer.parseInt(String.valueOf(pinString.charAt(y)))){
                     acceptablePassword = false;
+                    failCause = "Invalid PIN: A number cannot be followed by the same one";
                 }
             }
         }
 
         if(pinOne-pinTwo == -1||pinOne-pinTwo == 1){
             acceptablePassword = false;
+            failCause="Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
         }
         if(pinThree-pinFour == -1||pinThree-pinFour == 1){
             acceptablePassword = false;
+            failCause="Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
         }
-        return acceptablePassword;
+        return new Pair<>(acceptablePassword, failCause);
     }
 
-    public void modifyStatus(int cardNumber, boolean statusNew) {
+    public void modifyStatus(String cardNumber, boolean statusNew) {
         STORAGE.getCard(cardNumber).setStatus(statusNew);
     }
 
-    public void modifyPin(int cardNumber, int pinNew){
+    public void modifyPin(String cardNumber, int pinNew){
         STORAGE.getCard(cardNumber).setPin(pinNew);
     }
 
-    public void modifyRegion(int cardNumber, String region){STORAGE.getCard(cardNumber).setRegion(region);}
+    public void modifyRegion(String cardNumber, String region){STORAGE.getCard(cardNumber).setRegion(region);}
 
-    public void modifyOnlineStatus(int cardNumber, boolean onlineStatus){STORAGE.getCard(cardNumber).setOnlineStatus(onlineStatus);}
+    public void modifyOnlineStatus(String cardNumber, boolean onlineStatus){STORAGE.getCard(cardNumber).setOnlineStatus(onlineStatus);}
 
-    public void remainderDays(int cardNumber){ //Calculates remaining days until expiration
+    public void remainderDays(String cardNumber){ //Calculates remaining days until expiration
 
         Date dateDate = new Date();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -80,7 +85,7 @@ public class CardController {
 
     }
 
-    public void deleteCard(int cardNumber) {
+    public void deleteCard(String cardNumber) {
         for(int i = 0; i < STORAGE.getCardList().size(); i++) {
             if(cardNumber == STORAGE.getCardList().get(i).getCardNumber()) {
                 STORAGE.getCardList().remove(i);

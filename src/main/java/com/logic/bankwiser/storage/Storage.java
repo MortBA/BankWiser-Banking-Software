@@ -58,7 +58,7 @@ public class Storage {
     }
 
     //TEMPORARY HELPER METHODS
-    public DebitCard getCard(int cardNumber){
+    public DebitCard getCard(String cardNumber){
         int cardIndex=0;
         for(int i = 0; i<cardList.size();i++){
             if(cardNumber==cardList.get(i).getCardNumber()){

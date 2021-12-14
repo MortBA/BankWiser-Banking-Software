@@ -2,13 +2,14 @@ package com.logic.bankwiser.cards;
 import java.util.Random;
 import java.util.Date;
 import java.math.BigDecimal;
+import javafx.util.Pair;
 //Big Decimal
 
 public class DebitCard {
 
     private final int LINKED_ACCOUNT;
-    private final int CARD_NUMBER;
-    private final int CCV;
+    private final String CARD_NUMBER;
+    private final String CCV;
     private final String EXPIRATION_DATE;
     private int pin;
     private boolean status;
@@ -18,15 +19,34 @@ public class DebitCard {
 
     public DebitCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus){ //BankAccount
 
-        int cardNumberMin = 100000;
-        int cardNumberMax = 999999;
-        Random cardNumberRand = new Random();
-        int cardNumber = cardNumberRand.nextInt((cardNumberMax-cardNumberMin)+1) + cardNumberMin;
+        int cardNumberMin = 0;
+        int cardNumberMax = 9999999;
 
-        int CCVMin = 100000;
-        int CCVMax = 999999;
+        Random cardNumberRand = new Random();
+        String cardNumber = "" + cardNumberRand.nextInt((cardNumberMax-cardNumberMin)+1) + cardNumberMin;
+        cardNumber = cardNumber+""+ cardNumberRand.nextInt((cardNumberMax-cardNumberMin)+1) + cardNumberMin;
+
+        int CCVMin = 0;
+        int CCVMax = 999;
         Random CCVRand = new Random();
-        int CCV = CCVRand.nextInt((CCVMax-CCVMin)+1) + CCVMin;
+        String CCV = ""+CCVRand.nextInt((CCVMax-CCVMin)+1) + CCVMin;
+
+        if (CCV.length()==2){
+            CCV="0"+CCV;
+        }else if (CCV.length()==1){
+            CCV="00"+CCV;
+        }
+
+        String zero = "";
+        for(int i = 2; i<16;i++){
+            if (cardNumber.length()==i){
+                for(int y = 2; i<16; i++){
+                    zero = zero+""+0;
+                }
+            }
+        }
+        cardNumber=zero+cardNumber;
+
 
         this.LINKED_ACCOUNT=linkedAccount;
         this.CARD_NUMBER=cardNumber;
@@ -40,11 +60,11 @@ public class DebitCard {
 
     public int getLinkedAccount() {return LINKED_ACCOUNT;}
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return CARD_NUMBER;
     }
 
-    public int CCV() {
+    public String CCV() {
         return CCV;
     }
 
