@@ -1,8 +1,5 @@
 package com.logic.bankwiser.cards;
 import java.util.Random;
-import java.util.Date;
-import java.math.BigDecimal;
-import javafx.util.Pair;
 //Big Decimal
 
 public class DebitCard {
@@ -15,9 +12,10 @@ public class DebitCard {
     private boolean status;
     private String region;
     private boolean onlineStatus;
+    private int expenditureMax;
 
 
-    public DebitCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus){ //BankAccount
+    public DebitCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
 
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -56,6 +54,7 @@ public class DebitCard {
         this.status = status;
         this.region = region;
         this.onlineStatus = onlineStatus;
+        this.expenditureMax = expenditureMax;
     }
 
     public int getLinkedAccount() {return LINKED_ACCOUNT;}
@@ -76,9 +75,17 @@ public class DebitCard {
         return status;
     }
 
-    public String getRegion(){return region;}
+    public String getRegion() {
+        return region;
+    }
 
-    public boolean getOnlineStatus(){return onlineStatus;}
+    public boolean getOnlineStatus() {
+        return onlineStatus;
+    }
+
+    public int getExpenditureMax() {
+        return expenditureMax;
+    }
 
     public void setPin(int pin) {
         this.pin = pin;
@@ -88,8 +95,15 @@ public class DebitCard {
         this.status = status;
     }
 
-    public void setRegion(String region){this.region = region;}
+    public void setRegion(String region) {
+        this.region = region;
+    }
 
-    public void setOnlineStatus(boolean onlineStatus){this.onlineStatus = onlineStatus;}
+    public void setOnlineStatus(boolean onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
 
+    public void setExpenditureMax(int expenditureMax){
+        this.expenditureMax = expenditureMax;
+    }
 }

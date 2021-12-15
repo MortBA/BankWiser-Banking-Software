@@ -15,12 +15,14 @@ public class CardController {
         this.STORAGE = storage;
     }
 
-    public void addCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, BigDecimal maxCredit, double interest) {
-        STORAGE.addCard(new CreditCard(linkedAccount, expirationDate, pin, status, region, onlineStatus, maxCredit, interest));
+    public String addCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, BigDecimal maxCredit, double interest) {
+        STORAGE.addCard(new CreditCard(linkedAccount, expirationDate, pin, status, region, onlineStatus, expenditureMax, maxCredit, interest));
+        return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
     }
 
-    public void addCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus) {
-        STORAGE.addCard(new DebitCard(linkedAccount, expirationDate, pin, status, region, onlineStatus));
+    public String addCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
+        STORAGE.addCard(new DebitCard(linkedAccount, expirationDate, pin, status, region, onlineStatus, expenditureMax));
+        return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
     }
 
     public Pair<Boolean, String> checkPassword(int pin){
@@ -46,6 +48,10 @@ public class CardController {
             acceptablePassword = false;
             failCause="Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
         }
+        if(pinThree-pinTwo == -1||pinThree-pinTwo == 1){
+            acceptablePassword = false;
+            failCause="Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+        }
         if(pinThree-pinFour == -1||pinThree-pinFour == 1){
             acceptablePassword = false;
             failCause="Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
@@ -53,17 +59,39 @@ public class CardController {
         return new Pair<>(acceptablePassword, failCause);
     }
 
-    public void modifyStatus(String cardNumber, boolean statusNew) {
+    public String modifyStatus(String cardNumber, boolean statusNew) {
         STORAGE.getCard(cardNumber).setStatus(statusNew);
+        if (statusNew){
+            return "Your card has been successfully blocked.";
+        }else{
+            return "Your card has been successfully unblocked.";
+        }
     }
 
-    public void modifyPin(String cardNumber, int pinNew){
+    public String modifyPin(String cardNumber, int pinNew){
         STORAGE.getCard(cardNumber).setPin(pinNew);
+        return "Your pin has been successfully changed.";
     }
 
-    public void modifyRegion(String cardNumber, String region){STORAGE.getCard(cardNumber).setRegion(region);}
+    public void modifyRegion(String cardNumber, String region) {
+        STORAGE.getCard(cardNumber).setRegion(region);
+    }
 
-    public void modifyOnlineStatus(String cardNumber, boolean onlineStatus){STORAGE.getCard(cardNumber).setOnlineStatus(onlineStatus);}
+    public String modifyOnlineStatus(String cardNumber, boolean onlineStatus) {
+        STORAGE.getCard(cardNumber).setOnlineStatus(onlineStatus);
+        if (onlineStatus){
+            return "You successfully turned on online transactions.";
+        }else{
+            return "You successfully turned off online transactions.";
+        }
+    }
+
+    public String modifyExpenditureMax(String cardNumber, int expenditureMax) {
+        int oldLimit = STORAGE.getCard(cardNumber).getExpenditureMax();
+        STORAGE.getCard(cardNumber).setExpenditureMax(expenditureMax);
+        int newLimit = STORAGE.getCard(cardNumber).getExpenditureMax();
+        return "You successfully changed your spending limit from "+ oldLimit +" to "+newLimit+".";
+    }
 
     public void remainderDays(String cardNumber){ //Calculates remaining days until expiration
 
@@ -85,12 +113,21 @@ public class CardController {
 
     }
 
-    public void deleteCard(String cardNumber) {
+    public String deleteCard(String cardNumber, int pin) {
+
+        boolean cardExist = false;
+        String returnMessage = "";
         for(int i = 0; i < STORAGE.getCardList().size(); i++) {
             if(cardNumber == STORAGE.getCardList().get(i).getCardNumber()) {
                 STORAGE.getCardList().remove(i);
+                cardExist = true;
+                returnMessage = "Your card has been successfully terminated.";
             }
         }
+        if (cardExist==false){
+            returnMessage = "Card number you entered was not found in the list of your cards.";
+        }
+        return returnMessage;
     }
 
 
