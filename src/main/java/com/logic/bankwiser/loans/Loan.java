@@ -1,7 +1,7 @@
 package com.logic.bankwiser.loans;
 
 import java.util.Date;
-
+import java.util.Random;
 public abstract class Loan {
 
     private final int CASE_ID;
@@ -12,11 +12,6 @@ public abstract class Loan {
 
 
     public Loan(int caseID, int loanAmount, double interestRate, Date maturityDate, String status) {
-        //int min = 100000;
-        //int max = 999999;
-        //Random rand = new Random();
-        //int caseID = rand.nextInt((max-min)+1) + min;
-
         this.CASE_ID = caseID;
         this.LOAN_AMOUNT = loanAmount;
         this.INTEREST_RATE = interestRate;
