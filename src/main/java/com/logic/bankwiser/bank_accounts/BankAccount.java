@@ -53,11 +53,32 @@ public class BankAccount {
         return cardList;
     }
 
+    public int getNumOfTransactions(){
+        return transactionList.size();
+    }
+
     public void setBankAccountName(String bankAccountName) {
         this.bankAccountName = bankAccountName;
     }
 
-    public int getNumOfTransactions(){
-        return transactionList.size();
+    public void processPaymentRequest(boolean increaseBalance, BigDecimal amountOfMoney) {
+        if (increaseBalance) {
+            balance = balance.add(amountOfMoney);
+        } else {
+            balance = balance.subtract(amountOfMoney);
+        }
     }
+
+    public void addTransaction(Transaction transaction) {
+        transactionList.add(transaction);
+    }
+
+    public void addLoan(Loan loan) {
+        loanList.add(loan);
+    }
+
+    public void addCard(Card card) {
+        cardList.add(card);
+    }
+
 }

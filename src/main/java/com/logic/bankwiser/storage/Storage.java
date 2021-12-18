@@ -37,6 +37,10 @@ public class Storage {
         return userAccountMap.get(userID);
     }
 
+    public BankAccount getBankAccount(int bankAccountID) {
+        return bankAccountMap.get(bankAccountID);
+    }
+
     public void addCaseID(int caseID) {
         caseIDList.add(caseID);
     }
