@@ -63,12 +63,16 @@ public class DebitCard {
         return CARD_NUMBER;
     }
 
-    public String CCV() {
+    public String getCCV() {
         return CCV;
     }
 
     public String getExpirationDate() {
         return EXPIRATION_DATE;
+    }
+
+    public int getPin() {
+        return pin;
     }
 
     public boolean getStatus() {
