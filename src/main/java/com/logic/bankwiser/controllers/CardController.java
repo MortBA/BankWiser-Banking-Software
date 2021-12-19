@@ -6,6 +6,8 @@ import com.logic.bankwiser.cards.CreditCard;
 import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class CardController {
 
@@ -20,7 +22,8 @@ public class CardController {
         return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
     }
 
-    public String addCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
+    // Modified method to use LocalDate rather than String -KC
+    public String addCard(int linkedAccount, LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
         STORAGE.addCard(new DebitCard(linkedAccount, expirationDate, pin, status, region, onlineStatus, expenditureMax));
         return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
     }
@@ -95,22 +98,32 @@ public class CardController {
 
     public void remainderDays(String cardNumber){ //Calculates remaining days until expiration
 
-        Date dateDate = new Date();
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDate = date.format(dateDate);
-        int day = Integer.parseInt(currentDate.substring(8,10));
-        int month = Integer.parseInt(currentDate.substring(5,7));
-        int year = Integer.parseInt(currentDate.substring(0,4));
+//        Date dateDate = new Date();
+//        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+//        String currentDate = date.format(dateDate);
+//        int day = Integer.parseInt(currentDate.substring(8,10));
+//        int month = Integer.parseInt(currentDate.substring(5,7));
+//        int year = Integer.parseInt(currentDate.substring(0,4));
+//
+//        String expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
+//        int expirationDay = Integer.parseInt(expirationDate.substring(8,10));
+//        int expirationMonth = Integer.parseInt(expirationDate.substring(5,7));
+//        int expirationYear = Integer.parseInt(expirationDate.substring(0,4));
+//
+//        int remainderYear = (expirationYear-year)*12*30;
+//
+//        int remainderDay = ((remainderYear+(expirationMonth*30)+expirationDay)-((month*30)+day));
 
-        String expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
-        int expirationDay = Integer.parseInt(expirationDate.substring(8,10));
-        int expirationMonth = Integer.parseInt(expirationDate.substring(5,7));
-        int expirationYear = Integer.parseInt(expirationDate.substring(0,4));
-
-        int remainderYear = (expirationYear-year)*12*30;
-
-        int remainderDay = ((remainderYear+(expirationMonth*30)+expirationDay)-((month*30)+day));
-
+          /*
+            After some research, I see that Date is no longer really used in Java.
+            Rather, LocalDate is the "new" way to go about doing things.
+            The implementation below does not mean this method is finished; but rather,
+            The three lines below replace the 15 lines above the comment.
+            Hopefully this is a good starting point! -KC
+           */
+          LocalDate expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
+          LocalDate dateToday = LocalDate.now();
+          long remainderDays = ChronoUnit.DAYS.between(dateToday, expirationDate);
     }
 
     public String deleteCard(String cardNumber, int pin) {

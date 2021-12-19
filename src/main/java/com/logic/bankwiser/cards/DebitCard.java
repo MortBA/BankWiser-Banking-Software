@@ -1,5 +1,6 @@
 package com.logic.bankwiser.cards;
 import java.util.Random;
+import java.time.LocalDate;
 //Big Decimal
 
 public class DebitCard {
@@ -7,7 +8,8 @@ public class DebitCard {
     private final int LINKED_ACCOUNT;
     private final String CARD_NUMBER;
     private final String CCV;
-    private final String EXPIRATION_DATE;
+    //private final String EXPIRATION_DATE;
+    private final LocalDate EXPIRATION_DATE;
     private int pin;
     private boolean status;
     private String region;
@@ -15,7 +17,7 @@ public class DebitCard {
     private int expenditureMax;
 
 
-    public DebitCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
+    public DebitCard(int linkedAccount, LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
 
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -67,7 +69,11 @@ public class DebitCard {
         return CCV;
     }
 
-    public String getExpirationDate() {
+//    public String getExpirationDate() {
+//        return EXPIRATION_DATE;
+//    }
+
+    public LocalDate getExpirationDate() {
         return EXPIRATION_DATE;
     }
 

@@ -3,9 +3,13 @@ package com.logic.bankwiser.controllers;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.transactions.Transaction;
+import com.logic.bankwiser.utils.Input;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionController {
 
@@ -21,9 +25,11 @@ public class TransactionController {
         BankAccount receiverBankAccount = storage.getBankAccount(receiverBankAccountID);
 
         senderBankAccount.processPaymentRequest(false, moneyTransferred);
+        BigDecimal senderNewBalance = senderBankAccount.getBalance();
         receiverBankAccount.processPaymentRequest(true, moneyTransferred);
-        senderBankAccount.addTransaction(new Transaction(senderBankAccountID, receiverBankAccountID, moneyTransferred.negate(), note, transactionDate));
-        receiverBankAccount.addTransaction(new Transaction(senderBankAccountID, receiverBankAccountID, moneyTransferred, note, transactionDate));
+        BigDecimal receiverNewBalance = receiverBankAccount.getBalance();
+        senderBankAccount.addTransaction(new Transaction(receiverBankAccountID, moneyTransferred.negate(), note, transactionDate, senderNewBalance));
+        receiverBankAccount.addTransaction(new Transaction(senderBankAccountID, moneyTransferred, note, transactionDate, receiverNewBalance));
 
         sb.append("Successfully sent ").append(moneyTransferred).append(" SEK from ").append(senderBankAccountID);
         sb.append(" to ").append(receiverBankAccountID).append(".");
@@ -31,6 +37,15 @@ public class TransactionController {
         return sb.toString();
     }
 
+    public String viewTransactionHistory(int bankAccountID) {
+        StringBuilder sb = new StringBuilder();
+        List<Transaction> transactionList = storage.getBankAccount(bankAccountID).getTransactionList();
 
+        for (Transaction transaction : transactionList) {
+            sb.append(transaction.toString()).append(Input.EOL);
+        }
+
+        return sb.toString();
+    }
 
 }
