@@ -76,6 +76,38 @@ public class CardController {
         return new Pair<>(acceptablePassword, failCause);
     }
 
+    public void cardPayments() {
+        Date dateDate = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = date.format(dateDate);
+        int day = Integer.parseInt(currentDate.substring(8,10));
+        int month = Integer.parseInt(currentDate.substring(5,7));
+        int year = Integer.parseInt(currentDate.substring(0,4));
+
+        for(int i = 0; i < STORAGE.getCardList().size(); i++){
+            String creationDate = STORAGE.getCardList().get(i).getCreationDate();
+            int dayCreation = Integer.parseInt(currentDate.substring(8,10));
+            int monthCreation = Integer.parseInt(currentDate.substring(5,7));
+            int yearCreation = Integer.parseInt(currentDate.substring(0,4));
+
+            if(month == monthCreation && day == dayCreation){
+                int tempBankBalance = 0;
+                tempBankBalance -= 5999;
+            }
+
+            if(day == dayCreation && (year != yearCreation || month != monthCreation)){
+                int tempValue = 0;
+                double tempBankBalance = 0;
+                if(tempBankBalance < 0){
+                    CreditCard currentCard = (CreditCard) STORAGE.getCardList().get(i);
+                    tempBankBalance *= currentCard.getInterest();
+                }
+            }
+
+
+        }
+    }
+
     public String modifyStatus(String cardNumber, boolean statusNew) {
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
