@@ -9,7 +9,8 @@ public class CreditCard extends DebitCard {
     final private BigDecimal MAX_CREDIT;
     final private double INTEREST;
 
-    public CreditCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int spenditureMax, BigDecimal maxCredit, double interest){
+    public CreditCard(int linkedAccount, String expirationDate, int pin, boolean status, String region,
+                      boolean onlineStatus, int spenditureMax, BigDecimal maxCredit, double interest){
 
         super(linkedAccount, expirationDate, pin, status, region, onlineStatus, spenditureMax);
         this.MAX_CREDIT = maxCredit;

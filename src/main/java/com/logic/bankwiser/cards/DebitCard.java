@@ -1,6 +1,8 @@
 package com.logic.bankwiser.cards;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.time.LocalDate;
+import java.util.Date;
 //Big Decimal
 
 public class DebitCard {
@@ -8,6 +10,7 @@ public class DebitCard {
     private final int LINKED_ACCOUNT;
     private final String CARD_NUMBER;
     private final String CCV;
+    private final String CREATION_DATE;
     //private final String EXPIRATION_DATE;
     private final LocalDate EXPIRATION_DATE;
     private int pin;
@@ -38,19 +41,22 @@ public class DebitCard {
         }
 
         String zero = "";
-        for(int i = 2; i<16;i++){
-            if (cardNumber.length()==i){
+        for(int i = 2; i<16; i++){
+            if (cardNumber.length() == i){
                 for(int y = 2; i<16; i++){
-                    zero = zero+""+0;
+                    zero = zero + ""+0;
                 }
             }
         }
-        cardNumber=zero+cardNumber;
+        cardNumber = zero+cardNumber;
 
+        Date dateDate = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        this.CREATION_DATE = date.format(dateDate);
 
-        this.LINKED_ACCOUNT=linkedAccount;
-        this.CARD_NUMBER=cardNumber;
-        this.CCV=CCV;
+        this.LINKED_ACCOUNT = linkedAccount;
+        this.CARD_NUMBER = cardNumber;
+        this.CCV = CCV;
         this.EXPIRATION_DATE = expirationDate;
         this.pin = pin;
         this.status = status;
@@ -65,7 +71,7 @@ public class DebitCard {
         return CARD_NUMBER;
     }
 
-    public String CCV() {
+    public String getCCV() {
         return CCV;
     }
 
@@ -75,6 +81,14 @@ public class DebitCard {
 
     public LocalDate getExpirationDate() {
         return EXPIRATION_DATE;
+    }
+
+    public String getCreationDate() {
+        return CREATION_DATE;
+    }
+
+    public int getPin() {
+        return pin;
     }
 
     public boolean getStatus() {
