@@ -56,11 +56,11 @@ public class Epic2AlternativeTests {
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "User with this username wasn’t found.";
-        actualValue = facade.deleteUserAccount("mary.jane@yahoo.com", "Mary Jane", true);
+        actualValue = facade.deleteUserAccount("","mary.jane@yahoo.com", "Mary Jane", true);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Approval signature is missing.";
-        actualValue = facade.deleteUserAccount("john.doe@gmail.com", "John Doe",  false);
+        actualValue = facade.deleteUserAccount("","john.doe@gmail.com", "John Doe",  false);
         assertEquals(expectedValue, actualValue);
     }
 }
