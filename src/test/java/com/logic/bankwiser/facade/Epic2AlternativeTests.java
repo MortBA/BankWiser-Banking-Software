@@ -60,7 +60,11 @@ public class Epic2AlternativeTests {
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Approval signature is missing.";
-        actualValue = facade.deleteUserAccount("1", "john.doe@gmail.com", "John Doe",  false);
+        actualValue = facade.deleteUserAccount("","mary.jane@yahoo.com", "Mary Jane", true);
+        assertEquals(expectedValue, actualValue);
+
+        expectedValue = "Approval signature is missing.";
+        actualValue = facade.deleteUserAccount("","john.doe@gmail.com", "John Doe",  false);
         assertEquals(expectedValue, actualValue);
     }
 }

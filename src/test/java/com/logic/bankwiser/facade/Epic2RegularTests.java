@@ -60,14 +60,14 @@ public class Epic2RegularTests {
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Account for mary.jane@yahoo.com has been successfully terminated.";
-        actualValue = facade.deleteUserAccount("2", "mary.jane@yahoo.com", "Mary Jane", true);
+        actualValue = facade.deleteUserAccount("","mary.jane@yahoo.com", "Mary Jane", true);
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
     public void resetUserPasswordTest() {
         String expectedValue = "Password reset for ‘sem.mogilevich@mafiamail.com’ was successful.";
-        String actualValue = facade.resetUserPassword("3", userDetails[0][2], "NewPassword123", "NewPassword123");
+        String actualValue = facade.resetUserPassword("", userDetails[0][2], "NewPassword123", "NewPassword123");
         assertEquals(expectedValue, actualValue);
     }
 }
