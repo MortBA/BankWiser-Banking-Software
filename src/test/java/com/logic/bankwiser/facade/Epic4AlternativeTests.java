@@ -2,5 +2,5 @@
 
 package com.logic.bankwiser.facade;
 
-public class EpicFourAlternativeTests {
+public class Epic4AlternativeTests {
 }
