@@ -4,183 +4,153 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.screenControllers.CustomerMenuScreenController">
-   <children>
-      <AnchorPane prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;">
-         <children>
-            <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
-               <image>
-                  <Image url="@../../../img/BwLogo.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="1030.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0">
-               <image>
-                  <Image url="@../../../img/CustomerIconBW.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="1162.0" layoutY="121.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="95.0" text="Log Out">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="630.0" prefWidth="1280.0">
-         <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <MenuButton mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Personal Info" />
-                  <MenuItem mnemonicParsing="false" text="Account Settings" />
-                  <MenuItem mnemonicParsing="false" text="My Cards" />
-               </items>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Transaction History" />
-               </items>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Loans" />
-               </items>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete Bank Account" />
-                  <MenuItem mnemonicParsing="false" text="Delete User Account" />
-               </items>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </MenuButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1200.0" prefHeight="246.0" prefWidth="1200.0" style="-fx-background-color: #a9e5dd#6fb4bb;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="191.0">
-         <children>
-            <Label layoutX="21.0" layoutY="71.0" text="Transaction Accounts" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="21.0" layoutY="161.0" text="Shared Accounts" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="17.0" style="-fx-alignment: #017c83;" text="Accounts" textFill="#017c83">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="21.0" layoutY="109.0" text="Personal Account " textFill="#61bdb2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="196.0" text="Capital Account" textFill="#61bdb2">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="481.0" layoutY="34.0" text="Account Number" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="911.0" layoutY="35.0" text="Avalible Amount" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="PersonAcountNumber" layoutX="477.0" layoutY="105.0" prefHeight="35.0" text="0123 4567 8901 2345" textAlignment="CENTER" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAcountAmount" layoutX="908.0" layoutY="192.0" text="666,66 SEK" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="PErsonAcountAmount" layoutX="965.0" layoutY="109.0" text=" 20469,42 SEK" textAlignment="CENTER" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAcountNumber" layoutX="477.0" layoutY="192.0" text="0040 2001 6090 2510" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane maxWidth="1200.0" prefHeight="240.0" prefWidth="1200.0" style="-fx-background-color: #a9e5dd;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="465.0">
-         <children>
-            <ImageView fitHeight="68.0" fitWidth="112.0" layoutX="49.0" layoutY="63.0" AnchorPane.leftAnchor="20.0">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="36.0" layoutY="11.0" text="Cards" textFill="#017c83" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="11.0">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="495.0" layoutY="16.0" text="Card Number" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="967.0" layoutY="16.0" text="Saldo" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="68.0" fitWidth="112.0" layoutX="46.0" layoutY="151.0" AnchorPane.leftAnchor="20.0">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="PersonAcountNumber1" layoutX="496.0" layoutY="73.0" prefHeight="35.0" text="0123 456 69382" textAlignment="CENTER" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAcountNumber1" layoutX="496.0" layoutY="160.0" text="0040 200 25560" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAcountAmount1" layoutX="939.0" layoutY="160.0" text="666,66 SEK" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="PErsonAcountAmount1" layoutX="954.0" layoutY="76.0" text=" 20469,42 SEK" textAlignment="CENTER" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.CreateAccountScreenUser">
+    <children>
+        <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0">
+                    <image>
+                        <Image url="@../../../img/CustomerIconBW.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" layoutY="33.0" AnchorPane.topAnchor="10.0">
+                    <image>
+                        <Image url="@../../../img/BwLogo.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="1168.0" layoutY="121.0" mnemonicParsing="false" text="Log Out" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="overview" layoutX="65.0" layoutY="67.0" mnemonicParsing="false" onAction="#onOverviewClicked" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
+                    <items>
+                        <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info" />
+                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" text="Account Settings" />
+                        <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
+                    </items>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
+                    <items>
+                        <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" text="Transaction History" />
+                    </items>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
+                    <items>
+                        <MenuItem fx:id="loans" mnemonicParsing="false" text="Loans" />
+                    </items>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </MenuButton>
+                <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
+                    <items>
+                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" text="Delete Bank Account" />
+                        <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
+                    </items>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </MenuButton>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="156.0" layoutY="465.0" prefHeight="240.0" prefWidth="1200.0" style="-fx-background-color: #d8fffa;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="465.0">
+            <children>
+                <ImageView fitHeight="85.0" fitWidth="140.0" layoutX="39.0" layoutY="52.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="52.0">
+                    <image>
+                        <Image url="@/img/BankCard.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="26.0" text="Cards" textFill="#017c83" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="4.0">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="85.0" fitWidth="140.0" layoutX="20.0" layoutY="141.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0">
+                    <image>
+                        <Image url="@/img/BankCard.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="546.0" layoutY="4.0" text="Card Number" textFill="#017c83" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="8.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="880.0" layoutY="2.0" text="Saldo" textFill="#017c83" AnchorPane.leftAnchor="880.0" AnchorPane.topAnchor="8.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="503.0" layoutY="74.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="514.0" />
+                <TextField layoutX="514.0" layoutY="164.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="514.0" />
+                <TextField layoutX="905.0" layoutY="76.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="876.0" />
+                <TextField layoutX="903.0" layoutY="160.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="876.0" />
+                <ImageView fitHeight="85.0" fitWidth="140.0" layoutX="36.0" layoutY="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                    <image>
+                        <Image url="@/img/BankCard.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="166.0" layoutY="191.0" prefHeight="246.0" prefWidth="1200.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+            <children>
+                <Label layoutX="20.0" layoutY="67.0" text="Transaction Accounts" textFill="#017c83" AnchorPane.leftAnchor="20.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="20.0" layoutY="157.0" text="Shared Accounts" textFill="#017c83" AnchorPane.leftAnchor="20.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="48.0" layoutY="25.0" text="Accounts" textFill="#017c83" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
+                <Label layoutX="20.0" layoutY="105.0" text="Personal Account " textFill="#61bdb2">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="22.0" layoutY="192.0" text="Capital Account" textFill="#61bdb2">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="515.0" layoutY="31.0" text="Account Number" textFill="#017c83" AnchorPane.leftAnchor="515.0" AnchorPane.topAnchor="31.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="852.0" layoutY="45.0" text="Avalible Amount" textFill="#017c83" AnchorPane.leftAnchor="880.0" AnchorPane.topAnchor="31.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="513.0" layoutY="108.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="514.0" AnchorPane.topAnchor="108.0" />
+                <TextField layoutX="514.0" layoutY="185.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="514.0" />
+                <TextField layoutX="876.0" layoutY="105.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="876.0" />
+                <TextField layoutX="893.0" layoutY="180.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="876.0" />
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

@@ -43,9 +43,9 @@ public class LoginScreenEmployeeController implements Initializable {
     private void LoginClicked() throws IOException {
        BankWiserApp app = new BankWiserApp();
        app.changeScene("EmployeeMenu.fxml");
-        if(UsernameBox.getText().toString().equals("Channi")){
-            buttonLogin.setStyle("-fx-background-color: #f4d3d3");
-        }
+       // if(UsernameBox.getText().toString().equals("Channi")){
+           // buttonLogin.setStyle("-fx-background-color: #f4d3d3");
+       // }
     }
 
     @FXML
