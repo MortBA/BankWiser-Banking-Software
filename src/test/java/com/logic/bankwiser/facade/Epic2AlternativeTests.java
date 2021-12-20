@@ -44,7 +44,7 @@ public class Epic2AlternativeTests {
     @Test
     public void resetUserPassword() {
         String expectedValue = "Approval signature is missing.";
-        String actualValue = facade.resetUserPassword("john.doe@gmail.com", "John Doe", "Password123", "Password456");
+        String actualValue = facade.resetUserPassword("1","john.doe@gmail.com", "Password456", "Password123");
         assertEquals(expectedValue, actualValue);
     }
 
@@ -56,11 +56,11 @@ public class Epic2AlternativeTests {
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "User with this username wasn’t found.";
-        actualValue = facade.deleteUserAccount("mary.jane@yahoo.com", "Mary Jane", true);
+        actualValue = facade.deleteUserAccount("2","mary.jane@zmail.com", "Mary Jane", true);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Approval signature is missing.";
-        actualValue = facade.deleteUserAccount("john.doe@gmail.com", "John Doe",  false);
+        actualValue = facade.deleteUserAccount("1", "john.doe@gmail.com", "John Doe",  false);
         assertEquals(expectedValue, actualValue);
     }
 }

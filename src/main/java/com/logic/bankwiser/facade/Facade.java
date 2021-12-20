@@ -1,50 +1,102 @@
 package com.logic.bankwiser.facade;
 
+import com.logic.bankwiser.transactions.Transaction;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
 /**
- * Facade class
- * Acts as the middleman between the backend and user interface, facilitates testing for the software
+ * Acts as the middleman between the backend and user interface,
+ * facilitates testing for the software.
  *
- * @author Daniel Dovhun, Mathias Hallander
- * @since 0.0.1
+ * @author Daniel Dovhun
+ * @author Mathias Hallander
  */
-
 public class Facade {
+//TODO: return types for all methods need to be updated -MH
+
+    /**
+     * Class constructor
+     */
+    public Facade() {
+
+    }
+
+    /**
+     * Attempts a user login with user details.
+     *
+     * @param username  the users' username
+     * @param password  the users' password
+     * @return String confirmation of successful login or failure
+     */
     public String userLogin(String username, String password) {
         return "";
     }
 
-    public String createUserAccount(String username, String fullName, String password, String confirmPwd,
+    /**
+     * Creates a user account based on the inputted parameters.
+     *
+     * @param password              the users' password which has to be smaller than 16 characters
+     * @param confirmPwd            the users' password repeated for confirmation
+     * @param socialSecurityNumber  the users' social security number
+     * @return String confirmation of user creation or failure.
+     */
+    public String createUserAccount(String userName, String fullName, String password, String confirmPwd,
                                     String phoneNumber, String userAddress, String socialSecurityNumber) {
         return "";
     }
 
-    public String deleteUserAccount(String username, String fullName, boolean signature) {
+    //TODO finish deleteUserAccount method
+    public String deleteUserAccount(String accountId, String username, String fullName, boolean signature) {
         return "";
     }
 
-    public String resetUserPassword(String username, String newPwd, String newPwdConfirm) {
+    /**
+     * Resets the users' password.
+     *
+     * @param newPwd
+     * @param newPwdConfirm
+     * @return String confirmation of reset password.
+     */
+    public String resetUserPassword(String accountId, String username, String newPwd, String newPwdConfirm) {
         return "";
     }
 
+    /**
+     * Creates a bank account
+     * @param accountId
+     * @return
+     */
     public String createBankAccount(String accountId) {
         return "";
     }
 
+    /**
+     * Deletes a bank account
+     * @param accountId
+     * @return
+     */
     public String deleteBankAccount(String accountId) {
         return "";
     }
 
+    /**
+     * Retrieves information about a bank account
+     * @param accountName
+     * @return
+     */
     public HashMap<String, Double> bankAccountInformation(String accountName) {
-        HashMap<String, Double> info = new HashMap<String, Double>();
+        HashMap<String, Double> info = new HashMap<>();
 
         return info;
     }
 
+    /**
+     * Shows pending requests
+     * @return
+     */
     public ArrayList<String> pendingRequests() {
-        ArrayList<String> requests = new ArrayList<String>();
+        ArrayList<String> requests = new ArrayList<>();
 
         return requests;
     }
@@ -53,14 +105,14 @@ public class Facade {
         return "";
     }
 
-    public String transferMoney(String sender, String receiver, String note, Double amount) {
+    public String transferMoney(String sender, String receiver, String note, double amount) {
         return "";
     }
 
-    public ArrayList<String[]> viewTransactionHistory(String accountName) {
-        ArrayList<String[]> history = new ArrayList<String[]>();
+    public ArrayList<Transaction> viewTransactionHistory(String accountName) {
+        ArrayList<Transaction> transactions = new ArrayList<>();
 
-        return history;
+        return transactions;
     }
 
     public String loanApplication(String username, double amount) {
@@ -72,7 +124,7 @@ public class Facade {
         return "";
     }
 
-    public String homeLoanApplication(double monthlyIncome, double montlyExponses, double propertyPrice,
+    public String homeLoanApplication(double monthlyIncome, double monthlyExponses, double propertyPrice,
                                       double propertySize, String liabilities, String homeAddress,
                                       String homeType, int storiesNum, int duration) {
         return "";
@@ -80,7 +132,7 @@ public class Facade {
 
     public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses,
                                          double millage, String liabilities, String vehicleType,
-                                         String fuelType, int yearOfManifacture) {
+                                         String fuelType, int yearOfManufacture) {
         return "";
     }
 
@@ -129,6 +181,26 @@ public class Facade {
     }
 
     public String changePin(String cardNumber, String username, int oldPin, int newPin, int newPinConfirmation) {
+        return "";
+    }
+
+    public String depositMoney(String accountName, double amount) {
+        return "";
+    }
+
+    public ArrayList<String> getAccountInfo(String userName, String bankAccount) {
+        ArrayList<String> history = new ArrayList<String>();
+
+        return history;
+    }
+
+    public HashMap<String, Double> getUserAccountsInfo(String userName) {
+        HashMap<String, Double> info = new HashMap<String, Double>();
+
+        return info;
+    }
+
+    public String createBankAccount(String username, String accountName) {
         return "";
     }
 }
