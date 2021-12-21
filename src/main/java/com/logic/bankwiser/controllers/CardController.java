@@ -2,25 +2,33 @@ package com.logic.bankwiser.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.math.BigDecimal;
+
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.cards.Card;
 import com.logic.bankwiser.cards.CreditCard;
 import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
+import com.logic.bankwiser.controllers.TransactionController;
 import javafx.util.Pair;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.UUID;
 
 public class CardController {
 
     private final Storage STORAGE;
+    private final TransactionController TRANSACTION_CONTROLLER;
 
-    public CardController(Storage storage) {
+    public CardController(Storage storage, TransactionController transactionController) {
         this.STORAGE = storage;
+        this.TRANSACTION_CONTROLLER = transactionController;
+
     }
 
-    public String addCard(int linkedAccount, String expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, BigDecimal maxCredit, double interest) {
+    public String addCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, BigDecimal maxCredit, double interest) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if(keyAcceptance.getKey()){
-            STORAGE.addCard(new CreditCard(linkedAccount, expirationDate, pin, status, region, onlineStatus, expenditureMax, maxCredit, interest));
+            STORAGE.addCard(new CreditCard(expirationDate, pin, status, region, onlineStatus, expenditureMax, maxCredit, interest));
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         }else{
             return keyAcceptance.getValue();
@@ -28,8 +36,8 @@ public class CardController {
     }
 
     // Modified method to use LocalDate rather than String -KC
-    public String addCard(int linkedAccount, LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
-        STORAGE.addCard(new DebitCard(linkedAccount, expirationDate, pin, status, region, onlineStatus, expenditureMax));
+    public String addCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
+        STORAGE.addCard(new DebitCard(expirationDate, pin, status, region, onlineStatus, expenditureMax));
         return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
     }
 
@@ -79,31 +87,43 @@ public class CardController {
         return new Pair<>(acceptablePassword, failCause);
     }
 
-    public void cardPayments() {
-        Date dateDate = new Date();
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDate = date.format(dateDate);
-        int day = Integer.parseInt(currentDate.substring(8,10));
-        int month = Integer.parseInt(currentDate.substring(5,7));
-        int year = Integer.parseInt(currentDate.substring(0,4));
+    public void creditCardPayment() {
 
-        for(int i = 0; i < STORAGE.getCardList().size(); i++){
-            String creationDate = STORAGE.getCardList().get(i).getCreationDate();
-            int dayCreation = Integer.parseInt(currentDate.substring(8,10));
-            int monthCreation = Integer.parseInt(currentDate.substring(5,7));
-            int yearCreation = Integer.parseInt(currentDate.substring(0,4));
+        LocalDate dateToday = LocalDate.now();
 
-            if(month == monthCreation && day == dayCreation){
-                int tempBankBalance = 0;
-                tempBankBalance -= 5999;
+        for(BankAccount bankAccount : STORAGE.getBankAccountMap().values()){
+            if(bankAccount.getBalance().intValue() < 0){
+                for(DebitCard card : bankAccount.getCardList()){
+
+                    LocalDate creationDate = card.getCreationDate();
+
+                    if(dateToday.getDayOfMonth() == creationDate.getDayOfMonth() && (dateToday.getYear() != creationDate.getYear() || dateToday.getMonth() != creationDate.getMonth())){
+                        CreditCard creditCard = (CreditCard) card;
+
+                        BigDecimal moneyTransfered = bankAccount.getBalance().multiply(new BigDecimal(creditCard.getInterest()*-1));
+                        String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
+                        //TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                    }
+                }
+
             }
+        }
+    }
 
-            if(day == dayCreation && (year != yearCreation || month != monthCreation)){
-                int tempValue = 0;
-                double tempBankBalance = 0;
-                if(tempBankBalance < 0){
-                    CreditCard currentCard = (CreditCard) STORAGE.getCardList().get(i);
-                    tempBankBalance *= currentCard.getInterest();
+    public void annualCardPayment() {
+        LocalDate dateToday = LocalDate.now();
+
+        for(BankAccount bankAccount : STORAGE.getBankAccountMap().values()){
+
+            for(DebitCard card : bankAccount.getCardList()){
+
+                LocalDate creationDate = card.getCreationDate();
+                long remainderDays = ChronoUnit.DAYS.between(creationDate, dateToday);
+                if(remainderDays % 365 == 0){
+                    CreditCard creditCard = (CreditCard) card;
+                    String paymentNote = "Payment on your card number: " + card.getCardNumber();
+                    BigDecimal moneyTransfered = new BigDecimal(999);
+                    //TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
                 }
             }
 
@@ -174,7 +194,7 @@ public class CardController {
         return "Invalid input: Given card number does not exist!";
     }
 
-    public String remainderDays(String cardNumber) { //Calculates remaining days until expiration
+    public String remainderDays(String cardNumber, UUID userID) { //Calculates remaining days until expiration
         String address = "";
 //        Date dateDate = new Date();
 //        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -199,20 +219,20 @@ public class CardController {
             The three lines below replace the 15 lines above the comment.
             Hopefully this is a good starting point! -KC
          */
-        LocalDate expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
-        LocalDate dateToday = LocalDate.now();
-        long remainderDays = ChronoUnit.DAYS.between(dateToday, expirationDate);
 
 //        if(remainderDay<0){
 //            return "The card "+cardNumber+" expired and was terminated.";
 //        }else {
 //            return "Your card"+ cardNumber+" will expire in "+remainderDay+" days and will be terminated then. We have sent you a new one to "+address+".";
 //        }
+        LocalDate expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
+        LocalDate dateToday = LocalDate.now();
+        long remainderDays = ChronoUnit.DAYS.between(dateToday, expirationDate);
 
         if(remainderDays<0){
             return "The card "+cardNumber+" expired and was terminated.";
         }else {
-            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then. We have sent you a new one to "+address+".";
+            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then. We have sent you a new one to "+STORAGE.getUserFromMap(userID).getAddress()+".";
         }
     }
 
