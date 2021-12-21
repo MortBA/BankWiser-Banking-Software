@@ -92,31 +92,31 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-            <Label fx:id="newDebitCard" layoutX="12.0" layoutY="100.0" text="New Debit Card" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" onMouseClicked="#onDebitCardClicked" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="cardFunctionality" layoutX="6.0" layoutY="317.0" text="Modify Card Functionality" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" onMouseClicked="#onModifyFuncClicked" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="49.0" fitWidth="67.0" layoutX="204.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
+                <Label fx:id="newDebitCard" layoutX="12.0" layoutY="100.0" text="New Debit Card" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" onMouseClicked="#onDebitCardClicked" textFill="#017c83">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="cardFunctionality" layoutX="6.0" layoutY="317.0" text="Modify Card Functionality" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" onMouseClicked="#onModifyFuncClicked" textFill="#017c83">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="49.0" fitWidth="67.0" layoutX="204.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/BankCard.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
-      <AnchorPane layoutX="366.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0" style="-fx-background-color: #d8fffa;">
-         <children>
-            <Label alignment="CENTER" layoutY="14.0" prefHeight="46.0" prefWidth="887.0" text="We make accessing and managing cards easy for you" textFill="#017c83">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+        <AnchorPane layoutX="366.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0" style="-fx-background-color: #d8fffa;">
+            <children>
+                <Label alignment="CENTER" layoutY="14.0" prefHeight="46.0" prefWidth="887.0" text="We make accessing and managing cards easy for you" textFill="#017c83">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>
