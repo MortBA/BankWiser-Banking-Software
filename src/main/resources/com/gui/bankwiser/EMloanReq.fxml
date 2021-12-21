@@ -17,13 +17,20 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <ListView layoutX="49.0" layoutY="99.0" opacity="0.7" prefHeight="358.0" prefWidth="458.0" />
+                <ListView fx:id="requestList" layoutX="49.0" layoutY="99.0" opacity="0.7" prefHeight="358.0" prefWidth="458.0" />
                 <Button layoutX="49.0" layoutY="481.0" mnemonicParsing="false" text="View request">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <AnchorPane layoutX="670.0" layoutY="78.0" prefHeight="388.0" prefWidth="489.0" />
+                <AnchorPane layoutX="670.0" layoutY="78.0" prefHeight="388.0" prefWidth="489.0">
+               <children>
+                  <Label fx:id="requestsLabel" alignment="CENTER" layoutY="45.0" prefHeight="35.0" prefWidth="491.0" text="Loan requests">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
             </children></AnchorPane>
         <AnchorPane layoutX="-6.0" layoutY="-6.0" prefHeight="150.0" prefWidth="1288.0" style="-fx-background-color: #007C82;">
             <children>

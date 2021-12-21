@@ -49,8 +49,9 @@ public class LoginScreenCustomerController implements Initializable {
 
     //NotCustomer
     @FXML
-    private void NotCustomerClicked(){
-        Error_Message.setText("Too bad for you buckeroo");
+    private void NotCustomerClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("CreateUserScreen.fxml");
     }
 
     @FXML
@@ -64,13 +65,11 @@ public class LoginScreenCustomerController implements Initializable {
     }
 
 
-
-
-
     //Login Button
     @FXML
-    private void LoginClicked(){
-        Error_Message.setText("not implemented yet");
+    private void LoginClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("CustomerMenuScreen.fxml");
     }
 
     @FXML
