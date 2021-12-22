@@ -1,6 +1,7 @@
 package com.logic.bankwiser.bank_accounts;
 
 import com.logic.bankwiser.cards.Card;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.transactions.Transaction;
 import com.logic.bankwiser.loans.Loan;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class BankAccount {
     private BigDecimal balance;
     private List<Transaction> transactionList;
     private List<Loan> loanList;
-    private List<Card> cardList;
+    private List<DebitCard> cardList;
 
     /**
      * Constructor for the BankAccount class.
@@ -60,7 +61,7 @@ public class BankAccount {
         return loanList;
     }
 
-    public List<Card> getCardList() {
+    public List<DebitCard> getCardList() {
         return cardList;
     }
 
@@ -93,7 +94,7 @@ public class BankAccount {
         loanList.add(loan);
     }
 
-    public void addCard(Card card) {
+    public void addCard(DebitCard card) {
         cardList.add(card);
     }
 

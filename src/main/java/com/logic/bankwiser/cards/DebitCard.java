@@ -7,10 +7,9 @@ import java.util.Date;
 
 public class DebitCard {
 
-    private final int LINKED_ACCOUNT;
     private final String CARD_NUMBER;
     private final String CCV;
-    private final String CREATION_DATE;
+    private final LocalDate CREATION_DATE;
     //private final String EXPIRATION_DATE;
     private final LocalDate EXPIRATION_DATE;
     private int pin;
@@ -20,7 +19,7 @@ public class DebitCard {
     private int expenditureMax;
 
 
-    public DebitCard(int linkedAccount, LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
+    public DebitCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
 
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -52,9 +51,8 @@ public class DebitCard {
 
         Date dateDate = new Date();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        this.CREATION_DATE = date.format(dateDate);
+        this.CREATION_DATE = LocalDate.now();;
 
-        this.LINKED_ACCOUNT = linkedAccount;
         this.CARD_NUMBER = cardNumber;
         this.CCV = CCV;
         this.EXPIRATION_DATE = expirationDate;
@@ -65,7 +63,6 @@ public class DebitCard {
         this.expenditureMax = expenditureMax;
     }
 
-    public int getLinkedAccount() {return LINKED_ACCOUNT;}
 
     public String getCardNumber() {
         return CARD_NUMBER;
@@ -83,7 +80,7 @@ public class DebitCard {
         return EXPIRATION_DATE;
     }
 
-    public String getCreationDate() {
+    public LocalDate getCreationDate() {
         return CREATION_DATE;
     }
 
