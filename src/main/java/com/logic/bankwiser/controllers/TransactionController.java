@@ -6,10 +6,15 @@ import com.logic.bankwiser.transactions.Transaction;
 import com.logic.bankwiser.utils.Input;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author Kevin Collins
+ */
 
 public class TransactionController {
 
@@ -19,7 +24,7 @@ public class TransactionController {
         this.storage = storage;
     }
 
-    public String transferMoney(int senderBankAccountID, int receiverBankAccountID, BigDecimal moneyTransferred, String note, Date transactionDate) {
+    public String transferMoney(int senderBankAccountID, int receiverBankAccountID, BigDecimal moneyTransferred, String note, LocalDate transactionDate) {
         StringBuilder sb = new StringBuilder();
         BankAccount senderBankAccount = storage.getBankAccount(senderBankAccountID);
         BankAccount receiverBankAccount = storage.getBankAccount(receiverBankAccountID);
