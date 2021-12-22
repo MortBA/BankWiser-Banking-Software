@@ -4,7 +4,13 @@ import java.util.Random;
 import java.time.LocalDate;
 import java.util.Date;
 //Big Decimal
-
+/**
+ * DebitCard class
+ * Acts as the main parent-class for the creditCard and object debitCard created here.
+ *
+ * @author Burak Askan
+ *
+ */
 public class DebitCard {
 
     private final String CARD_NUMBER;
@@ -18,7 +24,13 @@ public class DebitCard {
     private boolean onlineStatus;
     private int expenditureMax;
 
+    //TODO: Make expirationdate automatic assigned?
 
+    /**
+     *cardNumber = assigned by system with use of random generated numbers with total 16 digits.
+     * CCV = assigned by system with use of random generated numbers with total 3 digits.
+     * currentDate = assigned by system by assigning current time
+     */
     public DebitCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
 
         int cardNumberMin = 0;

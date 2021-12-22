@@ -25,6 +25,26 @@ public class CardController {
 
     }
 
+    /**
+     * CardController class
+     * Acts as the controller which contains all logic regarding bank cards which is passed to Facade.
+     *
+     * @author Burak Askan
+     *
+     */
+
+    /**
+     * adding a credit card into list in storage
+     * @param expirationDate = expiration date of the card, automatically set by system.
+     * @param pin = pin password for cards set by the user.
+     * @param status = status in regards to being frozen or unfrozen.
+     * @param region = to which region is the bank card locked to.
+     * @param onlineStatus = if the card has permission to make online purchases.
+     * @param expenditureMax = the max expenditure possible with the card.
+     * @param maxCredit = the limit of the users credit.
+     * @param interest = interest on the spent credits if not paid out at by next month.
+     * @return affirmative or negative string.
+     */
     public String addCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, BigDecimal maxCredit, double interest) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if(keyAcceptance.getKey()){
@@ -35,12 +55,33 @@ public class CardController {
         }
     }
 
+    /**
+     * adding a debit card into list in storage
+     * @param expirationDate
+     * @param pin
+     * @param status
+     * @param region
+     * @param onlineStatus
+     * @param expenditureMax
+     * @return
+     */
     // Modified method to use LocalDate rather than String -KC
     public String addCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
-        STORAGE.addCard(new DebitCard(expirationDate, pin, status, region, onlineStatus, expenditureMax));
-        return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
+        Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
+        if(keyAcceptance.getKey()){
+            STORAGE.addCard(new DebitCard(expirationDate, pin, status, region, onlineStatus, expenditureMax));
+            return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
+        }else{
+            return keyAcceptance.getValue();
+        }
     }
 
+    /**
+     * Checks if given pin is legal
+     * @param pin = pin selected by the user
+     * @return affirmative or negative string and boolean
+     *
+     */
     public Pair<Boolean, String> createPasswordCheck(int pin) {
         String pinString = "" + pin;
         String failCause = "";
@@ -87,6 +128,16 @@ public class CardController {
         return new Pair<>(acceptablePassword, failCause);
     }
 
+
+
+    //FOR BOTH PAYMENTS METHODS:
+    //TODO: Make sure TransferMoney can accept LocalDate
+    //TODO: Make sure to add time, monthly and yearly, for the payments
+
+    /**
+     * Monthly credit card payments
+     * Checks if payment due on any credit card. If there is then it does the payments.
+     */
     public void creditCardPayment() {
 
         LocalDate dateToday = LocalDate.now();
@@ -102,7 +153,7 @@ public class CardController {
 
                         BigDecimal moneyTransfered = bankAccount.getBalance().multiply(new BigDecimal(creditCard.getInterest()*-1));
                         String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
-                        //TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
                     }
                 }
 
@@ -110,6 +161,10 @@ public class CardController {
         }
     }
 
+    /**
+     * Annual card payments
+     * Checks if annual payments are due on any cards. If there is then it does the payments.
+     */
     public void annualCardPayment() {
         LocalDate dateToday = LocalDate.now();
 
@@ -123,7 +178,7 @@ public class CardController {
                     CreditCard creditCard = (CreditCard) card;
                     String paymentNote = "Payment on your card number: " + card.getCardNumber();
                     BigDecimal moneyTransfered = new BigDecimal(999);
-                    //TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
                 }
             }
 
@@ -131,6 +186,12 @@ public class CardController {
         }
     }
 
+    /**
+     *
+     * @param cardNumber = cardNumber of the card that will be modified
+     * @param statusNew = the new status, of frozen or unfrozen, of card according to user choice
+     * @return affirmative or negative string.
+     */
     public String modifyStatus(String cardNumber, boolean statusNew) {
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
@@ -145,16 +206,12 @@ public class CardController {
         return "Invalid input: Given card number does not exist!";
     }
 
-    public String modifyPin(String cardNumber, int pinNew) {
-        for (int i = 0; i<STORAGE.getCardList().size(); i++){
-            if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
-                STORAGE.getCard(cardNumber).setPin(pinNew);
-                return "Your pin has been successfully changed.";
-            }
-        }
-        return "Invalid input: Given card number does not exist!";
-    }
-
+    /**
+     *
+     * @param cardNumber = cardNumber of the card that will be modified
+     * @param region = the new region that the user want the card to be locked to
+     * @return affirmative or negative string.
+     */
     public String modifyRegion(String cardNumber, String region) {
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
@@ -165,6 +222,12 @@ public class CardController {
         return "Invalid input: Given card number does not exist!";
     }
 
+    /**
+     *
+     * @param cardNumber = cardNumber of the card that will be modified
+     * @param onlineStatus = the new online access status the user wants
+     * @return affirmative or negative string.
+     */
     public String modifyOnlineStatus(String cardNumber, boolean onlineStatus) {
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
@@ -179,6 +242,12 @@ public class CardController {
         return "Invalid input: Given card number does not exist!";
     }
 
+    /**
+     *
+     * @param cardNumber = cardNumber of the card that will be modified
+     * @param expenditureMax = the new maximum set on expenditure on the card
+     * @return affirmative or negative string.
+     */
     public String modifyExpenditureMax(String cardNumber, int expenditureMax) {
         if (expenditureMax<0){
             return "Invalid input: The new spending limit should not be negative.";
@@ -194,6 +263,12 @@ public class CardController {
         return "Invalid input: Given card number does not exist!";
     }
 
+    /**
+     *
+     * @param cardNumber = cardNumber of the card that will be reminded
+     * @param userID = the user that will receive the reminder
+     * @return string containing reminder of expiration coming close or card has already expired
+     */
     public String remainderDays(String cardNumber, UUID userID) { //Calculates remaining days until expiration
         String address = "";
 //        Date dateDate = new Date();
@@ -236,6 +311,13 @@ public class CardController {
         }
     }
 
+    /**
+     *
+     * @param cardNumber = the number of the card that will get deleted
+     * @param pin = the correct pin of the card
+     * @param terminationReasoning = string with reasoning of termination
+     * @return affirmative or negative string.
+     */
     public String deleteCard(String cardNumber, int pin, String terminationReasoning) {
         boolean cardExist = false;
         String returnMessage = "";
@@ -259,6 +341,14 @@ public class CardController {
         return returnMessage;
     }
 
+    /**
+     *
+     * @param cardNumber = the card that will have the pin modified
+     * @param oldPin = current pin of the card
+     * @param newPin = the new pin the user want to change the old pin into
+     * @param newPinConfirmation = same pin as newpin for confirmation
+     * @return affirmative or negative string.
+     */
     public String resetPin(String cardNumber, int oldPin, int newPin, int newPinConfirmation){
         if(STORAGE.getCard(cardNumber).getPin()==oldPin){
             if(newPin==newPinConfirmation){
@@ -276,6 +366,13 @@ public class CardController {
             return "Incorrect PIN code.";
         }
     }
+
+    /**
+     *
+     * @param cardNumber = Number of the card that is getting pin checked
+     * @param pin = the pin that user entered with that pin
+     * @return boolean if the pin entered was correct ot not
+     */
 
     public boolean checkPin(String cardNumber, int pin){
         boolean pinCheck = false;
