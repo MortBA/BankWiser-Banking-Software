@@ -17,27 +17,27 @@ public class LoanController {
     }
 
     public void createHomeLoan(int loanAmount, double interestRate, Date maturityDate, String status, String propertyInfo) {
-        int caseID = generateCaseID();
-        storage.addLoan(new HomeLoan(caseID, loanAmount, interestRate, maturityDate, status, propertyInfo));
+        int loanID = generateLoanID();
+        storage.addLoan(new HomeLoan(loanID, loanAmount, interestRate, maturityDate, status, propertyInfo));
     }
 
     public void createPersonalLoan(int loanAmount, double interestRate, Date maturityDate, String status, String personalReasons) {
-        int caseID = generateCaseID();
-        storage.addLoan(new PersonalLoan(caseID, loanAmount, interestRate, maturityDate, status, personalReasons));
+        int loanID = generateLoanID();
+        storage.addLoan(new PersonalLoan(loanID, loanAmount, interestRate, maturityDate, status, personalReasons));
     }
 
     public void createVehicleLoan(int loanAmount, double interestRate, Date maturityDate, String status, String vehicleLoan) {
-        int caseID = generateCaseID();
-        storage.addLoan(new VehicleLoan(caseID, loanAmount, interestRate, maturityDate, status, vehicleLoan));
+        int loanID = generateLoanID();
+        storage.addLoan(new VehicleLoan(loanID, loanAmount, interestRate, maturityDate, status, vehicleLoan));
     }
 
 
-    public int generateCaseID(){
+    public int generateLoanID(){
         int min = 100000;
         int max = 999999;
         Random rand = new Random();
-        int caseID = rand.nextInt((max-min)+1) + min;
-        return caseID;
+        int loanID = rand.nextInt((max-min)+1) + min;
+        return loanID;
     }
 
 }

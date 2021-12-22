@@ -5,8 +5,8 @@ import java.util.Date;
 public class HomeLoan extends Loan {
 
     private final String PROPERTY_INFO;
-    public HomeLoan(int caseID, int loanAmount, double interestRate, Date maturityDate, String status, String propertyInfo) {
-        super(caseID, loanAmount, interestRate, maturityDate, status);
+    public HomeLoan(int loanID, int loanAmount, double interestRate, Date maturityDate, String status, String propertyInfo) {
+        super(loanID, loanAmount, interestRate, maturityDate, status);
         this.PROPERTY_INFO = propertyInfo;
     }
 

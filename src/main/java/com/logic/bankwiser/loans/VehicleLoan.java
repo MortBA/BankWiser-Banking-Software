@@ -5,8 +5,8 @@ import java.util.Date;
 public class VehicleLoan extends Loan {
 
     private String vehicleInfo;
-    public VehicleLoan(int caseID, int loanAmount, double interestRate, Date maturityDate, String status, String vehicleInfo) {
-        super(caseID, loanAmount, interestRate, maturityDate, status);
+    public VehicleLoan(int loanID, int loanAmount, double interestRate, Date maturityDate, String status, String vehicleInfo) {
+        super(loanID, loanAmount, interestRate, maturityDate, status);
         this.vehicleInfo = vehicleInfo;
     }
 
