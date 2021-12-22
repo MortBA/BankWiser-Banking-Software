@@ -122,6 +122,11 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Label>
+                        <ImageView fx:id="QuestionMarkButton" fitHeight="20.0" fitWidth="20.0" layoutX="381.0" layoutY="4.0" onMouseEntered="#QuestionMarkHoverIn" onMouseExited="#QuestionMarkHoverOut" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../img/QuestionMark.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="98.0" layoutY="129.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="500.0">

@@ -39,8 +39,9 @@
             </Button>
             <MenuButton mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
-                  <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
+                  <MenuItem mnemonicParsing="false" text="Personal Info" />
+                  <MenuItem mnemonicParsing="false" text="Account Settings" />
+                  <MenuItem mnemonicParsing="false" text="My Cards" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -48,7 +49,6 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Transfer Money" />
                   <MenuItem mnemonicParsing="false" text="Transaction History" />
                </items>
                <font>
@@ -72,6 +72,7 @@
                   <Font size="18.0" />
                </font>
             </MenuButton>
+            <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="349.0" prefWidth="319.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="504.0" AnchorPane.topAnchor="351.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="246.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="191.0">
@@ -106,7 +107,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="911.0" layoutY="35.0" text="Available Amount" textFill="#017c83">
+            <Label layoutX="911.0" layoutY="35.0" text="Avalible Amount" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
@@ -133,54 +134,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="240.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="465.0">
-         <children>
-            <ImageView fitHeight="68.0" fitWidth="112.0" layoutX="49.0" layoutY="63.0" AnchorPane.leftAnchor="20.0">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="36.0" layoutY="11.0" text="Cards" textFill="#017c83" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="11.0">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="495.0" layoutY="16.0" text="Card Number" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="967.0" layoutY="16.0" text="Saldo" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="68.0" fitWidth="112.0" layoutX="46.0" layoutY="151.0" AnchorPane.leftAnchor="20.0">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="PersonCardNumber" layoutX="496.0" layoutY="73.0" prefHeight="35.0" text="0123 456 69382" textAlignment="CENTER" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedCardNumber" layoutX="496.0" layoutY="160.0" text="0040 200 25560" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedCardAmount" layoutX="939.0" layoutY="160.0" text="666,66 SEK" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="PersonCardAmount" layoutX="954.0" layoutY="76.0" text=" 20469,42 SEK" textAlignment="CENTER" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>
+

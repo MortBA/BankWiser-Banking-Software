@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -32,14 +33,14 @@
       </AnchorPane>
       <AnchorPane prefHeight="630.0" prefWidth="896.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+            <Button fx:id="overview" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOverviewClicked" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
             <MenuButton mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
+                  <MenuItem mnemonicParsing="false" text="Account Settings" />
                   <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                </items>
                <font>
@@ -74,110 +75,91 @@
             </MenuButton>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="246.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="191.0">
+      <AnchorPane prefHeight="499.0" prefWidth="1200.0" style="-fx-background-color: #d8fffa;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="190.0">
          <children>
-            <Label layoutX="21.0" layoutY="71.0" text="Transaction Accounts" textFill="#017c83">
+            <Label layoutX="21.0" layoutY="71.0" text="First Name:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="90.0">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="110.0" layoutY="201.0" text="Surname:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="180.0">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="17.0" text="Account Settings" textFill="#017c83">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="353.0" text="Email:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="360.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="21.0" layoutY="161.0" text="Shared Accounts" textFill="#017c83">
+            <Label layoutX="648.0" layoutY="357.0" text="Password:" textFill="#017c83" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="270.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="17.0" text="Accounts" textFill="#017c83">
+            <Label layoutX="42.0" layoutY="310.0" text="Phone Number:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="270.0">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="21.0" layoutY="109.0" text="Personal Account " textFill="#61bdb2">
+            <Label layoutX="651.0" layoutY="93.0" text="Address 1:" textFill="#017c83" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="90.0">
                <font>
-                  <Font size="20.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="196.0" text="Capital Account" textFill="#61bdb2">
+            <Button layoutX="665.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" text="Change Password" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="310.0">
                <font>
                   <Font size="18.0" />
                </font>
-            </Label>
-            <Label layoutX="481.0" layoutY="34.0" text="Account Number" textFill="#017c83">
+            </Button>
+            <Label layoutX="651.0" layoutY="206.0" text="Address 2: " textFill="#017c83" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="180.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="911.0" layoutY="35.0" text="Available Amount" textFill="#017c83">
+            <TextField layoutX="104.0" layoutY="140.0" prefHeight="36.0" prefWidth="409.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="752.0" AnchorPane.topAnchor="130.0">
                <font>
-                  <Font size="24.0" />
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="112.0" layoutY="248.0" prefHeight="36.0" prefWidth="303.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="752.0" AnchorPane.topAnchor="220.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="122.0" layoutY="258.0" prefHeight="36.0" prefWidth="303.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="752.0" AnchorPane.topAnchor="310.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="132.0" layoutY="268.0" prefHeight="36.0" prefWidth="303.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="752.0" AnchorPane.topAnchor="400.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="689.0" layoutY="222.0" prefHeight="36.0" prefWidth="408.0" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="220.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="669.0" layoutY="139.0" prefHeight="36.0" prefWidth="409.0" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="130.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="629.0" layoutY="475.0" text="Social Security Number:" textFill="#017c83" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="210.0">
+               <font>
+                  <Font size="26.0" />
                </font>
             </Label>
-            <Label fx:id="PersonAccountNumber" layoutX="477.0" layoutY="105.0" prefHeight="35.0" text="0123 4567 8901 2345" textAlignment="CENTER" textFill="#017c83">
+            <Label layoutX="981.0" layoutY="463.0" text="19870605-4321" textFill="#017c83" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="20.0">
                <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAccountAmount" layoutX="908.0" layoutY="192.0" text="666,66 SEK" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="PersonAccountAmount" layoutX="965.0" layoutY="109.0" text=" 20469,42 SEK" textAlignment="CENTER" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAccountNumber" layoutX="477.0" layoutY="192.0" text="0040 2001 6090 2510" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="240.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="465.0">
-         <children>
-            <ImageView fitHeight="68.0" fitWidth="112.0" layoutX="49.0" layoutY="63.0" AnchorPane.leftAnchor="20.0">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="36.0" layoutY="11.0" text="Cards" textFill="#017c83" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="11.0">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="495.0" layoutY="16.0" text="Card Number" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="967.0" layoutY="16.0" text="Saldo" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="68.0" fitWidth="112.0" layoutX="46.0" layoutY="151.0" AnchorPane.leftAnchor="20.0">
-               <image>
-                  <Image url="@../../../img/BankCard.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="PersonCardNumber" layoutX="496.0" layoutY="73.0" prefHeight="35.0" text="0123 456 69382" textAlignment="CENTER" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedCardNumber" layoutX="496.0" layoutY="160.0" text="0040 200 25560" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedCardAmount" layoutX="939.0" layoutY="160.0" text="666,66 SEK" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="PersonCardAmount" layoutX="954.0" layoutY="76.0" text=" 20469,42 SEK" textAlignment="CENTER" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
          </children>

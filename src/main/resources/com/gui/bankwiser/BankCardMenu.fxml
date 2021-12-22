@@ -35,7 +35,6 @@
                 </Button>
                 <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info" />
                         <MenuItem fx:id="accountSettings" mnemonicParsing="false" text="Account Settings" />
                         <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                     </items>
@@ -72,7 +71,7 @@
         </AnchorPane>
         <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="506.0" prefWidth="284.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="956.0">
             <children>
-                <Label fx:id="newCreditCard" layoutX="9.0" layoutY="170.0" text="New Credit Card" textFill="#017c83" onMouseEntered="#creditCardHoverIn" onMouseExited="#creditCardHoverOut" onMouseClicked="#onCreditCardClicked" AnchorPane.leftAnchor="9.0">
+                <Label fx:id="newCreditCard" layoutX="9.0" layoutY="170.0" onMouseClicked="#onCreditCardClicked" onMouseEntered="#creditCardHoverIn" onMouseExited="#creditCardHoverOut" text="New Credit Card" textFill="#017c83" AnchorPane.leftAnchor="9.0">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -82,22 +81,22 @@
                         <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
-                <Label fx:id="changeCardPin" layoutX="8.0" layoutY="243.0" text="Change Card Pin" textFill="#017c83" onMouseEntered="#changePinHoverIn" onMouseExited="#changePinHoverOut" onMouseClicked="#onChangePinClicked" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
+                <Label fx:id="changeCardPin" layoutX="8.0" layoutY="243.0" onMouseClicked="#onChangePinClicked" onMouseEntered="#changePinHoverIn" onMouseExited="#changePinHoverOut" text="Change Card Pin" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="deleteCard" layoutX="8.0" layoutY="392.0" text="Delete Card" textFill="#017c83" onMouseEntered="#deleteCardHoverIn" onMouseExited="#deleteCardHoverOut" onMouseClicked="#onDeleteCardClicked" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="392.0">
+                <Label fx:id="deleteCard" layoutX="8.0" layoutY="392.0" onMouseClicked="#onDeleteCardClicked" onMouseEntered="#deleteCardHoverIn" onMouseExited="#deleteCardHoverOut" text="Delete Card" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="392.0">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
-            <Label fx:id="newDebitCard" layoutX="12.0" layoutY="100.0" text="New Debit Card" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" onMouseClicked="#onDebitCardClicked" textFill="#017c83">
+            <Label fx:id="newDebitCard" layoutX="12.0" layoutY="100.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="New Debit Card" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="cardFunctionality" layoutX="6.0" layoutY="317.0" text="Modify Card Functionality" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" onMouseClicked="#onModifyFuncClicked" textFill="#017c83">
+            <Label fx:id="cardFunctionality" layoutX="6.0" layoutY="317.0" onMouseClicked="#onModifyFuncClicked" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" text="Modify Card Functionality" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
