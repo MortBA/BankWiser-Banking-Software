@@ -25,9 +25,9 @@
       </AnchorPane>
       <Pane layoutX="682.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="598.0" style="-fx-background-color: #5ab9bf;">
          <children>
-            <AnchorPane fx:id="LoginElements" opacity="0.0" prefHeight="720.0" prefWidth="598.0">
+            <AnchorPane fx:id="LoginElements" prefHeight="720.0" prefWidth="598.0">
                <children>
-                  <Label layoutX="417.0" layoutY="672.0" prefHeight="47.0" prefWidth="176.0" text="Not a customer?" textFill="WHITE">
+                  <Label fx:id="NotCustomer" layoutX="417.0" layoutY="672.0" onMouseClicked="#NotCustomerClicked" onMouseEntered="#NotCustomerHoverIn" onMouseExited="#NotCustomerHoverOut" prefHeight="47.0" prefWidth="176.0" text="Not a customer?" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font>

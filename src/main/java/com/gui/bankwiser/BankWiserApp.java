@@ -19,8 +19,11 @@ public class BankWiserApp extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("/com/gui/bankwiser/LoadingScreen.fxml"));
             Scene scene1 = new Scene(root);
 
-            stage.setHeight(720);
-            stage.setWidth(1280);
+            //stage.setHeight(760); // Do not use setHeight This does not actually set the Height
+            //stage.setWidth(1296);
+            stage.setMinHeight(720);
+            stage.setMinWidth(1280);
+            stage.setTitle("BankWiser App");
             stage.setResizable(false);
             stage.setScene(scene1);
             stage.show();
