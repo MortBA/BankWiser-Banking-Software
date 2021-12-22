@@ -95,6 +95,32 @@ public class BankCardMenuController {
     private TextField cardPinToDelete;
 
     @FXML
+    private TextField creditCardPin;
+
+    @FXML
+    private TextField confirmCreditCardPin;
+
+    @FXML
+    private Button cancelCreditCard;
+
+    @FXML
+    private Button submitCreditCard;
+
+    @FXML
+    private TextField debitCardPin;
+
+    @FXML
+    private TextField confirmDebitCardPin;
+
+    @FXML
+    private Button cancelDebitCard;
+
+    @FXML
+    private Button submitDebitCard;
+
+
+
+    @FXML
     void onDeleteUserAccountClicked(ActionEvent event) {
     }
 
@@ -260,5 +286,53 @@ public class BankCardMenuController {
     public void onCancelDeleteCardClicked() throws IOException{
         BankWiserApp app = new BankWiserApp();
         app.changeScene("BankCardMenu.fxml");
+    }
+
+
+    @FXML
+    public void onCancelCreditCardClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("BankCardMenu.fxml");
+    }
+
+    @FXML
+    public void onSubmitCreditCardClicked() throws IOException {
+        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your application for a credit card has been submitted." +
+                    "We’ll let you know whether it has been accepted or rejected after evaluation.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+            }
+        }
+    }
+
+    @FXML
+    public void onSubmitDebitCardClicked() throws IOException{
+        if (!TnC.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else{
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if(result.get() == ButtonType.OK){
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+            }
+        }
     }
 }
