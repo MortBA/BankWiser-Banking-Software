@@ -37,10 +37,9 @@ public class BankWiserApp extends Application {
             Parent root = FXMLLoader.load(getClass().getResource(fxml));
             stg.setScene(new Scene(root));
             stg.show();
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {

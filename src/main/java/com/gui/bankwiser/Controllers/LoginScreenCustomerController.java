@@ -101,23 +101,32 @@ public class LoginScreenCustomerController implements Initializable {
 
 
     //Forgot Password
-    @FXML
-    public  Stage stage = new Stage();
+    @FXML public Stage stage = new Stage();
 
     @FXML
     private void ForgotPasswordClicked(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ForgotPasswordCustomer.fxml"));
         try{
             Parent root = loader.load();
-            Scene scene2 = new Scene(root);
-            stage.setScene(scene2);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Forgot Password");
+            stage.show();
+            stage.showAndWait();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    public void changeSceneForgotPassword(String fxml) throws IOException{
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            stage.setScene(new Scene(root));
             stage.show();
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -141,42 +150,41 @@ public class LoginScreenCustomerController implements Initializable {
         fade.play();
     }
 
-//Forgot password screen controls
+        //Forgot password screen controls
 
         @FXML
-        Button cancelButton = new Button();
+        Button cancelForgotPassButton = new Button();
         @FXML
-        Button confirmButton = new Button();
+        Button confirmForgotPassButton = new Button();
 
         @FXML
         private void confirmHoverIn() {
-            confirmButton.setStyle("-fx-background-color: #4bacf7;");
+            confirmForgotPassButton.setStyle("-fx-background-color: #4bacf7;");
         }
 
         @FXML
         private void confirmHoverOut() {
-            confirmButton.setStyle("-fx-background-color: #2d9bf0;");
+            confirmForgotPassButton.setStyle("-fx-background-color: #2d9bf0;");
         }
 
         @FXML
         private void cancelHoverIn() {
-            cancelButton.setStyle("-fx-background-color: #fc4a7f;");
+            cancelForgotPassButton.setStyle("-fx-background-color: #fc4a7f;");
         }
 
         @FXML
         private void cancelHoverOut() {
-            cancelButton.setStyle("-fx-background-color: #ed2762;");
+            cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
         }
 
         //cancel button
         @FXML
         private void cancelButtonClicked() throws Exception {
-            cancelButton.setOnAction(e -> ForgotPasswordClicked());
+            stage.close();
         }
 
         @FXML
         private void confirmButtonClicked() throws IOException {
-            BankWiserApp app = new BankWiserApp();
-            app.changeScene("NewPasswordCustomer.fxml");
+
         }
 }
