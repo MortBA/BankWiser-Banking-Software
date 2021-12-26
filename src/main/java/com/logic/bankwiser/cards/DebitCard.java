@@ -1,9 +1,7 @@
 package com.logic.bankwiser.cards;
-import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.time.LocalDate;
-import java.util.Date;
-//Big Decimal
+
 /**
  * DebitCard class
  * Acts as the main parent-class for the creditCard and object debitCard created here.
@@ -16,7 +14,6 @@ public class DebitCard {
     private final String CARD_NUMBER;
     private final String CCV;
     private final LocalDate CREATION_DATE;
-    //private final String EXPIRATION_DATE;
     private final LocalDate EXPIRATION_DATE;
     private int pin;
     private boolean status;
@@ -24,14 +21,15 @@ public class DebitCard {
     private boolean onlineStatus;
     private int expenditureMax;
 
-    //TODO: Make expirationdate automatic assigned?
 
     /**
+     *
      *cardNumber = assigned by system with use of random generated numbers with total 16 digits.
      * CCV = assigned by system with use of random generated numbers with total 3 digits.
-     * currentDate = assigned by system by assigning current time
+     * currentDate = assigned by system by assigning current time.
+     * expirationDate = assigned by system by taking current time + 3 years.
      */
-    public DebitCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
+    public DebitCard(int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
 
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -61,13 +59,12 @@ public class DebitCard {
         }
         cardNumber = zero+cardNumber;
 
-        Date dateDate = new Date();
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        this.CREATION_DATE = LocalDate.now();;
+        this.CREATION_DATE = LocalDate.now();
+
+        this.EXPIRATION_DATE = LocalDate.now().plusYears(3);
 
         this.CARD_NUMBER = cardNumber;
         this.CCV = CCV;
-        this.EXPIRATION_DATE = expirationDate;
         this.pin = pin;
         this.status = status;
         this.region = region;
@@ -83,10 +80,6 @@ public class DebitCard {
     public String getCCV() {
         return CCV;
     }
-
-//    public String getExpirationDate() {
-//        return EXPIRATION_DATE;
-//    }
 
     public LocalDate getExpirationDate() {
         return EXPIRATION_DATE;

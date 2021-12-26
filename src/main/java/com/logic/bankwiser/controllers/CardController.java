@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.math.BigDecimal;
 
+import com.google.gson.Gson;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.cards.Card;
 import com.logic.bankwiser.cards.CreditCard;
@@ -35,20 +36,26 @@ public class CardController {
 
     /**
      * adding a credit card into list in storage
-     * @param expirationDate = expiration date of the card, automatically set by system.
      * @param pin = pin password for cards set by the user.
      * @param status = status in regards to being frozen or unfrozen.
      * @param region = to which region is the bank card locked to.
      * @param onlineStatus = if the card has permission to make online purchases.
-     * @param expenditureMax = the max expenditure possible with the card.
-     * @param maxCredit = the limit of the users credit.
-     * @param interest = interest on the spent credits if not paid out at by next month.
+     * @param monthlyIncome = income of the user to assess size of credit.
+     * @param monthlyExpenses = expenses of the user to assess size of credit.
      * @return affirmative or negative string.
      */
-    public String addCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, BigDecimal maxCredit, double interest) {
+    public String addCard(int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, double monthlyIncome, double monthlyExpenses) {
+        BigDecimal maxCredit;
+        Pair<Boolean, BigDecimal> creditAssessment = calculateCredit(monthlyIncome, monthlyExpenses);
+        if(creditAssessment.getKey()){
+            maxCredit = creditAssessment.getValue();
+        }else{
+            return "Your application for a debit card has been denied.";
+        }
+
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if(keyAcceptance.getKey()){
-            STORAGE.addCard(new CreditCard(expirationDate, pin, status, region, onlineStatus, expenditureMax, maxCredit, interest));
+            STORAGE.addCard(new CreditCard(pin, status, region, onlineStatus, expenditureMax, maxCredit));
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         }else{
             return keyAcceptance.getValue();
@@ -56,8 +63,24 @@ public class CardController {
     }
 
     /**
+     * Assess eligibility of the user and calculation of max credit (creditCards).
+     * @param monthlyIncome
+     * @param monthlyExpenses
+     * @return
+     */
+    public Pair<Boolean, BigDecimal> calculateCredit(double monthlyIncome, double monthlyExpenses){
+        boolean eligible = false;
+        BigDecimal maxCredit = new BigDecimal(0);
+        double incomeRemainder = monthlyIncome-monthlyExpenses;
+        if (incomeRemainder>2000){
+            eligible = true;
+            maxCredit = new BigDecimal(incomeRemainder *0.5);
+        }
+        return new Pair<>(eligible, maxCredit);
+    }
+
+    /**
      * adding a debit card into list in storage
-     * @param expirationDate
      * @param pin
      * @param status
      * @param region
@@ -66,10 +89,10 @@ public class CardController {
      * @return
      */
     // Modified method to use LocalDate rather than String -KC
-    public String addCard(LocalDate expirationDate, int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
+    public String addCard(int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if(keyAcceptance.getKey()){
-            STORAGE.addCard(new DebitCard(expirationDate, pin, status, region, onlineStatus, expenditureMax));
+            STORAGE.addCard(new DebitCard(pin, status, region, onlineStatus, expenditureMax));
             return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
         }else{
             return keyAcceptance.getValue();
@@ -131,7 +154,6 @@ public class CardController {
 
 
     //FOR BOTH PAYMENTS METHODS:
-    //TODO: Make sure TransferMoney can accept LocalDate
     //TODO: Make sure to add time, monthly and yearly, for the payments
 
     /**
