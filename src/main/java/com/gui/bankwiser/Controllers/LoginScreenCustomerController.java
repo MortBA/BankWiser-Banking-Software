@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,6 +16,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LoginScreenCustomerController implements Initializable {
@@ -45,7 +43,16 @@ public class LoginScreenCustomerController implements Initializable {
     private Button buttonCancel;
 
     @FXML
+    private Button cancelNewPassword;
+
+    @FXML
     private Label NotCustomer;
+
+    @FXML
+    Button cancelForgotPassButton = new Button();
+
+    @FXML
+    Button confirmForgotPassButton = new Button();
 
     //NotCustomer
     @FXML
@@ -101,7 +108,10 @@ public class LoginScreenCustomerController implements Initializable {
 
 
     //Forgot Password
-    @FXML public Stage stage = new Stage();
+    /**
+     * stg2 for forgot password customer screens only.
+     */
+    @FXML public Stage stg2 = new Stage();
 
     @FXML
     private void ForgotPasswordClicked(){
@@ -109,35 +119,85 @@ public class LoginScreenCustomerController implements Initializable {
         try{
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            stage.showAndWait();
+            stg2.setScene(scene);
+            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg2.showAndWait();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public void changeSceneForgotPassword(String fxml) throws IOException{
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxml));
-            stage.setScene(new Scene(root));
-            stage.show();
+    @FXML
+    private void confirmButtonClicked() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg2.setScene(scene);
+            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg2.setTitle("Set New Password");
+            stg2.showAndWait();
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     @FXML
     private void ForgotPasswordHoverIn(){
         ForgottenPassword.setUnderline(true);
     }
-
     @FXML
-    private void ForgotPasswordHoverOut(ActionEvent e) {
-        ForgottenPassword.setUnderline(false);
+    private void ForgotPasswordHoverOut() { ForgottenPassword.setUnderline(false); }
+    @FXML
+    private void confirmHoverIn() {
+            confirmForgotPassButton.setStyle("-fx-background-color: #4bacf7;");
+        }
+    @FXML
+    private void confirmHoverOut() {
+            confirmForgotPassButton.setStyle("-fx-background-color: #2d9bf0;");
+        }
+    @FXML
+    private void cancelHoverIn() {
+            cancelForgotPassButton.setStyle("-fx-background-color: #fc4a7f;");
+        }
+    @FXML
+    private void cancelHoverOut() {
+            cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
+        }
 
+    /**
+     * Displays alert confirmation box as a confirmation for a successful password change.
+     * The alert box has OK and cancel button
+     * @throws IOException
+     */
+    @FXML
+    private void onConfirmNewPasswordClicked() throws IOException {
+        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+        alertBox.setContentText("Your password is updated successfully.");
+        Optional<ButtonType> result = alertBox.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            // probably not implement anything here
+        }
+    }
+
+    /**
+     * Used to close forgot password stage (window) using the button called in the method.
+     * @param event
+     */
+    @FXML
+    public void handleCloseForgotPasswordAction(ActionEvent event) {
+        Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
+        stage.close();
+    }
+
+    /**
+     * Used to close new password stage (window) using the button called in the method.
+     * @param event
+     */
+    @FXML
+    public void handleCloseNewPasswordAction(ActionEvent event) {
+        Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
+        stage.close();
     }
 
     @Override
@@ -150,41 +210,4 @@ public class LoginScreenCustomerController implements Initializable {
         fade.play();
     }
 
-        //Forgot password screen controls
-
-        @FXML
-        Button cancelForgotPassButton = new Button();
-        @FXML
-        Button confirmForgotPassButton = new Button();
-
-        @FXML
-        private void confirmHoverIn() {
-            confirmForgotPassButton.setStyle("-fx-background-color: #4bacf7;");
-        }
-
-        @FXML
-        private void confirmHoverOut() {
-            confirmForgotPassButton.setStyle("-fx-background-color: #2d9bf0;");
-        }
-
-        @FXML
-        private void cancelHoverIn() {
-            cancelForgotPassButton.setStyle("-fx-background-color: #fc4a7f;");
-        }
-
-        @FXML
-        private void cancelHoverOut() {
-            cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
-        }
-
-        //cancel button
-        @FXML
-        private void cancelButtonClicked() throws Exception {
-            stage.close();
-        }
-
-        @FXML
-        private void confirmButtonClicked() throws IOException {
-
-        }
 }
