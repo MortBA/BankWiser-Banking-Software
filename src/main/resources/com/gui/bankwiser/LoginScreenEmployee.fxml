@@ -66,11 +66,6 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Label fx:id="Error_Message" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="138.0" prefHeight="22.0" prefWidth="290.0" textAlignment="CENTER" textFill="RED">
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>

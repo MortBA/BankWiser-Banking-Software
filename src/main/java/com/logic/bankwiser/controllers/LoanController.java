@@ -2,6 +2,12 @@ package com.logic.bankwiser.controllers;
 
 import com.logic.bankwiser.storage.Storage;
 
+import com.logic.bankwiser.loans.HomeLoan;
+import com.logic.bankwiser.loans.PersonalLoan;
+import com.logic.bankwiser.loans.VehicleLoan;
+import java.util.Date;
+import java.util.Random;
+
 public class LoanController {
 
     private final Storage storage;
@@ -10,9 +16,29 @@ public class LoanController {
         this.storage = storage;
     }
 
-//    public void createLoan(int loanAmount, double interestRate, Date maturityDate, String status){
-//        com.logic.bankwiser.com.logic.bankwiser.storage.addCaseID();
-//        com.logic.bankwiser.com.logic.bankwiser.storage.addLoan(new Loan(loanAmount, interestRate, maturityDate, status));
-//    }
+    public void createHomeLoan(int loanAmount, double interestRate, Date maturityDate, String status, String propertyInfo) {
+        int loanID = generateLoanID();
+        storage.addLoan(new HomeLoan(loanID, loanAmount, interestRate, maturityDate, status, propertyInfo));
+    }
+
+    public void createPersonalLoan(int loanAmount, double interestRate, Date maturityDate, String status, String personalReasons) {
+        int loanID = generateLoanID();
+        storage.addLoan(new PersonalLoan(loanID, loanAmount, interestRate, maturityDate, status, personalReasons));
+    }
+
+    public void createVehicleLoan(int loanAmount, double interestRate, Date maturityDate, String status, String vehicleLoan) {
+        int loanID = generateLoanID();
+        storage.addLoan(new VehicleLoan(loanID, loanAmount, interestRate, maturityDate, status, vehicleLoan));
+    }
+
+
+    public int generateLoanID(){
+        int min = 100000;
+        int max = 999999;
+        Random rand = new Random();
+        int loanID = rand.nextInt((max-min)+1) + min;
+        return loanID;
+    }
 
 }
+
