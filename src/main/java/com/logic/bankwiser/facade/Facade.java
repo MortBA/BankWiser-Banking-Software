@@ -62,20 +62,39 @@ public class Facade {
         return "";
     }
 
+    /**
+     * Creates a bank account
+     * @param accountId
+     * @return
+     */
     public String createBankAccount(String accountId) {
         return "";
     }
 
+    /**
+     * Deletes a bank account
+     * @param accountId
+     * @return
+     */
     public String deleteBankAccount(String accountId) {
         return "";
     }
 
+    /**
+     * Retrieves information about a bank account
+     * @param accountName
+     * @return
+     */
     public HashMap<String, Double> bankAccountInformation(String accountName) {
         HashMap<String, Double> info = new HashMap<>();
 
         return info;
     }
 
+    /**
+     * Shows pending requests
+     * @return
+     */
     public ArrayList<String> pendingRequests() {
         ArrayList<String> requests = new ArrayList<>();
 
@@ -86,7 +105,7 @@ public class Facade {
         return "";
     }
 
-    public String transferMoney(String sender, String receiver, String note, Double amount) {
+    public String transferMoney(String sender, String receiver, String note, double amount) {
         return "";
     }
 
@@ -162,6 +181,26 @@ public class Facade {
     }
 
     public String changePin(String cardNumber, String username, int oldPin, int newPin, int newPinConfirmation) {
+        return "";
+    }
+
+    public String depositMoney(String accountName, double amount) {
+        return "";
+    }
+
+    public ArrayList<String> getAccountInfo(String userName, String bankAccount) {
+        ArrayList<String> history = new ArrayList<String>();
+
+        return history;
+    }
+
+    public HashMap<String, Double> getUserAccountsInfo(String userName) {
+        HashMap<String, Double> info = new HashMap<String, Double>();
+
+        return info;
+    }
+
+    public String createBankAccount(String username, String accountName) {
         return "";
     }
 }
