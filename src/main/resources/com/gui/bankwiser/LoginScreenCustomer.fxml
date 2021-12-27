@@ -30,11 +30,6 @@
          <children>
             <AnchorPane fx:id="LoginElements" layoutX="88.0" layoutY="131.0" prefHeight="476.0" prefWidth="422.0">
                <children>
-                  <Label fx:id="NotCustomer" layoutX="301.0" layoutY="510.0" onMouseClicked="#NotCustomerClicked" onMouseEntered="#NotCustomerHoverIn" onMouseExited="#NotCustomerHoverOut" prefHeight="46.0" prefWidth="190.0" text="Not a customer yet?" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Bold" size="22.0" />
-                     </font>
-                  </Label>
                   <ImageView fitHeight="104.0" fitWidth="187.0" layoutX="121.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../img/BWLogoShort.png" />
@@ -66,7 +61,7 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonLogin" layoutX="228.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#LoginClicked" onMouseEntered="#LoginHoverIn" onMouseExited="#LoginHoverOut" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Log in" textFill="WHITE">
+                  <Button fx:id="buttonLogin" layoutX="228.0" layoutY="416.0" mnemonicParsing="false" onAction="#LoginClicked" onMouseEntered="#LoginHoverIn" onMouseExited="#LoginHoverOut" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Log in" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -78,6 +73,11 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Label fx:id="NotCustomer" layoutX="417.0" layoutY="672.0" onMouseClicked="#NotCustomerClicked" onMouseEntered="#NotCustomerHoverIn" onMouseExited="#NotCustomerHoverOut" prefHeight="47.0" prefWidth="176.0" text="Not a customer?" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

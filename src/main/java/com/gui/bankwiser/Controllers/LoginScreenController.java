@@ -4,6 +4,7 @@ import com.gui.bankwiser.BankWiserApp;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -14,6 +15,9 @@ import java.util.ResourceBundle;
 public class LoginScreenController implements Initializable {
     @FXML
     private AnchorPane BankwiserLogo;
+
+    @FXML
+    private Label NotCustomer;
 
     @FXML
     private AnchorPane LoginElements;
@@ -46,6 +50,23 @@ public class LoginScreenController implements Initializable {
     }
 
 
+
+    //NotCustomer
+    @FXML
+    private void NotCustomerClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("CreateUserScreen.fxml");
+    }
+
+    @FXML
+    private void NotCustomerHoverIn(){
+        NotCustomer.setUnderline(true);
+    }
+
+    @FXML
+    private void NotCustomerHoverOut(){
+        NotCustomer.setUnderline(false);
+    }
 
 
 
