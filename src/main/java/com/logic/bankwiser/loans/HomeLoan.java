@@ -1,16 +1,16 @@
 package com.logic.bankwiser.loans;
 
-import java.util.Date;
 
 public class HomeLoan extends Loan {
 
-    private final String PROPERTY_INFO;
-    public HomeLoan(int loanID, int loanAmount, double interestRate, Date maturityDate, String status, String propertyInfo) {
-        super(loanID, loanAmount, interestRate, maturityDate, status);
-        this.PROPERTY_INFO = propertyInfo;
+    private HomeInformation homeInformation;
+    public HomeLoan(int loanID, double loanAmount, double interestRate, int loanDuration, String status, HomeInformation homeInformation) {
+        super(loanID, loanAmount, interestRate, loanDuration, status);
+        this.homeInformation = homeInformation;
     }
 
-    public String getPropertyInfo() {
-        return PROPERTY_INFO;
+    public HomeInformation getHomeInformation() {
+        return homeInformation;
     }
+
 }
