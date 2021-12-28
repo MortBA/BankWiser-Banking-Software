@@ -79,7 +79,7 @@ import java.util.ResourceBundle;
 
         //Forgot Password
         @FXML
-        private void ForgotPasswordClicked(){
+        private void ForgotPasswordClicked() throws IOException{
             stg2.showAndWait();
         }
 

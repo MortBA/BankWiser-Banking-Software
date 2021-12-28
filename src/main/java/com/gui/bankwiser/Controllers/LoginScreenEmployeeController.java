@@ -106,7 +106,7 @@ public class LoginScreenEmployeeController implements Initializable {
 
     //Forgot Password
     @FXML
-    private void ForgotPasswordClicked(){
+    private void ForgotPasswordClicked() throws IOException{
         stg.showAndWait();
     }
 

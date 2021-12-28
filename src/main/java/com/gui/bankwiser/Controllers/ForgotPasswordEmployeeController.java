@@ -26,13 +26,6 @@ public class ForgotPasswordEmployeeController {
     private Button cancelForgotPassButton;
 
     @FXML
-    private Button confirmNewPassword;
-
-    @FXML
-    private Button cancelNewPassword;
-
-
-    @FXML
     private void confirmHoverIn() {
         confirmForgotPassButton.setStyle("-fx-background-color: #4bacf7;");
     }
@@ -52,18 +45,23 @@ public class ForgotPasswordEmployeeController {
     @FXML public Stage stg = new Stage();
 
     @FXML
-    private void confirmButtonClicked() {
+    private void confirmButtonClicked() throws IOException {
         stg.showAndWait();
     }
 
     @FXML
-    private void onConfirmNewPasswordClicked() throws IOException {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBox.setContentText("Your password is updated successfully.");
-        Optional<ButtonType> result = alertBox.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            // probably not implement anything here
+    private void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+
+        }catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -72,30 +70,6 @@ public class ForgotPasswordEmployeeController {
         stage.close();
     }
 
-    @FXML
-    public void handleCloseNewPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
-        stage.close();
-    }
-    @FXML
-    public void handleCloseNewPasswordAfterAction(ActionEvent event) {
-        Stage stage = (Stage) confirmNewPassword.getScene().getWindow();
-        stage.close();
-    }
 
-    /*@Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-            stg.setTitle("New Password");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
-     */
 }

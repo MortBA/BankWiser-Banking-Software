@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ForgotPasswordCustomerController implements Initializable {
+public class ForgotPasswordCustomerController {
 
     @FXML
     private Button confirmForgotPassButton;
@@ -25,55 +25,31 @@ public class ForgotPasswordCustomerController implements Initializable {
     @FXML
     private Button cancelForgotPassButton;
 
-    @FXML
-    private Button confirmNewPassword;
-
-    @FXML
-    private Button cancelNewPassword;
 
     @FXML
     public Stage stg = new Stage();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-       /* FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
+    @FXML
+    public void initialize() {
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
         try{
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg.setScene(scene);
             stg.initModality(Modality.APPLICATION_MODAL);
-
         }catch (Exception e) {
             e.printStackTrace();
         }
-
-        */
     }
 
     @FXML
-    private void confirmButtonClicked() {
+    private void confirmButtonClicked() throws IOException {
        stg.showAndWait();
-    }
-
-    @FXML
-    private void onConfirmNewPasswordClicked() throws IOException {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBox.setContentText("Your password is updated successfully.");
-        Optional<ButtonType> result = alertBox.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            // probably not implement anything here
-        }
     }
 
     @FXML
     public void handleCloseForgotPasswordAction(ActionEvent event) {
         Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    public void handleCloseNewPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
         stage.close();
     }
 
