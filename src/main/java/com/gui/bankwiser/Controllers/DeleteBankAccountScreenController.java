@@ -63,5 +63,4 @@ public class DeleteBankAccountScreenController {
     public void onLogOutClicked() throws IOException{
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
-
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LoginElements" prefHeight="608.0" prefWidth="496.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.screenControllers.DeleteAccountScreenUser">
+<AnchorPane fx:id="LoginElements" prefHeight="608.0" prefWidth="496.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.DeleteAccountScreenUser">
    <children>
       <Button fx:id="buttonCancel" layoutX="82.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#CancelClicked" onMouseEntered="#CancelHoverIn" onMouseExited="#CancelHoverOut" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE">
          <font>

@@ -1,4 +1,4 @@
-package com.gui.bankwiser.screenControllers;
+package com.gui.bankwiser.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
