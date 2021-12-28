@@ -1,11 +1,8 @@
 package com.logic.bankwiser.controllers;
 
+import com.logic.bankwiser.loans.*;
 import com.logic.bankwiser.storage.Storage;
 
-import com.logic.bankwiser.loans.HomeLoan;
-import com.logic.bankwiser.loans.PersonalLoan;
-import com.logic.bankwiser.loans.VehicleLoan;
-import java.util.Date;
 import java.util.Random;
 
 public class LoanController {
@@ -16,19 +13,19 @@ public class LoanController {
         this.storage = storage;
     }
 
-    public void createHomeLoan(int loanAmount, double interestRate, Date maturityDate, String status, String propertyInfo) {
+    public void createHomeLoan(int loanAmount, double interestRate, int loanDuration, String status, HomeInformation homeInformation) {
         int loanID = generateLoanID();
-        storage.addLoan(new HomeLoan(loanID, loanAmount, interestRate, maturityDate, status, propertyInfo));
+        storage.addLoan(new HomeLoan(loanID, loanAmount, interestRate, loanDuration, status, homeInformation));
     }
 
-    public void createPersonalLoan(int loanAmount, double interestRate, Date maturityDate, String status, String personalReasons) {
+    public void createPersonalLoan(int loanAmount, double interestRate, int loanDuration, String status, String personalReasons) {
         int loanID = generateLoanID();
-        storage.addLoan(new PersonalLoan(loanID, loanAmount, interestRate, maturityDate, status, personalReasons));
+        storage.addLoan(new PersonalLoan(loanID, loanAmount, interestRate,loanDuration, status, personalReasons));
     }
 
-    public void createVehicleLoan(int loanAmount, double interestRate, Date maturityDate, String status, String vehicleLoan) {
+    public void createVehicleLoan(int loanAmount, double interestRate, int loanDuration, String status, VehicleInformation vehicleInformation) {
         int loanID = generateLoanID();
-        storage.addLoan(new VehicleLoan(loanID, loanAmount, interestRate, maturityDate, status, vehicleLoan));
+        storage.addLoan(new VehicleLoan(loanID, loanAmount, interestRate, loanDuration, status, vehicleInformation));
     }
 
 

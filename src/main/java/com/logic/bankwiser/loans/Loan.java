@@ -1,28 +1,27 @@
 package com.logic.bankwiser.loans;
 
-import java.util.Date;
 public abstract class Loan {
 
     private final int LOAN_ID;
-    private final int LOAN_AMOUNT; //Specified by user
+    private final double LOAN_AMOUNT;
     private final double INTEREST_RATE;
-    private final Date MATURITY_DATE;
+    private final int LOAN_DURATION;
     private String status;
 
 
-    public Loan(int loanID, int loanAmount, double interestRate, Date maturityDate, String status) {
+    public Loan(int loanID, double loanAmount, double interestRate, int loanDuration, String status) {
         this.LOAN_ID = loanID;
         this.LOAN_AMOUNT = loanAmount;
         this.INTEREST_RATE = interestRate;
-        this.MATURITY_DATE = maturityDate;
-        this.status = "Pending";
+        this.LOAN_DURATION = loanDuration;
+        this.status = "Pending approval by user";
     }
 
     public int getLoanID() {
         return LOAN_ID;
     }
 
-    public int getLoanAmount() {
+    public double getLoanAmount() {
         return LOAN_AMOUNT;
     }
 
@@ -30,8 +29,8 @@ public abstract class Loan {
         return INTEREST_RATE;
     }
 
-    public Date getMaturityDate() {
-        return MATURITY_DATE;
+    public int loanDuration() {
+        return LOAN_DURATION;
     }
 
     public String getStatus() {

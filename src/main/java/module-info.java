@@ -7,6 +7,7 @@ module main {
     requires validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires com.google.gson;
 
     opens com.gui.bankwiser to javafx.fxml;
     opens com.gui.bankwiser.Controllers to javafx.fxml;
