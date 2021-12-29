@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.TransferMoneyScreenController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0">
                <image>
-                  <Image url="@../../../../../../../../../BankWiserUI/src/main/resources/img/CustomerIconBW.png" />
+                  <Image url="@../../../img/CustomerIconBW.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" layoutY="33.0" AnchorPane.topAnchor="10.0">
@@ -24,21 +24,20 @@
                   <Image url="@../../../../../../../../../BankWiserUI/src/main/resources/img/BwLogo.png" />
                </image>
             </ImageView>
-            <Button layoutX="1168.0" layoutY="121.0" mnemonicParsing="false" text="Log Out" AnchorPane.leftAnchor="1163.3333333333333" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0">
+            <Button fx:id="buttonLogOut" layoutX="1168.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLogOutClicked" text="Log Out" AnchorPane.leftAnchor="1163.3333333333333" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="65.0" layoutY="67.0" mnemonicParsing="false" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+            <Button fx:id="overview" layoutX="65.0" layoutY="67.0" mnemonicParsing="false" onAction="#onOverviewClicked" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
             <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Personal Info" />
-                  <MenuItem mnemonicParsing="false" text="Account Settings" />
-                  <MenuItem mnemonicParsing="false" text="My Cards" />
+                  <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
+                  <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -46,7 +45,8 @@
             </MenuButton>
             <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Transaction History" />
+                  <MenuItem fx:id="transferMoney" mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transfer Money" />
+                  <MenuItem fx:id="transactionHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -54,7 +54,7 @@
             </MenuButton>
             <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Loans" />
+                  <MenuItem fx:id="loans" mnemonicParsing="false" onAction="#onLoansClicked" text="Loans" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -62,8 +62,8 @@
             </MenuButton>
             <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Delete Bank Account" />
-                  <MenuItem mnemonicParsing="false" text="Delete User Account" />
+                  <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
+                  <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -112,7 +112,7 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonCancel" layoutX="112.0" layoutY="404.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="404.0">
+            <Button fx:id="buttonCancel" layoutX="112.0" layoutY="404.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="404.0">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
@@ -131,7 +131,7 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonLogin" layoutX="372.0" layoutY="391.0" mnemonicParsing="false"  prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="659.6666666666666" AnchorPane.topAnchor="404.0">
+            <Button fx:id="buttonLogin" layoutX="372.0" layoutY="391.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="396.0" AnchorPane.rightAnchor="659.6666666666666" AnchorPane.topAnchor="404.0">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>

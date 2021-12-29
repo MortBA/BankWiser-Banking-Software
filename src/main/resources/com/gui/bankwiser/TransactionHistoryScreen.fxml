@@ -39,16 +39,15 @@
       </AnchorPane>
       <AnchorPane prefHeight="630.0" prefWidth="896.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+            <Button fx:id="overview" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOverviewClicked" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
             <MenuButton mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Personal Info" />
-                  <MenuItem mnemonicParsing="false" text="Account Settings" />
-                  <MenuItem mnemonicParsing="false" text="My Cards" />
+                  <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
+                  <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -56,7 +55,8 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Transaction History" />
+                  <MenuItem mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transfer Money" />
+                  <MenuItem fx:id="transactionHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -64,7 +64,7 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Loans" />
+                  <MenuItem fx:id="loans" mnemonicParsing="false" onAction="#onLoansClicked" text="Loans" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -72,8 +72,8 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Delete Bank Account" />
-                  <MenuItem mnemonicParsing="false" text="Delete User Account" />
+                  <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
+                  <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                </items>
                <font>
                   <Font size="18.0" />

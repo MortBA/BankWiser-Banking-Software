@@ -1,16 +1,20 @@
 package com.gui.bankwiser.Controllers;
 
+import com.gui.bankwiser.BankWiserApp;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.transactions.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
@@ -60,9 +64,60 @@ public class TransactionHistoryScreenController implements Initializable {
     }
 
 
-    @FXML
-    private void onLogOutClicked(){
 
+
+    @FXML
+    void onOverviewClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("CustomerMenuScreen.fxml");
     }
+
+    @FXML
+    public void onLogOutClicked() throws IOException{
+        new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
+    }
+
+    @FXML
+    void onAccountSettingsClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("AccountSettingsScreen.fxml");
+    }
+
+    @FXML
+    void onMyCardsClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("BankCardMenu.fxml");
+    }
+
+
+    @FXML
+    void onTransferMoneyClicked(MouseEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransferMoneyScreen.fxml");
+    }
+
+    @FXML
+    void onTransactionHistoryClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
+
+    @FXML
+    void onLoansClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
+    //TODO Sejal
+
+    @FXML
+    void onDeleteBankAccountClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
+    @FXML
+    void onDeleteUserAccountClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
 }
 // TODO: 2021-12-22
