@@ -59,6 +59,11 @@ public class Storage {
 
     public void addUserAccount(UUID userAccountID, UserAccount userAccount) {
         userAccountMap.put(userAccountID, userAccount);
+        userEmailMap.put(userAccount.getEmailID(), userAccountID);
+    }
+
+    public UUID getUserUUID(String email) {
+        return userEmailMap.get(email);
     }
 
     //TEMPORARY HELPER METHODS
