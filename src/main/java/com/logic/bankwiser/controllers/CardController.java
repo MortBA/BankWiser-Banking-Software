@@ -173,9 +173,9 @@ public class CardController {
                     if(dateToday.getDayOfMonth() == creationDate.getDayOfMonth() && (dateToday.getYear() != creationDate.getYear() || dateToday.getMonth() != creationDate.getMonth())){
                         CreditCard creditCard = (CreditCard) card;
 
-                        BigDecimal moneyTransfered = bankAccount.getBalance().multiply(new BigDecimal(creditCard.getInterest()*-1));
+                        BigDecimal moneyTransfered = bankAccount.getBalance().multiply(BigDecimal.valueOf(creditCard.getInterest() * -1));
                         String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
-                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransfered, paymentNote, LocalDate.now());
                     }
                 }
 
@@ -199,8 +199,8 @@ public class CardController {
                 if(remainderDays % 365 == 0){
                     CreditCard creditCard = (CreditCard) card;
                     String paymentNote = "Payment on your card number: " + card.getCardNumber();
-                    BigDecimal moneyTransfered = new BigDecimal(999);
-                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                    BigDecimal moneyTransferred = new BigDecimal(999);
+                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDate.now());
                 }
             }
 

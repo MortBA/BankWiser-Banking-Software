@@ -1,7 +1,5 @@
 package com.logic.bankwiser.accounts;
 
-import com.logic.bankwiser.bank_accounts.BankAccount;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +18,7 @@ public class UserAccount {
     private String socialSecurityNum;
     private String emailID;
     private String password;
-    private List<BankAccount> bankAccountList;
+    private List<String> bankAccountList;
 
     /**
      * Constructor for the UserAccount class that handles input validation.
@@ -94,7 +92,7 @@ public class UserAccount {
         return password;
     }
 
-    public List<BankAccount> getBankAccountList() {
+    public List<String> getBankAccountList() {
         return bankAccountList;
     }
 
