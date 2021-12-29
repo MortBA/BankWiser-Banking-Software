@@ -1,11 +1,16 @@
-// Alternative tests for Epic Feature 4
-
 package com.logic.bankwiser.facade;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Alternative tests for Epic Feature 4
+ *
+ * @author Daniel Dovhun
+ * @author Mathias Hallander
+ */
 public class Epic4AlternativeTests {
     static Facade facade;
 
