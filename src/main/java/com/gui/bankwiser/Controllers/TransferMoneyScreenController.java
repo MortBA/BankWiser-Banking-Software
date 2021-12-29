@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -26,6 +27,9 @@ public class TransferMoneyScreenController {
     private MenuItem myCards;
 
     @FXML
+    private MenuItem transferMoney;
+
+    @FXML
     private Button overview;
 
     @FXML
@@ -34,26 +38,57 @@ public class TransferMoneyScreenController {
     @FXML
     private MenuItem transactionsHistory;
 
-    @FXML
-    void onDeleteUserAccountClicked(ActionEvent event) {
 
+    @FXML
+    void onOverviewClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("CustomerMenuScreen.fxml");
+    }
+
+    @FXML
+    public void onLogOutClicked() throws IOException{
+        new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
+    }
+
+    @FXML
+    void onAccountSettingsClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("AccountSettingsScreen.fxml");
     }
 
     @FXML
     void onMyCardsClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("BankCardMenu.fxml");
+    }
 
+
+    @FXML
+    void onTransferMoneyClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransferMoneyScreen.fxml");
     }
 
     @FXML
-    void onOverviewClicked(ActionEvent event) throws IOException {
-        new BankWiserApp().changeScene("CustomerMenuScreen.fxml");
+    void onTransactionHistoryClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
+//Todo loan screen
+    @FXML
+    void onLoansClicked() throws Exception{
+        new BankWiserApp().changeScene("");
+    }
+
+    //todo Sejal input fxml
+    @FXML
+    void onDeleteBankAccountClicked() throws Exception{
+        new BankWiserApp().changeScene("");
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException{
-        new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
+    void onDeleteUserAccountClicked() throws Exception{
+        new BankWiserApp().changeScene("");
     }
 
 }

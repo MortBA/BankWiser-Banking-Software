@@ -41,14 +41,6 @@ public class CustomerMenuScreenController {
     private Button buttonLogOut;
 
     @FXML
-    private void transferMoney (ActionEvent event) throws IOException {
-        //new BankWiserApp().changeScene("TransferMoney.fxml");
-    //}
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("TransferMoney.fxml");
-    }
-
-    @FXML
     private MenuItem transactionsHistory;
 
     @FXML public Stage stg = new Stage();
@@ -101,12 +93,6 @@ public class CustomerMenuScreenController {
     }
 
     @FXML
-    void onMyCardsClicked(ActionEvent event) throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("BankCardMenu.fxml");
-    }
-
-    @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("CustomerMenuScreen.fxml");
@@ -124,10 +110,27 @@ public class CustomerMenuScreenController {
     }
 
     @FXML
-    void onTransferMoneyClicked(MouseEvent event) throws IOException {
+    void onMyCardsClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("BankCardMenu.fxml");
+    }
+
+
+    @FXML
+    void onTransferMoneyClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("TransferMoneyScreen.fxml");
     }
 
+    @FXML
+    void onTransactionHistoryClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
+    //Todo loan screen
+    @FXML
+    void onLoansClicked() throws Exception{
+        new BankWiserApp().changeScene("");
+    }
 }
 

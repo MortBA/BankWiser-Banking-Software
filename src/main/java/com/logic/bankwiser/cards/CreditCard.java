@@ -1,23 +1,35 @@
 package com.logic.bankwiser.cards;
+import java.time.LocalDate;
+import java.util.Date;
+import java.math.BigDecimal;
+import com.logic.bankwiser.storage.Storage;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+/**
+ * CreditCard class
+ * Acts as the sub-class for the debitCard and object creditCard created here.
+ *
+ * @author Burak Askan
+ *
+ */
+public class CreditCard extends DebitCard {
 
-public class CreditCard extends Card {
+    final private BigDecimal MAX_CREDIT;
+    final private double INTEREST;
 
-    final private int MAX_CREDIT;
-    final private int INTEREST;
+    //TODO: Add the loans calculator to set maxCredit and interest.
+    public CreditCard(LocalDate expirationDate, int pin, boolean status, String region,
+                      boolean onlineStatus, int spenditureMax, BigDecimal maxCredit, double interest){
 
-    public CreditCard(int loanAmount,String expirationDate, int pin, String status, int maxCredit, int interest){
-
-        super(loanAmount, expirationDate, pin, status);
-        this.MAX_CREDIT=maxCredit;
-        this.INTEREST=interest;
-
+        super(expirationDate, pin, status, region, onlineStatus, spenditureMax);
+        this.MAX_CREDIT = maxCredit;
+        this.INTEREST = interest;
     }
 
-    public int getMaxCredit() {
+    public BigDecimal getMaxCredit() {
         return this.MAX_CREDIT;
     }
 
-    public int getInterest() {
+    public double getInterest() {
         return this.INTEREST;
     }
 
