@@ -19,7 +19,7 @@ public class DebitCard {
     private boolean status;
     private String region;
     private boolean onlineStatus;
-    private int expenditureMax;
+    private double expenditureMax;
 
 
     /**
@@ -29,7 +29,7 @@ public class DebitCard {
      * currentDate = assigned by system by assigning current time.
      * expirationDate = assigned by system by taking current time + 3 years.
      */
-    public DebitCard(int pin, boolean status, String region, boolean onlineStatus, int expenditureMax){ //BankAccount
+    public DebitCard(int pin, boolean status, String region, boolean onlineStatus, double expenditureMax){ //BankAccount
 
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -105,7 +105,7 @@ public class DebitCard {
         return onlineStatus;
     }
 
-    public int getExpenditureMax() {
+    public double getExpenditureMax() {
         return expenditureMax;
     }
 
@@ -125,7 +125,7 @@ public class DebitCard {
         this.onlineStatus = onlineStatus;
     }
 
-    public void setExpenditureMax(int expenditureMax){
+    public void setExpenditureMax(double expenditureMax){
         this.expenditureMax = expenditureMax;
     }
 }

@@ -209,19 +209,23 @@ public class CardController {
     }
 
     /**
-     *
+     * Status of card being frozen or unfrozen
      * @param cardNumber = cardNumber of the card that will be modified
-     * @param statusNew = the new status, of frozen or unfrozen, of card according to user choice
      * @return affirmative or negative string.
      */
-    public String modifyStatus(String cardNumber, boolean statusNew) {
+    public String modifyStatus(String cardNumber) {
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
-                STORAGE.getCard(cardNumber).setStatus(statusNew);
-                if (statusNew){
-                    return "Your card has been successfully blocked.";
-                }else{
+                if(STORAGE.getCardList().get(i).getStatus()){
+                    STORAGE.getCardList().get(i).setStatus(false);
+                }else {
+                    STORAGE.getCardList().get(i).setStatus(true);
+                }
+                //STORAGE.getCard(cardNumber).setStatus(statusNew);
+                if (STORAGE.getCardList().get(i).getStatus()){
                     return "Your card has been successfully unblocked.";
+                }else{
+                    return "Your card has been successfully blocked.";
                 }
             }
         }
@@ -270,15 +274,15 @@ public class CardController {
      * @param expenditureMax = the new maximum set on expenditure on the card
      * @return affirmative or negative string.
      */
-    public String modifyExpenditureMax(String cardNumber, int expenditureMax) {
+    public String modifyExpenditureMax(String cardNumber, double expenditureMax) {
         if (expenditureMax<0){
             return "Invalid input: The new spending limit should not be negative.";
         }
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
-                int oldLimit = STORAGE.getCard(cardNumber).getExpenditureMax();
+                double oldLimit = STORAGE.getCard(cardNumber).getExpenditureMax();
                 STORAGE.getCard(cardNumber).setExpenditureMax(expenditureMax);
-                int newLimit = STORAGE.getCard(cardNumber).getExpenditureMax();
+                double newLimit = STORAGE.getCard(cardNumber).getExpenditureMax();
                 return "You successfully changed your spending limit from "+ oldLimit +" to "+newLimit+".";
             }
         }
@@ -286,9 +290,10 @@ public class CardController {
     }
 
     /**
+     * summary
      *
-     * @param cardNumber = cardNumber of the card that will be reminded
-     * @param userID = the user that will receive the reminder
+     * @param cardNumber    cardNumber of the card that will be reminded
+     * @param userID        the user that will receive the reminder
      * @return string containing reminder of expiration coming close or card has already expired
      */
     public String remainderDays(String cardNumber, UUID userID) { //Calculates remaining days until expiration
