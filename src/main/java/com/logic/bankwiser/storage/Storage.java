@@ -12,16 +12,18 @@ import java.util.UUID;
 public class Storage {
 
     private final List<Integer> caseIDList;
-    private final List<Loan> loanList;
+    private final LinkedHashMap<String, Loan> loanMap;
     private final List<DebitCard> cardList;
-    private final LinkedHashMap<Integer, BankAccount> bankAccountMap;
+    private final LinkedHashMap<String, BankAccount> bankAccountMap;
+    private final LinkedHashMap<String, UUID> userEmailMap;
     private final LinkedHashMap<UUID, UserAccount> userAccountMap;
 
     public Storage() {
         caseIDList = new ArrayList<>();
-        loanList = new ArrayList<>();
+        loanMap = new LinkedHashMap<>();
         cardList = new ArrayList<>();
         bankAccountMap = new LinkedHashMap<>();
+        userEmailMap = new LinkedHashMap<>();
         userAccountMap = new LinkedHashMap<>();
     }
 
@@ -29,7 +31,7 @@ public class Storage {
         return cardList;
     }
 
-    public LinkedHashMap<Integer, BankAccount> getBankAccountMap() {
+    public LinkedHashMap<String, BankAccount> getBankAccountMap() {
         return bankAccountMap;
     }
 
@@ -37,7 +39,7 @@ public class Storage {
         return userAccountMap.get(userID);
     }
 
-    public BankAccount getBankAccount(int bankAccountID) {
+    public BankAccount getBankAccount(String bankAccountID) {
         return bankAccountMap.get(bankAccountID);
     }
 
@@ -46,14 +48,14 @@ public class Storage {
     }
 
     public void addLoan(Loan loan) {
-        loanList.add(loan);
+        loanMap.put(loan.getLoanID(), loan);
     }
 
     public void addCard(DebitCard card){
         cardList.add(card);
     }
 
-    public void addBankAccount(int bankAccountID, BankAccount bankAccount) {
+    public void addBankAccount(String bankAccountID, BankAccount bankAccount) {
         bankAccountMap.put(bankAccountID, bankAccount);
     }
 
