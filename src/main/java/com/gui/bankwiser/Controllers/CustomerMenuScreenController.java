@@ -80,5 +80,10 @@ public class CustomerMenuScreenController {
         app.changeScene("TransferMoneyScreen.fxml");
     }
 
+    @FXML
+    void onTransactionHistoryClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
 }
 

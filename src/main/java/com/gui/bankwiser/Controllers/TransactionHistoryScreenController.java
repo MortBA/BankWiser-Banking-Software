@@ -1,5 +1,68 @@
 package com.gui.bankwiser.Controllers;
 
-public class TransactionHistoryScreenController {
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.transactions.Transaction;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.math.BigDecimal;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.ResourceBundle;
+import java.util.UUID;
+
+public class TransactionHistoryScreenController implements Initializable {
+    @FXML
+    private TableView<Transaction> transactionHistoryTable;
+    @FXML
+    private TableColumn<Transaction, LocalDate> dateColumn;
+    @FXML
+    private TableColumn nameColumn;
+    @FXML
+    private TableColumn amountColumn;
+    @FXML
+    private TableColumn accountNumberColumn;
+    @FXML
+    private TableColumn balanceColumn;
+
+
+    //***********//just to test//**********//
+    private BankAccount BAcc;
+
+    //TODO only works in main branch?? \/\/\/
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            BAcc = new BankAccount(280_872_273, "Channis fake bankacount");
+        }catch (Exception e) {e.printStackTrace();}
+
+        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50) ) );
+        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(609.60), "N/A", LocalDate.of(2021, 11, 14), BigDecimal.valueOf(623.51) ) );
+        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(231.10), "N/A", LocalDate.of(2022, 12, 20), BigDecimal.valueOf(1003.57) ) );
+
+
+        dateColumn.setCellValueFactory( new PropertyValueFactory<Transaction, LocalDate>("TransactionDate") );
+
+
+        transactionHistoryTable.setItems(getObservableTrantactionList());
+    }
+
+    private ObservableList<Transaction> getObservableTrantactionList() {
+        return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionList());
+    }
+
+
+    @FXML
+    private void onLogOutClicked(){
+
+    }
 }
 // TODO: 2021-12-22

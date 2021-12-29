@@ -49,7 +49,7 @@
             <MenuButton mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                <items>
                   <MenuItem mnemonicParsing="false" text="Transfer Money" />
-                  <MenuItem mnemonicParsing="false" text="Transaction History" />
+                  <MenuItem fx:id="transactionHistoryButton" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
                </items>
                <font>
                   <Font size="18.0" />
