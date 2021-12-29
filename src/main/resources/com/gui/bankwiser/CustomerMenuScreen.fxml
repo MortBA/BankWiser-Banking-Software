@@ -65,8 +65,8 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Delete Bank Account" />
-                  <MenuItem mnemonicParsing="false" text="Delete User Account" />
+                  <MenuItem mnemonicParsing="false" text="Delete Bank Account" onAction="#onDeleteBankAccountClicked" />
+                  <MenuItem mnemonicParsing="false" text="Delete User Account" onAction="#onDeleteUserAccountClicked" />
                </items>
                <font>
                   <Font size="18.0" />

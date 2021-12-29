@@ -19,195 +19,192 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class LoginScreenCustomerController implements Initializable {
+    public class LoginScreenCustomerController implements Initializable {
 
-    @FXML
-    private TextField UsernameBox;
+        @FXML
+        private TextField UsernameBox;
 
-    @FXML
-    private PasswordField PasswordBox;
+        @FXML
+        private PasswordField PasswordBox;
 
-    @FXML
-    private Label Error_Message;
+        @FXML
+        private Label Error_Message;
 
-    @FXML
-    private AnchorPane LoginElements;
+        @FXML
+        private AnchorPane LoginElements;
 
-    @FXML
-    private Label ForgottenPassword;
+        @FXML
+        private Label ForgottenPassword;
 
-    @FXML
-    private Button buttonLogin;
+        @FXML
+        private Button buttonLogin;
 
-    @FXML
-    private Button buttonCancel;
+        @FXML
+        private Button buttonCancel;
 
-    @FXML
-    private Button cancelNewPassword;
+        @FXML
+        private Button cancelNewPassword;
 
-    @FXML
-    private Label NotCustomer;
+        @FXML
+        private Label NotCustomer;
 
-    @FXML
-    Button cancelForgotPassButton = new Button();
+        @FXML
+        Button cancelForgotPassButton;
 
-    @FXML
-    Button confirmForgotPassButton = new Button();
+        @FXML
+        Button confirmForgotPassButton;
 
-    //NotCustomer
-    @FXML
-    private void NotCustomerClicked() throws IOException{
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("CreateUserScreen.fxml");
-    }
+        @FXML public Stage stg2 = new Stage();
 
-    @FXML
-    private void NotCustomerHoverIn(){
-        NotCustomer.setUnderline(true);
-    }
+        @Override
+        public void initialize(URL url, ResourceBundle resourceBundle) {
+            FadeTransition fade = new FadeTransition();
+            fade.setDuration(Duration.millis(1000));
+            fade.setNode(LoginElements);
+            fade.setFromValue(0.0);
+            fade.setToValue(1.0);
+            fade.play();
 
-    @FXML
-    private void NotCustomerHoverOut(){
-        NotCustomer.setUnderline(false);
-    }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ForgotPasswordCustomer.fxml"));
+            try{
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stg2.setScene(scene);
+                stg2.initModality(Modality.APPLICATION_MODAL);
 
-
-    //Login Button
-    @FXML
-    private void LoginClicked() throws IOException{
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("CustomerMenuScreen.fxml");
-    }
-
-    @FXML
-    private void LoginHoverIn(){
-        buttonLogin.setStyle("-fx-background-color: #4bacf7;");
-    }
-
-    @FXML
-    private void LoginHoverOut(){
-        buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
-    }
-
-    //Cancel Button
-    @FXML
-    private void CancelClicked() throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("LoginScreen.fxml");
-    }
-
-    @FXML
-    private void CancelHoverIn(){
-        buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
-    }
-
-    @FXML
-    private void CancelHoverOut(){
-        buttonCancel.setStyle("-fx-background-color: #ed2762;");
-    }
-
-
-    //Forgot Password
-    /**
-     * stg2 for forgot password customer screens only.
-     */
-    @FXML public Stage stg2 = new Stage();
-
-    @FXML
-    private void ForgotPasswordClicked(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ForgotPasswordCustomer.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
-            stg2.showAndWait();
-        }catch (Exception e){
-            e.printStackTrace();
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-    }
 
-    @FXML
-    private void confirmButtonClicked() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
-            stg2.setTitle("Set New Password");
+        //Forgot Password
+        @FXML
+        private void ForgotPasswordClicked() throws IOException{
             stg2.showAndWait();
-        }catch (Exception e){
-            e.printStackTrace();
         }
-    }
 
-    @FXML
-    private void ForgotPasswordHoverIn(){
-        ForgottenPassword.setUnderline(true);
-    }
-    @FXML
-    private void ForgotPasswordHoverOut() { ForgottenPassword.setUnderline(false); }
-    @FXML
-    private void confirmHoverIn() {
+
+
+        //NotCustomer
+        @FXML
+        private void NotCustomerClicked() throws IOException{
+            BankWiserApp app = new BankWiserApp();
+            app.changeScene("CreateUserScreen.fxml");
+        }
+
+        @FXML
+        private void NotCustomerHoverIn(){
+            NotCustomer.setUnderline(true);
+        }
+
+        @FXML
+        private void NotCustomerHoverOut(){
+            NotCustomer.setUnderline(false);
+        }
+
+
+        //Login Button
+        @FXML
+        private void LoginClicked() throws IOException{
+            BankWiserApp app = new BankWiserApp();
+            app.changeScene("CustomerMenuScreen.fxml");
+        }
+
+        @FXML
+        private void LoginHoverIn(){
+            buttonLogin.setStyle("-fx-background-color: #4bacf7;");
+        }
+
+        @FXML
+        private void LoginHoverOut(){
+            buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
+        }
+
+        //Cancel Button
+        @FXML
+        private void CancelClicked() throws IOException {
+            BankWiserApp app = new BankWiserApp();
+            app.changeScene("LoginScreen.fxml");
+        }
+
+        @FXML
+        private void CancelHoverIn(){
+            buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
+        }
+
+        @FXML
+        private void CancelHoverOut(){
+            buttonCancel.setStyle("-fx-background-color: #ed2762;");
+        }
+
+
+        //Forgot Password
+
+
+       /* @FXML
+        private void confirmButtonClicked() throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
+            try{
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stg2.setScene(scene);
+                stg2.initModality(Modality.APPLICATION_MODAL);
+                stg2.setTitle("Set New Password");
+                stg2.showAndWait();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        */
+
+        @FXML
+        private void ForgotPasswordHoverIn(){
+            ForgottenPassword.setUnderline(true);
+        }
+        @FXML
+        private void ForgotPasswordHoverOut() { ForgottenPassword.setUnderline(false); }
+        @FXML
+        private void confirmHoverIn() {
             confirmForgotPassButton.setStyle("-fx-background-color: #4bacf7;");
         }
-    @FXML
-    private void confirmHoverOut() {
+        @FXML
+        private void confirmHoverOut() {
             confirmForgotPassButton.setStyle("-fx-background-color: #2d9bf0;");
         }
-    @FXML
-    private void cancelHoverIn() {
+        @FXML
+        private void cancelHoverIn() {
             cancelForgotPassButton.setStyle("-fx-background-color: #fc4a7f;");
         }
-    @FXML
-    private void cancelHoverOut() {
+        @FXML
+        private void cancelHoverOut() {
             cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
         }
 
-    /**
-     * Displays alert confirmation box as a confirmation for a successful password change.
-     * The alert box has OK and cancel button
-     * @throws IOException
-     */
-    @FXML
-    private void onConfirmNewPasswordClicked() throws IOException {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBox.setContentText("Your password is updated successfully.");
-        Optional<ButtonType> result = alertBox.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            // probably not implement anything here
+
+        @FXML
+        private void onConfirmNewPasswordClicked() throws IOException {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your password is updated successfully.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                // probably not implement anything here
+            }
         }
+
+        @FXML
+        public void handleCloseForgotPasswordAction(ActionEvent event) {
+            Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
+            stage.close();
+        }
+
+        @FXML
+        public void handleCloseNewPasswordAction(ActionEvent event) {
+            Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
+            stage.close();
+        }
+
+
+
     }
 
-    /**
-     * Used to close forgot password stage (window) using the button called in the method.
-     * @param event
-     */
-    @FXML
-    public void handleCloseForgotPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
-        stage.close();
-    }
-
-    /**
-     * Used to close new password stage (window) using the button called in the method.
-     * @param event
-     */
-    @FXML
-    public void handleCloseNewPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
-        stage.close();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        FadeTransition fade = new FadeTransition();
-        fade.setDuration(Duration.millis(1000));
-        fade.setNode(LoginElements);
-        fade.setFromValue(0.0);
-        fade.setToValue(1.0);
-        fade.play();
-    }
-
-}

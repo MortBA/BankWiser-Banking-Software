@@ -17,42 +17,13 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ForgotPasswordCustomerController {
+public class ForgotPasswordEmployeeController {
 
     @FXML
     private Button confirmForgotPassButton;
 
     @FXML
     private Button cancelForgotPassButton;
-
-
-    @FXML
-    public Stage stg = new Stage();
-
-    @FXML
-    public void initialize() {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void confirmButtonClicked() throws IOException {
-       stg.showAndWait();
-    }
-
-    @FXML
-    public void handleCloseForgotPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
-        stage.close();
-    }
-
 
     @FXML
     private void confirmHoverIn() {
@@ -70,6 +41,35 @@ public class ForgotPasswordCustomerController {
     private void cancelHoverOut() {
         cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
     }
+
+    @FXML public Stage stg = new Stage();
+
+    @FXML
+    private void confirmButtonClicked() throws IOException {
+        stg.showAndWait();
+    }
+
+    @FXML
+    private void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void handleCloseForgotPasswordAction(ActionEvent event) {
+        Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
+        stage.close();
+    }
+
 
 
 }

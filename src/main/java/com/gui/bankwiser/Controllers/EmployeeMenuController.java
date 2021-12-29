@@ -4,19 +4,23 @@ import com.gui.bankwiser.BankWiserApp;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.Callback;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeMenuController{
+public class EmployeeMenuController implements Initializable{
 
     @FXML
     private MenuButton customerRequests;
@@ -124,6 +128,31 @@ public class EmployeeMenuController{
         }
 
         */
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        ObservableList<String> items = FXCollections.observableArrayList("test1", "test2");
+        ListView<String> list = new ListView<>(items);
+
+        list.setEditable(true);
+        list.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new TextFieldListCell<>(new StringConverter<String>() {
+
+                    @Override
+                    public String toString(String object) {
+                        return object;
+                    }
+
+                    @Override
+                    public String fromString(String string) {
+                        return string;
+                    }
+                });
+            }
+        });
+    }
 
 }
 
