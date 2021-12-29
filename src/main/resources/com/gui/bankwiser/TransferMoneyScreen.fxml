@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,7 +22,7 @@
             </ImageView>
             <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" layoutY="33.0" AnchorPane.topAnchor="10.0">
                <image>
-                  <Image url="@../../../../../../../../../BankWiserUI/src/main/resources/img/BwLogo.png" />
+                  <Image url="@../../../img/BwLogo.png" />
                </image>
             </ImageView>
             <Button fx:id="buttonLogOut" layoutX="1168.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLogOutClicked" text="Log Out" AnchorPane.leftAnchor="1163.3333333333333" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0">
@@ -60,7 +61,7 @@
                   <Font size="18.0" />
                </font>
             </MenuButton>
-            <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
+            <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
                <items>
                   <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
                   <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
@@ -73,7 +74,7 @@
       </AnchorPane>
       <AnchorPane layoutX="166.0" layoutY="191.0" prefHeight="521.0" prefWidth="1200.0" style="-fx-background-color: #d8fffa;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="191.0">
          <children>
-            <Label layoutX="48.0" layoutY="25.0" style="-fx-alignment: #017c83;" text="Transfer Money" textFill="#017c83" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+            <Label layoutX="48.0" layoutY="25.0" text="Transfer Money" textFill="#017c83" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
@@ -107,11 +108,6 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField layoutX="662.0" layoutY="103.0" prefHeight="280.0" prefWidth="458.0" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="662.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="105.0">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
             <Button fx:id="buttonCancel" layoutX="112.0" layoutY="404.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="404.0">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
@@ -136,6 +132,11 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Button>
+            <TextArea layoutX="662.0" layoutY="105.0" prefHeight="284.0" prefWidth="458.0" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextArea>
          </children>
       </AnchorPane>
    </children>

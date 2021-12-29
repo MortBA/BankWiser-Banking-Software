@@ -118,7 +118,28 @@ public class BankCardMenuController {
     @FXML
     private Button submitDebitCard;
 
+    //Todo loan screen
+    @FXML
+    void onLoansClicked() throws Exception{
+        new BankWiserApp().changeScene("");
+    }
 
+    @FXML
+    void onTransferMoneyClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransferMoneyScreen.fxml");
+    }
+
+    @FXML
+    void onTransactionHistoryClicked() throws Exception{
+        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+    }
+
+    @FXML
+    void onAccountSettingsClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("AccountSettingsScreen.fxml");
+    }
 
     @FXML
     void onDeleteUserAccountClicked(ActionEvent event) {

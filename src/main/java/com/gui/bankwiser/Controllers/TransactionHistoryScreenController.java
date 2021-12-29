@@ -91,10 +91,11 @@ public class TransactionHistoryScreenController implements Initializable {
 
 
     @FXML
-    void onTransferMoneyClicked(MouseEvent event) throws IOException {
+    void onTransferMoneyClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("TransferMoneyScreen.fxml");
     }
+
 
     @FXML
     void onTransactionHistoryClicked() throws Exception{
@@ -102,21 +103,21 @@ public class TransactionHistoryScreenController implements Initializable {
     }
 
 
+    //Todo loan screen
     @FXML
     void onLoansClicked() throws Exception{
-        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+        new BankWiserApp().changeScene("");
     }
 
-    //TODO Sejal
-
+    //todo Sejal input fxml
     @FXML
     void onDeleteBankAccountClicked() throws Exception{
-        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+        new BankWiserApp().changeScene("");
     }
 
     @FXML
     void onDeleteUserAccountClicked() throws Exception{
-        new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
+        new BankWiserApp().changeScene("");
     }
 
 }
