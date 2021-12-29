@@ -44,6 +44,7 @@ public class CustomerMenuScreenController {
     private MenuItem transactionsHistory;
 
     @FXML public Stage stg = new Stage();
+    @FXML public Stage stg2 = new Stage();
 
     /**
      *
@@ -51,13 +52,24 @@ public class CustomerMenuScreenController {
      * @param
      */
     @FXML
-    void initialize() {
+    private void initialize() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try{
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg.setScene(scene);
             stg.initModality(Modality.APPLICATION_MODAL);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg2.setScene(scene);
+            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg.showAndWait();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -68,28 +80,9 @@ public class CustomerMenuScreenController {
         stg.showAndWait();
     }
 
-    /**
-     *
-     * Opens new window to delete user bank account.
-     * @param
-     */
-    @FXML
-    void initialize(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-            stg.showAndWait();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     public void onDeleteBankAccountClicked() throws IOException{
-        stg.showAndWait();
+        stg2.showAndWait();
     }
 
     @FXML

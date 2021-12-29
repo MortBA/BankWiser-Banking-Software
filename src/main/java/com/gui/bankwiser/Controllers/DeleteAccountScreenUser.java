@@ -2,13 +2,22 @@ package com.gui.bankwiser.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class DeleteAccountScreenUser implements Initializable {
+public class DeleteAccountScreenUser {
+
+    @FXML
+    public Button buttonCancel;
+    @FXML
+    public Button buttonConfirm;
+    @FXML
+    public AnchorPane LoginElements;
 
     //popup
     @FXML
@@ -21,9 +30,21 @@ public class DeleteAccountScreenUser implements Initializable {
     private CheckBox  agreementCheckbox     = new CheckBox();
 
     @FXML
-    private void CancelClicked(){
-
+    private void ConfirmClicked(){
+        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+        alertBox.setContentText("Your user account is deleted successfully.");
+        Optional<ButtonType> result = alertBox.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            // probably not implement anything here
+        }
     }
+
+    @FXML
+    private void CancelClicked(){
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
+        stage.close();
+    }
+
     @FXML
     private void CancelHoverIn(){
 
@@ -32,22 +53,12 @@ public class DeleteAccountScreenUser implements Initializable {
     private void CancelHoverOut(){
 
     }
-
-    @FXML
-    private void ConfirmClicked(){
-
-    }
     @FXML
     private void ConfirmHoverIn(){
 
     }
     @FXML
     private void ConfirmHoverOut(){
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
