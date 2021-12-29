@@ -111,65 +111,65 @@
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="364.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0" style="-fx-background-color: #d8fffa;">
-         <children>
-            <Label layoutX="29.0" layoutY="14.0" text="Apply for new credit card" textFill="#017c83">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="29.0" layoutY="99.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Enter Card Pin" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="29.0" layoutY="167.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Confirm Card Pin" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="creditCardPin" layoutX="271.0" layoutY="99.0" prefHeight="35.0" prefWidth="181.0" />
-            <PasswordField fx:id="confirmCreditCardPin" layoutX="271.0" layoutY="167.0" prefHeight="35.0" prefWidth="182.0" />
-            <AnchorPane layoutX="493.0" layoutY="90.0" prefHeight="153.0" prefWidth="181.0">
-               <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="Requirements" textFill="#f02b2b">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="42.0" text="Pin codes need to match" textFill="#f02b2b">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="16.0" layoutY="62.0" text="No repeating numbers, 1353" textFill="#f02b2b">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="16.0" layoutY="82.0" text="No number in sequence, 1234" textFill="#f02b2b">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <CheckBox fx:id="TnC" layoutX="29.0" layoutY="245.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </CheckBox>
-            <Button fx:id="cancelCreditCard" layoutX="154.0" layoutY="354.0" mnemonicParsing="false" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" onMouseClicked="#onCancelCreditCardClicked">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button fx:id="submitCreditCard" layoutX="416.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#onSubmitCreditCardClicked" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-         </children>
+        <AnchorPane layoutX="364.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0" style="-fx-background-color: #d8fffa;" AnchorPane.bottomAnchor="23.600000000000023">
+            <children>
+                <Label layoutX="29.0" layoutY="14.0" text="Apply for new Credit Card" textFill="#017c83">
+                    <font>
+                        <Font name="System Bold" size="38.0" />
+                    </font>
+                </Label>
+                <Label layoutX="137.0" layoutY="142.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Enter Card Pin:" textFill="#017c83" AnchorPane.leftAnchor="137.0">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
+                <Label layoutX="137.0" layoutY="228.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Confirm Card Pin:" textFill="#017c83" AnchorPane.leftAnchor="137.0">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="creditCardPin" layoutX="371.0" layoutY="144.0" prefHeight="35.0" prefWidth="181.0" AnchorPane.leftAnchor="371.0" />
+                <AnchorPane layoutX="613.0" layoutY="153.0" prefHeight="153.0" prefWidth="181.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Requirements" textFill="#f02b2b">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="42.0" text="Pin codes need to match" textFill="#f02b2b">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="62.0" text="No repeating numbers, 1353" textFill="#f02b2b">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="82.0" text="No number in sequence, 1234" textFill="#f02b2b">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <CheckBox fx:id="TnC" layoutX="149.0" layoutY="313.0" mnemonicParsing="false" prefWidth="410.0" text="Agree with terms and conditions" textFill="#017c83" AnchorPane.leftAnchor="137.0">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </CheckBox>
+                <PasswordField fx:id="confirmPin" layoutX="371.0" layoutY="230.0" prefHeight="35.0" prefWidth="182.0" />
+                <Button fx:id="cancelCreditCard" layoutX="198.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#onCancelButtonClicked" onMouseEntered="#cancelHoverIn2" onMouseExited="#cancelHoverOut2" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="200.0">
+                    <font>
+                        <Font name="Calibri Bold" size="24.0" />
+                    </font>
+                </Button>
+                <Button fx:id="submitCreditCard" layoutX="547.0" layoutY="406.0" onMouseClicked="#onSubmitCreditCardClicked" onMouseEntered="#confirmHoverIn2" onMouseExited="#confirmHoverOut2" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="200.0">
+                    <font>
+                        <Font name="Calibri Bold" size="24.0" />
+                    </font>
+                </Button>
+            </children>
         </AnchorPane>
     </children>
 </AnchorPane>

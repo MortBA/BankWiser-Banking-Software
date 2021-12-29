@@ -10,11 +10,6 @@ import java.util.ResourceBundle;
 
 public class DeleteAccountScreenUser implements Initializable {
 
-
-
-
-
-
     //popup
     @FXML
     private TextField socialSecurityNumber  = new TextField();

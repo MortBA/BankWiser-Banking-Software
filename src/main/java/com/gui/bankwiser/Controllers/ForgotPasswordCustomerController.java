@@ -3,19 +3,14 @@ package com.gui.bankwiser.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
+
 
 public class ForgotPasswordCustomerController {
 
@@ -25,10 +20,23 @@ public class ForgotPasswordCustomerController {
     @FXML
     private Button cancelForgotPassButton;
 
+    @FXML
+    private TextField ssNumber;
+
+    @FXML
+    private TextField email;
+
+    @FXML
+    private TextField retypeEmail;
+
 
     @FXML
     public Stage stg = new Stage();
 
+    /**
+     * Here, used to initialize new stage have initModality function.
+     * The new stage is used to fill new password for the customer.
+     */
     @FXML
     public void initialize() {
        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
@@ -42,17 +50,26 @@ public class ForgotPasswordCustomerController {
         }
     }
 
+    /**
+     * Functions as a controller method for initialize.
+     * Opens a new window to fill new password for the customer when confirm button of forgot password window is clicked.
+     * The window has initModality functionality.
+     * @throws IOException
+     */
     @FXML
     private void confirmButtonClicked() throws IOException {
        stg.showAndWait();
     }
 
+    /**
+     * Closes the forgot password window when cancel button is clicked.
+     * @param event
+     */
     @FXML
     public void handleCloseForgotPasswordAction(ActionEvent event) {
         Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
         stage.close();
     }
-
 
     @FXML
     private void confirmHoverIn() {

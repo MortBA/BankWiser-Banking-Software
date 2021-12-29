@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,10 +19,15 @@ public class NewPasswordEmployeeController {
     private Button cancelNewPassword;
 
     @FXML
-    public void handleCloseNewPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
-        stage.close();
-    }
+    private TextField newPassword;
+
+    @FXML
+    private TextField confirmNewPass;
+
+    /**
+     * An alert box appears when confirm button for on new password window for employee is clicked.
+     * @throws IOException
+     */
     @FXML
     private void onConfirmNewPasswordClicked() throws IOException {
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
@@ -31,4 +37,15 @@ public class NewPasswordEmployeeController {
             // probably not implement anything here
         }
     }
+
+    /**
+     * Closes the new password window when cancel button is clicked.
+     * @param event
+     */
+    @FXML
+    public void handleCloseNewPasswordAction(ActionEvent event) {
+        Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
+        stage.close();
+    }
+
 }

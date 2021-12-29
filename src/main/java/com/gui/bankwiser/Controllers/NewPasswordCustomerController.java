@@ -21,6 +21,17 @@ public class NewPasswordCustomerController {
     private Button cancelNewPassword;
 
     @FXML
+    private TextField newPassword;
+
+    @FXML
+    private TextField confirmNewPass;
+
+    /**
+     * An alert box appears when confirm button on new password window for customer is clicked.
+     * @throws IOException
+     */
+
+    @FXML
     private void onConfirmNewPasswordClicked() throws IOException {
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
         alertBox.setContentText("Your password is updated successfully.");
@@ -29,6 +40,11 @@ public class NewPasswordCustomerController {
             // probably not implement anything here
         }
     }
+
+    /**
+     * Closes the new passsword window when cancel button is clicked.
+     * @param event
+     */
 
     @FXML
     public void handleCloseNewPasswordAction(ActionEvent event) {

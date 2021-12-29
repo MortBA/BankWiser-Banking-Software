@@ -3,19 +3,14 @@ package com.gui.bankwiser.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
+
 
 public class ForgotPasswordEmployeeController {
 
@@ -24,6 +19,56 @@ public class ForgotPasswordEmployeeController {
 
     @FXML
     private Button cancelForgotPassButton;
+
+    @FXML
+    private TextField ssNumber;
+
+    @FXML
+    private TextField email;
+
+    @FXML
+    private TextField retypeEmail;
+
+    @FXML public Stage stg = new Stage();
+
+    /**
+     * Here, used to initialize new stage have initModality function.
+     * The new stage is used to fill new password for the employee.
+     */
+    @FXML
+    private void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Functions as a controller method for initialize.
+     * Opens a new window to fill new password for the employee when confirm button on forgot password window is clicked.
+     * The window has initModality functionality.
+     * @throws IOException
+     */
+    @FXML
+    private void confirmButtonClicked() throws IOException {
+        stg.showAndWait();
+    }
+
+    /**
+     * Closes the forgot password window when the cancel button is clicked.
+     * @param event
+     */
+    @FXML
+    public void handleCloseForgotPasswordAction(ActionEvent event) {
+        Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     private void confirmHoverIn() {
@@ -41,35 +86,4 @@ public class ForgotPasswordEmployeeController {
     private void cancelHoverOut() {
         cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
     }
-
-    @FXML public Stage stg = new Stage();
-
-    @FXML
-    private void confirmButtonClicked() throws IOException {
-        stg.showAndWait();
-    }
-
-    @FXML
-    private void initialize() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void handleCloseForgotPasswordAction(ActionEvent event) {
-        Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
-        stage.close();
-    }
-
-
-
 }

@@ -83,8 +83,6 @@ import java.util.ResourceBundle;
             stg2.showAndWait();
         }
 
-
-
         //NotCustomer
         @FXML
         private void NotCustomerClicked() throws IOException{
@@ -137,74 +135,12 @@ import java.util.ResourceBundle;
             buttonCancel.setStyle("-fx-background-color: #ed2762;");
         }
 
-
-        //Forgot Password
-
-
-       /* @FXML
-        private void confirmButtonClicked() throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
-            try{
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                stg2.setScene(scene);
-                stg2.initModality(Modality.APPLICATION_MODAL);
-                stg2.setTitle("Set New Password");
-                stg2.showAndWait();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-
-        */
-
         @FXML
         private void ForgotPasswordHoverIn(){
             ForgottenPassword.setUnderline(true);
         }
         @FXML
         private void ForgotPasswordHoverOut() { ForgottenPassword.setUnderline(false); }
-        @FXML
-        private void confirmHoverIn() {
-            confirmForgotPassButton.setStyle("-fx-background-color: #4bacf7;");
-        }
-        @FXML
-        private void confirmHoverOut() {
-            confirmForgotPassButton.setStyle("-fx-background-color: #2d9bf0;");
-        }
-        @FXML
-        private void cancelHoverIn() {
-            cancelForgotPassButton.setStyle("-fx-background-color: #fc4a7f;");
-        }
-        @FXML
-        private void cancelHoverOut() {
-            cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
-        }
-
-
-        @FXML
-        private void onConfirmNewPasswordClicked() throws IOException {
-            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-            alertBox.setContentText("Your password is updated successfully.");
-            Optional<ButtonType> result = alertBox.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                // probably not implement anything here
-            }
-        }
-
-        @FXML
-        public void handleCloseForgotPasswordAction(ActionEvent event) {
-            Stage stage = (Stage) cancelForgotPassButton.getScene().getWindow();
-            stage.close();
-        }
-
-        @FXML
-        public void handleCloseNewPasswordAction(ActionEvent event) {
-            Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
-            stage.close();
-        }
-
-
 
     }
 

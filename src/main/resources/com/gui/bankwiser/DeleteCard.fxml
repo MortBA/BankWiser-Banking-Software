@@ -116,54 +116,54 @@
          <children>
             <Label layoutX="32.0" layoutY="12.0" text="Delete Card" textFill="#017c83">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font name="System Bold" size="38.0" />
                </font>
             </Label>
-            <Label fx:id="newDebitCard1" layoutX="32.0" layoutY="95.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number " textFill="#017c83">
+            <Label fx:id="newDebitCard1" layoutX="178.0" layoutY="95.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number " textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="newDebitCard11" layoutX="32.0" layoutY="169.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card Pin" textFill="#017c83">
+            <Label fx:id="newDebitCard11" layoutX="178.0" layoutY="159.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card Pin" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <PasswordField fx:id="cardPinToDelete" layoutX="216.0" layoutY="169.0" prefHeight="35.0" prefWidth="375.0" />
-            <TextField fx:id="cardNumberToDelete" layoutX="216.0" layoutY="95.0" prefHeight="35.0" prefWidth="375.0" promptText="1234 5678 1234 5678" />
-            <Label fx:id="newDebitCard111" layoutX="32.0" layoutY="243.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Reason to DeleteCard" textFill="#017c83">
+            <PasswordField fx:id="cardPinToDelete" layoutX="358.0" layoutY="159.0" prefHeight="35.0" prefWidth="274.0" />
+            <TextField fx:id="cardNumberToDelete" layoutX="359.0" layoutY="95.0" prefHeight="35.0" prefWidth="273.0" promptText="1234 5678 1234 5678" />
+            <Label fx:id="newDebitCard111" layoutX="178.0" layoutY="217.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Reason to Delete Card" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <CheckBox fx:id="lostCard" layoutX="32.0" layoutY="295.0" mnemonicParsing="false" text="Card is lost/Stolen" textFill="#017c83">
+            <CheckBox fx:id="lostCard" layoutX="178.0" layoutY="267.0" mnemonicParsing="false" text="Card is lost/Stolen" textFill="#017c83">
                <font>
                   <Font size="18.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="cardUnused" layoutX="450.0" layoutY="295.0" mnemonicParsing="false" text="Card not used" textFill="#017c83">
+            <CheckBox fx:id="cardUnused" layoutX="583.0" layoutY="267.0" mnemonicParsing="false" text="Card not used" textFill="#017c83">
                <font>
                   <Font size="18.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="dislikeService" layoutX="236.0" layoutY="295.0" mnemonicParsing="false" text="Dislike of services" textFill="#017c83">
+            <CheckBox fx:id="dislikeService" layoutX="383.0" layoutY="267.0" mnemonicParsing="false" text="Dislike of services" textFill="#017c83">
                <font>
                   <Font size="18.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="TnC" layoutX="32.0" layoutY="349.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
+            <CheckBox fx:id="TnC" layoutX="178.0" layoutY="328.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </CheckBox>
-            <Button fx:id="cancelDeleteCard" layoutX="171.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#onCancelDeleteCardClicked" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE">
+            <Button fx:id="cancelDeleteCard" layoutX="251.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#onCancelButtonClicked" onMouseEntered="#cancelHoverIn" onMouseExited="#cancelHoverOut" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="200.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="confirmDeleteCard" layoutX="433.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#onConfirmDeleteCardClicked" style="-fx-background-color: #2d9bf0;" text="Confirm" textFill="WHITE">
+            <Button fx:id="confirmDeleteCard" layoutX="577.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#onConfirmDeleteCardClicked" onMouseEntered="#confirmHoverIn" onMouseExited="#confirmHoverOut" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #2d9bf0;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="200.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Button>
          </children>
