@@ -98,7 +98,24 @@ public class UserAccount {
         return bankAccountList;
     }
 
-    public void addBankAccount(BankAccount bankAccount) {
-        bankAccountList.add(bankAccount);
+    public String setFullName(String fullName) {
+        this.fullName = fullName;
+        return "successfully changed name";
+    }
+
+    public void addBankAccount(String bankAccountID) {
+        bankAccountList.add(bankAccountID);
+    }
+
+    @Override
+    public String toString() {
+        return  "userID: " + userID + '\n' +
+                "fullName: " + fullName + '\n' +
+                "phoneNumber: " + phoneNumber + '\n' +
+                "address: " + address + '\n' +
+                "socialSecurityNum: " + socialSecurityNum + '\n' +
+                "emailID: " + emailID + '\n' +
+                "password: " + password + '\n' +
+                "bankAccountList: " + bankAccountList;
     }
 }
