@@ -69,7 +69,6 @@ public class CustomerMenuScreenController {
             Scene scene = new Scene(root);
             stg2.setScene(scene);
             stg2.initModality(Modality.APPLICATION_MODAL);
-            stg.showAndWait();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -107,7 +106,6 @@ public class CustomerMenuScreenController {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("BankCardMenu.fxml");
     }
-
 
     @FXML
     void onTransferMoneyClicked(ActionEvent event) throws IOException {

@@ -72,8 +72,28 @@ public class BankCardMenuController {
     @FXML
     void onMyCardsClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("BankCardMenuController.fxml");
+        app.changeScene("BankCardMenu.fxml");
     }
+
+    @FXML
+    void onAccountSettingsClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("AccountSettingsScreen.fxml");
+    }
+
+    @FXML
+    void onTransactionHistoryClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransactionHistoryScreen.fxml");
+    }
+
+    @FXML
+    void onTransferMoneyClicked() throws IOException{
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransferMoneyScreen.fxml");
+    }
+
+
 
     @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {
