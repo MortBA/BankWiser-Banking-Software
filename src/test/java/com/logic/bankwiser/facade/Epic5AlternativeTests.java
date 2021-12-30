@@ -48,12 +48,12 @@ public class Epic5AlternativeTests {
     @Test
     public void shouldPrintErrorTransactionFailure() {
 
-        assertEquals(facade.transferMoney("1584", peterBankAccount.getBankAccountID(), "", 100), "Cannot transfer: {sender} was not found.");
-        assertEquals(facade.transferMoney(johnBankAccount.getBankAccountID(), "1543", "", 100), "Cannot transfer: {receiver} was not found.");
-        assertEquals(facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", -100), "Cannot transfer: Only enter positive numbers.");
-        assertEquals(facade.transferMoney("", peterBankAccount.getBankAccountID(), "", 100), "The sender field shouldn’t be left blank.");
-        assertEquals(facade.transferMoney(johnBankAccount.getBankAccountID(), "", "", 100), "The receiver field shouldn’t be left blank.");
-        assertEquals(facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", 0), "The amount field shouldn’t be left blank.");
+        assertEquals("Cannot transfer: {sender} was not found.", facade.transferMoney("1584", peterBankAccount.getBankAccountID(), "", 100));
+        assertEquals("Cannot transfer: {receiver} was not found.", facade.transferMoney(johnBankAccount.getBankAccountID(), "1543", "", 100));
+        assertEquals("Cannot transfer: Only enter positive numbers.", facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", -100));
+        assertEquals("The sender field shouldn’t be left blank.", facade.transferMoney("", peterBankAccount.getBankAccountID(), "", 100));
+        assertEquals("The receiver field shouldn’t be left blank.", facade.transferMoney(johnBankAccount.getBankAccountID(), "", "", 100));
+        assertEquals("The amount field shouldn’t be left blank.", facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", 0));
 
     }
 
@@ -62,6 +62,6 @@ public class Epic5AlternativeTests {
      */
     @Test
     public void shouldPrintErrorWhenNoTransactionHistory() {
-        assertEquals(facade.viewTransactionHistory(johnBankAccount.getBankAccountID()), "No previous transaction history.");
+        assertEquals("No previous transaction history.", facade.viewTransactionHistory(johnBankAccount.getBankAccountID()));
     }
 }

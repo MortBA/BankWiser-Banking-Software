@@ -45,7 +45,7 @@ public class Epic5RegularTests {
      */
     @Test
     public void shouldTransferMoney() {
-        assertEquals(facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "transfer", 100), "Successfully sent 100 SEK from " + johnBankAccount.getBankAccountID() + " to " + peterBankAccount.getBankAccountID() + ". Note: transfer.");
+        assertEquals("Successfully sent 100 SEK from " + johnBankAccount.getBankAccountID() + " to " + peterBankAccount.getBankAccountID() + ". Note: transfer.", facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "transfer", 100));
     }
 
     //TODO ensure some starting currency to avoid negatives
