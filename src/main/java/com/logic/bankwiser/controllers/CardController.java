@@ -1,15 +1,10 @@
 package com.logic.bankwiser.controllers;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.math.BigDecimal;
 
-import com.google.gson.Gson;
 import com.logic.bankwiser.bank_accounts.BankAccount;
-import com.logic.bankwiser.cards.Card;
 import com.logic.bankwiser.cards.CreditCard;
 import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
-import com.logic.bankwiser.controllers.TransactionController;
 import javafx.util.Pair;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -55,7 +50,7 @@ public class CardController {
 
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if(keyAcceptance.getKey()){
-            STORAGE.addCard(new CreditCard(pin, status, region, onlineStatus, expenditureMax, maxCredit));
+            STORAGE.addCard(new CreditCard(pin, maxCredit));
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         }else{
             return keyAcceptance.getValue();
@@ -82,17 +77,13 @@ public class CardController {
     /**
      * adding a debit card into list in storage
      * @param pin
-     * @param status
-     * @param region
-     * @param onlineStatus
-     * @param expenditureMax
      * @return
      */
     // Modified method to use LocalDate rather than String -KC
-    public String addCard(int pin, boolean status, String region, boolean onlineStatus, int expenditureMax) {
+    public String addCard(int pin) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if(keyAcceptance.getKey()){
-            STORAGE.addCard(new DebitCard(pin, status, region, onlineStatus, expenditureMax));
+            STORAGE.addCard(new DebitCard(pin));
             return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
         }else{
             return keyAcceptance.getValue();
@@ -162,20 +153,22 @@ public class CardController {
      */
     public void creditCardPayment() {
 
-        LocalDate dateToday = LocalDate.now();
-
         for(BankAccount bankAccount : STORAGE.getBankAccountMap().values()){
+
             if(bankAccount.getBalance().intValue() < 0){
+
                 for(DebitCard card : bankAccount.getCardList()){
+                    CreditCard creditCard = (CreditCard) card;
+                    LocalDate monthlyPaymentDate = creditCard.getMonthlyPaymentDate();
 
-                    LocalDate creationDate = card.getCreationDate();
+                    if(ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) == 0||
+                            ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) < 0){
 
-                    if(dateToday.getDayOfMonth() == creationDate.getDayOfMonth() && (dateToday.getYear() != creationDate.getYear() || dateToday.getMonth() != creationDate.getMonth())){
-                        CreditCard creditCard = (CreditCard) card;
-
-                        BigDecimal moneyTransfered = bankAccount.getBalance().multiply(new BigDecimal(creditCard.getInterest()*-1));
+                        BigDecimal moneyTransferred = bankAccount.getBalance().multiply(new BigDecimal(creditCard.getInterest()*-1));
                         String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
-                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransferred, paymentNote, LocalDate.now());
+
+                        creditCard.setMonthlyPaymentDate(LocalDate.now());
                     }
                 }
 
@@ -188,23 +181,21 @@ public class CardController {
      * Checks if annual payments are due on any cards. If there is then it does the payments.
      */
     public void annualCardPayment() {
-        LocalDate dateToday = LocalDate.now();
 
         for(BankAccount bankAccount : STORAGE.getBankAccountMap().values()){
 
             for(DebitCard card : bankAccount.getCardList()){
+                LocalDate yearlyPaymentDate = card.getYearlyPaymentDate();
 
-                LocalDate creationDate = card.getCreationDate();
-                long remainderDays = ChronoUnit.DAYS.between(creationDate, dateToday);
-                if(remainderDays % 365 == 0){
-                    CreditCard creditCard = (CreditCard) card;
+                if(ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) == 0||ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0){
+
                     String paymentNote = "Payment on your card number: " + card.getCardNumber();
                     BigDecimal moneyTransfered = new BigDecimal(999);
                     TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+
+                    card.setYearlyPaymentDate(LocalDate.now());
                 }
             }
-
-
         }
     }
 
@@ -216,13 +207,13 @@ public class CardController {
     public String modifyStatus(String cardNumber) {
         for (int i = 0; i<STORAGE.getCardList().size(); i++){
             if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
-                if(STORAGE.getCardList().get(i).getStatus()){
-                    STORAGE.getCardList().get(i).setStatus(false);
+                if(STORAGE.getCardList().get(i).getFrozenStatus()){
+                    STORAGE.getCardList().get(i).setFrozenStatus(false);
                 }else {
-                    STORAGE.getCardList().get(i).setStatus(true);
+                    STORAGE.getCardList().get(i).setFrozenStatus(true);
                 }
                 //STORAGE.getCard(cardNumber).setStatus(statusNew);
-                if (STORAGE.getCardList().get(i).getStatus()){
+                if (STORAGE.getCardList().get(i).getFrozenStatus()){
                     return "Your card has been successfully unblocked.";
                 }else{
                     return "Your card has been successfully blocked.";

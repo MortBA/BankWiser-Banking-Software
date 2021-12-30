@@ -16,10 +16,11 @@ public class DebitCard {
     private final LocalDate CREATION_DATE;
     private final LocalDate EXPIRATION_DATE;
     private int pin;
-    private boolean status;
+    private boolean frozenStatus;
     private String region;
     private boolean onlineStatus;
     private double expenditureMax;
+    private LocalDate yearlyPaymentDate;
 
 
     /**
@@ -29,7 +30,7 @@ public class DebitCard {
      * currentDate = assigned by system by assigning current time.
      * expirationDate = assigned by system by taking current time + 3 years.
      */
-    public DebitCard(int pin, boolean status, String region, boolean onlineStatus, double expenditureMax){ //BankAccount
+    public DebitCard(int pin){ //BankAccount
 
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -62,14 +63,14 @@ public class DebitCard {
         this.CREATION_DATE = LocalDate.now();
 
         this.EXPIRATION_DATE = LocalDate.now().plusYears(3);
-
         this.CARD_NUMBER = cardNumber;
         this.CCV = CCV;
         this.pin = pin;
-        this.status = status;
-        this.region = region;
-        this.onlineStatus = onlineStatus;
-        this.expenditureMax = expenditureMax;
+        this.frozenStatus = false;
+        this.region = "Sweden";
+        this.onlineStatus = true;
+        this.expenditureMax = 10000;
+        this.yearlyPaymentDate = LocalDate.now();
     }
 
 
@@ -93,8 +94,8 @@ public class DebitCard {
         return pin;
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean getFrozenStatus() {
+        return frozenStatus;
     }
 
     public String getRegion() {
@@ -109,12 +110,14 @@ public class DebitCard {
         return expenditureMax;
     }
 
+    public LocalDate getYearlyPaymentDate() {return yearlyPaymentDate;}
+
     public void setPin(int pin) {
         this.pin = pin;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setFrozenStatus(boolean frozenStatus) {
+        this.frozenStatus = frozenStatus;
     }
 
     public void setRegion(String region) {
@@ -128,4 +131,6 @@ public class DebitCard {
     public void setExpenditureMax(double expenditureMax){
         this.expenditureMax = expenditureMax;
     }
+
+    public void setYearlyPaymentDate(LocalDate yearlyPaymentDate) {this.yearlyPaymentDate = yearlyPaymentDate;}
 }
