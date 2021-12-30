@@ -15,6 +15,11 @@ public class CreditCard extends DebitCard {
     final private double INTEREST;
     private LocalDate monthlyPaymentDate;
 
+    /**
+     * @param pin           pin is set as given by user
+     * @param maxCredit     max credit in which the credit-card has is calculated in controller and set in constructor
+     */
+
     public CreditCard(int pin, BigDecimal maxCredit){
 
         super(pin);

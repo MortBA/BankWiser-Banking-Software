@@ -24,11 +24,9 @@ public class DebitCard {
 
 
     /**
+     * Logic contained sets values to other attributes not set by the user
      *
-     *cardNumber = assigned by system with use of random generated numbers with total 16 digits.
-     * CCV = assigned by system with use of random generated numbers with total 3 digits.
-     * currentDate = assigned by system by assigning current time.
-     * expirationDate = assigned by system by taking current time + 3 years.
+     * @param pin     pin is set by the user after it has been checked in controller
      */
     public DebitCard(int pin){ //BankAccount
 

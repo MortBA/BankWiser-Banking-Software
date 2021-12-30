@@ -30,16 +30,14 @@ public class CardController {
      */
 
     /**
-     * adding a credit card into list in storage
-     * @param pin = pin password for cards set by the user.
-     * @param status = status in regards to being frozen or unfrozen.
-     * @param region = to which region is the bank card locked to.
-     * @param onlineStatus = if the card has permission to make online purchases.
-     * @param monthlyIncome = income of the user to assess size of credit.
-     * @param monthlyExpenses = expenses of the user to assess size of credit.
+     * Adding a credit card into list in storage
+     *
+     * @param pin                 pin password for cards set by the user.
+     * @param monthlyIncome       income of the user to assess size of credit.
+     * @param monthlyExpenses     expenses of the user to assess size of credit.
      * @return affirmative or negative string.
      */
-    public String addCard(int pin, boolean status, String region, boolean onlineStatus, int expenditureMax, double monthlyIncome, double monthlyExpenses) {
+    public String addCard(int pin, double monthlyIncome, double monthlyExpenses) {
         BigDecimal maxCredit;
         Pair<Boolean, BigDecimal> creditAssessment = calculateCredit(monthlyIncome, monthlyExpenses);
         if(creditAssessment.getKey()){
@@ -59,9 +57,10 @@ public class CardController {
 
     /**
      * Assess eligibility of the user and calculation of max credit (creditCards).
-     * @param monthlyIncome
-     * @param monthlyExpenses
-     * @return
+     *
+     * @param monthlyIncome       Total income, after tax, the user has
+     * @param monthlyExpenses     Total fixed monthly payments and expenses that the user has
+     * @return A boolean if they are eligible for a creditCard, a BigDecimal for credit value
      */
     public Pair<Boolean, BigDecimal> calculateCredit(double monthlyIncome, double monthlyExpenses){
         boolean eligible = false;
@@ -76,8 +75,9 @@ public class CardController {
 
     /**
      * adding a debit card into list in storage
-     * @param pin
-     * @return
+     *
+     * @param pin the pin code for the card as written by user
+     * @return affirmative or negative string
      */
     // Modified method to use LocalDate rather than String -KC
     public String addCard(int pin) {
@@ -92,7 +92,8 @@ public class CardController {
 
     /**
      * Checks if given pin is legal
-     * @param pin = pin selected by the user
+     *
+     * @param pin     pin selected by the user
      * @return affirmative or negative string and boolean
      *
      */
@@ -143,9 +144,6 @@ public class CardController {
     }
 
 
-
-    //FOR BOTH PAYMENTS METHODS:
-    //TODO: Make sure to add time, monthly and yearly, for the payments
 
     /**
      * Monthly credit card payments
@@ -201,7 +199,8 @@ public class CardController {
 
     /**
      * Status of card being frozen or unfrozen
-     * @param cardNumber = cardNumber of the card that will be modified
+     *
+     * @param cardNumber     cardNumber of the card that will be modified
      * @return affirmative or negative string.
      */
     public String modifyStatus(String cardNumber) {
@@ -224,9 +223,10 @@ public class CardController {
     }
 
     /**
+     * Changing the region in which the card can be used in
      *
-     * @param cardNumber = cardNumber of the card that will be modified
-     * @param region = the new region that the user want the card to be locked to
+     * @param cardNumber     cardNumber of the card that will be modified
+     * @param region         the new region that the user want the card to be locked to
      * @return affirmative or negative string.
      */
     public String modifyRegion(String cardNumber, String region) {
@@ -240,9 +240,10 @@ public class CardController {
     }
 
     /**
+     * modifying if the card will be usable for online purchases
      *
-     * @param cardNumber = cardNumber of the card that will be modified
-     * @param onlineStatus = the new online access status the user wants
+     * @param cardNumber       cardNumber of the card that will be modified
+     * @param onlineStatus     the new online access status the user wants
      * @return affirmative or negative string.
      */
     public String modifyOnlineStatus(String cardNumber, boolean onlineStatus) {
@@ -260,9 +261,10 @@ public class CardController {
     }
 
     /**
+     * modifying the limit on how much the card can send in total
      *
-     * @param cardNumber = cardNumber of the card that will be modified
-     * @param expenditureMax = the new maximum set on expenditure on the card
+     * @param cardNumber         cardNumber of the card that will be modified
+     * @param expenditureMax     the new maximum set on expenditure on the card
      * @return affirmative or negative string.
      */
     public String modifyExpenditureMax(String cardNumber, double expenditureMax) {
@@ -281,7 +283,7 @@ public class CardController {
     }
 
     /**
-     * summary
+     * Reminds the user in how many days the card will expire
      *
      * @param cardNumber    cardNumber of the card that will be reminded
      * @param userID        the user that will receive the reminder
@@ -330,10 +332,11 @@ public class CardController {
     }
 
     /**
+     * removes a card from existence within the system
      *
-     * @param cardNumber = the number of the card that will get deleted
-     * @param pin = the correct pin of the card
-     * @param terminationReasoning = string with reasoning of termination
+     * @param cardNumber               the number of the card that will get deleted
+     * @param pin                      the correct pin of the card
+     * @param terminationReasoning     string with reasoning of termination
      * @return affirmative or negative string.
      */
     public String deleteCard(String cardNumber, int pin, String terminationReasoning) {
@@ -360,11 +363,12 @@ public class CardController {
     }
 
     /**
+     * changes the pin of the card
      *
-     * @param cardNumber = the card that will have the pin modified
-     * @param oldPin = current pin of the card
-     * @param newPin = the new pin the user want to change the old pin into
-     * @param newPinConfirmation = same pin as newpin for confirmation
+     * @param cardNumber             the card that will have the pin modified
+     * @param oldPin                 current pin of the card
+     * @param newPin                 the new pin the user want to change the old pin into
+     * @param newPinConfirmation     same pin as newpin for confirmation
      * @return affirmative or negative string.
      */
     public String resetPin(String cardNumber, int oldPin, int newPin, int newPinConfirmation){
@@ -386,6 +390,7 @@ public class CardController {
     }
 
     /**
+     * checks if given pin is correct
      *
      * @param cardNumber = Number of the card that is getting pin checked
      * @param pin = the pin that user entered with that pin
