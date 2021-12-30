@@ -244,7 +244,7 @@ public class Facade {
      *
      * @return
      */
-    public String createCreditCard() {
+    public String createCreditCard(int pin) {
         return "";
     }
 
@@ -252,7 +252,7 @@ public class Facade {
      *
      * @return
      */
-    public String createDebitCard() {
+    public String createDebitCard(int pin) {
         return "";
     }
 

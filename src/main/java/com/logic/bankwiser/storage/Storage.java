@@ -48,7 +48,7 @@ public class Storage {
     }
 
     public void addLoan(Loan loan) {
-        loanMap.put(loan.getLoanID(), loan);
+        //loanMap.put(loan.getLoanID(), loan);
     }
 
     public void addCard(DebitCard card){
