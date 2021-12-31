@@ -245,6 +245,7 @@ public class Facade {
      * @return
      */
     public String createCreditCard(int pin) {
+        //return cardController.addCard(pin);
         return "";
     }
 
@@ -253,6 +254,7 @@ public class Facade {
      * @return
      */
     public String createDebitCard(int pin) {
+        //return cardController.addCard(pin);
         return "";
     }
 
@@ -262,6 +264,7 @@ public class Facade {
      * @return
      */
     public String freezeCard(String cardNumber) {
+        //return cardController.modifyStatus(cardNumber);
         return "";
     }
 
@@ -270,7 +273,9 @@ public class Facade {
      * @param cardNumber
      * @return
      */
+    //added cardNumber String input
     public String unfreezeCard(String cardNumber) {
+        //return cardController.modifyStatus(cardNumber);
         return "";
     }
 
@@ -279,7 +284,8 @@ public class Facade {
      * @param newLimit
      * @return
      */
-    public String changeSpendingLimit(double newLimit) {
+    public String changeSpendingLimit(String cardNumber, double newLimit) {
+        //return cardController.modifyExpenditureMax(cardNumber, newLimit);
         return "";
     }
 
@@ -287,7 +293,8 @@ public class Facade {
      *
      * @return
      */
-    public String blockOnlineTransactions() {
+    public String blockOnlineTransactions(String cardNumber) {
+        //return cardController.modifyOnlineStatus(cardNumber);
         return "";
     }
 
@@ -299,7 +306,7 @@ public class Facade {
      * @return
      */
     public String deleteCard(String cardNumber, String reason, int pin) {
-        return "";
+        return cardController.deleteCard(cardNumber, pin, reason);
     }
 
     /**
@@ -309,7 +316,9 @@ public class Facade {
      * @param CVV
      * @return
      */
+    //Should be only cardNumber and UUID?
     public String cardExpiration(String cardNumber, String expirationDate, int CVV) {
+        //return cardController.remainderDays(cardNumber, "");
         return "";
     }
 
@@ -319,6 +328,8 @@ public class Facade {
      * @param username
      * @return
      */
+
+    //What is this and why is this needed?
     public String creditCardApproval(String customerName, String username) {
         return "";
     }
@@ -326,14 +337,14 @@ public class Facade {
     /**
      *
      * @param cardNumber
-     * @param username
      * @param oldPin
      * @param newPin
      * @param newPinConfirmation
      * @return
      */
-    public String changePin(String cardNumber, String username, int oldPin, int newPin, int newPinConfirmation) {
-        return "";
+    //String username removed, not in requirements?
+    public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
+        return cardController.resetPin(cardNumber, oldPin, newPin, newPinConfirmation) ;
     }
 
     /**
