@@ -3,12 +3,17 @@ package com.gui.bankwiser.Controllers;
 import com.gui.bankwiser.BankWiserApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -83,6 +88,9 @@ public class CreateAccountScreenUser {
     @FXML
     private Button buttonLogin;
 
+    @FXML
+    private Stage stg = new Stage();
+
     //QuestionMarkButton // todo:  implement if time over
     @FXML
     private void QuestionMarkHoverIn(){
@@ -91,6 +99,12 @@ public class CreateAccountScreenUser {
 
     @FXML
     private void QuestionMarkHoverOut(){
+
+    }
+
+    @FXML
+    private void questionMarkClicked(){
+        stg.showAndWait();
 
     }
 
@@ -129,6 +143,19 @@ public class CreateAccountScreenUser {
     @FXML
     private void LoginHoverOut(){
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
+    }
+
+    @FXML
+    public void initialize(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/QuestionMarkScreen.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

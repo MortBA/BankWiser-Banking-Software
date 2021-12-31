@@ -2,10 +2,7 @@ package com.gui.bankwiser.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,10 +16,10 @@ public class NewPasswordEmployeeController {
     private Button cancelNewPassword;
 
     @FXML
-    private TextField newPassword;
+    private PasswordField newPassword;
 
     @FXML
-    private TextField confirmNewPass;
+    private PasswordField confirmNewPass;
 
     /**
      * An alert box appears when confirm button for on new password window for employee is clicked.

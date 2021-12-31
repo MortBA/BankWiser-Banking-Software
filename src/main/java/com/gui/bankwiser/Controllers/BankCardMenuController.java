@@ -128,7 +128,7 @@ public class BankCardMenuController {
 
     /**
      * Checks if all fields are filled and then submits request for changing card pin.
-     * Alert box appears if any field is empty or unchecked.
+     * Alert box appears if any field is empty or unchecked and informs user to fill them.
      * @throws IOException
      */
 
@@ -174,7 +174,6 @@ public class BankCardMenuController {
            if(result2.get() == ButtonType.OK){
                BankWiserApp app = new BankWiserApp();
                app.changeScene("BankCardMenu.fxml");
-
         }
     }else if(result.get() == ButtonType.CANCEL){
             BankWiserApp app = new BankWiserApp();

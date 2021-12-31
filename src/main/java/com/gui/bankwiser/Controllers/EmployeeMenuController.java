@@ -1,18 +1,13 @@
 package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
-import javafx.animation.FadeTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.util.Callback;
-import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -71,7 +66,6 @@ public class EmployeeMenuController implements Initializable{
         public void onUserAccReqClicked() throws IOException{
             BankWiserApp app = new BankWiserApp();
             app.changeScene("EMuserAccountReq.fxml");
-
         }
 
         @FXML

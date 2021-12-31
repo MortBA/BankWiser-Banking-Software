@@ -112,7 +112,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="665.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" text="Change Password" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="310.0">
+            <Button fx:id="changePassword" layoutX="665.0" layoutY="310.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" text="Change Password" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="310.0" onMouseClicked="#onChangePasswordClicked">
                <font>
                   <Font size="18.0" />
                </font>
