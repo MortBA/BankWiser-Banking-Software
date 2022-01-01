@@ -45,7 +45,7 @@ public class TransactionHistoryScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            BAcc = new BankAccount(280_872_273, "Channis fake bankacount");
+            BAcc = new BankAccount(280_872_273, "Channi's fake bankacount");
         }catch (Exception e) {e.printStackTrace();}
 
         BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50) ) );
@@ -56,15 +56,12 @@ public class TransactionHistoryScreenController implements Initializable {
         dateColumn.setCellValueFactory( new PropertyValueFactory<Transaction, LocalDate>("TransactionDate") );
 
 
-        transactionHistoryTable.setItems(getObservableTrantactionList());
+        transactionHistoryTable.setItems(getObservableTransactionList());
     }
 
-    private ObservableList<Transaction> getObservableTrantactionList() {
+    private ObservableList<Transaction> getObservableTransactionList() {
         return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionList());
     }
-
-
-
 
     @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {
