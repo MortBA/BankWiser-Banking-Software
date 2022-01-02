@@ -17,98 +17,71 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for performing functionalities for 'Create Account' screen for customers.
+ * @author Chanisra
+ */
+
 public class CreateAccountScreenUser {
 
-    @FXML
-    private MenuItem accountSettings;
+    @FXML private MenuItem accountSettings;
+    @FXML private MenuItem deleteBankAccount;
+    @FXML private MenuItem deleteUserAccount;
+    @FXML private MenuItem transactionsHistory;
+    @FXML private MenuItem loans;
+    @FXML private MenuItem myCards;
+    @FXML private Button overview;
+    @FXML private Button buttonLogOut;
+    @FXML private Button buttonCancel;
+    @FXML private Button buttonLogin;
+    @FXML private AnchorPane BankwiserLogo;
+    @FXML private AnchorPane LoginElements;
+    @FXML private ImageView QuestionMarkButton;
 
     @FXML
-    private MenuItem deleteBankAccount;
+    private Stage stg = new Stage();
+
+    /**
+     *
+     * Initializes the 'question mark' screen which opens as a new stage when the question mark is clicked
+     * @author Sejal
+     */
 
     @FXML
-    private MenuItem deleteUserAccount;
+    public void initialize(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/QuestionMarkScreen.fxml"));
+        try{
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * Opens new stage having related information when the question mark on 'Create account' screen is clicked.
+     * @author Sejal
+     */
 
     @FXML
-    private MenuItem loans;
+    private void questionMarkClicked(){
+        stg.showAndWait();
+    }
 
     @FXML
-    private MenuItem myCards;
-
-    @FXML
-    private Button overview;
-
-    @FXML
-    private Button buttonLogOut;
-
-    @FXML
-    void transferMoney (ActionEvent event) throws IOException {
-        //new BankWiserApp().changeScene("TransferMoney.fxml");
-        //}
+    void LoginClicked(MouseEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("TransferMoney.fxml");
-    }
-
-    @FXML
-    private MenuItem transactionsHistory;
-
-    @FXML
-    void onDeleteUserAccountClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onMyCardsClicked(ActionEvent event) throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("BankCardMenuController.fxml");
-    }
-
-    @FXML
-    void onOverviewClicked(ActionEvent event) {
-
+        app.changeScene(".fxml");
+        // TODO: 2021-12-21 Make A Screen "Account Successfully registered.
     }
 
     @FXML
     public void onLogOutClicked() throws IOException{
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
-
-
-    @FXML
-    private AnchorPane BankwiserLogo;
-
-    @FXML
-    private AnchorPane LoginElements;
-
-    @FXML
-    private ImageView QuestionMarkButton;
-
-    @FXML
-    private Button buttonCancel;
-
-    @FXML
-    private Button buttonLogin;
-
-    @FXML
-    private Stage stg = new Stage();
-
-    //QuestionMarkButton // todo:  implement if time over
-    @FXML
-    private void QuestionMarkHoverIn(){
-
-    }
-
-    @FXML
-    private void QuestionMarkHoverOut(){
-
-    }
-
-    @FXML
-    private void questionMarkClicked(){
-        stg.showAndWait();
-
-    }
-
-
 
     @FXML
     void CancelClicked(MouseEvent event) throws IOException {
@@ -126,15 +99,6 @@ public class CreateAccountScreenUser {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
 
-
-    @FXML
-    void LoginClicked(MouseEvent event) throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene(".fxml");
-        // TODO: 2021-12-21 Make A Screen "Account Successfully registered. 
-    }
-
-
     @FXML
     private void LoginHoverIn(){
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
@@ -145,18 +109,14 @@ public class CreateAccountScreenUser {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
     }
 
+    //QuestionMarkButton // todo:  implement if time over
     @FXML
-    public void initialize(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/QuestionMarkScreen.fxml"));
-        try{
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private void QuestionMarkHoverIn(){
     }
 
+    @FXML
+    private void QuestionMarkHoverOut(){
+
+    }
 
 }

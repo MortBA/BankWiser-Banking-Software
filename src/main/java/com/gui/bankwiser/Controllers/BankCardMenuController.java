@@ -8,6 +8,11 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Controller class for performing all functionalities of Bank Card menu.
+ * @author Sejal
+ */
+
 public class BankCardMenuController {
 
     @FXML private MenuItem accountSettings;
@@ -93,8 +98,6 @@ public class BankCardMenuController {
         app.changeScene("TransferMoneyScreen.fxml");
     }
 
-
-
     @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
@@ -127,8 +130,10 @@ public class BankCardMenuController {
     }
 
     /**
-     * Checks if all fields are filled and then submits request for changing card pin.
-     * Alert box appears if any field is empty or unchecked and informs user to fill them.
+     * The method functions when 'submit' button on 'change pin' screen is clicked.
+     * The method checks if all fields on 'change pin' screen are filled and then submits request for changing card pin.
+     * Alert box showing warning appears if any field is empty or unchecked and informs user to fill them.
+     * Confirmation alert box appears when all fields are filled and the card pin is changed.
      * @throws IOException
      */
 
@@ -156,8 +161,8 @@ public class BankCardMenuController {
     }
 
     /**
-     * Used when the customer has forgotten the current pin, which is required to change pin of the card.
-     * Alert box appears notifying the next step to take as a customer.
+     * Information alert box appears when the customer clicks on the 'forgot current pin' label on 'change pin' screen,
+     * alert box appears, notifying the next step to take as a customer.
      * @throws IOException
      */
 
@@ -182,8 +187,10 @@ public class BankCardMenuController {
     }
 
     /**
-     * Checks if all fields are filled and then confirms delete card request.
-     * Alert box appears if any field is empty or unchecked.
+     * The method functions when 'confirm' button on delete card menu screen is clicked.
+     * The method checks if all fields are filled on 'delete card' screen and then confirms delete card request.
+     * Warning alert box appears if any field is empty or unchecked, notifying the user to fill them.
+     * Confirmation alert box appears when all fields are filled and the Card is deleted.
      * @throws IOException
      */
 
@@ -216,11 +223,12 @@ public class BankCardMenuController {
     }
 
     /**
-     * checks if all fields are filled and then submits the new credit card request.
-     * Alert box appears if any field is empty or unchecked.
+     * The method functions when 'submit' button on 'new credit card' screen is clicked.
+     * The method checks if all fields are filled on 'credit card' screen and then submits the new credit card request.
+     * Warning alert box appears if any field is empty or unchecked.
+     * Confirmation alert box appears when all fields are filled and request is sent.
      * @throws IOException
      */
-
     @FXML
     public void onSubmitCreditCardClicked() throws IOException {
         if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()){
@@ -243,8 +251,10 @@ public class BankCardMenuController {
     }
 
     /**
-     * checks if all fields are filled and then submits the new debit card request.
-     * Alert box appears if any field is empty or unchecked.
+     * The method functions when 'submit' button on 'debit card' screen is clicked.
+     * THe method checks if all fields on 'debit card' screen are filled and then submits the new debit card request.
+     * Warning alert box appears if any field is empty or unchecked.
+     * Confirmation alert box appears when all fields are filled and card is made.
      * @throws IOException
      */
 

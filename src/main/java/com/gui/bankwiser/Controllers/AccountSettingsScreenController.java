@@ -16,50 +16,38 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for performing all functionalities of Account settings screen.
+ * @author
+ */
+
 public class AccountSettingsScreenController {
 
+    @FXML private MenuItem accountSettings;
+    @FXML private MenuItem deleteBankAccount;
+    @FXML private MenuItem deleteUserAccount;
+    @FXML private MenuItem transactionsHistory;
+    @FXML private MenuItem loans;
+    @FXML private MenuItem myCards;
+    @FXML private MenuItem transferMoney;
 
-    @FXML
-    private MenuItem accountSettings;
+    @FXML private Button overview;
+    @FXML private Button buttonLogOut;
+    @FXML private Button changePassword;
 
-    @FXML
-    private MenuItem deleteBankAccount;
+    @FXML private AnchorPane BankwiserLogo;
+    @FXML private AnchorPane LoginElements;
 
-    @FXML
-    private MenuItem deleteUserAccount;
-
-    @FXML
-    private MenuItem loans;
-
-    @FXML
-    private MenuItem myCards;
-
-    @FXML
-    private MenuItem transferMoney;
-
-    @FXML
-    private Button overview;
-
-    @FXML
-    private Button buttonLogOut;
-
-    @FXML
-    private MenuItem transactionsHistory;
-
-    @FXML
-    private AnchorPane BankwiserLogo;
-
-    @FXML
-    private AnchorPane LoginElements;
-
-    @FXML
-    private ImageView QuestionMarkButton;
-
-    @FXML
-    private Button changePassword;
+    @FXML private ImageView QuestionMarkButton;
 
     @FXML
     private Stage stg = new Stage();
+
+    /**
+     * Initializes new stage for 'change password' screen.
+     * The stage is initialized when the account settings screen appears.
+     * The stage has initModality functionality.
+     */
 
     @FXML
     public void initialize(){
@@ -126,11 +114,14 @@ public class AccountSettingsScreenController {
         new BankWiserApp().changeScene("");
     }
 
+    /**
+     * Opens the 'change password' screen, which is initialized in the beginning.
+     * The screen opens only when 'change password' button on the account settings screen is clicked.
+     * @throws Exception
+     */
+
     @FXML
     void onChangePasswordClicked() throws Exception{
         stg.showAndWait();
     }
-
-
-
 }
