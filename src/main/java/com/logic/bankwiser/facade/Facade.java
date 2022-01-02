@@ -62,6 +62,16 @@ public class Facade {
     }
 
     //TODO finish deleteUserAccount method
+
+    /**
+     * Deletes the user account based on the given id
+     *
+     * @param accountId     The id of the user account
+     * @param username      The username of the user
+     * @param fullName      The full name of the user
+     * @param signature     The signature of the user
+     * @return String confirmation of user deletion or failure
+     */
     public String deleteUserAccount(String accountId, String username, String fullName, boolean signature) {
         return "";
     }
@@ -78,9 +88,10 @@ public class Facade {
     }
 
     /**
+     * Creates the bank account
      *
-     * @param userAccount Users' UUID
-     * @param accountName Name of bank account
+     * @param userAccount     Users' UUID
+     * @param accountName     Name of bank account
      * @return success message
      */
     public String createBankAccount(UUID userAccount, String accountName) {
@@ -88,9 +99,11 @@ public class Facade {
     }
 
     /**
+     * Deletes the bank account
+     *
      * Deletes a bank account
-     * @param accountId
-     * @return
+     * @param accountId     The id of the account that will be removed
+     * @return String confirmation of deleting the bank account.
      */
     public String deleteBankAccount(String accountId) {
         return "";
@@ -98,7 +111,8 @@ public class Facade {
 
     /**
      * Retrieves information about a bank account
-     * @param accountName
+     *
+     * @param accountName     the name of the bank account
      * @return
      */
     public HashMap<String, Double> bankAccountInformation(String accountName) {
@@ -109,7 +123,8 @@ public class Facade {
 
     /**
      * Shows pending requests
-     * @return
+     *
+     * @return A pending request
      */
     public ArrayList<String> pendingRequests() {
         ArrayList<String> requests = new ArrayList<>();
@@ -118,55 +133,60 @@ public class Facade {
     }
 
     /**
+     * Resets the password of the clerk with a chosen password
      *
-     * @param clerkId
-     * @param username
-     * @param newPwd
-     * @param newPwdConfirm
-     * @return
+     * @param clerkId           the ID of the clerk
+     * @param username          the username of the clerk
+     * @param newPwd            the new password
+     * @param newPwdConfirm     the repeat of the new password
+     * @return String confirmation of resetting the clerk password.
      */
     public String resetClerkPassword(String clerkId, String username, String newPwd, String newPwdConfirm) {
         return "";
     }
 
     /**
+     * Transferring the money from one account to another
      *
-     * @param sender
-     * @param receiver
-     * @param note
-     * @param amount
-     * @return
+     * @param sender       the account of the sender
+     * @param receiver     the account of the receiver
+     * @param note         a small message attached to the transaction
+     * @param amount       total amount/price of transaction
+     * @return String confirmation of deleting the bank account.
      */
     public String transferMoney(String sender, String receiver, String note, double amount) {
         return "";
     }
 
     /**
+     * Shows history of transactions of a bank-account
      *
-     * @param bankAccountID
-     * @return
+     * @param bankAccountID     the account that the history belongs to
+     * @return String containing the history
      */
     public String viewTransactionHistory(String bankAccountID) {
         return transactionController.viewTransactionHistory(bankAccountID);
     }
 
     /**
+     * Sends an application for a loan to be processed
      *
-     * @param username
-     * @param amount
-     * @return
+     * @param username     the username of the applicant
+     * @param amount       the amount of the requested
+     * @return confirmation of loan acceptation or rejection.
      */
     public String loanApplication(String username, double amount) {
         return "";
     }
 
     /**
+     * Sends an application for a personal-loan to be processed
      *
-     * @param monthlyIncome
-     * @param monthlyExpenses
-     * @param liabilities
-     * @param duration
-     * @return
+     * @param monthlyIncome       total income on a monthly basis of the user
+     * @param monthlyExpenses     total expenses on a monthly basis of the user
+     * @param liabilities         the total liabilities
+     * @param duration            the length of time for repayment
+     * @return confirmation of loan acceptation or rejection.
      */
     public String personalLoanApplication(double monthlyIncome, double monthlyExpenses,
                                           String liabilities, int duration) {
@@ -174,17 +194,18 @@ public class Facade {
     }
 
     /**
+     * Sends an application for a home-loan to be processed
      *
-     * @param monthlyIncome
-     * @param monthlyExpenses
-     * @param propertyPrice
-     * @param propertySize
-     * @param liabilities
-     * @param homeAddress
-     * @param homeType
-     * @param storiesNum
-     * @param duration
-     * @return
+     * @param monthlyIncome       total income on a monthly basis of the user
+     * @param monthlyExpenses     total expenses on a monthly basis of the user
+     * @param propertyPrice       the total price of the property
+     * @param propertySize        the size of the total property
+     * @param liabilities         the total liabilities
+     * @param homeAddress         the address of the lodging
+     * @param homeType            the type of lodging
+     * @param storiesNum          //the number of the flat?
+     * @param duration            the length of time for repayment
+     * @return confirmation of loan acceptation or rejection.
      */
     public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double propertyPrice,
                                       double propertySize, String liabilities, String homeAddress,
@@ -193,15 +214,16 @@ public class Facade {
     }
 
     /**
+     * Sends an application for a vehicle-loan to be processed
      *
-     * @param monthlyIncome
-     * @param monthlyExpenses
-     * @param millage
-     * @param liabilities
-     * @param vehicleType
-     * @param fuelType
+     * @param monthlyIncome       total income on a monthly basis of the user
+     * @param monthlyExpenses     total expenses on a monthly basis of the user
+     * @param millage             the age of the car by miles
+     * @param liabilities         the total liabilities
+     * @param vehicleType         the type of the vehicle
+     * @param fuelType            the type of fuel on the car
      * @param yearOfManufacture
-     * @return
+     * @return confirmation of loan acceptation or rejection.
      */
     public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses,
                                          double millage, String liabilities, String vehicleType,
@@ -210,39 +232,44 @@ public class Facade {
     }
 
     /**
+     * Calculates the loan size
      *
-     * @param monthlyIncome
-     * @param duration
-     * @return
+     * @param monthlyIncome     total income on a monthly basis of the user
+     * @param duration          the duration of the loan
+     * @return the size of the calculated loan
      */
     public double calculateLoanSize(double monthlyIncome, int duration) {
         return -1;
     }
 
     /**
+     * Calculates the interest rate
      *
-     * @param loanType
-     * @return
+     * @param loanType     the type of the loan
+     * @return  double containing interest rate depending on the loan type
      */
     public double calculateInterestRate(String loanType) {
         return -1;
     }
 
     /**
+     * Gives either approval or disapproval of a loan
      *
-     * @param username
-     * @param fullName
-     * @param reason
-     * @param loanSize
-     * @return
+     * @param username     the user that requests the loan
+     * @param fullName     the fullname of the user
+     * @param reason       the reasoning for the loan request
+     * @param loanSize     the total amount of the loan
+     * @return string containing approval or disapproval of the loan
      */
     public String loanApproval(String username, String fullName, String reason, double loanSize) {
         return "";
     }
 
     /**
+     * Creates the credit card
      *
-     * @return
+     * @param pin     the pin for the credit card
+     * @return string with approval or disapproval for the card creation.
      */
     public String createCreditCard(int pin) {
         //return cardController.addCard(pin);
@@ -250,8 +277,10 @@ public class Facade {
     }
 
     /**
+     * Creates the debit card
      *
-     * @return
+     * @param pin     the pin for the credit card
+     * @return string with approval or disapproval for the card creation.
      */
     public String createDebitCard(int pin) {
         //return cardController.addCard(pin);
@@ -259,8 +288,9 @@ public class Facade {
     }
 
     /**
+     * Toggle the card to freeze
      *
-     * @param cardNumber
+     * @param cardNumber     the card to be frozen
      * @return
      */
     public String freezeCard(String cardNumber) {
@@ -269,8 +299,9 @@ public class Facade {
     }
 
     /**
+     * Toggle the card to unfreeze
      *
-     * @param cardNumber
+     * @param cardNumber     the card to be unfrozen
      * @return
      */
     //added cardNumber String input
@@ -280,9 +311,10 @@ public class Facade {
     }
 
     /**
+     * Modify the instore spending limit
      *
-     * @param newLimit
-     * @return
+     * @param newLimit     the new limit as chosen by the user
+     * @return String confirmation of success or failure
      */
     public String changeSpendingLimit(String cardNumber, double newLimit) {
         //return cardController.modifyExpenditureMax(cardNumber, newLimit);
@@ -290,8 +322,10 @@ public class Facade {
     }
 
     /**
+     * Modify the online transaction ability of a card
      *
-     * @return
+     * @param cardNumber     the number of the card that will be modified
+     * @return String confirmation of success or failure
      */
     public String blockOnlineTransactions(String cardNumber) {
         //return cardController.modifyOnlineStatus(cardNumber);
@@ -299,48 +333,39 @@ public class Facade {
     }
 
     /**
+     * Delete the card of given card-number
      *
-     * @param cardNumber
-     * @param reason
-     * @param pin
-     * @return
+     * @param cardNumber     the number of the card that will be modified
+     * @param reason         the reasoning to the deletion of the card
+     * @param pin            the pin of the card
+     * @return String confirmation of success or failure
      */
     public String deleteCard(String cardNumber, String reason, int pin) {
         return cardController.deleteCard(cardNumber, pin, reason);
     }
 
     /**
+     * Reminds the user of card expiration
      *
-     * @param cardNumber
-     * @param expirationDate
-     * @param CVV
-     * @return
+     * @param cardNumber         the number of the card that will be modified
+     * @return String with the reminder message
      */
     //Should be only cardNumber and UUID?
-    public String cardExpiration(String cardNumber, String expirationDate, int CVV) {
+    public String cardExpiration(String cardNumber) {
         //return cardController.remainderDays(cardNumber, "");
         return "";
     }
 
-    /**
-     *
-     * @param customerName
-     * @param username
-     * @return
-     */
 
-    //What is this and why is this needed?
-    public String creditCardApproval(String customerName, String username) {
-        return "";
-    }
 
     /**
+     * Change the pin of the card
      *
-     * @param cardNumber
-     * @param oldPin
-     * @param newPin
-     * @param newPinConfirmation
-     * @return
+     * @param cardNumber             the number of the card that will be modified
+     * @param oldPin                 the current/old pin that the user wants to change
+     * @param newPin                 the new pin that the user wants to change their current pin into
+     * @param newPinConfirmation     the repeat of the new pin
+     * @return String confirmation of success or failure
      */
     //String username removed, not in requirements?
     public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
@@ -348,10 +373,11 @@ public class Facade {
     }
 
     /**
+     * Deposit the money into an account
      *
-     * @param accountName
-     * @param amount
-     * @return
+     * @param accountName     name of the account that will receive the deposit
+     * @param amount          the amount that will deposited
+     * @return String confirmation of success or failure
      */
     public String depositMoney(String accountName, double amount) {
         return "";
