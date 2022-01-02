@@ -326,8 +326,10 @@ public class CardController {
 
         if(remainderDays<0){
             return "The card "+cardNumber+" expired and was terminated.";
-        }else {
+        }else if(remainderDays<14){
             return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then. We have sent you a new one to "+STORAGE.getUserFromMap(userID).getAddress()+".";
+        }else{
+            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then.";
         }
     }
 
