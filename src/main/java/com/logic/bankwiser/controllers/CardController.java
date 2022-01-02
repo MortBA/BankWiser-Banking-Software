@@ -164,7 +164,7 @@ public class CardController {
 
                         BigDecimal moneyTransferred = bankAccount.getBalance().multiply(new BigDecimal(creditCard.getInterest()*-1));
                         String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
-                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransferred, paymentNote, LocalDate.now());
+                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDate.now());
 
                         creditCard.setMonthlyPaymentDate(LocalDate.now());
                     }
@@ -188,8 +188,8 @@ public class CardController {
                 if(ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) == 0||ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0){
 
                     String paymentNote = "Payment on your card number: " + card.getCardNumber();
-                    BigDecimal moneyTransfered = new BigDecimal(999);
-                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), 0, moneyTransfered, paymentNote, LocalDate.now());
+                    BigDecimal moneyTransferred = new BigDecimal(999);
+                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDate.now());
 
                     card.setYearlyPaymentDate(LocalDate.now());
                 }

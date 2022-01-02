@@ -1,19 +1,19 @@
-// Alternative tests for Epic Feature 2
-
 package com.logic.bankwiser.facade;
-
-/*
- * Epic Feature 2 Alternative Tests
- * The tested method will be provided incorrect input (e.g. an input field may have been left empty or the PIN code is too short)
- * to see if the error is noticed and an appropriate output is generated.
- *
- * @author: Daniel Dovhun
- */
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
+/**
+ * Alternative Tests for Epic Feature 2
+ * The tested method will be provided incorrect input (e.g. an input field may have been left empty or the PIN code is too short)
+ * to see if the error is noticed and an appropriate output is generated.
+ *
+ * @author Daniel Dovhun
+ * @author Mathias Hallander
+ */
 public class Epic2AlternativeTests {
     static Facade facade;
 
@@ -43,6 +43,7 @@ public class Epic2AlternativeTests {
 
     @Test
     public void resetUserPassword() {
+        //TODO which approval signature? -MH
         String expectedValue = "Approval signature is missing.";
         String actualValue = facade.resetUserPassword("1","john.doe@gmail.com", "Password456", "Password123");
         assertEquals(expectedValue, actualValue);

@@ -1,11 +1,9 @@
 package com.logic.bankwiser.accounts;
 
-import com.logic.bankwiser.bank_accounts.BankAccount;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.*;
+import java.util.regex.Pattern;
 
 /**
  * @author Kevin Collins
@@ -17,10 +15,10 @@ public class UserAccount {
     private String fullName;
     private String phoneNumber;
     private String address;
-    private int socialSecurityNum;
+    private String socialSecurityNum;
     private String emailID;
     private String password;
-    private List<BankAccount> bankAccountList;
+    private List<String> bankAccountList;
 
     /**
      * Constructor for the UserAccount class that handles input validation.
@@ -34,7 +32,7 @@ public class UserAccount {
      * @throws Exception            If invalid input is provided
      */
     public UserAccount(UUID userID, String fullName, String phoneNumber, String address,
-                       int socialSecurityNum, String emailID, String password) throws Exception {
+                       String socialSecurityNum, String emailID, String password) throws Exception {
         // TODO This regex pattern is a simple one I wrote myself. Should we switch to a premade one? -KC
         String emailPattern = "^[a-zA-Z]+@[a-zA-Z]+.[a-zA-Z]+";
 
@@ -82,7 +80,7 @@ public class UserAccount {
         return address;
     }
 
-    public int getSocialSecurityNum() {
+    public String getSocialSecurityNum() {
         return socialSecurityNum;
     }
 
@@ -94,11 +92,28 @@ public class UserAccount {
         return password;
     }
 
-    public List<BankAccount> getBankAccountList() {
+    public List<String> getBankAccountList() {
         return bankAccountList;
     }
 
-    public void addBankAccount(BankAccount bankAccount) {
-        bankAccountList.add(bankAccount);
+    public String setFullName(String fullName) {
+        this.fullName = fullName;
+        return "successfully changed name";
+    }
+
+    public void addBankAccount(String bankAccountID) {
+        bankAccountList.add(bankAccountID);
+    }
+
+    @Override
+    public String toString() {
+        return  "userID: " + userID + '\n' +
+                "fullName: " + fullName + '\n' +
+                "phoneNumber: " + phoneNumber + '\n' +
+                "address: " + address + '\n' +
+                "socialSecurityNum: " + socialSecurityNum + '\n' +
+                "emailID: " + emailID + '\n' +
+                "password: " + password + '\n' +
+                "bankAccountList: " + bankAccountList;
     }
 }

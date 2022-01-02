@@ -1,16 +1,19 @@
-// Regular Tests for Epic Feature 3
-
 package com.logic.bankwiser.facade;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Regular Tests for Epic Feature 3
+ *
+ * @author Daniel Dovhun
+ * @author Mathias Hallander
+ */
 public class Epic3RegularTests {
     static Facade facade;
     String[] accountNames = {"account-name1", "account-name2", "account-name3", "account-name4", "account-name5"};
@@ -26,23 +29,23 @@ public class Epic3RegularTests {
     @Test
     public void createBankAccountTest() {
         String expectedValue = "New banking account account-name1 had been created";
-        String actualValue = facade.createBankAccount("john.doe@fictmail.com");
+        String actualValue = facade.createBankAccount(facade.storage.getUserUUID("john.doe@fictmail.com"), accountNames[0]);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New banking account account-name2 had been created";
-        actualValue = facade.createBankAccount("mary.jane@fictmail.com");
+        actualValue = facade.createBankAccount(facade.storage.getUserUUID("mary.jane@fictmail.com"), accountNames[1]);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New banking account account-name3 had been created";
-        actualValue = facade.createBankAccount("john.doe@fictmail.com");
+        actualValue = facade.createBankAccount(facade.storage.getUserUUID("john.doe@fictmail.com"), accountNames[2]);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New banking account account-name4 had been created";
-        actualValue = facade.createBankAccount("mary.jane@fictmail.com");
+        actualValue = facade.createBankAccount(facade.storage.getUserUUID("mary.jane@fictmail.com"), accountNames[3]);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New banking account account-name5 had been created";
-        actualValue = facade.createBankAccount("mary.jane@fictmail.com");
+        actualValue = facade.createBankAccount(facade.storage.getUserUUID("mary.jane@fictmail.com"), accountNames[4]);
         assertEquals(expectedValue, actualValue);
     }
 
@@ -77,7 +80,7 @@ public class Epic3RegularTests {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
 
-        facade.createBankAccount("john.doe@fictmail.com", "account-name6");
+        facade.createBankAccount(facade.storage.getUserUUID("john.doe@fictmail.com"), "account-name6");
         facade.transferMoney("bank-account3", "bank-account6", "", 1000);
 
         String expectedValue = "[" + dateFormat.format(date) + ", 1000, 1, [" + dateFormat.format(date) + ", bank-account3, 1000, 1000]";

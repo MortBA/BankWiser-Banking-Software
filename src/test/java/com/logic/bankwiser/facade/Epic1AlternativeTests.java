@@ -1,45 +1,39 @@
-/*
-Alternative tests for Epic Feature 1.
-There should be only one test for US 1.1
- */
-
 package com.logic.bankwiser.facade;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 //TODO: Convert to using User objects once implemented
+/**
+ * Alternative tests for Epic Feature 1.
+ * There should be only one test for US 1.1
+ *
+ * @author Daniel Dovhun
+ * @author Mathias Hallander
+ */
 public class Epic1AlternativeTests {
     static Facade facade;
-    static String[][] userDetails = {
-            {"john.doe@gmail.com", "mary.jane@yahoo.com"}, // Username
-            {"John Doe", "Mary Jane"},                     // Full name
-            {"UnknownPhantom897", "NonExistentPerson888"}, // Password
-            {"+46 72-373 89 30", "+46 72-373 46 52"},      // Phone number
-            {                                              // Address
-                    "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden",
-                    "Somethingplatsen 9 2253, 131 41 Nacka, Sweden"
-            },
-            {"890213-1032", "9301018956"}                  // Social security number
-    };
 
     @BeforeAll
     public static void setup() {
-        facade.createUserAccount(userDetails[0][0], userDetails[1][0], userDetails[2][0], userDetails[2][0],
-                userDetails[3][0], userDetails[4][0], userDetails[5][0]);
-        facade.createUserAccount(userDetails[0][1], userDetails[1][1], userDetails[2][1], userDetails[2][1],
-                userDetails[3][1], userDetails[4][1], userDetails[5][1]);
+        facade = new Facade();
+        facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897",
+                "+46 72-373 89 30", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "890213-1032");
+        facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888",
+                "+46 72-373 46 52", "Somethingplatsen 9 2253, 131 41 Nacka, Sweden", "9301018956");
     }
 
     @Test
     public void userLoginTest() {
         String expectedValue = "User johndoe@gmail.com could not be logged in. Invalid username or password.";
-        String actualValue = facade.userLogin("johndoe@gmail.com", userDetails[0][1]);
+        String actualValue = facade.userLogin("johndoe@gmail.com", "UnknownPhantom897");
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "User mary.jane@yahoo.com could not be logged in. Invalid username or password.";
-        actualValue = facade.userLogin(userDetails[0][1], "WrongPassword123");
+        actualValue = facade.userLogin("mary.jane@yahoo.com", "WrongPassword123");
+        assertEquals(expectedValue, actualValue);
     }
 }

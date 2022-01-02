@@ -28,10 +28,10 @@ public class BankAccountController {
     public String createBankAccount(UUID UserID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
         try {
-            int bankAccountID = generateBankAccountID();
+            String bankAccountID = generateBankAccountID();
             BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
             storage.addBankAccount(bankAccountID, bankAccount);
-            storage.getUserFromMap(UserID).addBankAccount(bankAccount);
+            storage.getUserFromMap(UserID).addBankAccount(bankAccount.getBankAccountID());
             sb.append("New banking account " + bankAccountName + " has been created.");
         } catch (Exception e) {
             sb.append(e.getMessage());
@@ -48,7 +48,7 @@ public class BankAccountController {
      * @return  A string that either confirms the bank account being renamed or
      *          informs the user that the bank account could not be renamed.
      */
-    public String renameBankAccount(int bankAccountID, String bankAccountName) {
+    public String renameBankAccount(String bankAccountID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
         if (bankAccountName.length() <= 30){
             storage.getBankAccount(bankAccountID).setBankAccountName(bankAccountName);
@@ -72,10 +72,10 @@ public class BankAccountController {
     }
 
     // TODO Consider having generation of UIDs moved to a util class. -K
-    public int generateBankAccountID() {
+    public String generateBankAccountID() {
         final int MIN_BANK_ACCOUNT_ID = 10000000;
         final int MAX_BANK_ACCOUNT_ID = 99999999;
         Random rand = new Random();
-        return (rand.nextInt((MAX_BANK_ACCOUNT_ID - MIN_BANK_ACCOUNT_ID) + 1) + MIN_BANK_ACCOUNT_ID);
+        return String.valueOf((rand.nextInt((MAX_BANK_ACCOUNT_ID - MIN_BANK_ACCOUNT_ID) + 1) + MIN_BANK_ACCOUNT_ID));
     }
 }
