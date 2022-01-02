@@ -1,5 +1,6 @@
 package com.logic.bankwiser.facade;
 
+import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.transactions.Transaction;
@@ -24,6 +25,9 @@ public class Facade {
     CardController cardController;
     LoanController loanController;
     Storage storage;
+    UserAccount activeUser;
+    UUID activeUserID;
+
 
     /**
      * Class constructor which initializes the storage and all controller classes
@@ -45,6 +49,8 @@ public class Facade {
      * @return String confirmation of successful login or failure
      */
     public String userLogin(String username, String password) {
+        this.activeUserID = storage.getUserUUID(username);
+        this.activeUser = storage.getUserFromMap(storage.getUserUUID(username));
         return "";
     }
 
@@ -352,8 +358,7 @@ public class Facade {
      */
     //Should be only cardNumber and UUID?
     public String cardExpiration(String cardNumber) {
-        //return cardController.remainderDays(cardNumber, "");
-        return "";
+        return cardController.remainderDays(cardNumber, activeUserID);
     }
 
 
@@ -376,7 +381,7 @@ public class Facade {
      * Deposit the money into an account
      *
      * @param accountName     name of the account that will receive the deposit
-     * @param amount          the amount that will deposited
+     * @param amount          the amount that will deposit
      * @return String confirmation of success or failure
      */
     public String depositMoney(String accountName, double amount) {
