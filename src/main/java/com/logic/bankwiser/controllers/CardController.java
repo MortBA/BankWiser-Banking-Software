@@ -205,22 +205,20 @@ public class CardController {
      * @return affirmative or negative string.
      */
     public String modifyStatus(String cardNumber) {
-        for (int i = 0; i<STORAGE.getCardList().size(); i++){
-            if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
-                if(STORAGE.getCardList().get(i).getFrozenStatus()){
-                    STORAGE.getCardList().get(i).setFrozenStatus(false);
-                }else {
-                    STORAGE.getCardList().get(i).setFrozenStatus(true);
-                }
-                //STORAGE.getCard(cardNumber).setStatus(statusNew);
-                if (STORAGE.getCardList().get(i).getFrozenStatus()){
-                    return "Your card has been successfully unblocked.";
-                }else{
+
+        for(int i = 0; i < STORAGE.getCardList().size(); i++){
+            if(STORAGE.getCardList().get(i).getCardNumber() == cardNumber){
+                if(STORAGE.getCard(cardNumber).getFrozenStatus()){
+                    STORAGE.getCard(cardNumber).setFrozenStatus(false);
                     return "Your card has been successfully blocked.";
+                }else{
+                    STORAGE.getCard(cardNumber).setFrozenStatus(true);
+                    return "Your card has been successfully unblocked.";
                 }
             }
         }
-        return "Invalid input: Given card number does not exist!";
+
+        return "Cannot unfreeze card: Incorrect card details.";
     }
 
     /**
@@ -244,20 +242,22 @@ public class CardController {
      * modifying if the card will be usable for online purchases
      *
      * @param cardNumber       cardNumber of the card that will be modified
-     * @param onlineStatus     the new online access status the user wants
      * @return affirmative or negative string.
      */
-    public String modifyOnlineStatus(String cardNumber, boolean onlineStatus) {
-        for (int i = 0; i<STORAGE.getCardList().size(); i++){
-            if(STORAGE.getCardList().get(i).getCardNumber()==cardNumber){
-                STORAGE.getCard(cardNumber).setOnlineStatus(onlineStatus);
-                if (onlineStatus){
-                    return "You successfully turned on online transactions.";
-                }else{
+    public String modifyOnlineStatus(String cardNumber) {
+
+        for(int i = 0; i < STORAGE.getCardList().size(); i++){
+            if(STORAGE.getCardList().get(i).getCardNumber() == cardNumber){
+                if(STORAGE.getCard(cardNumber).getOnlineStatus()){
+                    STORAGE.getCard(cardNumber).setOnlineStatus(false);
                     return "You successfully turned off online transactions.";
+                }else{
+                    STORAGE.getCard(cardNumber).setOnlineStatus(true);
+                    return "You successfully turned on online transactions.";
                 }
             }
         }
+
         return "Invalid input: Given card number does not exist!";
     }
 
@@ -291,36 +291,7 @@ public class CardController {
      * @return string containing reminder of expiration coming close or card has already expired
      */
     public String remainderDays(String cardNumber, UserAccount user) { //Calculates remaining days until expiration
-        String address = "";
-//        Date dateDate = new Date();
-//        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-//        String currentDate = date.format(dateDate);
-//        int day = Integer.parseInt(currentDate.substring(8,10));
-//        int month = Integer.parseInt(currentDate.substring(5,7));
-//        int year = Integer.parseInt(currentDate.substring(0,4));
-//
-//        String expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
-//        int expirationDay = Integer.parseInt(expirationDate.substring(8,10));
-//        int expirationMonth = Integer.parseInt(expirationDate.substring(5,7));
-//        int expirationYear = Integer.parseInt(expirationDate.substring(0,4));
-//
-//        int remainderYear = (expirationYear-year)*12*30;
-//
-//        int remainderDay = ((remainderYear+(expirationMonth*30)+expirationDay)-((month*30)+day));
 
-        /*
-            After some research, I see that Date is no longer really used in Java.
-            Rather, LocalDate is the "new" way to go about doing things.
-            The implementation below does not mean this method is finished; but rather,
-            The three lines below replace the 15 lines above the comment.
-            Hopefully this is a good starting point! -KC
-         */
-
-//        if(remainderDay<0){
-//            return "The card "+cardNumber+" expired and was terminated.";
-//        }else {
-//            return "Your card"+ cardNumber+" will expire in "+remainderDay+" days and will be terminated then. We have sent you a new one to "+address+".";
-//        }
         LocalDate expirationDate = STORAGE.getCard(cardNumber).getExpirationDate();
         LocalDate dateToday = LocalDate.now();
         long remainderDays = ChronoUnit.DAYS.between(dateToday, expirationDate);
