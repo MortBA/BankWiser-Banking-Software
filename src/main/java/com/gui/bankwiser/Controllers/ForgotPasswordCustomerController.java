@@ -11,31 +11,32 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * Controller class to perform all functionalities for 'Forgot password' screen for customer.
+ * @author Sejal
+ */
 
 public class ForgotPasswordCustomerController {
 
     @FXML
     private Button confirmForgotPassButton;
-
     @FXML
     private Button cancelForgotPassButton;
-
     @FXML
     private TextField ssNumber;
-
     @FXML
     private TextField email;
-
     @FXML
     private TextField retypeEmail;
-
 
     @FXML
     public Stage stg = new Stage();
 
     /**
-     * Here, used to initialize new stage have initModality function.
+     * Initializes new stage for 'new password' screen
+     * The stage is initialized when forgot password (this) screen appears.
      * The new stage is used to fill new password for the customer.
+     * The stage has initModality functionality.
      */
     @FXML
     public void initialize() {
@@ -51,9 +52,8 @@ public class ForgotPasswordCustomerController {
     }
 
     /**
-     * Functions as a controller method for initialize.
-     * Opens a new window to fill new password for the customer when confirm button of forgot password window is clicked.
-     * The window has initModality functionality.
+     * Functions as a controller method to display the 'new password' screen.
+     * The new screen appears when confirm button on 'forgot password' screen is clicked.
      * @throws IOException
      */
     @FXML
@@ -62,7 +62,7 @@ public class ForgotPasswordCustomerController {
     }
 
     /**
-     * Closes the forgot password window when cancel button is clicked.
+     * Closes the forgot password window when cancel button on 'forgot password' screen is clicked.
      * @param event
      */
     @FXML
@@ -87,6 +87,5 @@ public class ForgotPasswordCustomerController {
     private void cancelHoverOut() {
         cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
     }
-
 
 }

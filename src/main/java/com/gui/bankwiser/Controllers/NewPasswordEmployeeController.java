@@ -4,9 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Optional;
+
+/**
+ *
+ * Controller class to perform all functionalities for 'New password' screen for employee.
+ * @author Sejal
+ */
 
 public class NewPasswordEmployeeController {
     @FXML
@@ -22,7 +27,9 @@ public class NewPasswordEmployeeController {
     private PasswordField confirmNewPass;
 
     /**
-     * An alert box appears when confirm button for on new password window for employee is clicked.
+     *
+     * The method displays a confirmation alert box when confirm button on 'new password' screen is clicked.
+     * The box notifies user that the new password is set successfully.
      * @throws IOException
      */
     @FXML
@@ -36,7 +43,7 @@ public class NewPasswordEmployeeController {
     }
 
     /**
-     * Closes the new password window when cancel button is clicked.
+     * The method closes the new password screen when cancel button on the screen is clicked.
      * @param event
      */
     @FXML
@@ -44,5 +51,4 @@ public class NewPasswordEmployeeController {
         Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
         stage.close();
     }
-
 }

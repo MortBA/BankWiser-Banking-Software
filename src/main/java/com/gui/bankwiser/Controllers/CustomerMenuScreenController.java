@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for performing all functionalities of 'Customer Menu' screen
+ * @author Chanisra
+ */
+
 public class CustomerMenuScreenController {
 
     @FXML
@@ -24,6 +29,9 @@ public class CustomerMenuScreenController {
 
     @FXML
     private MenuItem deleteUserAccount;
+
+    @FXML
+    private MenuItem transactionsHistory;
 
     @FXML
     private MenuItem loans;
@@ -40,15 +48,14 @@ public class CustomerMenuScreenController {
     @FXML
     private Button buttonLogOut;
 
-    @FXML
-    private MenuItem transactionsHistory;
-
     @FXML public Stage stg = new Stage();
     @FXML public Stage stg2 = new Stage();
 
     /**
      *
-     * Opens new window to delete user account.
+     * Initializes new stages to delete user account and bank account.
+     * Both stages have initModality functionality.
+     * @author Sejal
      * @param
      */
     @FXML
@@ -74,10 +81,21 @@ public class CustomerMenuScreenController {
         }
     }
 
+    /**
+     * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
+     * @author Sejal
+     * @throws IOException
+     */
+
     @FXML
     public void onDeleteUserAccountClicked() throws IOException{
         stg.showAndWait();
     }
+
+    /**
+     * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
+     * @throws IOException
+     */
 
     @FXML
     public void onDeleteBankAccountClicked() throws IOException{

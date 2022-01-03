@@ -9,6 +9,12 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
+/**
+ *
+ * Controller class for Transfer money screen.
+ * @author Chanisra
+ */
+
 public class TransferMoneyScreenController {
 
     @FXML
@@ -19,6 +25,9 @@ public class TransferMoneyScreenController {
 
     @FXML
     private MenuItem deleteUserAccount;
+
+    @FXML
+    private MenuItem transactionsHistory;
 
     @FXML
     private MenuItem loans;
@@ -34,10 +43,6 @@ public class TransferMoneyScreenController {
 
     @FXML
     private Button buttonLogOut;
-
-    @FXML
-    private MenuItem transactionsHistory;
-
 
     @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {

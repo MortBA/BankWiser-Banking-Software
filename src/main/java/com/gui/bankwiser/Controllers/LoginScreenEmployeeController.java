@@ -21,7 +21,16 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * Controller class to perform functionality for Login screen for employee.
+ * @author Chanisra
+ */
+
 public class LoginScreenEmployeeController implements Initializable {
+
+    @FXML
+    private AnchorPane LoginElements;
 
     @FXML
     private TextField UsernameBox;
@@ -33,9 +42,6 @@ public class LoginScreenEmployeeController implements Initializable {
     private Label Error_Message;
 
     @FXML
-    private AnchorPane LoginElements;
-
-    @FXML
     private Label ForgottenPassword;
 
     @FXML
@@ -45,6 +51,15 @@ public class LoginScreenEmployeeController implements Initializable {
     private Button buttonCancel;
 
     @FXML public Stage stg = new Stage();
+
+    /**
+     * The method initializes transition necessary effects to display the login screen.
+     * Also, initializes new stage for 'Forgot password' screen for employee.
+     * The 'forgot password' screen has initModality functionality.
+     * @author Sejal (stage) & Chanisra (transition)
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +82,14 @@ public class LoginScreenEmployeeController implements Initializable {
     }
 
     //Forgot Password
+
+    /**
+     *
+     * The method acts as a controller to open the initialized 'Forgot Password' screen.
+     * The screen appears when the forgot password; label on Login screen is clicked.
+     * @author Sejal
+     * @throws IOException
+     */
     @FXML
     private void ForgotPasswordClicked() throws IOException{
         stg.showAndWait();

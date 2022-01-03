@@ -11,6 +11,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ *
+ * Controller class to perform all functionalities for 'forgot password' screen for employee.
+ * @author Sejal
+ */
 
 public class ForgotPasswordEmployeeController {
 
@@ -32,8 +37,9 @@ public class ForgotPasswordEmployeeController {
     @FXML public Stage stg = new Stage();
 
     /**
-     * Here, used to initialize new stage have initModality function.
-     * The new stage is used to fill new password for the employee.
+     *
+     * Initializes 'new password' screen for employee as a new stage when 'forgot password' (this) screen appears.
+     * The stage has initModality functionality.
      */
     @FXML
     private void initialize() {
@@ -50,9 +56,9 @@ public class ForgotPasswordEmployeeController {
     }
 
     /**
-     * Functions as a controller method for initialize.
-     * Opens a new window to fill new password for the employee when confirm button on forgot password window is clicked.
-     * The window has initModality functionality.
+     *
+     * Functions as a controller method to display 'new password' screen.
+     * The 'new password' screen opens when confirm button on forgot password window is clicked.
      * @throws IOException
      */
     @FXML
@@ -61,7 +67,8 @@ public class ForgotPasswordEmployeeController {
     }
 
     /**
-     * Closes the forgot password window when the cancel button is clicked.
+     *
+     * Closes the forgot password window when the cancel button on 'forgot password' screen is clicked.
      * @param event
      */
     @FXML

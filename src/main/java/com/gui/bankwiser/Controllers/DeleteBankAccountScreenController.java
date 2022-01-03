@@ -1,20 +1,22 @@
 package com.gui.bankwiser.Controllers;
 
-import com.gui.bankwiser.BankWiserApp;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.Optional;
+
+/**
+ * Controller class to perform all functionalities for 'Delete bank account' screen.
+ * @author Chanisra
+ */
 
 public class DeleteBankAccountScreenController {
 
     @FXML
     public Button buttonConfirm;
+    @FXML
+    private Button buttonCancel;
     @FXML
     public TextField socialSecurityNumber;
     @FXML
@@ -26,65 +28,10 @@ public class DeleteBankAccountScreenController {
     @FXML
     public CheckBox agreementCheckbox;
 
-    @FXML
-    private MenuItem accountSettings;
-
-    @FXML
-    private MenuItem deleteBankAccount;
-
-    @FXML
-    private MenuItem deleteUserAccount;
-
-    @FXML
-    private MenuItem loans;
-
-    @FXML
-    private MenuItem myCards;
-
-    @FXML
-    private Button overview;
-
-    @FXML
-    private Button buttonLogOut;
-
-    @FXML
-    private Button buttonCancel;
-
-
-    @FXML
-    void transferMoney (ActionEvent event) throws IOException {
-        //new BankWiserApp().changeScene("TransferMoney.fxml");
-        //}
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("TransferMoney.fxml");
-    }
-
-    @FXML
-    private MenuItem transactionsHistory;
-
-    @FXML
-    void onDeleteUserAccountClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onMyCardsClicked(ActionEvent event) throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("BankCardMenuController.fxml");
-    }
-
-    @FXML
-    void onOverviewClicked(ActionEvent event) throws IOException {
-        new BankWiserApp().changeScene("CustomerMenuScreen.fxml");
-    }
-
-    /*@FXML
-    public void onLogOutClicked() throws IOException{
-        new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
-    }
-
+    /**
+     * The method shows confirmation alert box when confirm button on the screen is clicked
+     * @author Sejal
      */
-
     @FXML
     private void ConfirmClicked(){
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
@@ -94,6 +41,11 @@ public class DeleteBankAccountScreenController {
             // probably not implement anything here
         }
     }
+
+    /**
+     * The method closes the 'delete bank account' screen when cancel button on the screen is clicked.
+     * @author Sejal
+     */
 
     @FXML
     private void CancelClicked(){
@@ -117,6 +69,5 @@ public class DeleteBankAccountScreenController {
     private void ConfirmHoverOut(){
 
     }
-
 
 }

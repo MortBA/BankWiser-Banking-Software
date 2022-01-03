@@ -19,44 +19,44 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ *
+ * Controller class to perform all functionalities for Login screen for customer.
+ * @author Chanisra
+ */
+
     public class LoginScreenCustomerController implements Initializable {
 
         @FXML
+        private AnchorPane LoginElements;
+        @FXML
         private TextField UsernameBox;
-
         @FXML
         private PasswordField PasswordBox;
-
         @FXML
         private Label Error_Message;
-
-        @FXML
-        private AnchorPane LoginElements;
-
         @FXML
         private Label ForgottenPassword;
-
+        @FXML
+        private Label NotCustomer;
         @FXML
         private Button buttonLogin;
-
         @FXML
         private Button buttonCancel;
 
-        @FXML
-        private Button cancelNewPassword;
-
-        @FXML
-        private Label NotCustomer;
-
-        @FXML
-        Button cancelForgotPassButton;
-
-        @FXML
-        Button confirmForgotPassButton;
-
         @FXML public Stage stg2 = new Stage();
 
-        @Override
+    /**
+     *
+     * The method initializes transition necessary effects to display the login screen.
+     * Also, initializes new stage for 'Forgot password' screen for customer.
+     * The 'forgot password' screen has initModality functionality.
+     * @author Sejal (stage) & Chanisra (transition)
+     * @param url
+     * @param resourceBundle
+     */
+
+    @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             FadeTransition fade = new FadeTransition();
             fade.setDuration(Duration.millis(1000));
@@ -78,7 +78,15 @@ import java.util.ResourceBundle;
         }
 
         //Forgot Password
-        @FXML
+
+    /**
+     *
+     * The method acts as a controller to open the initialized 'Forgot Password' screen.
+     * The screen appears when the forgot password; label on Login screen is clicked.
+     * @author Sejal
+     * @throws IOException
+     */
+    @FXML
         private void ForgotPasswordClicked() throws IOException{
             stg2.showAndWait();
         }
@@ -140,7 +148,8 @@ import java.util.ResourceBundle;
             ForgottenPassword.setUnderline(true);
         }
         @FXML
-        private void ForgotPasswordHoverOut() { ForgottenPassword.setUnderline(false); }
-
+        private void ForgotPasswordHoverOut() {
+            ForgottenPassword.setUnderline(false);
+    }
     }
 

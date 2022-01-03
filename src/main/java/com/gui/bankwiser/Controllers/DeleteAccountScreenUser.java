@@ -10,6 +10,11 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class to perform all functionalities for 'Delete user account' screen.
+ * @author Chanisra
+ */
+
 public class DeleteAccountScreenUser {
 
     @FXML
@@ -18,8 +23,6 @@ public class DeleteAccountScreenUser {
     public Button buttonConfirm;
     @FXML
     public AnchorPane LoginElements;
-
-    //popup
     @FXML
     private TextField socialSecurityNumber  = new TextField();
     @FXML
@@ -28,6 +31,11 @@ public class DeleteAccountScreenUser {
     private TextField email                 = new TextField();
     @FXML
     private CheckBox  agreementCheckbox     = new CheckBox();
+
+    /**
+     * The method displays confirmation alert box when confirm button on the screen is clicked.
+     * @author Sejal
+     */
 
     @FXML
     private void ConfirmClicked(){
@@ -38,6 +46,11 @@ public class DeleteAccountScreenUser {
             // probably not implement anything here
         }
     }
+
+    /**
+     * Closes the 'delete user account' screen stage when cancel button on the screen is clicked.
+     * @author Sejal
+     */
 
     @FXML
     private void CancelClicked(){
