@@ -1,12 +1,12 @@
 package com.logic.bankwiser.bank_accounts;
 
-import com.logic.bankwiser.cards.Card;
 import com.logic.bankwiser.cards.DebitCard;
-import com.logic.bankwiser.transactions.Transaction;
 import com.logic.bankwiser.loans.Loan;
+import com.logic.bankwiser.transactions.Transaction;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.math.BigDecimal;
 
 /**
  * @author Kevin Collins
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 public class BankAccount {
 
-    private final int BANK_ACCOUNT_ID;
+    private final String BANK_ACCOUNT_ID;
     private String bankAccountName;
     private BigDecimal balance;
     private List<Transaction> transactionList;
@@ -27,7 +27,7 @@ public class BankAccount {
      * @param bankAccountName   The bank account's name is specified by the user
      * @throws Exception        If invalid input is provided
      */
-    public BankAccount(int bankAccountID, String bankAccountName) throws Exception {
+    public BankAccount(String bankAccountID, String bankAccountName) throws Exception {
         if (bankAccountName.length() <= 30) {
             this.BANK_ACCOUNT_ID = bankAccountID;
             this.bankAccountName = bankAccountName;
@@ -41,7 +41,7 @@ public class BankAccount {
         }
     }
 
-    public int getBankAccountID() {
+    public String getBankAccountID() {
         return BANK_ACCOUNT_ID;
     }
 

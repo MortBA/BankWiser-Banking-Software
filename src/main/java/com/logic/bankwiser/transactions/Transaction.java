@@ -1,24 +1,28 @@
 package com.logic.bankwiser.transactions;
 
-import com.logic.bankwiser.bank_accounts.BankAccount;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
+ *
+ *
  * @author Kevin Collins
+ * @author Mathias Hallander
  */
 
 public final class Transaction {
 
-    private final int BANK_ACCOUNT_ID;
+    private final String TRANSACTION_ID;
+    private final String BANK_ACCOUNT_ID;
     private final BigDecimal MONEY_TRANSFERRED;
     private final String NOTE;
     private final LocalDate TRANSACTION_DATE;
     private final BigDecimal BALANCE_AFTER_TRANSACTION;
+    private final String TRANSACTION_IDENTIFIER = "T";
 
-    public Transaction (int bankAccountID, BigDecimal moneyTransferred,
+    public Transaction (String transactionID, String bankAccountID, BigDecimal moneyTransferred,
                  String note, LocalDate transactionDate, BigDecimal balanceAfterTransaction) {
+        this.TRANSACTION_ID = bankAccountID + TRANSACTION_IDENTIFIER + transactionID;
         this.BANK_ACCOUNT_ID = bankAccountID;
         this.MONEY_TRANSFERRED = moneyTransferred;
         this.NOTE = note;
@@ -26,7 +30,11 @@ public final class Transaction {
         this.BALANCE_AFTER_TRANSACTION = balanceAfterTransaction;
     }
 
-    public int getBankAccountID() {
+    public String getTransactionID() {
+        return TRANSACTION_ID;
+    }
+
+    public String getBankAccountID() {
         return BANK_ACCOUNT_ID;
     }
 

@@ -3,7 +3,6 @@ package com.logic.bankwiser.controllers;
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.storage.Storage;
 
-import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -29,7 +28,7 @@ public class UserAccountController {
      * @return A string that confirms successful user account creation or specifies the relevant input error.
      */
     public String createUserAccount(String fullName, String phoneNumber, String address,
-                                  int socialSecurityNum, String emailID, String password) {
+                                    String socialSecurityNum, String emailID, String password) {
         StringBuilder sb = new StringBuilder();
         UUID userID = UUID.randomUUID();
 
