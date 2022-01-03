@@ -1,6 +1,7 @@
 package com.logic.bankwiser.controllers;
 import java.math.BigDecimal;
 
+import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.cards.CreditCard;
 import com.logic.bankwiser.cards.DebitCard;
@@ -286,10 +287,10 @@ public class CardController {
      * Reminds the user in how many days the card will expire
      *
      * @param cardNumber    cardNumber of the card that will be reminded
-     * @param userID        the user that will receive the reminder
+     * @param user        the user that will receive the reminder
      * @return string containing reminder of expiration coming close or card has already expired
      */
-    public String remainderDays(String cardNumber, UUID userID) { //Calculates remaining days until expiration
+    public String remainderDays(String cardNumber, UserAccount user) { //Calculates remaining days until expiration
         String address = "";
 //        Date dateDate = new Date();
 //        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -327,7 +328,7 @@ public class CardController {
         if(remainderDays<0){
             return "The card "+cardNumber+" expired and was terminated.";
         }else if(remainderDays<14){
-            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then. We have sent you a new one to "+STORAGE.getUserFromMap(userID).getAddress()+".";
+            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then. We have sent you a new one to "+user.getAddress()+".";
         }else{
             return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then.";
         }
