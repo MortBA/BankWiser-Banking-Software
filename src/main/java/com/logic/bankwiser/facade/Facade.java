@@ -3,6 +3,8 @@ package com.logic.bankwiser.facade;
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
+import com.logic.bankwiser.controllers.*;
+import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.transactions.Transaction;
 
 import java.util.ArrayList;
@@ -19,18 +21,24 @@ import java.util.UUID;
 public class Facade {
 //TODO: return types for all methods need to be updated -MH
 
-    UserAccountController userAccountController;
-    BankAccountController bankAccountController;
-    TransactionController transactionController;
-    CardController cardController;
-    LoanController loanController;
-    Storage storage;
+    protected Storage storage;
+    private UserAccountController userAccountController;
+    private BankAccountController bankAccountController;
+    private TransactionController transactionController;
+    private CardController cardController;
+    private LoanController loanController;
+
+    private static Facade facade_instance = null;
     UserAccount activeUser;
     UUID activeUserID;
 
 
     /**
      * Class constructor which initializes the storage and all controller classes
+     * The Facade class follows the Singleton pattern to make sure only one instance of Facade is ever created by the app.
+     * Normally, an implementation of the Singleton pattern would mean that the constructor is private.
+     * However, the facade constructor is public because tests still need to be able to create new instances of Facade.
+     * On the other hand, neither the backend nor the frontend will ever call the Facade constructor directly.
      */
     public Facade() {
         storage = new Storage();
@@ -39,6 +47,20 @@ public class Facade {
         transactionController = new TransactionController(storage);
         cardController = new CardController(storage, transactionController);
         loanController = new LoanController(storage);
+    }
+
+    /**
+     * The method {@link #getInstance(), getInstance} is crucial to how the Singleton pattern works.
+     * When the frontend wants to communicate with the backend, it will go through the Facade by calling this method.
+     * This ensures that the same instance of Facade, and by extension Storage, is always used.
+     * In return, data loss is minimised and the application can run as expected.
+     * @return The one and only instance of Facade that is ever used when operating the application.
+     */
+    public static Facade getInstance(){
+        if (facade_instance == null){
+            facade_instance = new Facade();
+        }
+        return facade_instance;
     }
 
     /**
@@ -62,9 +84,9 @@ public class Facade {
      * @param socialSecurityNumber  the users' social security number
      * @return String confirmation of user creation or failure.
      */
-    public String createUserAccount(String email, String fullName, String password, String confirmPwd,
+    public String createUserAccount(String userName, String fullName, String password, String confirmPwd,
                                     String phoneNumber, String userAddress, String socialSecurityNumber) {
-        return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, email, password);
+        return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, userName, password);
     }
 
     //TODO finish deleteUserAccount method
