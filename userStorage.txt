@@ -1,0 +1,3 @@
+{"userID":"81f0da6d-468f-4ee3-996c-ab39c8b08f35","fullName":"Peter Doe","phoneNumber":"8787464831","address":"Gothenburgstreet 2","socialSecurityNum":"197001010003","emailID":"third@gmail.com","password":"password","bankAccountList":[]}
+{"userID":"8a3616e9-73a2-46c5-adae-888eec1f1865","fullName":"John Doe","phoneNumber":"0123456789","address":"Gothenburgstreet 2","socialSecurityNum":"197001010001","emailID":"first@gmail.com","password":"password","bankAccountList":["648218"]}
+{"userID":"128aa88d-4171-4d8b-b005-dbcc91152609","fullName":"Alex Doe","phoneNumber":"3411352155","address":"Gothenburgstreet 2","socialSecurityNum":"197001010002","emailID":"second@gmail.com","password":"password","bankAccountList":["299741"]}
