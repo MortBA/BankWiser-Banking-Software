@@ -3,6 +3,8 @@ package com.logic.bankwiser.facade;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.transactions.Transaction;
+import com.logic.bankwiser.accounts.*;
+import com.logic.bankwiser.bank_accounts.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +75,7 @@ public class Facade {
      * @param newPwdConfirm
      * @return String confirmation of reset password.
      */
+    //TODO finish reset resetUserPassword method
     public String resetUserPassword(String accountId, String username, String newPwd, String newPwdConfirm) {
         return "";
     }
@@ -280,6 +283,10 @@ public class Facade {
      * @return
      */
     public String changeSpendingLimit(double newLimit) {
+        return "";
+    }
+
+    public String allowOnlineTransactions() {
         return "";
     }
 
