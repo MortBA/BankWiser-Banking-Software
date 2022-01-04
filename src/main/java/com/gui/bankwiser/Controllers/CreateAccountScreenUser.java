@@ -1,6 +1,8 @@
 package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +28,8 @@ import java.io.IOException;
 
 public class CreateAccountScreenUser {
 
+    private final Facade facade = Facade.getInstance();
+
     @FXML private MenuItem accountSettings;
     @FXML private MenuItem deleteBankAccount;
     @FXML private MenuItem deleteUserAccount;
@@ -37,6 +43,28 @@ public class CreateAccountScreenUser {
     @FXML private AnchorPane BankwiserLogo;
     @FXML private AnchorPane LoginElements;
     @FXML private ImageView QuestionMarkButton;
+
+    @FXML
+    private TextField address;
+
+    @FXML
+    private TextField email;
+
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private TextField phoneNumber;
+
+    @FXML
+    private PasswordField retypedPassword;
+
+    @FXML
+    private TextField socialSecurityNumber;
+
+
+    @FXML
+    private TextField fullName;
 
     @FXML
     private Stage stg = new Stage();
@@ -72,10 +100,14 @@ public class CreateAccountScreenUser {
     }
 
     @FXML
-    void LoginClicked(MouseEvent event) throws IOException {
+    void onMyCardsClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene(".fxml");
-        // TODO: 2021-12-21 Make A Screen "Account Successfully registered.
+        app.changeScene("BankCardMenuController.fxml");
+    }
+
+    @FXML
+    void onOverviewClicked(ActionEvent event) {
+
     }
 
     @FXML
@@ -99,6 +131,15 @@ public class CreateAccountScreenUser {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
 
+
+    @FXML
+    void LoginClicked(MouseEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("LoginScreenCustomer.fxml");
+        // TODO: 2021-12-21 Make A Screen "Account Successfully registered. 
+    }
+
+
     @FXML
     private void LoginHoverIn(){
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
@@ -117,6 +158,12 @@ public class CreateAccountScreenUser {
     @FXML
     private void QuestionMarkHoverOut(){
 
+    }
+
+    @FXML
+    void createUser(ActionEvent event) {
+        facade.createUserAccount(email.getText(), fullName.getText(), password.getText(), retypedPassword.getText(),
+                                phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
     }
 
 }
