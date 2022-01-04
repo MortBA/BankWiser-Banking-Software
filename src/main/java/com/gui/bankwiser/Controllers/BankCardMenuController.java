@@ -168,51 +168,51 @@ public class BankCardMenuController {
     }
 
     @FXML
-    public void cardFuncHoverIn(){
+    public void cardFuncHoverIn() {
         cardFunctionality.setUnderline(true);
     }
     @FXML
-    public void cardFuncHoverOut(){
+    public void cardFuncHoverOut() {
         cardFunctionality.setUnderline(false);
     }
     @FXML
-    public void deleteCardHoverIn(){
+    public void deleteCardHoverIn() {
         deleteCard.setUnderline(true);
     }
     @FXML
-    public void deleteCardHoverOut(){
+    public void deleteCardHoverOut() {
         deleteCard.setUnderline(false);
     }
     @FXML
-    public void creditCardHoverIn(){
+    public void creditCardHoverIn() {
         newCreditCard.setUnderline(true);
     }
     @FXML
-    public void creditCardHoverOut(){
+    public void creditCardHoverOut() {
         newCreditCard.setUnderline(false);
     }
     @FXML
-    public void debitCardHoverIn(){
+    public void debitCardHoverIn() {
         newDebitCard.setUnderline(true);
     }
     @FXML
-    public void debitCardHoverOut(){
+    public void debitCardHoverOut() {
         newDebitCard.setUnderline(false);
     }
     @FXML
-    public void changePinHoverIn(){
+    public void changePinHoverIn() {
         changeCardPin.setUnderline(true);
     }
     @FXML
-    public void changePinHoverOut(){
+    public void changePinHoverOut() {
         changeCardPin.setUnderline(false);
     }
     @FXML
-    public void forgotPinHoverIn(){
+    public void forgotPinHoverIn() {
         cardFunctionality.setUnderline(true);
     }
     @FXML
-    public void forgotPinHoverOut(){
+    public void forgotPinHoverOut() {
         cardFunctionality.setUnderline(false);
     }
 
@@ -227,12 +227,12 @@ public class BankCardMenuController {
                 alert.close();
             }
         }
-        else{
+        else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your card pin is changed successfully.");
             alertBox.setTitle("Success!");
             Optional<ButtonType> result = alertBox.showAndWait();
-            if(result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
             }
@@ -244,17 +244,17 @@ public class BankCardMenuController {
         Alert alertBox = new Alert(Alert.AlertType.INFORMATION);
         alertBox.setContentText("Send request for pin change and our employee will get back to you soon");
         Optional<ButtonType> result = alertBox.showAndWait();
-        if(result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
            Alert alertBox2 = new Alert(Alert.AlertType.CONFIRMATION);
            alertBox.setContentText("Your request is sent successfully.");
            alertBox.setTitle("Success!");
            Optional<ButtonType> result2 = alertBox2.showAndWait();
-           if(result2.get() == ButtonType.OK){
+           if (result2.get() == ButtonType.OK) {
                BankWiserApp app = new BankWiserApp();
                app.changeScene("BankCardMenu.fxml");
 
         }
-    }else if(result.get() == ButtonType.CANCEL){
+    } else if (result.get() == ButtonType.CANCEL) {
             BankWiserApp app = new BankWiserApp();
             app.changeScene("BankCardMenu.fxml");
         }
@@ -271,11 +271,11 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else{
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your card is deleted successfully.");
             Optional<ButtonType> result = alertBox.showAndWait();
-            if(result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
             }
@@ -297,7 +297,7 @@ public class BankCardMenuController {
 
     @FXML
     public void onSubmitCreditCardClicked() throws IOException {
-        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()){
+        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
@@ -318,18 +318,18 @@ public class BankCardMenuController {
 
     @FXML
     public void onSubmitDebitCardClicked() throws IOException{
-        if (!TnC.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()){
+        if (!TnC.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else{
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
             Optional<ButtonType> result = alertBox.showAndWait();
-            if(result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
             }

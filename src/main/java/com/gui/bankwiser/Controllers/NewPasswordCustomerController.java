@@ -27,6 +27,6 @@ public class NewPasswordCustomerController {
         app.changeScene("ForgotPasswordCustomer.fxml");
     }
     @FXML
-    public void confirmButtonClicked(){
+    public void confirmButtonClicked() {
     }
 }

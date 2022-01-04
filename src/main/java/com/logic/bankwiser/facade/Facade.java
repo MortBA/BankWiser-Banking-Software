@@ -1,8 +1,9 @@
 package com.logic.bankwiser.facade;
 
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
-import com.logic.bankwiser.transactions.Transaction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class Facade {
     CardController cardController;
     LoanController loanController;
     Storage storage;
+    UserAccount activeUser;
 
     /**
      * Class constructor which initializes the storage and all controller classes
@@ -45,6 +47,7 @@ public class Facade {
      * @return String confirmation of successful login or failure
      */
     public String userLogin(String username, String password) {
+        activeUser = storage.getUserFromMap(storage.getUserUUID(username));
         return "";
     }
 
@@ -244,7 +247,7 @@ public class Facade {
      *
      * @return
      */
-    public String createCreditCard(int pin) {
+    public String createCreditCard() {
         //return cardController.addCard(pin);
         return "";
     }
@@ -253,7 +256,7 @@ public class Facade {
      *
      * @return
      */
-    public String createDebitCard(int pin) {
+    public String createDebitCard() {
         //return cardController.addCard(pin);
         return "";
     }
@@ -273,7 +276,6 @@ public class Facade {
      * @param cardNumber
      * @return
      */
-    //added cardNumber String input
     public String unfreezeCard(String cardNumber) {
         //return cardController.modifyStatus(cardNumber);
         return "";
@@ -305,8 +307,8 @@ public class Facade {
      * @param pin
      * @return
      */
-    public String deleteCard(String cardNumber, String reason, int pin) {
-        return cardController.deleteCard(cardNumber, pin, reason);
+    public String deleteCard(String bankAccountID, String cardNumber, String reason, int pin) {
+        return cardController.deleteCard(storage.getBankAccount(bankAccountID), cardNumber, pin, reason);
     }
 
     /**
@@ -343,8 +345,8 @@ public class Facade {
      * @return
      */
     //String username removed, not in requirements?
-    public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
-        return cardController.resetPin(cardNumber, oldPin, newPin, newPinConfirmation) ;
+    public String changePin(String bankAccountID, String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
+        return cardController.resetPin(storage.getBankAccount(bankAccountID), cardNumber, oldPin, newPin, newPinConfirmation) ;
     }
 
     /**

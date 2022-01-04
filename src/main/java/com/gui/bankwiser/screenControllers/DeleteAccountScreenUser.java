@@ -26,28 +26,28 @@ public class DeleteAccountScreenUser implements Initializable {
     private CheckBox  agreementCheckbox     = new CheckBox();
 
     @FXML
-    private void CancelClicked(){
+    private void CancelClicked() {
 
     }
     @FXML
-    private void CancelHoverIn(){
+    private void CancelHoverIn() {
 
     }
     @FXML
-    private void CancelHoverOut(){
+    private void CancelHoverOut() {
 
     }
 
     @FXML
-    private void ConfirmClicked(){
+    private void ConfirmClicked() {
 
     }
     @FXML
-    private void ConfirmHoverIn(){
+    private void ConfirmHoverIn() {
 
     }
     @FXML
-    private void ConfirmHoverOut(){
+    private void ConfirmHoverOut() {
 
     }
 

@@ -85,12 +85,12 @@ public class CreateAccountScreenUser {
 
     //QuestionMarkButton // todo:  implement if time over
     @FXML
-    private void QuestionMarkHoverIn(){
+    private void QuestionMarkHoverIn() {
 
     }
 
     @FXML
-    private void QuestionMarkHoverOut(){
+    private void QuestionMarkHoverOut() {
 
     }
 
@@ -103,12 +103,12 @@ public class CreateAccountScreenUser {
     }
 
     @FXML
-    private void CancelHoverIn(){
+    private void CancelHoverIn() {
         buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
     }
 
     @FXML
-    private void CancelHoverOut(){
+    private void CancelHoverOut() {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
 
@@ -122,12 +122,12 @@ public class CreateAccountScreenUser {
 
 
     @FXML
-    private void LoginHoverIn(){
+    private void LoginHoverIn() {
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
     }
 
     @FXML
-    private void LoginHoverOut(){
+    private void LoginHoverOut() {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
     }
 

@@ -6,7 +6,8 @@ import com.logic.bankwiser.utils.Input;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -57,7 +58,7 @@ public class Epic5RegularTests {
     @Test
     public void shouldRetrieveTransactionHistory() {
         String bankAccountID = johnBankAccount.getBankAccountID();
-        String date = LocalDate.now().toString();
+        String date = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).toString();
 
         facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "transfer", 100);
         facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "transfer", 100);

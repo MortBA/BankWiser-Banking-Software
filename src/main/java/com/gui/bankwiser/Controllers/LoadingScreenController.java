@@ -20,7 +20,7 @@ public class LoadingScreenController implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         PauseTransition Pause             = new PauseTransition(Duration.millis(1000));
         TranslateTransition translateLogo = new TranslateTransition();
         TranslateTransition translateBox  = new TranslateTransition();
@@ -53,7 +53,7 @@ public class LoadingScreenController implements Initializable {
             BankWiserApp app = new BankWiserApp();
             try {
                 app.changeScene("LoginScreen.fxml");
-            }catch (Exception exception){
+            }catch (Exception exception) {
                 exception.printStackTrace();
             }
         });

@@ -55,12 +55,12 @@ public class LoginScreenCustomerController implements Initializable {
     }
 
     @FXML
-    private void NotCustomerHoverIn(){
+    private void NotCustomerHoverIn() {
         NotCustomer.setUnderline(true);
     }
 
     @FXML
-    private void NotCustomerHoverOut(){
+    private void NotCustomerHoverOut() {
         NotCustomer.setUnderline(false);
     }
 
@@ -73,12 +73,12 @@ public class LoginScreenCustomerController implements Initializable {
     }
 
     @FXML
-    private void LoginHoverIn(){
+    private void LoginHoverIn() {
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
     }
 
     @FXML
-    private void LoginHoverOut(){
+    private void LoginHoverOut() {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
     }
 
@@ -90,12 +90,12 @@ public class LoginScreenCustomerController implements Initializable {
     }
 
     @FXML
-    private void CancelHoverIn(){
+    private void CancelHoverIn() {
         buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
     }
 
     @FXML
-    private void CancelHoverOut(){
+    private void CancelHoverOut() {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
 
@@ -105,7 +105,7 @@ public class LoginScreenCustomerController implements Initializable {
     public  Stage stage = new Stage();
 
     @FXML
-    private void ForgotPasswordClicked(){
+    private void ForgotPasswordClicked() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ForgotPasswordCustomer.fxml"));
         try{
             Parent root = loader.load();
@@ -115,13 +115,13 @@ public class LoginScreenCustomerController implements Initializable {
             stage.setTitle("Forgot Password");
 
             stage.show();
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void ForgotPasswordHoverIn(){
+    private void ForgotPasswordHoverIn() {
         ForgottenPassword.setUnderline(true);
     }
 

@@ -43,18 +43,18 @@ public class LoginScreenEmployeeController implements Initializable {
     private void LoginClicked() throws IOException {
        BankWiserApp app = new BankWiserApp();
        app.changeScene("EmployeeMenu.fxml");
-       // if(UsernameBox.getText().toString().equals("Channi")){
+       // if (UsernameBox.getText().toString().equals("Channi")) {
            // buttonLogin.setStyle("-fx-background-color: #f4d3d3");
        // }
     }
 
     @FXML
-    private void LoginHoverIn(){
+    private void LoginHoverIn() {
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
     }
 
     @FXML
-    private void LoginHoverOut(){
+    private void LoginHoverOut() {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
     }
 
@@ -66,24 +66,24 @@ public class LoginScreenEmployeeController implements Initializable {
     }
 
     @FXML
-    private void CancelHoverIn(){
+    private void CancelHoverIn() {
         buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
     }
 
     @FXML
-    private void CancelHoverOut(){
+    private void CancelHoverOut() {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
 
 
     //Forgot Password
     @FXML
-    private void ForgotPasswordClicked(){
+    private void ForgotPasswordClicked() {
 
     }
 
     @FXML
-    private void ForgotPasswordHoverIn(){
+    private void ForgotPasswordHoverIn() {
         ForgottenPassword.setUnderline(true);
     }
 

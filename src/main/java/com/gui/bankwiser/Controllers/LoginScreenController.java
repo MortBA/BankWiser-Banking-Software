@@ -34,17 +34,17 @@ public class LoginScreenController implements Initializable {
         BankWiserApp App = new BankWiserApp();
         try {
             App.changeScene("LoginScreenEmployee.fxml");
-        }catch (Exception exception){
+        }catch (Exception exception) {
             exception.printStackTrace();
         }
     }
 
     @FXML
-    private void CustomerBoxClicked(){
+    private void CustomerBoxClicked() {
         BankWiserApp App = new BankWiserApp();
         try {
             App.changeScene("LoginScreenCustomer.fxml");
-        }catch (Exception exception){
+        }catch (Exception exception) {
             exception.printStackTrace();
         }
     }
@@ -59,12 +59,12 @@ public class LoginScreenController implements Initializable {
     }
 
     @FXML
-    private void NotCustomerHoverIn(){
+    private void NotCustomerHoverIn() {
         NotCustomer.setUnderline(true);
     }
 
     @FXML
-    private void NotCustomerHoverOut(){
+    private void NotCustomerHoverOut() {
         NotCustomer.setUnderline(false);
     }
 

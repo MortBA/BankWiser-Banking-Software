@@ -15,7 +15,7 @@ public class BankWiserApp extends Application {
     public void start(Stage stage) throws IOException {
         stg = stage;
 
-        try{
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/gui/bankwiser/LoadingScreen.fxml"));
             Scene scene1 = new Scene(root);
 
@@ -27,23 +27,25 @@ public class BankWiserApp extends Application {
             stage.setResizable(false);
             stage.setScene(scene1);
             stage.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void changeScene(String fxml) throws IOException{
+    public void changeScene(String fxml) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxml));
             stg.setScene(new Scene(root));
             stg.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            //facade.storage.storeAll()
+        }));
         launch();
     }
 }

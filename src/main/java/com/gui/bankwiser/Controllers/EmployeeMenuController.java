@@ -49,7 +49,7 @@ public class EmployeeMenuController{
         private TextArea textArea;
 
         @FXML
-        private void logOutHoverIn(){
+        private void logOutHoverIn() {
             logOut.setUnderline(true);
         }
 
@@ -94,7 +94,7 @@ public class EmployeeMenuController{
             alertBox.setContentText("Thank you for reporting the error. We will try to fix it");
             alertBox.setTitle("Error sent");
             Optional <ButtonType> result = alertBox.showAndWait();
-            if(result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("EmployeeMenu.fxml");
             }
