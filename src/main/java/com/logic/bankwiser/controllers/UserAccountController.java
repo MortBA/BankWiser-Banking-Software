@@ -4,6 +4,7 @@ import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.loans.Loan;
 import com.logic.bankwiser.storage.Storage;
+import javafx.util.Pair;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -64,10 +65,11 @@ public class UserAccountController {
         return sb.toString();
     }
 
-    public String processDeleteUserAccountRequest(UserAccount user) {
+    public Pair<UserAccount, String> processDeleteUserAccountRequest(UserAccount userAccount) {
         StringBuilder sb = new StringBuilder();
+
         while (sb.isEmpty()){
-            for (String bankAccountID : user.getBankAccountList()) {
+            for (String bankAccountID : userAccount.getBankAccountList()) {
                 BankAccount bankAccount = storage.getBankAccount(bankAccountID);
                 if (bankAccount.getBalance().compareTo(BigDecimal.ZERO) > 0) {
                     sb.append("Please transfer money from all bank accounts first.");
@@ -81,20 +83,12 @@ public class UserAccountController {
         if (sb.isEmpty()) {
             sb.append("User Account deletion request has been sent.");
         }
-        return sb.toString();
+
+        return new Pair<UserAccount, String>(userAccount, sb.toString());
     }
 
-    public String deleteUserAccount(String email) {
-        StringBuilder sb = new StringBuilder();
-        for (UserAccount userAccount : storage.getUserAccountMap().values()) {
-            if (email == userAccount.getEmailID()) {
-                storage.deleteUserAccount(userAccount.getUserID());
-                sb.append("User account has been deleted");
-            } else {
-                sb.append("User Account not found.");
-            }
-        }
-        return sb.toString();
+    public String resetPassword(String emailID) {
+        return "An email has been sent to " + emailID + " with a link that will allow you to reset your password.";
     }
 
 }

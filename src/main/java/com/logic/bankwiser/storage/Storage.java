@@ -42,6 +42,7 @@ public class Storage {
     protected final HashMap<String, UUID> userEmailMap;
     protected final HashMap<String, BankAccount> bankAccountMap;
     private final List<Integer> caseIDList;
+    private final List<String> errorReportList;
     protected final Gson gson;
 
     public Storage() {
@@ -49,6 +50,7 @@ public class Storage {
         userEmailMap = new HashMap<>();
         bankAccountMap = new HashMap<>();
         caseIDList = new ArrayList<>();
+        errorReportList = new ArrayList<>();
         gson = new Gson();
 
         try {
@@ -94,6 +96,10 @@ public class Storage {
     public void addUserAccount(UUID userAccountID, UserAccount userAccount) {
         userAccountMap.put(userAccountID, userAccount);
         userEmailMap.put(userAccount.getEmailID(), userAccountID);
+    }
+
+    public void addErrorReport(String errorReport) {
+        errorReportList.add(errorReport);
     }
 
     public UUID getUserUUID(String email) {
