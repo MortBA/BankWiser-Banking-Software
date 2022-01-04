@@ -36,7 +36,7 @@ public class LoginScreenController implements Initializable {
     //Animation Loop
 
     /**
-     * The method initializes necessary transition effects to display the screen.
+     * The method initializes necessary transition effects/animations to display the screen.
      * @param url
      * @param resourceBundle
      */

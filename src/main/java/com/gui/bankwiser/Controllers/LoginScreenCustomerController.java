@@ -48,7 +48,7 @@ import java.util.ResourceBundle;
 
     /**
      *
-     * The method initializes transition necessary effects to display the login screen.
+     * The method initializes transition necessary effects/animation to display the login screen.
      * Also, initializes new stage for 'Forgot password' screen for customer.
      * The 'forgot password' screen has initModality functionality.
      * @author Sejal (stage) & Chanisra (transition)
