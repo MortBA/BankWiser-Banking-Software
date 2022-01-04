@@ -6,9 +6,9 @@ import com.logic.bankwiser.storage.Storage;
 import java.util.UUID;
 
 /**
+ *
  * @author Kevin Collins
  */
-
 public class UserAccountController {
 
     private final Storage storage;
@@ -19,6 +19,7 @@ public class UserAccountController {
 
     /**
      * The method creates and stores a user account with the relevant information while handling exceptions if needed.
+     *
      * @param fullName
      * @param phoneNumber
      * @param address
@@ -34,12 +35,11 @@ public class UserAccountController {
 
         try {
             storage.addUserAccount(userID, new UserAccount(userID, fullName, phoneNumber, address, socialSecurityNum, emailID, password));
-            sb.append("New account for " + fullName + " was successfully created.");
+            sb.append("New account for ").append(fullName).append(" was successfully created.");
         } catch (Exception e) {
             System.out.println(e);
             sb.append(e.getMessage());
         }
         return sb.toString();
     }
-
 }

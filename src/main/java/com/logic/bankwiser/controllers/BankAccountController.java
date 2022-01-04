@@ -2,12 +2,15 @@ package com.logic.bankwiser.controllers;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.storage.Storage;
+import com.logic.bankwiser.utils.MathUtils;
 
-import java.util.Random;
 import java.util.UUID;
 
 /**
+ *
+ *
  * @author Kevin Collins
+ * @author Mathias Hallander
  */
 
 public class BankAccountController {
@@ -32,7 +35,7 @@ public class BankAccountController {
             BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
             storage.addBankAccount(bankAccountID, bankAccount);
             storage.getUserFromMap(UserID).addBankAccount(bankAccount.getBankAccountID());
-            sb.append("New banking account " + bankAccountName + " has been created.");
+            sb.append("New banking account ").append(bankAccountName).append(" has been created.");
         } catch (Exception e) {
             sb.append(e.getMessage());
         }
@@ -50,12 +53,11 @@ public class BankAccountController {
      */
     public String renameBankAccount(String bankAccountID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
-        if (bankAccountName.length() <= 30){
+        if (bankAccountName.length() <= 30) {
             storage.getBankAccount(bankAccountID).setBankAccountName(bankAccountName);
-            sb.append("Your bank account has been renamed to " + bankAccountName + ".");
+            sb.append("Your bank account has been renamed to ").append(bankAccountName).append(".");
         } else {
-            sb.append("Your bank account cannot be renamed as the new name is "
-                    + bankAccountName.length() + " characters long.");
+            sb.append("Your bank account cannot be renamed as the new name is ").append(bankAccountName.length()).append(" characters long.");
         }
         return sb.toString();
     }
@@ -71,11 +73,11 @@ public class BankAccountController {
          */
     }
 
-    // TODO Consider having generation of UIDs moved to a util class. -K
     public String generateBankAccountID() {
-        final int MIN_BANK_ACCOUNT_ID = 10000000;
-        final int MAX_BANK_ACCOUNT_ID = 99999999;
-        Random rand = new Random();
-        return String.valueOf((rand.nextInt((MAX_BANK_ACCOUNT_ID - MIN_BANK_ACCOUNT_ID) + 1) + MIN_BANK_ACCOUNT_ID));
+        return MathUtils.generateUniqueID(storage.getBankAccountMap().keySet().toString());
+    }
+
+    public BankAccount getBankAccount(String bankAccountID) {
+        return storage.getBankAccount(bankAccountID);
     }
 }

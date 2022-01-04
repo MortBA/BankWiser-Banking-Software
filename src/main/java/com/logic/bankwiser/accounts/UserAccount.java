@@ -1,7 +1,11 @@
 package com.logic.bankwiser.accounts;
 
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.utils.Input;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -18,7 +22,7 @@ public class UserAccount {
     private String socialSecurityNum;
     private String emailID;
     private String password;
-    private List<String> bankAccountList;
+    private final List<String> bankAccountList;
 
     /**
      * Constructor for the UserAccount class that handles input validation.
@@ -101,19 +105,52 @@ public class UserAccount {
         return "successfully changed name";
     }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setSocialSecurityNum(String socialSecurityNum) {
+        this.socialSecurityNum = socialSecurityNum;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void addBankAccount(String bankAccountID) {
         bankAccountList.add(bankAccountID);
     }
 
     @Override
     public String toString() {
-        return  "userID: " + userID + '\n' +
-                "fullName: " + fullName + '\n' +
-                "phoneNumber: " + phoneNumber + '\n' +
-                "address: " + address + '\n' +
-                "socialSecurityNum: " + socialSecurityNum + '\n' +
-                "emailID: " + emailID + '\n' +
-                "password: " + password + '\n' +
+        return  "userID: " + userID + Input.EOL +
+                "fullName: " + fullName + Input.EOL +
+                "phoneNumber: " + phoneNumber + Input.EOL +
+                "address: " + address + Input.EOL +
+                "socialSecurityNum: " + socialSecurityNum + Input.EOL +
+                "emailID: " + emailID + Input.EOL +
+                "password: " + password + Input.EOL +
                 "bankAccountList: " + bankAccountList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserAccount that = (UserAccount) o;
+        return userID.equals(that.userID) || socialSecurityNum.equals(that.socialSecurityNum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID, socialSecurityNum);
     }
 }
