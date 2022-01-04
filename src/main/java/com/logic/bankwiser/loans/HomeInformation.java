@@ -7,7 +7,7 @@ public class HomeInformation {
     private final double PROPERTY_SIZE;
     private final int PROPERTY_FLOORS;
 
-    public HomeInformation (String propertyAddress, String propertyType, double propertySize, int propertyFloors){
+    public HomeInformation (String propertyAddress, String propertyType, double propertySize, int propertyFloors) {
         this.PROPERTY_ADDRESS = propertyAddress;
         this.PROPERTY_TYPE = propertyType;
         this.PROPERTY_SIZE = propertySize;

@@ -12,7 +12,7 @@ public class VehicleInformation {
           this.MANUFACTURING_YEAR = manufactureYear;
      }
 
-     public String getTypeOfFuel(){
+     public String getTypeOfFuel() {
           return TYPE_OF_FUEL;
      }
 

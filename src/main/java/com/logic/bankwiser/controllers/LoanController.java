@@ -1,9 +1,9 @@
 package com.logic.bankwiser.controllers;
 
+import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.loans.*;
 import com.logic.bankwiser.storage.Storage;
-
-import java.util.Random;
+import com.logic.bankwiser.utils.MathUtils;
 
 public class LoanController {
 
@@ -13,28 +13,32 @@ public class LoanController {
         this.storage = storage;
     }
 
-    public void createHomeLoan(int loanAmount, double interestRate, int loanDuration, String status, HomeInformation homeInformation) {
-        int loanID = generateLoanID();
-        storage.addLoan(new HomeLoan(loanID, loanAmount, interestRate, loanDuration, status, homeInformation));
+    public void createHomeLoan(BankAccount bankAccount, int loanAmount, double interestRate, int loanDuration, String status, HomeInformation homeInformation) {
+
+        bankAccount.addLoan(new HomeLoan(bankAccount, generateLoanID(bankAccount), loanAmount, interestRate, loanDuration, status, homeInformation));
     }
 
-    public void createPersonalLoan(int loanAmount, double interestRate, int loanDuration, String status, String personalReasons) {
-        int loanID = generateLoanID();
-        storage.addLoan(new PersonalLoan(loanID, loanAmount, interestRate,loanDuration, status, personalReasons));
+    public void createPersonalLoan(BankAccount bankAccount, int loanAmount, double interestRate, int loanDuration, String status, String personalReasons) {
+
+        bankAccount.addLoan(new PersonalLoan(bankAccount, generateLoanID(bankAccount), loanAmount, interestRate,loanDuration, status, personalReasons));
     }
 
-    public void createVehicleLoan(int loanAmount, double interestRate, int loanDuration, String status, VehicleInformation vehicleInformation) {
-        int loanID = generateLoanID();
-        storage.addLoan(new VehicleLoan(loanID, loanAmount, interestRate, loanDuration, status, vehicleInformation));
+    public void createVehicleLoan(BankAccount bankAccount, int loanAmount, double interestRate, int loanDuration, String status, VehicleInformation vehicleInformation) {
+
+        bankAccount.addLoan(new VehicleLoan(bankAccount, generateLoanID(bankAccount), loanAmount, interestRate, loanDuration, status, vehicleInformation));
     }
 
+    /**
+     * Acquires BankAccount from method to guarantee unique id generation
+     *
+     * @return guaranteed unique id
+     */
+    public String generateLoanID(BankAccount bankAccount) {
+        StringBuilder stringBuilder = new StringBuilder();
 
-    public int generateLoanID(){
-        int min = 100000;
-        int max = 999999;
-        Random rand = new Random();
-        int loanID = rand.nextInt((max-min)+1) + min;
-        return loanID;
+        bankAccount.getLoanMap().values().forEach((Loan loan) -> stringBuilder.append(loan.getLoanID()).append(','));
+
+        return MathUtils.generateUniqueID(stringBuilder.toString());
     }
 
 }

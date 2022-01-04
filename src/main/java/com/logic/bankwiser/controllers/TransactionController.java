@@ -7,7 +7,7 @@ import com.logic.bankwiser.utils.Input;
 import com.logic.bankwiser.utils.MathUtils;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public class TransactionController {
         this.storage = storage;
     }
 
-    public String transferMoney(String senderBankAccountID, String receiverBankAccountID, BigDecimal moneyTransferred, String note, LocalDate transactionDate) {
+    public String transferMoney(String senderBankAccountID, String receiverBankAccountID, BigDecimal moneyTransferred, String note, LocalDateTime transactionDate) {
         StringBuilder sb = new StringBuilder();
         BankAccount senderBankAccount = storage.getBankAccount(senderBankAccountID);
         BankAccount receiverBankAccount = storage.getBankAccount(receiverBankAccountID);
@@ -52,14 +52,14 @@ public class TransactionController {
         StringBuilder stringBuilder = new StringBuilder();
         BankAccount bankAccount = storage.getBankAccount(bankAccountID);
 
-        bankAccount.getTransactionList().forEach((Transaction transaction) -> stringBuilder.append(transaction.getTransactionID()).append(','));
+        bankAccount.getTransactionMap().keySet().forEach((String transactionID) -> stringBuilder.append(transactionID).append(','));
 
         return MathUtils.generateUniqueID(stringBuilder.toString());
     }
 
     public String viewTransactionHistory(String bankAccountID) {
         StringBuilder sb = new StringBuilder();
-        List<Transaction> transactionList = storage.getBankAccount(bankAccountID).getTransactionList();
+        List<Transaction> transactionList = storage.getBankAccount(bankAccountID).getTransactionMap().values().stream().toList();
 
         for (Transaction transaction : transactionList) {
             sb.append(transaction).append(Input.EOL);

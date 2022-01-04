@@ -23,7 +23,7 @@ public class LoanAssessment {
 
     public boolean assessLoanEligibility(double monthlyIncome, double monthlyExpenses, double liabilities) {
         remainingIncome = monthlyIncome - monthlyExpenses - liabilities;
-        if(remainingIncome >= monthlyIncome / 4.5) {
+        if (remainingIncome >= monthlyIncome / 4.5) {
             eligibility = true;
         } else {
             eligibility = false;
@@ -46,8 +46,8 @@ public class LoanAssessment {
 
     public boolean checkMaxPersLoanAmount() {
         calculateMaxPersLoanAmount();
-        if(maxPersLoanAmount <= maxRangePersonal * loanDuration) {
-            if(maxPersLoanAmount >= minRangePersonal * loanDuration) {
+        if (maxPersLoanAmount <= maxRangePersonal * loanDuration) {
+            if (maxPersLoanAmount >= minRangePersonal * loanDuration) {
                 return true;
             } else {
                 return false;
@@ -59,8 +59,8 @@ public class LoanAssessment {
 
     public boolean checkMaxHomeLoanAmount() {
         calculateMaxHomeLoanAmount();
-        if(maxHomeLoanAmount <= maxRangeHome * loanDuration) {
-            if(maxHomeLoanAmount >= minRangeHome * loanDuration) {
+        if (maxHomeLoanAmount <= maxRangeHome * loanDuration) {
+            if (maxHomeLoanAmount >= minRangeHome * loanDuration) {
                 return true;
             } else {
                 return false;
@@ -72,8 +72,8 @@ public class LoanAssessment {
 
     public boolean checkMaxVehicleLoanAmount() {
         calculateMaxVehicleLoanAmount();
-        if(maxVehicleLoanAmount <= maxRangeVehicle * loanDuration) {
-            if(maxVehicleLoanAmount >= minRangeVehicle * loanDuration) {
+        if (maxVehicleLoanAmount <= maxRangeVehicle * loanDuration) {
+            if (maxVehicleLoanAmount >= minRangeVehicle * loanDuration) {
                 return true;
             } else {
                 return false;
@@ -88,11 +88,11 @@ public class LoanAssessment {
         this.loanDuration = loanDuration;
         this.desiredLoanAmount = desiredLoanAmount;
         calculateMaxPersLoanAmount();
-        if(assessLoanEligibility(monthlyIncome, monthlyExpenses, liabilities)) {
-            if(desiredLoanAmount >= minRangePersonal * loanDuration) {
-                if(desiredLoanAmount <= maxRangePersonal * loanDuration) {
-                    if(checkMaxPersLoanAmount()) {
-                        if(desiredLoanAmount <= maxPersLoanAmount) {
+        if (assessLoanEligibility(monthlyIncome, monthlyExpenses, liabilities)) {
+            if (desiredLoanAmount >= minRangePersonal * loanDuration) {
+                if (desiredLoanAmount <= maxRangePersonal * loanDuration) {
+                    if (checkMaxPersLoanAmount()) {
+                        if (desiredLoanAmount <= maxPersLoanAmount) {
                             acceptedLoanAmount = desiredLoanAmount;
                             loanEligibility = "You are eligible for the desired amount.";
 
@@ -100,26 +100,26 @@ public class LoanAssessment {
                             acceptedLoanAmount = maxPersLoanAmount;
                             loanEligibility = "This is the maximum you can afford to loan.";
                         }
-                    } else if(maxPersLoanAmount > maxRangePersonal * loanDuration) {
+                    } else if (maxPersLoanAmount > maxRangePersonal * loanDuration) {
                         acceptedLoanAmount = desiredLoanAmount;
                         loanEligibility = "You are eligible for the desired amount.";
-                    } else if(maxPersLoanAmount < minRangePersonal * loanDuration) {
+                    } else if (maxPersLoanAmount < minRangePersonal * loanDuration) {
                         loanEligibility = "You are not eligible for a personal loan.";
                     }
                 } else {
-                    if(maxPersLoanAmount > maxRangePersonal * loanDuration) {
+                    if (maxPersLoanAmount > maxRangePersonal * loanDuration) {
                         acceptedLoanAmount = maxRangePersonal * loanDuration;
                         loanEligibility = "You can only loan up to 100.000 SEK.";
-                    }else if(maxPersLoanAmount >= minRangePersonal * loanDuration) {
+                    } else if (maxPersLoanAmount >= minRangePersonal * loanDuration) {
                         acceptedLoanAmount = maxPersLoanAmount;
                         loanEligibility = "This is the maximum you can afford to loan.";
 
-                    }else {
+                    } else {
                         loanEligibility = "Unfortunately you are automatically ineligible for a loan.";
                     }
                 }
 
-            } else if(maxPersLoanAmount >= minRangePersonal * loanDuration) {
+            } else if (maxPersLoanAmount >= minRangePersonal * loanDuration) {
                 acceptedLoanAmount = minRangePersonal;
                 loanEligibility = "The desired amount is too low. You can get a loan of at least 5000 SEK.";
             } else {
@@ -136,11 +136,11 @@ public class LoanAssessment {
         this.loanDuration = loanDuration;
         this.desiredLoanAmount = desiredLoanAmount;
         calculateMaxHomeLoanAmount();
-        if(assessLoanEligibility(monthlyIncome, monthlyExpenses, liabilities)) {
-            if(desiredLoanAmount >= minRangeHome * loanDuration) {
-                if(desiredLoanAmount <= maxHomeLoanAmount * loanDuration) {
-                    if(checkMaxHomeLoanAmount()) {
-                        if(desiredLoanAmount <= maxHomeLoanAmount) {
+        if (assessLoanEligibility(monthlyIncome, monthlyExpenses, liabilities)) {
+            if (desiredLoanAmount >= minRangeHome * loanDuration) {
+                if (desiredLoanAmount <= maxHomeLoanAmount * loanDuration) {
+                    if (checkMaxHomeLoanAmount()) {
+                        if (desiredLoanAmount <= maxHomeLoanAmount) {
                             acceptedLoanAmount = desiredLoanAmount;
                             loanEligibility = "You are eligible for the desired amount.";
 
@@ -148,26 +148,26 @@ public class LoanAssessment {
                             acceptedLoanAmount = maxHomeLoanAmount;
                             loanEligibility = "This is the maximum you can afford to loan.";
                         }
-                    } else if(maxHomeLoanAmount > maxRangeHome * loanDuration) {
+                    } else if (maxHomeLoanAmount > maxRangeHome * loanDuration) {
                         acceptedLoanAmount = desiredLoanAmount;
                         loanEligibility = "You are eligible for the desired amount.";
-                    } else if(maxHomeLoanAmount < minRangeHome * loanDuration) {
+                    } else if (maxHomeLoanAmount < minRangeHome * loanDuration) {
                         loanEligibility = "You are not eligible for a home loan.";
                     }
                 } else {
-                    if(maxHomeLoanAmount > maxRangeHome * loanDuration) {
+                    if (maxHomeLoanAmount > maxRangeHome * loanDuration) {
                         acceptedLoanAmount = maxRangeHome * loanDuration;
                         loanEligibility = "You can only loan up to 6.000.000 SEK.";
-                    }else if(maxHomeLoanAmount >= minRangeHome * loanDuration){
+                    } else if (maxHomeLoanAmount >= minRangeHome * loanDuration) {
                         acceptedLoanAmount = maxHomeLoanAmount;
                         loanEligibility = "This is the maximum you can afford to loan.";
 
-                    }else {
+                    } else {
                         loanEligibility = "Unfortunately you are automatically ineligible for a loan.";
                     }
                 }
 
-            } else if(maxHomeLoanAmount >= minRangeHome * loanDuration){
+            } else if (maxHomeLoanAmount >= minRangeHome * loanDuration) {
                 acceptedLoanAmount = minRangeHome;
                 loanEligibility = "The desired amount is too low. You can get a loan of at least 100.000 SEK.";
             } else {
@@ -184,11 +184,11 @@ public class LoanAssessment {
         this.loanDuration = loanDuration;
         this.desiredLoanAmount = desiredLoanAmount;
         calculateMaxVehicleLoanAmount();
-        if(assessLoanEligibility(monthlyIncome, monthlyExpenses, liabilities)) {
-            if(desiredLoanAmount >= minRangeVehicle * loanDuration) {
-                if(desiredLoanAmount <= maxVehicleLoanAmount * loanDuration) {
-                    if(checkMaxVehicleLoanAmount()) {
-                        if(desiredLoanAmount <= maxVehicleLoanAmount) {
+        if (assessLoanEligibility(monthlyIncome, monthlyExpenses, liabilities)) {
+            if (desiredLoanAmount >= minRangeVehicle * loanDuration) {
+                if (desiredLoanAmount <= maxVehicleLoanAmount * loanDuration) {
+                    if (checkMaxVehicleLoanAmount()) {
+                        if (desiredLoanAmount <= maxVehicleLoanAmount) {
                             acceptedLoanAmount = desiredLoanAmount;
                             loanEligibility = "You are eligible for the desired amount.";
 
@@ -196,26 +196,26 @@ public class LoanAssessment {
                             acceptedLoanAmount = maxVehicleLoanAmount;
                             loanEligibility = "This is the maximum you can afford to loan.";
                         }
-                    } else if(maxVehicleLoanAmount > maxRangeVehicle * loanDuration) {
+                    } else if (maxVehicleLoanAmount > maxRangeVehicle * loanDuration) {
                         acceptedLoanAmount = desiredLoanAmount;
                         loanEligibility = "You are eligible for the desired amount.";
-                    } else if(maxVehicleLoanAmount < minRangeVehicle * loanDuration) {
+                    } else if (maxVehicleLoanAmount < minRangeVehicle * loanDuration) {
                         loanEligibility = "You are not eligible for a vehicle loan.";
                     }
                 } else {
-                    if(maxVehicleLoanAmount > maxRangeVehicle * loanDuration) {
+                    if (maxVehicleLoanAmount > maxRangeVehicle * loanDuration) {
                         acceptedLoanAmount = maxRangeVehicle * loanDuration;
                         loanEligibility = "You can only loan up to 600.000 SEK.";
-                    }else if(maxVehicleLoanAmount >= minRangeVehicle * loanDuration) {
+                    } else if (maxVehicleLoanAmount >= minRangeVehicle * loanDuration) {
                         acceptedLoanAmount = maxVehicleLoanAmount;
                         loanEligibility = "This is the maximum you can afford to loan.";
 
-                    }else {
+                    } else {
                         loanEligibility = "Unfortunately you are automatically ineligible for a loan.";
                     }
                 }
 
-            } else if(maxVehicleLoanAmount >= minRangeVehicle * loanDuration){
+            } else if (maxVehicleLoanAmount >= minRangeVehicle * loanDuration) {
                 acceptedLoanAmount = minRangeVehicle;
                 loanEligibility = "The desired amount is too low. You can get a loan of at least 20.000 SEK.";
             } else {
@@ -233,7 +233,7 @@ public class LoanAssessment {
         return acceptedLoanAmount;
     }
 
-    public String getLoanEligibility(){
+    public String getLoanEligibility() {
         return  loanEligibility;
     }
 
