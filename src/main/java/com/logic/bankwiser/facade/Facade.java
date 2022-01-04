@@ -36,7 +36,7 @@ public class Facade {
         bankAccountController = new BankAccountController(storage);
         transactionController = new TransactionController(storage);
         cardController = new CardController(storage, transactionController);
-        loanController = new LoanController(storage);
+        loanController = new LoanController(storage, transactionController);
     }
 
     /**

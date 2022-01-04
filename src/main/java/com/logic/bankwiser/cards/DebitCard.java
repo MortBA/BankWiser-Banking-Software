@@ -46,7 +46,7 @@ public class DebitCard {
         int CCVMin = 0;
         int CCVMax = 999;
         Random CCVRand = new Random();
-        String CCV = "" + CCVRand.nextInt((CCVMax-CCVMin) + 1) + CCVMin;
+        String CCV = "" + CCVRand.nextInt((CCVMax - CCVMin) + 1) + CCVMin;
 
         if (CCV.length() == 2) {
             CCV = "0" + CCV;

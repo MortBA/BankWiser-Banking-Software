@@ -1,6 +1,5 @@
 package com.logic.bankwiser.accounts;
 
-import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.utils.Input;
 
 import java.util.ArrayList;
