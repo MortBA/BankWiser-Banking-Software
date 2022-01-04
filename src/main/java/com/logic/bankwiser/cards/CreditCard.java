@@ -10,7 +10,7 @@ import java.time.temporal.ChronoUnit;
  * Acts as the sub-class for the debitCard and object creditCard created here.
  *
  * @author Burak Askan
- *
+ * @author Mathias Hallander
  */
 public class CreditCard extends DebitCard {
 
