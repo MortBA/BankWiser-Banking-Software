@@ -163,7 +163,7 @@ public class CreateAccountScreenUser {
     @FXML
     void createUser(ActionEvent event) {
         facade.createUserAccount(email.getText(), fullName.getText(), password.getText(), retypedPassword.getText(),
-                                phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
+                        phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
     }
 
 }

@@ -64,6 +64,8 @@ public class BankCardMenuController {
     @FXML private RadioButton blockTransaction;
     @FXML private RadioButton unblockTransaction;
 
+    @FXML private ChoiceBox cardList;
+
     @FXML
     void onDeleteUserAccountClicked(ActionEvent event) {
     }
@@ -125,8 +127,25 @@ public class BankCardMenuController {
     }
     @FXML
     public void onModifyFuncClicked() throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("ModifyFunctionality.fxml");
+        if ((!blockCard.isSelected() && !unblockCard.isSelected())
+                || (!blockTransaction.isSelected() && !unblockTransaction.isSelected()) || !cardList.isShowing()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else{
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your card pin is changed successfully.");
+            alertBox.setTitle("Success!");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if(result.get() == ButtonType.OK){
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+            }
+        }
     }
 
     /**
@@ -140,7 +159,7 @@ public class BankCardMenuController {
     @FXML
     public void onSubmitChangePinClicked() throws IOException {
         if (!TnC.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
-            || confirmPin.getText().trim().isEmpty() || cardNumber.getText().trim().isEmpty())  {
+            || confirmPin.getText().trim().isEmpty() || cardNumber.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
