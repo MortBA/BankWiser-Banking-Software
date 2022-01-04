@@ -1,6 +1,7 @@
 package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +28,8 @@ public class LoginScreenController implements Initializable {
 
     @FXML
     private AnchorPane CustomerBox;
+
+    private final Facade facade = Facade.getInstance();
 
 
     @FXML
