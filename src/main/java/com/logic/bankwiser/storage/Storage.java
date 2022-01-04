@@ -387,4 +387,8 @@ public class Storage {
         }
         bufferedReader.close();
     }
+
+    public void deleteUserAccount(UUID userAccountID) {
+        userAccountMap.remove(userAccountID);
+    }
 }

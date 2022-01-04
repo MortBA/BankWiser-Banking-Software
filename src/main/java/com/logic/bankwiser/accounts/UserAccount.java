@@ -38,7 +38,7 @@ public class UserAccount {
     public UserAccount(UUID userID, String fullName, String phoneNumber, String address,
                        String socialSecurityNum, String emailID, String password) throws Exception {
         // TODO This regex pattern is a simple one I wrote myself. Should we switch to a premade one? -KC
-        String emailPattern = "^[a-zA-Z]+@[a-zA-Z]+.[a-zA-Z]+";
+        String emailPattern = "^[a-zA-Z0-9.]+@[a-zA-Z]+.[a-zA-Z]+";
 
         if (fullName.isEmpty()) {
             throw new Exception("The name field shouldn't be left blank.");
@@ -46,7 +46,7 @@ public class UserAccount {
             throw new Exception("The phone number field shouldn't be left blank.");
         } else if (address.isEmpty()) {
             throw new Exception("The address field shouldn't be left blank.");
-        } else if (String.valueOf(socialSecurityNum).isEmpty()) {
+        } else if (socialSecurityNum.isEmpty()) {
             throw new Exception("The social security number field shouldn't be left blank.");
         } else if (emailID.isEmpty()) {
             throw new Exception("The email ID field shouldn't be left blank.");
