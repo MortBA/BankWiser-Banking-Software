@@ -23,6 +23,7 @@ public class CardController {
 
     private final Storage STORAGE;
     private final TransactionController TRANSACTION_CONTROLLER;
+    private final String ln = System.lineSeparator();
 
     public CardController(Storage storage, TransactionController transactionController) {
         this.STORAGE = storage;
@@ -150,29 +151,34 @@ public class CardController {
      * Monthly credit card payments
      * Checks if payment due on any credit card. If there is then it does the payments.
      */
-    public String creditCardPayment(BankAccount bankAccount) {
+    public String creditCardPayment(UserAccount activeUser) {
 
+        for(String bankAccountID: activeUser.getBankAccountList()){
+            BankAccount bankAccount = STORAGE.getBankAccount(bankAccountID);
 
-        if (bankAccount.getBalance().intValue() < 0) {
-            for (DebitCard card : bankAccount.getCardMap().values()) {
-                CreditCard creditCard = (CreditCard) card;
-                LocalDateTime monthlyPaymentDate = creditCard.getMonthlyPaymentDate();
-                if (ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) == 0 ||
-                        ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) < 0) {
+            if (bankAccount.getBalance().intValue() < 0) {
+                for (DebitCard card : bankAccount.getCardMap().values()) {
+                    CreditCard creditCard = (CreditCard) card;
+                    LocalDateTime monthlyPaymentDate = creditCard.getMonthlyPaymentDate();
+                    if (ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) == 0 ||
+                            ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) < 0) {
 
-                    BigDecimal moneyTransferred = bankAccount.getBalance().multiply(BigDecimal.valueOf(creditCard.getInterest() * -1));
-                    if(moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
-                        return "You are unable to pay the credit. Interests has incurred on the credit.";
-                    }
-                    String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
-                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
+                        BigDecimal moneyTransferred = bankAccount.getBalance().multiply(BigDecimal.valueOf(creditCard.getInterest() * -1));
+                        if(moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
+                            return "You are unable to pay the credit. Interests has incurred on the credit."+ln;
+                        }
+                        String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
+                        TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
 
                         creditCard.setMonthlyPaymentDate(LocalDateTime.now());
                     }
                 }
             }
-        return "";
+
         }
+
+        return "";
+    }
 
 
 
@@ -180,20 +186,24 @@ public class CardController {
      * Annual card payments
      * Checks if annual payments are due on any cards. If there is then it does the payments.
      */
-    public String annualCardPayment(BankAccount bankAccount) {
+    public String annualCardPayment(UserAccount activeUser) {
 
-        for (DebitCard card : bankAccount.getCardMap().values()) {
-            LocalDateTime yearlyPaymentDate = card.getYearlyPaymentDate();
-            if (ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) == 0 || ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0) {
-    
-                String paymentNote = "Payment on your card number: " + card.getCardNumber();
-                BigDecimal moneyTransferred = new BigDecimal(999);
-                if(moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
-                    return "You are unable to pay the card. You will be contacted by the bank shortly.";
+        for(String bankAccountID: activeUser.getBankAccountList()) {
+            BankAccount bankAccount = STORAGE.getBankAccount(bankAccountID);
+
+            for (DebitCard card : bankAccount.getCardMap().values()) {
+                LocalDateTime yearlyPaymentDate = card.getYearlyPaymentDate();
+                if (ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) == 0 || ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0) {
+
+                    String paymentNote = "Payment on your card number: " + card.getCardNumber();
+                    BigDecimal moneyTransferred = new BigDecimal(999);
+                    if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
+                        return "You are unable to pay the card. You will be contacted by the bank shortly."+ln;
+                    }
+                    TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
+
+                    card.setYearlyPaymentDate(LocalDateTime.now());
                 }
-                TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
-
-                card.setYearlyPaymentDate(LocalDateTime.now());
             }
         }
         return "";

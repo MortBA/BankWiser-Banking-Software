@@ -75,6 +75,16 @@ public class Facade {
         return "";
     }
 
+    public String checkPayments(){
+        StringBuilder userPaymentsString = new StringBuilder();
+
+        userPaymentsString.append(cardController.annualCardPayment(activeUser));
+        userPaymentsString.append(cardController.creditCardPayment(activeUser));
+        userPaymentsString.append(loanController.loanRepayment(activeUser));
+
+        return userPaymentsString.toString();
+    }
+
     /**
      * Creates a user account based on the inputted parameters.
      *
@@ -379,7 +389,6 @@ public class Facade {
      * @param cardNumber         the number of the card that will be modified
      * @return String with the reminder message
      */
-    //Should be only cardNumber and UUID?
     public String cardExpiration(String cardNumber) {
         return cardController.remainderDays(activeBankAccount, cardNumber, activeUser);
     }
@@ -395,7 +404,6 @@ public class Facade {
      * @param newPinConfirmation     the repeat of the new pin
      * @return String confirmation of success or failure
      */
-    //String username removed, not in requirements?
     public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
         return cardController.resetPin(activeBankAccount, cardNumber, oldPin, newPin, newPinConfirmation);
     }

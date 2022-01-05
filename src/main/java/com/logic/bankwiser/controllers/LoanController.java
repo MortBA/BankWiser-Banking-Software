@@ -224,26 +224,31 @@ public class LoanController {
      *
      * @return String confirmation of success or failure
      */
-    public String loanRepayment(String bankAccountID) {
-        BankAccount bankAccount = storage.getBankAccount(bankAccountID);
-        for (Loan loans : bankAccount.getLoanMap().values()) {
-            LocalDateTime yearlyPaymentDate = loans.getLastRepaymentDate();
+    public String loanRepayment(UserAccount activeUser) {
+        for(String bankAccountID: activeUser.getBankAccountList()) {
+            BankAccount bankAccount = storage.getBankAccount(bankAccountID);
 
-            if (ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) == 0 || ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0) {
-                double totalSpend = ((loans.getLoanAmount() * (loans.getInterestRate()) * -1) / loans.getLoanDuration());
-                BigDecimal moneyTransferred = BigDecimal.valueOf(totalSpend);
+            for (Loan loans : bankAccount.getLoanMap().values()) {
+                LocalDateTime yearlyPaymentDate = loans.getLastRepaymentDate();
 
-                if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
-                    return "You are unable to pay your loans. The bank will be in contact shortly.";
+                if (ChronoUnit.DAYS.between(yearlyPaymentDate.plusMonths(1), yearlyPaymentDate) == 0 ||
+                        ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0) {
+
+                    double totalSpend = ((loans.getLoanAmount() * (loans.getInterestRate()) * -1) / loans.getLoanDuration());
+                    BigDecimal moneyTransferred = BigDecimal.valueOf(totalSpend);
+
+                    if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
+                        return "You are unable to pay your loans. The bank will be in contact shortly.";
+                    }
+                    String paymentNote = "Payment on your loan";
+                    transactionController.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
+
+                    if ((loans.getCreationDate().getMonthValue() + loans.getLoanDuration()) == LocalDate.now().getMonthValue()) {
+                        bankAccount.getLoanMap().remove(loans.getLoanID());
+                        return "Your loan has been fully repaid.";
+                    }
+                    loans.setLastRepaymentDate(LocalDateTime.now());
                 }
-                String paymentNote = "Payment on your loan";
-                transactionController.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
-
-                if ((loans.getCreationDate().getMonthValue() + loans.getLoanDuration()) == LocalDate.now().getMonthValue()) {
-                    bankAccount.getLoanMap().remove(loans.getLoanID());
-                    return "";
-                }
-                loans.setLastRepaymentDate(LocalDateTime.now());
             }
         }
         return "";
