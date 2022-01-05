@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
+ * Controller responsible for all user accounts.
+ *
  * @author Kevin Collins
  */
 public class UserAccountController {
@@ -23,12 +25,6 @@ public class UserAccountController {
     /**
      * The method creates and stores a user account with the relevant information while handling exceptions if needed.
      *
-     * @param fullName
-     * @param phoneNumber
-     * @param address
-     * @param socialSecurityNum
-     * @param emailID
-     * @param password
      * @return A string that confirms successful user account creation or specifies the relevant input error.
      */
     public String createUserAccount(String fullName, String phoneNumber, String address,
@@ -45,26 +41,20 @@ public class UserAccountController {
         return sb.toString();
     }
 
-    // TODO Active user implementation needs to be done in facade -KC
-    public String loginUser(String email, String password) {
-        StringBuilder sb = new StringBuilder();
-        for (UserAccount userAccount : storage.getUserAccountMap().values()) {
-            if (Objects.equals(email, userAccount.getEmailID())) {
-                if (Objects.equals(password, userAccount.getPassword())) {
-                    sb.append("Successfully logged in");
-                } else {
-                    sb.append("Password is incorrect.");
-                }
+    public Pair<UserAccount, String> loginUser(String email, String password) {
+        if (storage.getUserFromMap(email) != null) {
+            if (Objects.equals(password, storage.getUserFromMap(email).getPassword())) {
+                return new Pair<>(storage.getUserFromMap(email), "Successfully logged in");
             } else {
-                sb.append("No account is registered with that email address.");
+                return new Pair<>(null,"Password is incorrect.");
             }
+        } else {
+            return new Pair<>(null,"No account is registered with that email address.");
         }
-        return sb.toString();
     }
 
     public Pair<UserAccount, String> processDeleteUserAccountRequest(UserAccount userAccount) {
         StringBuilder sb = new StringBuilder();
-
         while (sb.isEmpty()) {
             for (String bankAccountID : userAccount.getBankAccountList()) {
                 BankAccount bankAccount = storage.getBankAccount(bankAccountID);
@@ -72,7 +62,8 @@ public class UserAccountController {
                     sb.append("Please transfer money from all bank accounts first.");
                 } else if (bankAccount.getBalance().compareTo(BigDecimal.ZERO) < 0) {
                     sb.append("Please pay off your credit card first.");
-                } else if (!bankAccount.getLoanMap().isEmpty()) {
+                }
+                if (!bankAccount.getLoanMap().isEmpty()) {
                     sb.append("Please speak to the clerk about how loans can be transferred first.");
                 }
             }
@@ -80,8 +71,7 @@ public class UserAccountController {
         if (sb.isEmpty()) {
             sb.append("User Account deletion request has been sent.");
         }
-
-        return new Pair<UserAccount, String>(userAccount, sb.toString());
+        return new Pair<>(userAccount, sb.toString());
     }
 
     public String resetPassword(String emailID) {

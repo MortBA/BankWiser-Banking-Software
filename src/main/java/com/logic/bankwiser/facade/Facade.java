@@ -4,6 +4,7 @@ import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +29,6 @@ public class Facade {
 
     private static Facade facade_instance = null;
     UserAccount activeUser;
-    UUID activeUserID;
     BankAccount activeBankAccount;
 
 
@@ -74,9 +74,14 @@ public class Facade {
      * @return String confirmation of successful login or failure
      */
     public String userLogin(String username, String password) {
-        this.activeUserID = storage.getUserUUID(username);
-        this.activeUser = storage.getUserFromMap(storage.getUserUUID(username));
-        return "";
+        Pair<UserAccount, String> loginRequest = userAccountController.loginUser(username, password);
+        if (loginRequest.getKey() != null) {
+            this.activeUser = loginRequest.getKey();
+            if (!activeUser.getBankAccountList().isEmpty()) {
+                this.activeBankAccount = storage.getBankAccount(activeUser.getBankAccountList().get(0));
+            }
+        }
+        return loginRequest.getValue();
     }
 
     public String checkPayments(){

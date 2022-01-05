@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 /**
  * @author Kevin Collins
  */
-
 public class UserAccount {
 
     private final UUID userID;
