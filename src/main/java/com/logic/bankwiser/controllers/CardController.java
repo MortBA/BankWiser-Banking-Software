@@ -62,7 +62,6 @@ public class CardController {
      * @param pin the pin code for the card as written by user
      * @return affirmative or negative string
      */
-    // Modified method to use LocalDate rather than String -KC
     public String addCard(BankAccount bankAccount, int pin) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if (keyAcceptance.getKey()) {
@@ -179,7 +178,6 @@ public class CardController {
 
         return "";
     }
-
 
 
     /**
@@ -363,7 +361,6 @@ public class CardController {
      * @param pin        the pin that user entered with that pin
      * @return boolean if the pin entered was correct ot not
      */
-
     public boolean checkPin(BankAccount bankAccount, String cardNumber, int pin) {
         return (bankAccount.getCard(cardNumber).getPin() == pin);
     }

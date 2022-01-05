@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,25 +13,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Controller class to perform all functionalities for 'forgot password' screen for employee.
+ * Controller class to perform all functionalities for 'Forgot password' screen for customer.
  *
  * @author Sejal
  */
 
-public class ForgotPasswordEmployeeController {
+public class ForgotPasswordCustomerController {
 
     @FXML
     private Button confirmForgotPassButton;
-
     @FXML
     private Button cancelForgotPassButton;
-
     @FXML
     private TextField ssNumber;
-
     @FXML
     private TextField email;
-
     @FXML
     private TextField retypeEmail;
 
@@ -39,28 +35,29 @@ public class ForgotPasswordEmployeeController {
     public Stage stg = new Stage();
 
     /**
-     * Initializes 'new password' screen for employee as a new stage when 'forgot password' (this) screen appears.
+     * Initializes new stage for 'new password' screen
+     * The stage is initialized when forgot password (this) screen appears.
+     * The new stage is used to fill new password for the customer.
      * The stage has initModality functionality.
      */
     @FXML
-    private void initialize() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
+    public void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg.setScene(scene);
             stg.initModality(Modality.APPLICATION_MODAL);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Functions as a controller method to display 'new password' screen.
-     * The 'new password' screen opens when confirm button on forgot password window is clicked.
+     * Functions as a controller method to display the 'new password' screen.
+     * The new screen appears when confirm button on 'forgot password' screen is clicked.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     private void confirmButtonClicked() throws IOException {
@@ -68,7 +65,7 @@ public class ForgotPasswordEmployeeController {
     }
 
     /**
-     * Closes the forgot password window when the cancel button on 'forgot password' screen is clicked.
+     * Closes the forgot password window when cancel button on 'forgot password' screen is clicked.
      *
      * @param event
      */
@@ -97,4 +94,5 @@ public class ForgotPasswordEmployeeController {
     private void cancelHoverOut() {
         cancelForgotPassButton.setStyle("-fx-background-color: #ed2762;");
     }
+
 }

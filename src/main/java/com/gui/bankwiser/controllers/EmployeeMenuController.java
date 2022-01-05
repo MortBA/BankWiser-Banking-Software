@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import com.logic.bankwiser.bank_accounts.BankAccount;

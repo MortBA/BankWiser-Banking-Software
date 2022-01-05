@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import com.logic.bankwiser.bank_accounts.BankAccount;
@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;

@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.fxml.FXML;
@@ -40,7 +40,7 @@ public class ChangePasswordController {
      * Confirmation alert box appears when all fields are filled and the password is changed.
      *
      * @param event
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     void onConfirmChangePasswordClicked(MouseEvent event) throws IOException {

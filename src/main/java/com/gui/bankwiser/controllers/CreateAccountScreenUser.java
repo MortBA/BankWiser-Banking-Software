@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import com.logic.bankwiser.facade.Facade;
@@ -79,7 +79,7 @@ public class CreateAccountScreenUser {
     private TextField fullName;
 
     @FXML
-    private Stage stg = new Stage();
+    private final Stage stg = new Stage();
 
     /**
      * Initializes the 'question mark' screen which opens as a new stage when the question mark is clicked

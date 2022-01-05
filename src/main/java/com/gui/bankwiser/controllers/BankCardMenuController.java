@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.event.ActionEvent;
@@ -203,7 +203,7 @@ public class BankCardMenuController {
      * Alert box showing warning appears if any field is empty or unchecked and informs user to fill them.
      * Confirmation alert box appears when all fields are filled and the card pin is changed.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     public void onSubmitChangePinClicked() throws IOException {
@@ -231,7 +231,7 @@ public class BankCardMenuController {
      * Information alert box appears when the customer clicks on the 'forgot current pin' label on 'change pin' screen,
      * alert box appears, notifying the next step to take as a customer.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     public void onForgotCurrentPinClicked() throws IOException {
@@ -259,7 +259,7 @@ public class BankCardMenuController {
      * Warning alert box appears if any field is empty or unchecked, notifying the user to fill them.
      * Confirmation alert box appears when all fields are filled and the Card is deleted.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     public void onConfirmDeleteCardClicked() throws IOException {
@@ -295,7 +295,7 @@ public class BankCardMenuController {
      * Warning alert box appears if any field is empty or unchecked.
      * Confirmation alert box appears when all fields are filled and request is sent.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     public void onSubmitCreditCardClicked() throws IOException {
@@ -324,7 +324,7 @@ public class BankCardMenuController {
      * Warning alert box appears if any field is empty or unchecked.
      * Confirmation alert box appears when all fields are filled and card is made.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     public void onSubmitDebitCardClicked() throws IOException {

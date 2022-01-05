@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,11 +12,12 @@ import java.io.IOException;
 import java.util.Optional;
 
 /**
- * Controller class to perform all functionalities for 'New password' screen for employee.
+ * Controller class to perform functionality for 'New password' screen for Customer.
  *
  * @author Sejal
  */
-public class NewPasswordEmployeeController {
+public class NewPasswordCustomerController {
+
     @FXML
     private Button confirmNewPassword;
 
@@ -30,10 +31,10 @@ public class NewPasswordEmployeeController {
     private PasswordField confirmNewPass;
 
     /**
-     * The method displays a confirmation alert box when confirm button on 'new password' screen is clicked.
-     * The box notifies user that the new password is set successfully.
+     * The method displays a confirmation alert box when the confirm button on new password screen is clicked.
+     * The box notifies user that new password is set successfully.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     private void onConfirmNewPasswordClicked() throws IOException {

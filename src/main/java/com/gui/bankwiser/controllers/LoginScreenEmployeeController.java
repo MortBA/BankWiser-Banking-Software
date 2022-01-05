@@ -1,7 +1,6 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
-import com.logic.bankwiser.facade.Facade;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,43 +21,43 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller class to perform all functionalities for Login screen for customer.
+ * Controller class to perform functionality for Login screen for employee.
  *
  * @author Chanisra
  */
-
-public class LoginScreenCustomerController implements Initializable {
-
-    private final Facade facade = Facade.getInstance();
+public class LoginScreenEmployeeController implements Initializable {
 
     @FXML
     private AnchorPane LoginElements;
+
     @FXML
     private TextField UsernameBox;
+
     @FXML
     private PasswordField PasswordBox;
+
     @FXML
     private Label Error_Message;
+
     @FXML
     private Label ForgottenPassword;
-    @FXML
-    private Label NotCustomer;
+
     @FXML
     private Button buttonLogin;
+
     @FXML
     private Button buttonCancel;
 
     @FXML
-    public Stage stg2 = new Stage();
+    public Stage stg = new Stage();
 
     /**
-     * The method initializes transition necessary effects/animation to display the login screen.
-     * Also, initializes new stage for 'Forgot password' screen for customer.
+     * The method initializes transition necessary effects to display the login screen.
+     * Also, initializes new stage for 'Forgot password' screen for employee.
      * The 'forgot password' screen has initModality functionality.
      *
-     * @param url
-     * @param resourceBundle
-     * @author Sejal (stage) & Chanisra (transition)
+     * @author Sejal
+     * @author Chanisra
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,13 +68,12 @@ public class LoginScreenCustomerController implements Initializable {
         fade.setToValue(1.0);
         fade.play();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ForgotPasswordCustomer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ForgotPasswordEmployee.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
-
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,37 +85,22 @@ public class LoginScreenCustomerController implements Initializable {
      * The method acts as a controller to open the initialized 'Forgot Password' screen.
      * The screen appears when the forgot password; label on Login screen is clicked.
      *
-     * @throws IOException
+     * @throws IOException IOException
      * @author Sejal
      */
     @FXML
     private void ForgotPasswordClicked() throws IOException {
-        stg2.showAndWait();
+        stg.showAndWait();
     }
-
-    //NotCustomer
-    @FXML
-    private void NotCustomerClicked() throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("CreateUserScreen.fxml");
-    }
-
-    @FXML
-    private void NotCustomerHoverIn() {
-        NotCustomer.setUnderline(true);
-    }
-
-    @FXML
-    private void NotCustomerHoverOut() {
-        NotCustomer.setUnderline(false);
-    }
-
 
     //Login Button
     @FXML
     private void LoginClicked() throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("CustomerMenuScreen.fxml");
+        app.changeScene("EmployeeMenu.fxml");
+        // if (UsernameBox.getText().toString().equals("Channi")) {
+        // buttonLogin.setStyle("-fx-background-color: #f4d3d3");
+        //}
     }
 
     @FXML
@@ -157,4 +140,3 @@ public class LoginScreenCustomerController implements Initializable {
         ForgottenPassword.setUnderline(false);
     }
 }
-

@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.event.ActionEvent;
@@ -8,62 +8,59 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 /**
- * Controller class for performing all functionalities of 'Customer Menu' screen
- *
- * @author Chanisra
+ * Controller class for performing all functionalities of Account settings screen.
  */
-
-public class CustomerMenuScreenController {
+public class AccountSettingsScreenController {
 
     @FXML
     private MenuItem accountSettings;
-
     @FXML
     private MenuItem deleteBankAccount;
-
     @FXML
     private MenuItem deleteUserAccount;
-
     @FXML
     private MenuItem transactionsHistory;
-
     @FXML
     private MenuItem loans;
-
     @FXML
     private MenuItem myCards;
-
     @FXML
     private MenuItem transferMoney;
 
     @FXML
     private Button overview;
-
     @FXML
     private Button buttonLogOut;
+    @FXML
+    private Button changePassword;
 
     @FXML
-    public Stage stg = new Stage();
+    private AnchorPane BankwiserLogo;
+    @FXML
+    private AnchorPane LoginElements;
 
     @FXML
-    public Stage stg2 = new Stage();
+    private ImageView QuestionMarkButton;
+
+    @FXML
+    private final Stage stg = new Stage();
 
     /**
-     * Initializes new stages to delete user account and bank account.
-     * Both stages have initModality functionality.
-     *
-     * @param
-     * @author Sejal
+     * Initializes new stage for 'change password' screen.
+     * The stage is initialized when the account settings screen appears.
+     * The stage has initModality functionality.
      */
     @FXML
-    private void initialize() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+    public void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ChangePasswordScreen.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -72,37 +69,6 @@ public class CustomerMenuScreenController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
-     *
-     * @throws IOException
-     * @author Sejal
-     */
-    @FXML
-    public void onDeleteUserAccountClicked() throws IOException {
-        stg.showAndWait();
-    }
-
-    /**
-     * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
-     *
-     * @throws IOException
-     */
-    @FXML
-    public void onDeleteBankAccountClicked() throws IOException {
-        stg2.showAndWait();
     }
 
     @FXML
@@ -128,11 +94,13 @@ public class CustomerMenuScreenController {
         app.changeScene("BankCardMenu.fxml");
     }
 
+
     @FXML
     void onTransferMoneyClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("TransferMoneyScreen.fxml");
     }
+
 
     @FXML
     void onTransactionHistoryClicked() throws Exception {
@@ -144,5 +112,25 @@ public class CustomerMenuScreenController {
     void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
-}
 
+    @FXML
+    void onDeleteBankAccountClicked() throws Exception {
+        new BankWiserApp().changeScene("");
+    }
+
+    @FXML
+    void onDeleteUserAccountClicked() throws Exception {
+        new BankWiserApp().changeScene("");
+    }
+
+    /**
+     * Opens the 'change password' screen, which is initialized in the beginning.
+     * The screen opens only when 'change password' button on the account settings screen is clicked.
+     *
+     * @throws Exception
+     */
+    @FXML
+    void onChangePasswordClicked() throws Exception {
+        stg.showAndWait();
+    }
+}

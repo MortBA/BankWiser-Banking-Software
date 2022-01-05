@@ -146,7 +146,7 @@ public class LoanController {
     /**
      * Accepts several parameters to calculate loan eligibility
      *
-     * @return "Pair<Boolean, String>" of success/fail and requisite message.
+     * @return "Pair&#60;Boolean, String&#62;" of success/fail and requisite message.
      */
     public Pair<Boolean, String> verifyPersonalLoan(BankAccount bankAccount, double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int loanDuration) {
         final double MIN_RANGE_PERSONAL = 416;
@@ -171,7 +171,7 @@ public class LoanController {
     /**
      * Accepts several parameters to calculate loan eligibility
      *
-     * @return "Pair<Boolean, String>" of success/fail and requisite message.
+     * @return "Pair&#60;Boolean, String&#62;" of success/fail and requisite message.
      */
     public Pair<Boolean, String> verifyHomeLoan(BankAccount bankAccount, double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int loanDuration) {
         final double MIN_RANGE_HOME = 8333;
@@ -196,7 +196,7 @@ public class LoanController {
     /**
      * Accepts several parameters to calculate loan eligibility
      *
-     * @return "Pair<Boolean, String>" of success/fail and requisite message
+     * @return "Pair&#60;Boolean, String&#62;" of success/fail and requisite message
      */
     public Pair<Boolean, String> verifyVehicleLoan(BankAccount bankAccount, double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int loanDuration) {
         final double MIN_RANGE_VEHICLE = 1666;

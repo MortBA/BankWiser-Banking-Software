@@ -1,5 +1,6 @@
 package com.gui.bankwiser;
 
+import com.logic.bankwiser.facade.Facade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,9 +9,26 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Starting class for the entire project.
+ *
+ * @author Burak Askan
+ * @author Chanisra Magnusson
+ * @author Daniel Dovhun
+ * @author Dragos Florinel Isar
+ * @author Kevin Collins
+ * @author Mathias Hallander
+ * @author Sejal Kanaskar
+ */
 public class BankWiserApp extends Application {
     private static Stage stg;
 
+    /**
+     * Initializes the UI.
+     *
+     * @param stage accepts JavaFX stages
+     * @throws IOException IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         stg = stage;
@@ -32,6 +50,12 @@ public class BankWiserApp extends Application {
         }
     }
 
+    /**
+     * Facilitates the changing of scenes in JavaFX.
+     *
+     * @param fxml accepts fxml files
+     * @throws IOException IOException
+     */
     public void changeScene(String fxml) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxml));
@@ -42,9 +66,19 @@ public class BankWiserApp extends Application {
         }
     }
 
+    /**
+     * Starts the program and adds a shutdown hook to attempt to store all information
+     * in the event of a shutdown.
+     *
+     * @param args Startup arguments
+     */
     public static void main(String[] args) {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            //facade.storage.storeAll()
+            try {
+                Facade.getInstance().storeAll();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }));
         launch();
     }

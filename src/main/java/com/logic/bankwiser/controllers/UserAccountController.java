@@ -40,7 +40,6 @@ public class UserAccountController {
             storage.addUserAccount(userID, new UserAccount(userID, fullName, phoneNumber, address, socialSecurityNum, emailID, password));
             sb.append("New account for ").append(emailID).append(" was successfully created.");
         } catch (Exception e) {
-            System.out.println(e);
             sb.append(e.getMessage());
         }
         return sb.toString();

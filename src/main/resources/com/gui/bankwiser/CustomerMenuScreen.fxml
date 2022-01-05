@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.CustomerMenuScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.CustomerMenuScreenController">
    <children>
       <AnchorPane layoutX="200.0" layoutY="33.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
