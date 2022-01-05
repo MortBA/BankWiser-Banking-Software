@@ -9,12 +9,11 @@ import java.util.Optional;
 
 /**
  *
- * Controller class to perform functionality for 'New password' screen for Customer.
+ * Controller class to perform all functionalities for 'New password' screen for employee.
  * @author Sejal
  */
 
-public class NewPasswordCustomerController {
-
+public class NewPasswordEmployeeController {
     @FXML
     private Button confirmNewPassword;
 
@@ -29,11 +28,10 @@ public class NewPasswordCustomerController {
 
     /**
      *
-     * The method displays a confirmation alert box when the confirm button on new password screen is clicked.
-     * The box notifies user that new password is set successfully.
+     * The method displays a confirmation alert box when confirm button on 'new password' screen is clicked.
+     * The box notifies user that the new password is set successfully.
      * @throws IOException
      */
-
     @FXML
     private void onConfirmNewPasswordClicked() throws IOException {
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
@@ -48,7 +46,6 @@ public class NewPasswordCustomerController {
      * The method closes the new password screen when cancel button on the screen is clicked.
      * @param event
      */
-
     @FXML
     public void handleCloseNewPasswordAction(ActionEvent event) {
         Stage stage = (Stage) cancelNewPassword.getScene().getWindow();

@@ -4,13 +4,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.CustomerMenuScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.TransactionHistoryScreenController">
    <children>
+      <Label layoutX="45.0" layoutY="203.0" text="Transaction History" textFill="#017c83">
+         <font>
+            <Font name="Calibri Bold" size="36.0" />
+         </font>
+      </Label>
       <AnchorPane layoutX="200.0" layoutY="33.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
@@ -32,16 +39,15 @@
       </AnchorPane>
       <AnchorPane prefHeight="630.0" prefWidth="896.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+            <Button fx:id="overview" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onOverviewClicked" prefHeight="39.0" prefWidth="98.0" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
             <MenuButton mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Personal Info" />
-                  <MenuItem mnemonicParsing="false" text="Account Settings" />
-                  <MenuItem mnemonicParsing="false" text="My Cards" />
+                  <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
+                  <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -49,7 +55,8 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Transaction History" />
+                  <MenuItem mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transfer Money" />
+                  <MenuItem fx:id="transactionHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -57,7 +64,7 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Loans" />
+                  <MenuItem fx:id="loans" mnemonicParsing="false" onAction="#onLoansClicked" text="Loans" />
                </items>
                <font>
                   <Font size="18.0" />
@@ -65,75 +72,23 @@
             </MenuButton>
             <MenuButton mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Delete Bank Account" />
-                  <MenuItem mnemonicParsing="false" text="Delete User Account" />
+                  <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
+                  <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                </items>
                <font>
                   <Font size="18.0" />
                </font>
             </MenuButton>
-            <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="349.0" prefWidth="319.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="504.0" AnchorPane.topAnchor="351.0" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="246.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="191.0">
-         <children>
-            <Label layoutX="21.0" layoutY="71.0" text="Transaction Accounts" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="21.0" layoutY="161.0" text="Shared Accounts" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="17.0" text="Accounts" textFill="#017c83">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="21.0" layoutY="109.0" text="Personal Account " textFill="#61bdb2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="23.0" layoutY="196.0" text="Capital Account" textFill="#61bdb2">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="481.0" layoutY="34.0" text="Account Number" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="911.0" layoutY="35.0" text="Avalible Amount" textFill="#017c83">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="PersonAccountNumber" layoutX="477.0" layoutY="105.0" prefHeight="35.0" text="0123 4567 8901 2345" textAlignment="CENTER" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAccountAmount" layoutX="908.0" layoutY="192.0" text="666,66 SEK" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="PersonAccountAmount" layoutX="965.0" layoutY="109.0" text=" 20469,42 SEK" textAlignment="CENTER" textFill="#017c83" AnchorPane.rightAnchor="150.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="SharedAccountNumber" layoutX="477.0" layoutY="192.0" text="0040 2001 6090 2510" textFill="#017c83">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      <TableView fx:id="transactionHistoryTable" layoutX="112.0" layoutY="332.0" prefHeight="430.0" stylesheets="@styleSheets/styleTransactionHistoryTable.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+        <columns>
+          <TableColumn fx:id="dateColumn" editable="false" prefWidth="174.66665649414062" resizable="false" text="Date" />
+          <TableColumn fx:id="nameColumn" editable="false" prefWidth="260.0" resizable="false" text="Name" />
+            <TableColumn fx:id="amountColumn" editable="false" prefWidth="190.6666259765625" resizable="false" text="Amount" />
+            <TableColumn fx:id="accountNumberColumn" editable="false" prefWidth="288.888916015625" resizable="false" text="AccountNumber" />
+            <TableColumn fx:id="balanceColumn" editable="false" minWidth="-1.0" prefWidth="283.0" resizable="false" text="Balance" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
-

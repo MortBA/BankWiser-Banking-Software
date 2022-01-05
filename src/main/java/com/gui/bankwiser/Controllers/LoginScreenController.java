@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class to perform all functionalities for 'Login' screen.
+ * @author Chanisra
+ */
+
 public class LoginScreenController implements Initializable {
     @FXML
     private AnchorPane BankwiserLogo;
@@ -28,6 +33,22 @@ public class LoginScreenController implements Initializable {
     @FXML
     private AnchorPane CustomerBox;
 
+    //Animation Loop
+
+    /**
+     * The method initializes necessary transition effects/animations to display the screen.
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        FadeTransition fade = new FadeTransition();
+        fade.setDuration(Duration.millis(1000));
+        fade.setNode(LoginElements);
+        fade.setFromValue(0.0);
+        fade.setToValue(1.0);
+        fade.play();
+    }
 
     @FXML
     private void EmployeeBoxClicked() throws IOException {
@@ -49,8 +70,6 @@ public class LoginScreenController implements Initializable {
         }
     }
 
-
-
     //NotCustomer
     @FXML
     private void NotCustomerClicked() throws IOException{
@@ -68,16 +87,4 @@ public class LoginScreenController implements Initializable {
         NotCustomer.setUnderline(false);
     }
 
-
-
-    //Animation Loop
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        FadeTransition fade = new FadeTransition();
-        fade.setDuration(Duration.millis(1000));
-        fade.setNode(LoginElements);
-        fade.setFromValue(0.0);
-        fade.setToValue(1.0);
-        fade.play();
-    }
 }

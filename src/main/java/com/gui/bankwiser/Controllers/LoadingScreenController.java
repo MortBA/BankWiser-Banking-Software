@@ -11,6 +11,11 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class to perform functionalities for Home screen also called 'Loading screen'.
+ * @author Chanisra
+ */
+
 public class LoadingScreenController implements Initializable {
     @FXML
     private AnchorPane BankwiserLogo;
@@ -18,6 +23,11 @@ public class LoadingScreenController implements Initializable {
     @FXML
     private Pane SidePanel;
 
+    /**
+     * The method initializes necessary transition and animation effects for the screen.
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){

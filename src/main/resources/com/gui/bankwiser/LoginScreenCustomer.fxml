@@ -58,12 +58,12 @@
                   </Label>
                   <Button fx:id="buttonCancel" layoutX="51.0" layoutY="416.0" mnemonicParsing="false" onMouseClicked="#CancelClicked" onMouseEntered="#CancelHoverIn" onMouseExited="#CancelHoverOut" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Bold" size="16.0" />
+                        <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Button>
                   <Button fx:id="buttonLogin" layoutX="228.0" layoutY="416.0" mnemonicParsing="false" onAction="#LoginClicked" onMouseEntered="#LoginHoverIn" onMouseExited="#LoginHoverOut" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Log in" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Bold" size="16.0" />
+                        <Font name="Calibri Bold" size="18.0" />
                      </font>
                   </Button>
                   <Label fx:id="Error_Message" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="138.0" prefHeight="22.0" prefWidth="290.0" textAlignment="CENTER" textFill="RED">

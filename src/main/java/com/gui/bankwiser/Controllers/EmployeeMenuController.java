@@ -1,22 +1,38 @@
 package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
-import javafx.animation.FadeTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.transactions.Transaction;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.util.Duration;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EmployeeMenuController{
+public class EmployeeMenuController {
+
+    @FXML
+    public TableColumn date;
+
+    @FXML
+    public TableView requestTable;
+
+    @FXML
+    public TableColumn request;
+
+    @FXML
+    public TableColumn viewRequest;
 
     @FXML
     private MenuButton customerRequests;
@@ -48,6 +64,30 @@ public class EmployeeMenuController{
         @FXML
         private TextArea textArea;
 
+        private BankAccount BAcc;
+
+    /*@Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            BAcc = new BankAccount(280_872_273, "Channi's fake bankacount");
+        }catch (Exception e) {e.printStackTrace();}
+
+        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50) ) );
+        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(609.60), "N/A", LocalDate.of(2021, 11, 14), BigDecimal.valueOf(623.51) ) );
+        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(231.10), "N/A", LocalDate.of(2022, 12, 20), BigDecimal.valueOf(1003.57) ) );
+
+
+        date.setCellValueFactory( new PropertyValueFactory<Transaction, LocalDate>("TransactionDate") );
+
+        requestTable.setItems(getObservableTransactionList());
+    }
+
+    private ObservableList<Transaction> getObservableTransactionList() {
+        return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionList());
+    }
+
+     */
+
         @FXML
         private void logOutHoverIn(){
             logOut.setUnderline(true);
@@ -65,21 +105,7 @@ public class EmployeeMenuController{
         }
         @FXML
         public void onUserAccReqClicked() throws IOException{
-            BankWiserApp app = new BankWiserApp();
-            app.changeScene("EMuserAccountReq.fxml");
-
-        }
-
-        @FXML
-        public void onLoanApprovalReqClicked() throws IOException{
-            BankWiserApp app = new BankWiserApp();
-            app.changeScene("EMloanReq.fxml");
-        }
-
-        @FXML
-        public void onCreditCardReqClicked() throws IOException {
-            BankWiserApp app = new BankWiserApp();
-            app.changeScene("EMcreditCardReq.fxml");
+            new BankWiserApp().changeScene("EMuserAccountReq.fxml");
         }
 
         @FXML
@@ -122,6 +148,33 @@ public class EmployeeMenuController{
             });
 
         }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        ObservableList<String> items = FXCollections.observableArrayList("test1", "test2");
+        ListView<String> list = new ListView<>(items);
+
+        list.setEditable(true);
+        list.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new TextFieldListCell<>(new StringConverter<String>() {
+
+                    @Override
+                    public String toString(String object) {
+                        return object;
+                    }
+
+                    @Override
+                    public String fromString(String string) {
+                        return string;
+                    }
+                });
+            }
+        });
+    }
 
         */
 

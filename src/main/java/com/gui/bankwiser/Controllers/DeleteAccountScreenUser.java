@@ -1,41 +1,46 @@
 package com.gui.bankwiser.Controllers;
 
-
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
- * Controller class to perform all functionalities for 'Delete bank account' screen.
+ * Controller class to perform all functionalities for 'Delete user account' screen.
  * @author Chanisra
  */
 
-public class DeleteBankAccountScreenController {
+public class DeleteAccountScreenUser {
 
+    @FXML
+    public Button buttonCancel;
     @FXML
     public Button buttonConfirm;
     @FXML
-    private Button buttonCancel;
+    public AnchorPane LoginElements;
     @FXML
-    public TextField socialSecurityNumber;
+    private TextField socialSecurityNumber  = new TextField();
     @FXML
-    public TextField socialSecurityNumber1;
+    private TextField fullName              = new TextField();
     @FXML
-    public TextField fullName;
+    private TextField email                 = new TextField();
     @FXML
-    public TextField email;
-    @FXML
-    public CheckBox agreementCheckbox;
+    private CheckBox  agreementCheckbox     = new CheckBox();
 
     /**
-     * The method shows confirmation alert box when confirm button on the screen is clicked
+     * The method displays confirmation alert box when confirm button on the screen is clicked.
      * @author Sejal
      */
+
     @FXML
     private void ConfirmClicked(){
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBox.setContentText("Your bank account is deleted successfully.");
+        alertBox.setContentText("Your user account is deleted successfully.");
         Optional<ButtonType> result = alertBox.showAndWait();
         if (result.get() == ButtonType.OK) {
             // probably not implement anything here
@@ -43,7 +48,7 @@ public class DeleteBankAccountScreenController {
     }
 
     /**
-     * The method closes the 'delete bank account' screen when cancel button on the screen is clicked.
+     * Closes the 'delete user account' screen stage when cancel button on the screen is clicked.
      * @author Sejal
      */
 
