@@ -6,8 +6,7 @@ import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -141,8 +140,16 @@ public class Facade {
         return bankAccountController.createBankAccount(userAccount, accountName);
     }
 
-    public void selectedBankAccount(BankAccount activeBankAccount){
-        this.activeBankAccount = activeBankAccount;
+    public BankAccount getActiveBankAccount() {
+        return activeBankAccount;
+    }
+
+    public List<String> getBankAccounts() {
+        return activeUser.getBankAccountList();
+    }
+
+    public void selectedBankAccount(String bankAccountID){
+        this.activeBankAccount = storage.getBankAccount(bankAccountID);
     }
 
     /**
@@ -200,17 +207,6 @@ public class Facade {
      */
     public String viewTransactionHistory(String bankAccountID) {
         return transactionController.viewTransactionHistory(bankAccountID);
-    }
-
-    /**
-     * Sends an application for a loan to be processed
-     *
-     * @param username     the username of the applicant
-     * @param amount       the amount of the requested
-     * @return confirmation of loan acceptation or rejection.
-     */
-    public String loanApplication(String username, double amount) {
-        return "";
     }
 
     /**
