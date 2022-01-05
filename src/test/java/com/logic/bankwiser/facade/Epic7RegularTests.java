@@ -1,5 +1,7 @@
 package com.logic.bankwiser.facade;
 
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +16,9 @@ import java.util.UUID;
  */
 public class Epic7RegularTests {
     private Facade facade; // Creates Facade object
+    UserAccount johnAccount;
+    UserAccount peterAccount;
+    BankAccount johnBankAccount;
 
     @BeforeEach
     public void setup() {
@@ -22,11 +27,12 @@ public class Epic7RegularTests {
         facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
         facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
 
-        UUID johnID = facade.storage.getUserUUID("john@gmail.com");
-        UUID peterID = facade.storage.getUserUUID("peter@gmail.com");
+        johnAccount = facade.storage.getUserFromMap("john@gmail.com");
+        johnBankAccount = facade.storage.getBankAccount(johnAccount.getBankAccountList().get(0));
+        peterAccount = facade.storage.getUserFromMap("peter@gmail.com");
 
-        facade.createBankAccount(johnID, "testing1");
-        facade.createBankAccount(peterID, "testing2");
+        facade.createBankAccount(johnAccount.getUserID(), "testing1");
+        facade.createBankAccount(peterAccount.getUserID(), "testing2");
     }
 
     /**
@@ -36,7 +42,7 @@ public class Epic7RegularTests {
     @Test
     public void shouldCreateCard() {
         String expectedValue = "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
-        String actualValue = facade.creditCardApproval("John Smith", "john@gmail.com");
+        String actualValue = facade.createDebitCard();
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation.";
@@ -47,15 +53,16 @@ public class Epic7RegularTests {
     /**
      * Expected value 1: “Your card has been successfully blocked.”
      * Expected value 2: “Your card has been successfully unblocked.”
-         * Expected value 4: “You successfully turned on online transactions.”
+     * Expected value 4: “You successfully turned on online transactions.”
      * Expected value 5: “You successfully turned off online transactions.”
      * Expected value 6: “You successfully changed your spending limit from {originalLimit} to {newLimit}.”
      */
     @Test
     public void shouldModifyCard() {
-        facade.createDebitCard();
+        facade.createDebitCard(johnAccount, "4405111122223333");
+        String cardNumber = "4405111122223333";
         String expectedValue = "Your card has been successfully blocked.";
-        String actualValue = facade.freezeCard("4405 1111 2222 3333"); // Should be changed later
+        String actualValue = facade.freezeCard(cardNumber); // Should be changed later
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Your card has been successfully unblocked.";
@@ -67,11 +74,11 @@ public class Epic7RegularTests {
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "You successfully turned off online transactions.";
-        actualValue = facade.blockOnlineTransactions();
+        actualValue = facade.blockOnlineTransactions(cardNumber);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "You successfully changed your spending limit to 30000.";
-        actualValue = facade.changeSpendingLimit(30000);
+        actualValue = facade.changeSpendingLimit(cardNumber, 30000);
         assertEquals(expectedValue, actualValue);
     }
 
@@ -80,8 +87,9 @@ public class Epic7RegularTests {
      */
     @Test
     public void shouldDeleteCard() {
+        String cardNumber = "4405111122223333";
         String expectedValue = "Your card has been successfully terminated.";
-        String actualValue = facade.deleteCard("4405 1111 2222 3333", "No reason", 4523);
+        String actualValue = facade.deleteCard(johnBankAccount.getBankAccountID(), cardNumber, "too young", 4523);
         assertEquals(expectedValue, actualValue);
     }
 

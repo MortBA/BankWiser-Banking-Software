@@ -1,6 +1,7 @@
 package com.logic.bankwiser.facade;
 
 import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
 
@@ -294,7 +295,6 @@ public class Facade {
     /**
      * Creates the credit card
      *
-     * @param pin     the pin for the credit card
      * @return string with approval or disapproval for the card creation.
      */
     public String createCreditCard() {
@@ -305,10 +305,14 @@ public class Facade {
     /**
      * Creates the debit card
      *
-     * @param pin     the pin for the credit card
      * @return string with approval or disapproval for the card creation.
      */
     public String createDebitCard() {
+        //return cardController.addCard(pin);
+        return "";
+    }
+
+    public String createDebitCard(UserAccount userAccount, String cardNumber) {
         //return cardController.addCard(pin);
         return "";
     }
@@ -380,8 +384,8 @@ public class Facade {
      * @return String with the reminder message
      */
     //Should be only cardNumber and UUID?
-    public String cardExpiration(String cardNumber) {
-        return cardController.remainderDays(cardNumber, activeUserID);
+    public String cardExpiration(BankAccount bankAccount, String cardNumber, UserAccount userAccount) {
+        return cardController.remainderDays(bankAccount, cardNumber, userAccount);
     }
 
 
