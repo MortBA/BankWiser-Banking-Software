@@ -9,25 +9,23 @@ import java.nio.file.Paths;
  * @author Mathias Hallander
  */
 public enum StoragePaths {
-    USERS(Paths.get("userStorage.txt"), "userStorage.txt"),
-    BANK_ACCOUNTS(Paths.get("bankAccountStorage.txt"), "bankAccountStorage.txt"),
-    TRANSACTIONS(Paths.get("transactionStorage.txt"), "transactionStorage.txt"),
-    DEBIT_CARDS(Paths.get("debitCardStorage.txt"), "debitCardStorage.txt"),
-    CREDIT_CARDS(Paths.get("creditCardStorage.txt"), "creditCardStorage.txt"),
-    PERSONAL_LOANS(Paths.get("personalLoanStorage.txt"), "personalLoanStorage.txt"),
-    HOME_LOANS(Paths.get("homeLoanStorage.txt"), "homeLoanStorage.txt"),
-    VEHICLE_LOANS(Paths.get("vehicleLoanStorage.txt"), "vehicleLoanStorage.txt");
+    USERS("src/main/resources/com/logic/bankwiser/storage/userStorage.txt"),
+    BANK_ACCOUNTS("src/main/resources/com/logic/bankwiser/storage/bankAccountStorage.txt"),
+    TRANSACTIONS("src/main/resources/com/logic/bankwiser/storage/transactionStorage.txt"),
+    DEBIT_CARDS("src/main/resources/com/logic/bankwiser/storage/debitCardStorage.txt"),
+    CREDIT_CARDS("src/main/resources/com/logic/bankwiser/storage/creditCardStorage.txt"),
+    PERSONAL_LOANS("src/main/resources/com/logic/bankwiser/storage/personalLoanStorage.txt"),
+    HOME_LOANS("src/main/resources/com/logic/bankwiser/storage/homeLoanStorage.txt"),
+    VEHICLE_LOANS( "src/main/resources/com/logic/bankwiser/storage/vehicleLoanStorage.txt");
 
-    StoragePaths(Path path, String stringPath) {
-        this.path = path;
+    StoragePaths(String stringPath) {
         this.stringPath = stringPath;
     }
 
-    private final Path path;
     private final String stringPath;
 
     public Path getPath() {
-        return path;
+        return Paths.get(stringPath);
     }
 
     public String getStringPath() {
