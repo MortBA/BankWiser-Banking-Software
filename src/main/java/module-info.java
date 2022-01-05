@@ -11,7 +11,6 @@ module main {
 
     opens com.gui.bankwiser to javafx.fxml;
     opens com.gui.bankwiser.Controllers to javafx.fxml;
-    opens com.logic.bankwiser to com.google.gson;
     opens com.logic.bankwiser.accounts to com.google.gson;
     opens com.logic.bankwiser.bank_accounts to com.google.gson;
     opens com.logic.bankwiser.transactions to com.google.gson;
