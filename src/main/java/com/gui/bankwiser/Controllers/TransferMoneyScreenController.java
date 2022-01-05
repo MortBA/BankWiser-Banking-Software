@@ -5,13 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
 /**
- *
  * Controller class for Transfer money screen.
+ *
  * @author Chanisra
  */
 
@@ -51,7 +50,7 @@ public class TransferMoneyScreenController {
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException{
+    public void onLogOutClicked() throws IOException {
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
@@ -75,24 +74,24 @@ public class TransferMoneyScreenController {
     }
 
     @FXML
-    void onTransactionHistoryClicked() throws Exception{
+    void onTransactionHistoryClicked() throws Exception {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
-//Todo loan screen
+    //Todo loan screen
     @FXML
-    void onLoansClicked() throws Exception{
+    void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     //todo Sejal input fxml
     @FXML
-    void onDeleteBankAccountClicked() throws Exception{
+    void onDeleteBankAccountClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     @FXML
-    void onDeleteUserAccountClicked() throws Exception{
+    void onDeleteUserAccountClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 

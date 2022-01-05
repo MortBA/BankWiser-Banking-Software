@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,27 +17,41 @@ import java.io.IOException;
 
 /**
  * Controller class for performing all functionalities of Account settings screen.
+ *
  * @author
  */
 
 public class AccountSettingsScreenController {
 
-    @FXML private MenuItem accountSettings;
-    @FXML private MenuItem deleteBankAccount;
-    @FXML private MenuItem deleteUserAccount;
-    @FXML private MenuItem transactionsHistory;
-    @FXML private MenuItem loans;
-    @FXML private MenuItem myCards;
-    @FXML private MenuItem transferMoney;
+    @FXML
+    private MenuItem accountSettings;
+    @FXML
+    private MenuItem deleteBankAccount;
+    @FXML
+    private MenuItem deleteUserAccount;
+    @FXML
+    private MenuItem transactionsHistory;
+    @FXML
+    private MenuItem loans;
+    @FXML
+    private MenuItem myCards;
+    @FXML
+    private MenuItem transferMoney;
 
-    @FXML private Button overview;
-    @FXML private Button buttonLogOut;
-    @FXML private Button changePassword;
+    @FXML
+    private Button overview;
+    @FXML
+    private Button buttonLogOut;
+    @FXML
+    private Button changePassword;
 
-    @FXML private AnchorPane BankwiserLogo;
-    @FXML private AnchorPane LoginElements;
+    @FXML
+    private AnchorPane BankwiserLogo;
+    @FXML
+    private AnchorPane LoginElements;
 
-    @FXML private ImageView QuestionMarkButton;
+    @FXML
+    private ImageView QuestionMarkButton;
 
     @FXML
     private Stage stg = new Stage();
@@ -50,14 +63,14 @@ public class AccountSettingsScreenController {
      */
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ChangePasswordScreen.fxml"));
-        try{
+        try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg.setScene(scene);
             stg.initModality(Modality.APPLICATION_MODAL);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -69,7 +82,7 @@ public class AccountSettingsScreenController {
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException{
+    public void onLogOutClicked() throws IOException {
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
@@ -94,34 +107,34 @@ public class AccountSettingsScreenController {
 
 
     @FXML
-    void onTransactionHistoryClicked() throws Exception{
+    void onTransactionHistoryClicked() throws Exception {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
     //Todo loan screen
     @FXML
-    void onLoansClicked() throws Exception{
+    void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     @FXML
-    void onDeleteBankAccountClicked() throws Exception{
+    void onDeleteBankAccountClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     @FXML
-    void onDeleteUserAccountClicked() throws Exception{
+    void onDeleteUserAccountClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     /**
      * Opens the 'change password' screen, which is initialized in the beginning.
      * The screen opens only when 'change password' button on the account settings screen is clicked.
+     *
      * @throws Exception
      */
-
     @FXML
-    void onChangePasswordClicked() throws Exception{
+    void onChangePasswordClicked() throws Exception {
         stg.showAndWait();
     }
 }

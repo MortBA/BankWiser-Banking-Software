@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -19,9 +20,9 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for transaction history screen.
+ *
  * @author Chanisra
  */
-
 public class TransactionHistoryScreenController implements Initializable {
     @FXML
     private TableView<Transaction> transactionHistoryTable;
@@ -45,22 +46,24 @@ public class TransactionHistoryScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            BAcc = new BankAccount(280_872_273, "Channi's fake bankacount");
-        }catch (Exception e) {e.printStackTrace();}
+            BAcc = new BankAccount("280872273", "Channi's fake bankacount");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50) ) );
-        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(609.60), "N/A", LocalDate.of(2021, 11, 14), BigDecimal.valueOf(623.51) ) );
-        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(231.10), "N/A", LocalDate.of(2022, 12, 20), BigDecimal.valueOf(1003.57) ) );
+//        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50)));
+//        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(609.60), "N/A", LocalDate.of(2021, 11, 14), BigDecimal.valueOf(623.51)));
+//        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(231.10), "N/A", LocalDate.of(2022, 12, 20), BigDecimal.valueOf(1003.57)));
 
 
-        dateColumn.setCellValueFactory( new PropertyValueFactory<Transaction, LocalDate>("TransactionDate") );
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("TransactionDate"));
 
 
         transactionHistoryTable.setItems(getObservableTransactionList());
     }
 
     private ObservableList<Transaction> getObservableTransactionList() {
-        return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionList());
+        return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionMap().values());
     }
 
     @FXML
@@ -70,7 +73,7 @@ public class TransactionHistoryScreenController implements Initializable {
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException{
+    public void onLogOutClicked() throws IOException {
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
@@ -95,25 +98,25 @@ public class TransactionHistoryScreenController implements Initializable {
 
 
     @FXML
-    void onTransactionHistoryClicked() throws Exception{
+    void onTransactionHistoryClicked() throws Exception {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
 
     //Todo loan screen
     @FXML
-    void onLoansClicked() throws Exception{
+    void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     //todo Sejal input fxml
     @FXML
-    void onDeleteBankAccountClicked() throws Exception{
+    void onDeleteBankAccountClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 
     @FXML
-    void onDeleteUserAccountClicked() throws Exception{
+    void onDeleteUserAccountClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 

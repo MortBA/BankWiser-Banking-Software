@@ -1,7 +1,6 @@
 package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
-import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,9 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +21,7 @@ import java.io.IOException;
 
 /**
  * Controller class for performing functionalities for 'Create Account' screen for customers.
+ *
  * @author Chanisra
  */
 
@@ -30,19 +29,32 @@ public class CreateAccountScreenUser {
 
     private final Facade facade = Facade.getInstance();
 
-    @FXML private MenuItem accountSettings;
-    @FXML private MenuItem deleteBankAccount;
-    @FXML private MenuItem deleteUserAccount;
-    @FXML private MenuItem transactionsHistory;
-    @FXML private MenuItem loans;
-    @FXML private MenuItem myCards;
-    @FXML private Button overview;
-    @FXML private Button buttonLogOut;
-    @FXML private Button buttonCancel;
-    @FXML private Button buttonLogin;
-    @FXML private AnchorPane BankwiserLogo;
-    @FXML private AnchorPane LoginElements;
-    @FXML private ImageView QuestionMarkButton;
+    @FXML
+    private MenuItem accountSettings;
+    @FXML
+    private MenuItem deleteBankAccount;
+    @FXML
+    private MenuItem deleteUserAccount;
+    @FXML
+    private MenuItem transactionsHistory;
+    @FXML
+    private MenuItem loans;
+    @FXML
+    private MenuItem myCards;
+    @FXML
+    private Button overview;
+    @FXML
+    private Button buttonLogOut;
+    @FXML
+    private Button buttonCancel;
+    @FXML
+    private Button buttonLogin;
+    @FXML
+    private AnchorPane BankwiserLogo;
+    @FXML
+    private AnchorPane LoginElements;
+    @FXML
+    private ImageView QuestionMarkButton;
 
     @FXML
     private TextField address;
@@ -70,32 +82,32 @@ public class CreateAccountScreenUser {
     private Stage stg = new Stage();
 
     /**
-     *
      * Initializes the 'question mark' screen which opens as a new stage when the question mark is clicked
+     *
      * @author Sejal
      */
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/QuestionMarkScreen.fxml"));
-        try{
+        try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg.setScene(scene);
             stg.initModality(Modality.APPLICATION_MODAL);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
-     *
      * Opens new stage having related information when the question mark on 'Create account' screen is clicked.
+     *
      * @author Sejal
      */
 
     @FXML
-    private void questionMarkClicked(){
+    private void questionMarkClicked() {
         stg.showAndWait();
     }
 
@@ -111,7 +123,7 @@ public class CreateAccountScreenUser {
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException{
+    public void onLogOutClicked() throws IOException {
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
@@ -122,12 +134,12 @@ public class CreateAccountScreenUser {
     }
 
     @FXML
-    private void CancelHoverIn(){
+    private void CancelHoverIn() {
         buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
     }
 
     @FXML
-    private void CancelHoverOut(){
+    private void CancelHoverOut() {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
 
@@ -141,29 +153,29 @@ public class CreateAccountScreenUser {
 
 
     @FXML
-    private void LoginHoverIn(){
+    private void LoginHoverIn() {
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
     }
 
     @FXML
-    private void LoginHoverOut(){
+    private void LoginHoverOut() {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
     }
 
     //QuestionMarkButton // todo:  implement if time over
     @FXML
-    private void QuestionMarkHoverIn(){
+    private void QuestionMarkHoverIn() {
     }
 
     @FXML
-    private void QuestionMarkHoverOut(){
+    private void QuestionMarkHoverOut() {
 
     }
 
     @FXML
     void createUser(ActionEvent event) {
         facade.createUserAccount(email.getText(), fullName.getText(), password.getText(), retypedPassword.getText(),
-                        phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
+                phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
     }
 
 }

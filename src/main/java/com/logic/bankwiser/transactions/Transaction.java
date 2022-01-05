@@ -1,32 +1,39 @@
 package com.logic.bankwiser.transactions;
 
-import com.logic.bankwiser.bank_accounts.BankAccount;
-
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author Kevin Collins
+ * @author Mathias Hallander
  */
 
 public final class Transaction {
 
-    private final int BANK_ACCOUNT_ID;
+    private final String TRANSACTION_ID;
+    private final String BANK_ACCOUNT_ID;
     private final BigDecimal MONEY_TRANSFERRED;
     private final String NOTE;
-    private final LocalDate TRANSACTION_DATE;
+    private final String TRANSACTION_DATE;
     private final BigDecimal BALANCE_AFTER_TRANSACTION;
 
-    public Transaction (int bankAccountID, BigDecimal moneyTransferred,
-                 String note, LocalDate transactionDate, BigDecimal balanceAfterTransaction) {
+    public Transaction(String transactionID, String bankAccountID, BigDecimal moneyTransferred,
+                       String note, LocalDateTime transactionDate, BigDecimal balanceAfterTransaction) {
+        String TRANSACTION_IDENTIFIER = "T";
+        this.TRANSACTION_ID = bankAccountID + TRANSACTION_IDENTIFIER + transactionID;
         this.BANK_ACCOUNT_ID = bankAccountID;
         this.MONEY_TRANSFERRED = moneyTransferred;
         this.NOTE = note;
-        this.TRANSACTION_DATE = transactionDate;
+        this.TRANSACTION_DATE = transactionDate.toString();
         this.BALANCE_AFTER_TRANSACTION = balanceAfterTransaction;
     }
 
-    public int getBankAccountID() {
+    public String getTransactionID() {
+        return TRANSACTION_ID;
+    }
+
+    public String getBankAccountID() {
         return BANK_ACCOUNT_ID;
     }
 
@@ -38,8 +45,8 @@ public final class Transaction {
         return NOTE;
     }
 
-    public LocalDate getTransactionDate() {
-        return TRANSACTION_DATE;
+    public LocalDateTime getTransactionDate() {
+        return LocalDateTime.parse(TRANSACTION_DATE);
     }
 
     public BigDecimal getBalanceAfterTransaction() {
@@ -47,7 +54,20 @@ public final class Transaction {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return TRANSACTION_DATE + ", " + BANK_ACCOUNT_ID + ", " + MONEY_TRANSFERRED + ", " + BALANCE_AFTER_TRANSACTION;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return TRANSACTION_ID.equals(that.TRANSACTION_ID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(TRANSACTION_ID);
     }
 }

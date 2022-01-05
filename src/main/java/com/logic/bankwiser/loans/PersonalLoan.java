@@ -1,16 +1,24 @@
 package com.logic.bankwiser.loans;
 
-import java.util.Date;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+
 
 public class PersonalLoan extends Loan {
 
-    private String personalReasons;
-    public PersonalLoan(int loanID, int loanAmount, double interestRate, Date maturityDate, String status, String personalReasons) {
-        super(loanID, loanAmount, interestRate, maturityDate, status);
-        this.personalReasons = personalReasons;
+    private final String PERSONAL_REASONS;
+    private final double PERSONAL_LOAN_INTEREST_RATE = 0.07;
+
+    public PersonalLoan(BankAccount bankAccount, String loanID, double loanAmount, int loanDuration, String personalReasons) {
+        super(bankAccount, loanID, loanAmount, loanDuration);
+        this.PERSONAL_REASONS = personalReasons;
+        super.setInterestRate(PERSONAL_LOAN_INTEREST_RATE);
+    }
+
+    public double getPersonalLoanInterestRate() {
+        return PERSONAL_LOAN_INTEREST_RATE;
     }
 
     public String getPersonalReasons() {
-        return personalReasons;
+        return PERSONAL_REASONS;
     }
 }

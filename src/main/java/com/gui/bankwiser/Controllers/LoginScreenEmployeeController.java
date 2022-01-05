@@ -2,15 +2,15 @@ package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,15 +18,13 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- *
  * Controller class to perform functionality for Login screen for employee.
+ *
  * @author Chanisra
  */
-
 public class LoginScreenEmployeeController implements Initializable {
 
     @FXML
@@ -50,17 +48,18 @@ public class LoginScreenEmployeeController implements Initializable {
     @FXML
     private Button buttonCancel;
 
-    @FXML public Stage stg = new Stage();
+    @FXML
+    public Stage stg = new Stage();
 
     /**
      * The method initializes transition necessary effects to display the login screen.
      * Also, initializes new stage for 'Forgot password' screen for employee.
      * The 'forgot password' screen has initModality functionality.
-     * @author Sejal (stage) & Chanisra (transition)
+     *
      * @param url
      * @param resourceBundle
+     * @author Sejal (stage) & Chanisra (transition)
      */
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         FadeTransition fade = new FadeTransition();
@@ -84,34 +83,34 @@ public class LoginScreenEmployeeController implements Initializable {
     //Forgot Password
 
     /**
-     *
      * The method acts as a controller to open the initialized 'Forgot Password' screen.
      * The screen appears when the forgot password; label on Login screen is clicked.
-     * @author Sejal
+     *
      * @throws IOException
+     * @author Sejal
      */
     @FXML
-    private void ForgotPasswordClicked() throws IOException{
+    private void ForgotPasswordClicked() throws IOException {
         stg.showAndWait();
     }
 
     //Login Button
     @FXML
     private void LoginClicked() throws IOException {
-       BankWiserApp app = new BankWiserApp();
-       app.changeScene("EmployeeMenu.fxml");
-       // if(UsernameBox.getText().toString().equals("Channi")){
-           // buttonLogin.setStyle("-fx-background-color: #f4d3d3");
-       //}
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("EmployeeMenu.fxml");
+        // if (UsernameBox.getText().toString().equals("Channi")) {
+        // buttonLogin.setStyle("-fx-background-color: #f4d3d3");
+        //}
     }
 
     @FXML
-    private void LoginHoverIn(){
+    private void LoginHoverIn() {
         buttonLogin.setStyle("-fx-background-color: #4bacf7;");
     }
 
     @FXML
-    private void LoginHoverOut(){
+    private void LoginHoverOut() {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
     }
 
@@ -123,17 +122,20 @@ public class LoginScreenEmployeeController implements Initializable {
     }
 
     @FXML
-    private void CancelHoverIn(){
+    private void CancelHoverIn() {
         buttonCancel.setStyle("-fx-background-color: #fc4a7f;");
     }
+
     @FXML
-    private void CancelHoverOut(){
+    private void CancelHoverOut() {
         buttonCancel.setStyle("-fx-background-color: #ed2762;");
     }
+
     @FXML
-    private void ForgotPasswordHoverIn(){
+    private void ForgotPasswordHoverIn() {
         ForgottenPassword.setUnderline(true);
     }
+
     @FXML
     private void ForgotPasswordHoverOut() {
         ForgottenPassword.setUnderline(false);

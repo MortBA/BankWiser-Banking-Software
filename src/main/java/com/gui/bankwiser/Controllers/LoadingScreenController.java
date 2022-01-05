@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class to perform functionalities for Home screen also called 'Loading screen'.
+ *
  * @author Chanisra
  */
 
@@ -25,16 +26,16 @@ public class LoadingScreenController implements Initializable {
 
     /**
      * The method initializes necessary transition and animation effects for the screen.
+     *
      * @param url
      * @param resourceBundle
      */
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-        PauseTransition Pause             = new PauseTransition(Duration.millis(1000));
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        PauseTransition Pause = new PauseTransition(Duration.millis(1000));
         TranslateTransition translateLogo = new TranslateTransition();
-        TranslateTransition translateBox  = new TranslateTransition();
-        FadeTransition fadeBox            = new FadeTransition();
+        TranslateTransition translateBox = new TranslateTransition();
+        FadeTransition fadeBox = new FadeTransition();
 
         ParallelTransition transition = new ParallelTransition(translateLogo, translateBox, fadeBox);
 
@@ -63,7 +64,7 @@ public class LoadingScreenController implements Initializable {
             BankWiserApp app = new BankWiserApp();
             try {
                 app.changeScene("LoginScreen.fxml");
-            }catch (Exception exception){
+            } catch (Exception exception) {
                 exception.printStackTrace();
             }
         });

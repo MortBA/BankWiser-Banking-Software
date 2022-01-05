@@ -2,23 +2,11 @@ package com.gui.bankwiser.Controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import com.logic.bankwiser.bank_accounts.BankAccount;
-import com.logic.bankwiser.transactions.Transaction;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldListCell;
-import javafx.util.Callback;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.time.LocalDate;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class EmployeeMenuController {
 
@@ -37,34 +25,34 @@ public class EmployeeMenuController {
     @FXML
     private MenuButton customerRequests;
 
-        @FXML
-        private Label logOut;
+    @FXML
+    private Label logOut;
 
-        @FXML
-        private Button viewRequestButton;
+    @FXML
+    private Button viewRequestButton;
 
-        @FXML
-        private Button loanApprovalReq;
+    @FXML
+    private Button loanApprovalReq;
 
-        @FXML
-        private Button reportError;
+    @FXML
+    private Button reportError;
 
-        @FXML
-        private Button creditCardReq;
+    @FXML
+    private Button creditCardReq;
 
-        @FXML
-        private Label requestLabel;
+    @FXML
+    private Label requestLabel;
 
-        @FXML
-        private Button userAccountReq;
+    @FXML
+    private Button userAccountReq;
 
-        @FXML
-        private ListView<String> requestList;
+    @FXML
+    private ListView<String> requestList;
 
-        @FXML
-        private TextArea textArea;
+    @FXML
+    private TextArea textArea;
 
-        private BankAccount BAcc;
+    private BankAccount BAcc;
 
     /*@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,52 +76,53 @@ public class EmployeeMenuController {
 
      */
 
-        @FXML
-        private void logOutHoverIn(){
-            logOut.setUnderline(true);
-        }
+    @FXML
+    private void logOutHoverIn() {
+        logOut.setUnderline(true);
+    }
 
-        @FXML
-        private void logOutHoverOut() {
-            logOut.setUnderline(false);
-        }
+    @FXML
+    private void logOutHoverOut() {
+        logOut.setUnderline(false);
+    }
 
-        @FXML
-        public void logOutClick() throws IOException {
-            BankWiserApp app = new BankWiserApp();
-            app.changeScene("LoginScreenEmployee.fxml");
-        }
-        @FXML
-        public void onUserAccReqClicked() throws IOException{
-            new BankWiserApp().changeScene("EMuserAccountReq.fxml");
-        }
+    @FXML
+    public void logOutClick() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("LoginScreenEmployee.fxml");
+    }
 
-        @FXML
-        public void onReportErrorClicked() throws IOException{
-            BankWiserApp app = new BankWiserApp();
-            app.changeScene("EMreportError.fxml");
-        }
+    @FXML
+    public void onUserAccReqClicked() throws IOException {
+        new BankWiserApp().changeScene("EMuserAccountReq.fxml");
+    }
 
-        @FXML
-        public void onSubmitErrorClick() throws IOException{
-            Alert alertBox = new Alert(Alert.AlertType.INFORMATION);
-            alertBox.setContentText("Thank you for reporting the error. We will try to fix it");
-            alertBox.setTitle("Error sent");
-            Optional <ButtonType> result = alertBox.showAndWait();
-            if(result.get() == ButtonType.OK){
-                BankWiserApp app = new BankWiserApp();
-                app.changeScene("EmployeeMenu.fxml");
-            }
-        }
+    @FXML
+    public void onReportErrorClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("EMreportError.fxml");
+    }
 
-        @FXML
-        public void onCancelErrorClick() throws IOException{
+    @FXML
+    public void onSubmitErrorClick() throws IOException {
+        Alert alertBox = new Alert(Alert.AlertType.INFORMATION);
+        alertBox.setContentText("Thank you for reporting the error. We will try to fix it");
+        alertBox.setTitle("Error sent");
+        Optional<ButtonType> result = alertBox.showAndWait();
+        if (result.get() == ButtonType.OK) {
             BankWiserApp app = new BankWiserApp();
             app.changeScene("EmployeeMenu.fxml");
         }
+    }
 
-        String[] requests = {"Pizza", "Sushi", "Ramen"};
-        String currentRequest;
+    @FXML
+    public void onCancelErrorClick() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("EmployeeMenu.fxml");
+    }
+
+    String[] requests = {"Pizza", "Sushi", "Ramen"};
+    String currentRequest;
 
 
        /* @Override

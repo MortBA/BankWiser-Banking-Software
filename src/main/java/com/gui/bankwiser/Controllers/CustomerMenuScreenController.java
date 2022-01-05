@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -16,6 +15,7 @@ import java.io.IOException;
 
 /**
  * Controller class for performing all functionalities of 'Customer Menu' screen
+ *
  * @author Chanisra
  */
 
@@ -48,57 +48,60 @@ public class CustomerMenuScreenController {
     @FXML
     private Button buttonLogOut;
 
-    @FXML public Stage stg = new Stage();
-    @FXML public Stage stg2 = new Stage();
+    @FXML
+    public Stage stg = new Stage();
+
+    @FXML
+    public Stage stg2 = new Stage();
 
     /**
-     *
      * Initializes new stages to delete user account and bank account.
      * Both stages have initModality functionality.
-     * @author Sejal
+     *
      * @param
+     * @author Sejal
      */
     @FXML
     private void initialize() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
-        try{
+        try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg.setScene(scene);
             stg.initModality(Modality.APPLICATION_MODAL);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
-        try{
+        try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stg2.setScene(scene);
             stg2.initModality(Modality.APPLICATION_MODAL);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
      * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
-     * @author Sejal
+     *
      * @throws IOException
+     * @author Sejal
      */
-
     @FXML
-    public void onDeleteUserAccountClicked() throws IOException{
+    public void onDeleteUserAccountClicked() throws IOException {
         stg.showAndWait();
     }
 
     /**
      * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
+     *
      * @throws IOException
      */
-
     @FXML
-    public void onDeleteBankAccountClicked() throws IOException{
+    public void onDeleteBankAccountClicked() throws IOException {
         stg2.showAndWait();
     }
 
@@ -109,7 +112,7 @@ public class CustomerMenuScreenController {
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException{
+    public void onLogOutClicked() throws IOException {
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
@@ -132,13 +135,13 @@ public class CustomerMenuScreenController {
     }
 
     @FXML
-    void onTransactionHistoryClicked() throws Exception{
+    void onTransactionHistoryClicked() throws Exception {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
     //Todo loan screen
     @FXML
-    void onLoansClicked() throws Exception{
+    void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("");
     }
 }

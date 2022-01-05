@@ -1,5 +1,3 @@
-// Regular tests for Epic Feature 4
-
 package com.logic.bankwiser.facade;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -7,6 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+/**
+ * Regular tests for Epic Feature 4
+ *
+ * @author Daniel Dovhun
+ * @author Mathias Hallander
+ */
 public class Epic4RegularTests {
     static Facade facade;
 

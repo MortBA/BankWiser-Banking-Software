@@ -19,3 +19,4 @@ target/
 *.class
 # Excplicit files
 DIT094_Group9.iml
+/git_toolbox_prj.xml

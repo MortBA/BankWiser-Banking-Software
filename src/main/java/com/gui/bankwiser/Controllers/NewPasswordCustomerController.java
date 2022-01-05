@@ -2,17 +2,20 @@ package com.gui.bankwiser.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.Optional;
 
 /**
- *
  * Controller class to perform functionality for 'New password' screen for Customer.
+ *
  * @author Sejal
  */
-
 public class NewPasswordCustomerController {
 
     @FXML
@@ -28,12 +31,11 @@ public class NewPasswordCustomerController {
     private PasswordField confirmNewPass;
 
     /**
-     *
      * The method displays a confirmation alert box when the confirm button on new password screen is clicked.
      * The box notifies user that new password is set successfully.
+     *
      * @throws IOException
      */
-
     @FXML
     private void onConfirmNewPasswordClicked() throws IOException {
         Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
@@ -46,9 +48,9 @@ public class NewPasswordCustomerController {
 
     /**
      * The method closes the new password screen when cancel button on the screen is clicked.
+     *
      * @param event
      */
-
     @FXML
     public void handleCloseNewPasswordAction(ActionEvent event) {
         Stage stage = (Stage) cancelNewPassword.getScene().getWindow();
