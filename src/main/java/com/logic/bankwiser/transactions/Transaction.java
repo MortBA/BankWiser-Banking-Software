@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- *
- *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
@@ -21,7 +19,7 @@ public final class Transaction {
     private final BigDecimal BALANCE_AFTER_TRANSACTION;
 
     public Transaction(String transactionID, String bankAccountID, BigDecimal moneyTransferred,
-                 String note, LocalDateTime transactionDate, BigDecimal balanceAfterTransaction) {
+                       String note, LocalDateTime transactionDate, BigDecimal balanceAfterTransaction) {
         String TRANSACTION_IDENTIFIER = "T";
         this.TRANSACTION_ID = bankAccountID + TRANSACTION_IDENTIFIER + transactionID;
         this.BANK_ACCOUNT_ID = bankAccountID;

@@ -12,7 +12,7 @@ public class HomeLoan extends Loan {
     private final int PROPERTY_FLOORS;
 
     public HomeLoan(BankAccount bankAccount, String loanID, double loanAmount, int loanDuration, String propertyAddress, String propertyType,
-        double propertySize, int propertyFloor) {
+                    double propertySize, int propertyFloor) {
         super(bankAccount, loanID, loanAmount, loanDuration);
         this.PROPERTY_ADDRESS = propertyAddress;
         this.PROPERTY_TYPE = propertyType;
@@ -21,23 +21,23 @@ public class HomeLoan extends Loan {
         setInterestRate(HOME_LOAN_INTEREST_RATE);
     }
 
-    public double getHomeLoanInterestRate () {
+    public double getHomeLoanInterestRate() {
         return HOME_LOAN_INTEREST_RATE;
     }
 
-    public String getPropertyAddress () {
+    public String getPropertyAddress() {
         return PROPERTY_ADDRESS;
     }
 
-    public String getPropertyType () {
+    public String getPropertyType() {
         return PROPERTY_TYPE;
     }
 
-    public double getPropertySize () {
+    public double getPropertySize() {
         return PROPERTY_SIZE;
     }
 
-    public int getPropertyFloors () {
+    public int getPropertyFloors() {
         return PROPERTY_FLOORS;
     }
 }

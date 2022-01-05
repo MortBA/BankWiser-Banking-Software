@@ -32,7 +32,7 @@ public class DebitCard {
     /**
      * Logic contained sets values to other attributes not set by the user
      *
-     * @param pin     pin is set by the user after it has been checked in controller
+     * @param pin pin is set by the user after it has been checked in controller
      */
     public DebitCard(BankAccount bankAccount, int pin) { //BankAccount
 
@@ -40,8 +40,8 @@ public class DebitCard {
         int cardNumberMax = 9999999;
 
         Random cardNumberRand = new Random();
-        String cardNumber = "" + cardNumberRand.nextInt((cardNumberMax-cardNumberMin) + 1) + cardNumberMin;
-        cardNumber = cardNumber + "" + cardNumberRand.nextInt((cardNumberMax-cardNumberMin) + 1) + cardNumberMin;
+        String cardNumber = "" + cardNumberRand.nextInt((cardNumberMax - cardNumberMin) + 1) + cardNumberMin;
+        cardNumber = cardNumber + "" + cardNumberRand.nextInt((cardNumberMax - cardNumberMin) + 1) + cardNumberMin;
 
         int CCVMin = 0;
         int CCVMax = 999;
@@ -141,7 +141,7 @@ public class DebitCard {
     public void setExpenditureMax(double expenditureMax) {
         this.expenditureMax = expenditureMax;
     }
-    
+
     public void setYearlyPaymentDate(LocalDateTime yearlyPaymentDate) {
         this.yearlyPaymentDate = yearlyPaymentDate.truncatedTo(ChronoUnit.SECONDS).toString();
     }

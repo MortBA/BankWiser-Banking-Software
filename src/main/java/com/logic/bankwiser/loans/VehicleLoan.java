@@ -22,7 +22,7 @@ public class VehicleLoan extends Loan {
         return this.VEHICLE_LOAN_INTEREST_RATE;
     }
 
-    public String getTypeOfFuel(){
+    public String getTypeOfFuel() {
         return TYPE_OF_FUEL;
     }
 

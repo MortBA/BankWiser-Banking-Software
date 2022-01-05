@@ -11,7 +11,9 @@ import com.logic.bankwiser.loans.PersonalLoan;
 import com.logic.bankwiser.loans.VehicleLoan;
 import com.logic.bankwiser.transactions.Transaction;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,12 +27,11 @@ import java.util.*;
  * The system uses a series of "stores" and "retrievers" to facilitate the storage of all relevant information.
  * All storage methods utilize HashSets in order to guarantee that no duplicates exist in storage, as well
  * as facilitating the ability for individual objects to be overwritten if a change has been made.
- *
+ * <p>
  * Due to the limitations imposed by exclusively using JSON and text files, and the lack of a database,
  * there are more IO calls than would normally occur in a program like this. Although the function of overwriting
  * individual objects works exactly as written, it still requires that the entire file is both read and rewritten
  * in its entirety. This will have performance implications down the line, unless a database solution is implemented.
- *
  *
  * @author Burak Askan
  * @author Kevin Collins

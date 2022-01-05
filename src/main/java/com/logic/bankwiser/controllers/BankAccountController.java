@@ -7,8 +7,6 @@ import com.logic.bankwiser.utils.MathUtils;
 import java.util.UUID;
 
 /**
- *
- *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
@@ -23,10 +21,11 @@ public class BankAccountController {
 
     /**
      * The method handles bank account creation and links it to the appropriate user account.
+     *
      * @param UserID
      * @param bankAccountName
-     * @return  A string that confirms bank account creation or an input error that
-     *          informs the user of an invalid bank account name.
+     * @return A string that confirms bank account creation or an input error that
+     * informs the user of an invalid bank account name.
      */
     public String createBankAccount(UUID UserID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
@@ -46,10 +45,11 @@ public class BankAccountController {
 
     /**
      * The method allows the user to rename the selected bank account.
+     *
      * @param bankAccountID
      * @param bankAccountName
-     * @return  A string that either confirms the bank account being renamed or
-     *          informs the user that the bank account could not be renamed.
+     * @return A string that either confirms the bank account being renamed or
+     * informs the user that the bank account could not be renamed.
      */
     public String renameBankAccount(String bankAccountID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();

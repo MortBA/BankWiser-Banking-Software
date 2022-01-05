@@ -1,4 +1,5 @@
 package com.logic.bankwiser.cards;
+
 import com.logic.bankwiser.bank_accounts.BankAccount;
 
 import java.math.BigDecimal;
@@ -19,8 +20,8 @@ public class CreditCard extends DebitCard {
     String monthlyPaymentDate;
 
     /**
-     * @param pin           pin is set as given by user
-     * @param maxCredit     max credit in which the credit-card has is calculated in controller and set in constructor
+     * @param pin       pin is set as given by user
+     * @param maxCredit max credit in which the credit-card has is calculated in controller and set in constructor
      */
     public CreditCard(BankAccount bankAccount, int pin, BigDecimal maxCredit) {
 

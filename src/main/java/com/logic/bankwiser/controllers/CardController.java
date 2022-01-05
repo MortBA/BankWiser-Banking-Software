@@ -5,9 +5,9 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.cards.CreditCard;
 import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
+import javafx.util.Pair;
 
 import java.math.BigDecimal;
-import javafx.util.Pair;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -32,9 +32,9 @@ public class CardController {
     /**
      * Adding a credit card into list in storage
      *
-     * @param pin                 pin password for cards set by the user.
-     * @param monthlyIncome       income of the user to assess size of credit.
-     * @param monthlyExpenses     expenses of the user to assess size of credit.
+     * @param pin             pin password for cards set by the user.
+     * @param monthlyIncome   income of the user to assess size of credit.
+     * @param monthlyExpenses expenses of the user to assess size of credit.
      * @return affirmative or negative string.
      */
     public String addCard(BankAccount bankAccount, int pin, double monthlyIncome, double monthlyExpenses) {
@@ -76,8 +76,8 @@ public class CardController {
     /**
      * Assess eligibility of the user and calculation of max credit (creditCards).
      *
-     * @param monthlyIncome       Total income, after tax, the user has
-     * @param monthlyExpenses     Total fixed monthly payments and expenses that the user has
+     * @param monthlyIncome   Total income, after tax, the user has
+     * @param monthlyExpenses Total fixed monthly payments and expenses that the user has
      * @return A boolean if they are eligible for a creditCard, a BigDecimal for credit value
      */
     public Pair<Boolean, BigDecimal> calculateCredit(double monthlyIncome, double monthlyExpenses) {
@@ -94,9 +94,8 @@ public class CardController {
     /**
      * Checks if given pin is legal
      *
-     * @param pin     pin selected by the user
+     * @param pin pin selected by the user
      * @return affirmative or negative string and boolean
-     *
      */
     public Pair<Boolean, String> createPasswordCheck(int pin) {
         String pinString = String.valueOf(pin);
@@ -145,7 +144,6 @@ public class CardController {
         }
         return new Pair<>(acceptablePassword, failCause);
     }
-
 
 
     /**
@@ -197,7 +195,7 @@ public class CardController {
     /**
      * Status of card being frozen or unfrozen
      *
-     * @param cardNumber     cardNumber of the card that will be modified
+     * @param cardNumber cardNumber of the card that will be modified
      * @return affirmative or negative string.
      */
     public String modifyStatus(BankAccount bankAccount, String cardNumber) {
@@ -215,8 +213,8 @@ public class CardController {
     /**
      * Changing the region in which the card can be used in
      *
-     * @param cardNumber     cardNumber of the card that will be modified
-     * @param region         the new region that the user want the card to be locked to
+     * @param cardNumber cardNumber of the card that will be modified
+     * @param region     the new region that the user want the card to be locked to
      * @return affirmative or negative string.
      */
     public String modifyRegion(BankAccount bankAccount, String cardNumber, String region) {
@@ -230,27 +228,27 @@ public class CardController {
     /**
      * modifying if the card will be usable for online purchases
      *
-     * @param cardNumber       cardNumber of the card that will be modified
+     * @param cardNumber cardNumber of the card that will be modified
      * @return affirmative or negative string.
      */
     public String modifyOnlineStatus(BankAccount bankAccount, String cardNumber) {
-            if (bankAccount.getCard(cardNumber) != null) {
-                if (bankAccount.getCard(cardNumber).getOnlineStatus()) {
-                    bankAccount.getCard(cardNumber).setOnlineStatus(false);
-                    return "You successfully turned off online transactions.";
-                } else {
-                    bankAccount.getCard(cardNumber).setOnlineStatus(true);
-                    return "You successfully turned on online transactions.";
-                }
+        if (bankAccount.getCard(cardNumber) != null) {
+            if (bankAccount.getCard(cardNumber).getOnlineStatus()) {
+                bankAccount.getCard(cardNumber).setOnlineStatus(false);
+                return "You successfully turned off online transactions.";
+            } else {
+                bankAccount.getCard(cardNumber).setOnlineStatus(true);
+                return "You successfully turned on online transactions.";
             }
+        }
         return "Invalid input: Given card number does not exist!";
     }
 
     /**
      * modifying the limit on how much the card can send in total
      *
-     * @param cardNumber         cardNumber of the card that will be modified
-     * @param expenditureMax     the new maximum set on expenditure on the card
+     * @param cardNumber     cardNumber of the card that will be modified
+     * @param expenditureMax the new maximum set on expenditure on the card
      * @return affirmative or negative string.
      */
     public String modifyExpenditureMax(BankAccount bankAccount, String cardNumber, double expenditureMax) {
@@ -269,8 +267,8 @@ public class CardController {
     /**
      * Reminds the user in how many days the card will expire
      *
-     * @param cardNumber    cardNumber of the card that will be reminded
-     * @param user        the user that will receive the reminder
+     * @param cardNumber cardNumber of the card that will be reminded
+     * @param user       the user that will receive the reminder
      * @return string containing reminder of expiration coming close or card has already expired
      */
     public String remainderDays(BankAccount bankAccount, String cardNumber, UserAccount user) { //Calculates remaining days until expiration
@@ -280,20 +278,20 @@ public class CardController {
         long remainderDays = ChronoUnit.DAYS.between(dateToday, expirationDate);
 
         if (remainderDays < 0) {
-            return "The card "+cardNumber+" expired and was terminated.";
+            return "The card " + cardNumber + " expired and was terminated.";
         } else if (remainderDays < 14) {
-            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then. We have sent you a new one to "+user.getAddress()+".";
+            return "Your card" + cardNumber + " will expire in " + remainderDays + " days and will be terminated then. We have sent you a new one to " + user.getAddress() + ".";
         } else {
-            return "Your card"+ cardNumber+" will expire in "+remainderDays+" days and will be terminated then.";
+            return "Your card" + cardNumber + " will expire in " + remainderDays + " days and will be terminated then.";
         }
     }
 
     /**
      * removes a card from existence within the system
      *
-     * @param cardNumber               the number of the card that will get deleted
-     * @param pin                      the correct pin of the card
-     * @param terminationReasoning     string with reasoning of termination
+     * @param cardNumber           the number of the card that will get deleted
+     * @param pin                  the correct pin of the card
+     * @param terminationReasoning string with reasoning of termination
      * @return affirmative or negative string.
      */
     public String deleteCard(BankAccount bankAccount, String cardNumber, int pin, String terminationReasoning) {
@@ -314,10 +312,10 @@ public class CardController {
     /**
      * changes the pin of the card
      *
-     * @param cardNumber             the card that will have the pin modified
-     * @param oldPin                 current pin of the card
-     * @param newPin                 the new pin the user want to change the old pin into
-     * @param newPinConfirmation     same pin as newpin for confirmation
+     * @param cardNumber         the card that will have the pin modified
+     * @param oldPin             current pin of the card
+     * @param newPin             the new pin the user want to change the old pin into
+     * @param newPinConfirmation same pin as newpin for confirmation
      * @return affirmative or negative string.
      */
     public String resetPin(BankAccount bankAccount, String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
@@ -344,8 +342,8 @@ public class CardController {
     /**
      * checks if given pin is correct
      *
-     * @param cardNumber = Number of the card that is getting pin checked
-     * @param pin = the pin that user entered with that pin
+     * @param cardNumber Number of the card that is getting pin checked
+     * @param pin        the pin that user entered with that pin
      * @return boolean if the pin entered was correct ot not
      */
 

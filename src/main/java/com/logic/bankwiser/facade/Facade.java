@@ -1,7 +1,6 @@
 package com.logic.bankwiser.facade;
 
 import com.logic.bankwiser.accounts.UserAccount;
-import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
 
@@ -42,8 +41,8 @@ public class Facade {
     /**
      * Attempts a user login with user details.
      *
-     * @param username  the users' username
-     * @param password  the users' password
+     * @param username the users' username
+     * @param password the users' password
      * @return String confirmation of successful login or failure
      */
     public String userLogin(String username, String password) {
@@ -54,9 +53,9 @@ public class Facade {
     /**
      * Creates a user account based on the inputted parameters.
      *
-     * @param password              the users' password which has to be smaller than 16 characters
-     * @param confirmPwd            the users' password repeated for confirmation
-     * @param socialSecurityNumber  the users' social security number
+     * @param password             the users' password which has to be smaller than 16 characters
+     * @param confirmPwd           the users' password repeated for confirmation
+     * @param socialSecurityNumber the users' social security number
      * @return String confirmation of user creation or failure.
      */
     public String createUserAccount(String email, String fullName, String password, String confirmPwd,
@@ -81,7 +80,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param userAccount Users' UUID
      * @param accountName Name of bank account
      * @return success message
@@ -92,6 +90,7 @@ public class Facade {
 
     /**
      * Deletes a bank account
+     *
      * @param accountId
      * @return
      */
@@ -101,6 +100,7 @@ public class Facade {
 
     /**
      * Retrieves information about a bank account
+     *
      * @param accountName
      * @return
      */
@@ -112,6 +112,7 @@ public class Facade {
 
     /**
      * Shows pending requests
+     *
      * @return
      */
     public ArrayList<String> pendingRequests() {
@@ -121,7 +122,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param clerkId
      * @param username
      * @param newPwd
@@ -133,7 +133,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param sender
      * @param receiver
      * @param note
@@ -145,7 +144,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param bankAccountID
      * @return
      */
@@ -154,7 +152,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param username
      * @param amount
      * @return
@@ -164,7 +161,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param monthlyIncome
      * @param monthlyExpenses
      * @param liabilities
@@ -177,7 +173,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param monthlyIncome
      * @param monthlyExpenses
      * @param propertyPrice
@@ -196,7 +191,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param monthlyIncome
      * @param monthlyExpenses
      * @param millage
@@ -213,7 +207,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param monthlyIncome
      * @param duration
      * @return
@@ -223,7 +216,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param loanType
      * @return
      */
@@ -232,7 +224,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param username
      * @param fullName
      * @param reason
@@ -244,7 +235,6 @@ public class Facade {
     }
 
     /**
-     *
      * @return
      */
     public String createCreditCard() {
@@ -253,7 +243,6 @@ public class Facade {
     }
 
     /**
-     *
      * @return
      */
     public String createDebitCard() {
@@ -262,7 +251,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param cardNumber
      * @return
      */
@@ -272,7 +260,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param cardNumber
      * @return
      */
@@ -282,7 +269,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param newLimit
      * @return
      */
@@ -292,7 +278,6 @@ public class Facade {
     }
 
     /**
-     *
      * @return
      */
     public String blockOnlineTransactions(String cardNumber) {
@@ -301,7 +286,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param cardNumber
      * @param reason
      * @param pin
@@ -312,7 +296,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param cardNumber
      * @param expirationDate
      * @param CVV
@@ -325,7 +308,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param customerName
      * @param username
      * @return
@@ -337,7 +319,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param cardNumber
      * @param oldPin
      * @param newPin
@@ -346,11 +327,10 @@ public class Facade {
      */
     //String username removed, not in requirements?
     public String changePin(String bankAccountID, String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
-        return cardController.resetPin(storage.getBankAccount(bankAccountID), cardNumber, oldPin, newPin, newPinConfirmation) ;
+        return cardController.resetPin(storage.getBankAccount(bankAccountID), cardNumber, oldPin, newPin, newPinConfirmation);
     }
 
     /**
-     *
      * @param accountName
      * @param amount
      * @return
@@ -360,7 +340,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param userName
      * @param bankAccount
      * @return
@@ -372,7 +351,6 @@ public class Facade {
     }
 
     /**
-     *
      * @param userName
      * @return
      */

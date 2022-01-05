@@ -2,16 +2,14 @@ package com.logic.bankwiser.controllers;
 
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
-import com.logic.bankwiser.loans.Loan;
 import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
 
 import java.math.BigDecimal;
-import java.util.Random;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
- *
  * @author Kevin Collins
  */
 public class UserAccountController {
@@ -52,8 +50,8 @@ public class UserAccountController {
     public String loginUser(String email, String password) {
         StringBuilder sb = new StringBuilder();
         for (UserAccount userAccount : storage.getUserAccountMap().values()) {
-            if (email == userAccount.getEmailID()){
-                if (password == userAccount.getPassword()) {
+            if (Objects.equals(email, userAccount.getEmailID())) {
+                if (Objects.equals(password, userAccount.getPassword())) {
                     sb.append("Successfully logged in");
                 } else {
                     sb.append("Password is incorrect.");
@@ -68,7 +66,7 @@ public class UserAccountController {
     public Pair<UserAccount, String> processDeleteUserAccountRequest(UserAccount userAccount) {
         StringBuilder sb = new StringBuilder();
 
-        while (sb.isEmpty()){
+        while (sb.isEmpty()) {
             for (String bankAccountID : userAccount.getBankAccountList()) {
                 BankAccount bankAccount = storage.getBankAccount(bankAccountID);
                 if (bankAccount.getBalance().compareTo(BigDecimal.ZERO) > 0) {

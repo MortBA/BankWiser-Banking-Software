@@ -1,7 +1,5 @@
 package com.logic.bankwiser.loans;
 
-import java.time.LocalDate;
-
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.utils.Input;
 
@@ -63,13 +61,21 @@ public abstract class Loan {
         return status;
     }
 
-    public LocalDateTime getCreationDate() {return LocalDateTime.parse(this.CREATION_DATE);}
+    public LocalDateTime getCreationDate() {
+        return LocalDateTime.parse(this.CREATION_DATE);
+    }
 
-    public LocalDateTime getLastRepaymentDate() {return LocalDateTime.parse(this.lastRepaymentDate);}
+    public LocalDateTime getLastRepaymentDate() {
+        return LocalDateTime.parse(this.lastRepaymentDate);
+    }
 
-    public void setInterestRate(double interestRate) {this.interestRate = interestRate;}
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
 
-    public void setLastRepaymentDate(LocalDateTime lastRepaymentDate) {this.lastRepaymentDate = lastRepaymentDate.truncatedTo(ChronoUnit.SECONDS).toString();}
+    public void setLastRepaymentDate(LocalDateTime lastRepaymentDate) {
+        this.lastRepaymentDate = lastRepaymentDate.truncatedTo(ChronoUnit.SECONDS).toString();
+    }
 
     public void setStatus(String status) {
         this.status = status;
@@ -77,7 +83,7 @@ public abstract class Loan {
 
     @Override
     public String toString() {
-        return  "Loan id: " + this.LOAN_ID + Input.EOL +
+        return "Loan id: " + this.LOAN_ID + Input.EOL +
                 "Bank account id: " + this.BANK_ACCOUNT_ID + Input.EOL +
                 "Loan amount: " + this.LOAN_AMOUNT + Input.EOL +
                 "Loan interest: " + this.interestRate + Input.EOL +
