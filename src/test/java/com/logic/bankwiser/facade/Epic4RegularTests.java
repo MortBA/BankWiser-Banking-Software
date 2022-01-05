@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Regular tests for Epic Feature 4
+ * Regular tests for Epic Feature 4.
  *
  * @author Daniel Dovhun
  * @author Mathias Hallander
@@ -21,14 +21,6 @@ public class Epic4RegularTests {
         facade.loanApplication("john.doe@fictmail.com", 200000);
         facade.loanApplication("john.doe@fictmail.com", 3000000);
         facade.loanApplication("mary.jane@fictmail.com", 5000000);
-    }
-
-    @Test
-    public void pendingRequestsTest() {
-        String expectedValue = "[200000 SEK from ohn.doe@fictmail.com, 3000000 SEK from john.doe@fictmail.com, 5000000 SEK from mary.jane@fictmail.com]";
-        String actualValue = facade.pendingRequests().toString();
-
-        assertEquals(expectedValue, actualValue);
     }
 
     @Test

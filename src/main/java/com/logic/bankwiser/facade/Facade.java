@@ -5,6 +5,7 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -20,11 +21,11 @@ public class Facade {
 //TODO: return types for all methods need to be updated -MH
 
     protected Storage storage;
-    private UserAccountController userAccountController;
-    private BankAccountController bankAccountController;
-    private TransactionController transactionController;
-    private CardController cardController;
-    private LoanController loanController;
+    private final UserAccountController userAccountController;
+    private final BankAccountController bankAccountController;
+    private final TransactionController transactionController;
+    private final CardController cardController;
+    private final LoanController loanController;
 
     private static Facade facade_instance = null;
     UserAccount activeUser;
@@ -49,17 +50,21 @@ public class Facade {
     }
 
     /**
-     * The method {@link #getInstance(), getInstance} is crucial to how the Singleton pattern works.
+     * This method is crucial to how the Singleton pattern works.
      * When the frontend wants to communicate with the backend, it will go through the Facade by calling this method.
      * This ensures that the same instance of Facade, and by extension Storage, is always used.
      * In return, data loss is minimised and the application can run as expected.
      * @return The one and only instance of Facade that is ever used when operating the application.
      */
-    public static Facade getInstance(){
-        if (facade_instance == null){
+    public static Facade getInstance() {
+        if (facade_instance == null) {
             facade_instance = new Facade();
         }
         return facade_instance;
+    }
+
+    public void storeAll() throws IOException {
+        storage.storeAll();
     }
 
     /**
@@ -157,21 +162,8 @@ public class Facade {
      * @param accountName     the name of the bank account
      * @return
      */
-    public HashMap<String, Double> bankAccountInformation(String accountName) {
-        HashMap<String, Double> info = new HashMap<>();
-
-        return info;
-    }
-
-    /**
-     * Shows pending requests
-     *
-     * @return A pending request
-     */
-    public ArrayList<String> pendingRequests() {
-        ArrayList<String> requests = new ArrayList<>();
-
-        return requests;
+    public String bankAccountInformation(String accountName) {
+        return activeBankAccount.toString();
     }
 
     /**
@@ -226,13 +218,13 @@ public class Facade {
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
-     * @param liabilities         the total liabilities
+     * @param desiredLoanAmount   total loan amount
      * @param duration            the length of time for repayment
+     * @param note                Personal note
      * @return confirmation of loan acceptation or rejection.
      */
-    public String personalLoanApplication(double monthlyIncome, double monthlyExpenses,
-                                          String liabilities, int duration) {
-        return "";
+    public String personalLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int duration, String note) {
+        return loanController.personalLoanApplication(activeUser, activeUser.getBankAccountList().get(0), monthlyIncome, monthlyExpenses, desiredLoanAmount, duration, note);
     }
 
     /**
@@ -309,7 +301,7 @@ public class Facade {
 
     /**
      * Creates the credit card
-     * @param //pin input give in by the user as their card code
+     * @param pin input give in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
     public String createCreditCard(int pin) {
@@ -318,7 +310,7 @@ public class Facade {
 
     /**
      * Creates the debit card
-     * @param //pin input given in by the user as their card code
+     * @param pin input given in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
     public String createDebitCard(int pin) {
@@ -417,26 +409,5 @@ public class Facade {
      */
     public String depositMoney(String accountName, double amount) {
         return "";
-    }
-
-    /**
-     * @param userName
-     * @param bankAccount
-     * @return
-     */
-    public ArrayList<String> getAccountInfo(String userName, String bankAccount) {
-        ArrayList<String> history = new ArrayList<String>();
-
-        return history;
-    }
-
-    /**
-     * @param userName
-     * @return
-     */
-    public HashMap<String, Double> getUserAccountsInfo(String userName) {
-        HashMap<String, Double> info = new HashMap<String, Double>();
-
-        return info;
     }
 }

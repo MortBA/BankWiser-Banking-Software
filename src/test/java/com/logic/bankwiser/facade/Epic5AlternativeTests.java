@@ -38,10 +38,10 @@ public class Epic5AlternativeTests {
     }
 
     /**
-     * Expected value 1: “Cannot transfer: {sender} was not found.“
-     * Expected value 2: “Cannot transfer: {receiver} was not found.”
-     * Expected value 3: “Cannot transfer: Only enter positive numbers.”
-     * Expected value 4: “The sender field shouldn’t be left blank.”
+     * Expected value 1: "Cannot transfer: {sender} was not found."
+     * Expected value 2: "Cannot transfer: {receiver} was not found."
+     * Expected value 3: "Cannot transfer: Only enter positive numbers."
+     * Expected value 4: "The sender field shouldn’t be left blank."
      * Expected value 5: "The receiver field shouldn't be left blank."
      * Expected value 6: "The amount field shouldn't be left blank."
      */
@@ -58,7 +58,7 @@ public class Epic5AlternativeTests {
     }
 
     /**
-     * Expected value: “No previous transaction history.”
+     * Expected value: "No previous transaction history."
      */
     @Test
     public void shouldPrintErrorWhenNoTransactionHistory() {

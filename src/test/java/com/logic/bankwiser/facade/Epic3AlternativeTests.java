@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Alternative tests for epic feature 3
+ * Alternative tests for Epic Feature 3
  *
  * @author Daniel Dovhun
  * @author Mathias Hallander

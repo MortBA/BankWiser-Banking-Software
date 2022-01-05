@@ -36,8 +36,8 @@ public class Epic7RegularTests {
     }
 
     /**
-     * Expected value 1: “Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.”
-     * Expected value 2: “Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation.”
+     * Expected value 1: "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon."
+     * Expected value 2: "Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation."
      */
     @Test
     public void shouldCreateCard() {
@@ -51,11 +51,11 @@ public class Epic7RegularTests {
     }
 
     /**
-     * Expected value 1: “Your card has been successfully blocked.”
-     * Expected value 2: “Your card has been successfully unblocked.”
-     * Expected value 4: “You successfully turned on online transactions.”
-     * Expected value 5: “You successfully turned off online transactions.”
-     * Expected value 6: “You successfully changed your spending limit from {originalLimit} to {newLimit}.”
+     * Expected value 1: "Your card has been successfully blocked."
+     * Expected value 2: "Your card has been successfully unblocked."
+     * Expected value 4: "You successfully turned on online transactions."
+     * Expected value 5: "You successfully turned off online transactions."
+     * Expected value 6: "You successfully changed your spending limit from {originalLimit} to {newLimit}."
      */
     @Test
     public void shouldModifyCard() {
@@ -83,7 +83,7 @@ public class Epic7RegularTests {
     }
 
     /**
-     * Expected value: “Your card has been successfully terminated.”
+     * Expected value: "Your card has been successfully terminated."
      */
     @Test
     public void shouldDeleteCard() {
@@ -94,7 +94,7 @@ public class Epic7RegularTests {
     }
 
     /**
-     * Expected value: “Successfully changed PIN code”
+     * Expected value: "Successfully changed PIN code"
      */
     @Test
     public void shouldModifyPIN() {

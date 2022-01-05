@@ -46,6 +46,9 @@ public class Storage {
     private final List<String> errorReportList;
     protected final Gson gson;
 
+    /**
+     * Constructor for the Storage branches
+     */
     public Storage() {
         userAccountMap = new HashMap<>();
         userEmailMap = new HashMap<>();
@@ -92,11 +95,21 @@ public class Storage {
 
     public void addBankAccount(String bankAccountID, BankAccount bankAccount) {
         bankAccountMap.put(bankAccountID, bankAccount);
+        try {
+            storeBankAccounts(bankAccount);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addUserAccount(UUID userAccountID, UserAccount userAccount) {
         userAccountMap.put(userAccountID, userAccount);
         userEmailMap.put(userAccount.getEmailID(), userAccountID);
+        try {
+            storeUser(userAccount);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addErrorReport(String errorReport) {
@@ -164,6 +177,22 @@ public class Storage {
                 bankAccountHashSet.add(bankAccount);
             }
         });
+
+        bankAccountHashSet.forEach((BankAccount bankAccount) -> content.add(gson.toJson(bankAccount)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    public void storeBankAccounts(BankAccount bankAccountToStore) throws IOException {
+        Path path = StoragePaths.BANK_ACCOUNTS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<BankAccount> bankAccountHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String bankAccountString) -> bankAccountHashSet.add(gson.fromJson(bankAccountString, BankAccount.class)));
+
+        if (!bankAccountHashSet.add(bankAccountToStore)) {
+            bankAccountHashSet.remove(bankAccountToStore);
+            bankAccountHashSet.add(bankAccountToStore);
+        }
 
         bankAccountHashSet.forEach((BankAccount bankAccount) -> content.add(gson.toJson(bankAccount)));
 

@@ -19,7 +19,7 @@ public class Epic6RegularTests {
     }
 
     /**
-     * Expected value: “User’s {username} loan for {amount} SEK was approved.”
+     * Expected value: "User’s {username} loan for {amount} SEK was approved."
      */
     @Test
     public void shouldPrintSuccessOnApprovedLoan() {
@@ -28,11 +28,11 @@ public class Epic6RegularTests {
 
     /**
      * Expected value:
-     * “Applicant: {fullName}
+     * "Applicant: {fullName}
      *  Income: {income} SEK/mo
      *  Expenses: {expenses} SEK/mo
-     *  Liabilities & dependencies: {liabilities} SEK
-     *  Duration of the loan: {duration} months”
+     *  Liabilities " dependencies: {liabilities} SEK
+     *  Duration of the loan: {duration} months"
      */
     @Test
     public void shouldCreatePersonalLoan() {
@@ -41,16 +41,16 @@ public class Epic6RegularTests {
 
     /**
      * Expected value:
-     * “Home loan application submitted:
+     * "Home loan application submitted:
      *  Applicant: {fullName}
      *  Income: {income} SEK/mo
      *  Expenses: {expenses} SEK/mo
-     *  Liabilities & dependencies: {liabilities} SEK
+     *  Liabilities " dependencies: {liabilities} SEK
      *  Home address: {houseAddress}
      *  Type of home: {type}
      *  Property size: {size} m^2
      *  Amount of stories: {stories}
-     *  Duration of the loan: {duration} months”
+     *  Duration of the loan: {duration} months"
      */
     @Test
     public void shouldCreateHomeLoan() {
@@ -59,11 +59,11 @@ public class Epic6RegularTests {
 
     /**
      * Expected value:
-     * “Car loan application submitted:
+     * "Car loan application submitted:
      *  Applicant: {fullName}
      *  Income: {income} SEK/mo
      *  Expenses: {expenses} SEK/mo
-     *  Liabilities & dependencies: {liabilities} SEK
+     *  Liabilities " dependencies: {liabilities} SEK
      *  Model: {carModel}
      *  Manufacturer: {carManufacturer}
      *  Millage: {millage} km
@@ -92,8 +92,8 @@ public class Epic6RegularTests {
     }
 
     /**
-     * Expected value 1: “Loan requested by {username} for {amount} was accepted with interest of {interest}
-     * Expected value 2: “Loan requested by {username} was rejected due to {reason}
+     * Expected value 1: "Loan requested by {username} for {amount} was accepted with interest of {interest}
+     * Expected value 2: "Loan requested by {username} was rejected due to {reason}
      */
     @Test
     public void shouldApproveLoan() {

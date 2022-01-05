@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Epic Feature 2 Regular Tests
+ * Regular tests for Epic Feature 2.
  * The methods will be provided correct input to see whether they would process it
  *
  * @author Daniel Dovhun

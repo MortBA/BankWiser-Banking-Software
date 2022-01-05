@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Alternative tests for Epic Feature 4
+ * Alternative tests for Epic Feature 4.
  *
  * @author Daniel Dovhun
  * @author Mathias Hallander
@@ -19,14 +19,6 @@ public class Epic4AlternativeTests {
         facade = new Facade();
 
         facade.createUserAccount("bank.clerk@bankwiser.com", "Bank Clerk", "rr2e2w28ew53d!", "rr2e2w28ew53d", "+46 72-373 11 29", "Streetgatan 1 2265, 45612 Somethingborg, Sweden", "19991024-7884");
-    }
-
-    @Test
-    public static void pendingRequestsTest() {
-        String expectedValue = "No pending requests.";
-        String actualValue = facade.pendingRequests().toString();
-
-        assertEquals(actualValue, expectedValue);
     }
 
     @Test

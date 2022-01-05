@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Alternative Tests for Epic Feature 2
+ * Alternative tests for Epic Feature 2.
  * The tested method will be provided incorrect input (e.g. an input field may have been left empty or the PIN code is too short)
  * to see if the error is noticed and an appropriate output is generated.
  *

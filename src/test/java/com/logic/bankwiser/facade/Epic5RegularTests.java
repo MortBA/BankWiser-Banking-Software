@@ -42,7 +42,7 @@ public class Epic5RegularTests {
     }
 
     /**
-     * Expected Value: “Successfully sent {moneyAmount} SEK from {sender} to {receiver}. Note: {note}.”
+     * Expected Value: "Successfully sent {moneyAmount} SEK from {sender} to {receiver}. Note: {note}."
      */
     @Test
     public void shouldTransferMoney() {
