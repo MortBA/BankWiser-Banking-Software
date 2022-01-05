@@ -29,6 +29,7 @@ public class Facade {
     private static Facade facade_instance = null;
     UserAccount activeUser;
     UUID activeUserID;
+    BankAccount activeBankAccount;
 
 
     /**
@@ -123,6 +124,10 @@ public class Facade {
      */
     public String createBankAccount(UUID userAccount, String accountName) {
         return bankAccountController.createBankAccount(userAccount, accountName);
+    }
+
+    public void selectedBankAccount(BankAccount activeBankAccount){
+        this.activeBankAccount = activeBankAccount;
     }
 
     /**
@@ -294,28 +299,23 @@ public class Facade {
 
     /**
      * Creates the credit card
-     *
+     * @param //pin input give in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createCreditCard() {
-        //return cardController.addCard(pin);
-        return "";
+    public String createCreditCard(int pin) {
+        return cardController.addCard(activeBankAccount, pin);
     }
 
     /**
      * Creates the debit card
-     *
+     * @param //pin input given in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createDebitCard() {
-        //return cardController.addCard(pin);
-        return "";
+    public String createDebitCard(int pin) {
+        return cardController.addCard(activeBankAccount,pin);
     }
 
-    public String createDebitCard(UserAccount userAccount, String cardNumber) {
-        //return cardController.addCard(pin);
-        return "";
-    }
+
 
     /**
      * Toggle the card to freeze
@@ -324,8 +324,7 @@ public class Facade {
      * @return
      */
     public String freezeCard(String cardNumber) {
-        //return cardController.modifyStatus(cardNumber);
-        return "";
+        return cardController.modifyStatus(activeBankAccount, cardNumber);
     }
 
     /**
@@ -335,8 +334,7 @@ public class Facade {
      * @return
      */
     public String unfreezeCard(String cardNumber) {
-        //return cardController.modifyStatus(cardNumber);
-        return "";
+        return cardController.modifyStatus(activeBankAccount,cardNumber);
     }
 
     /**
@@ -346,8 +344,7 @@ public class Facade {
      * @return String confirmation of success or failure
      */
     public String changeSpendingLimit(String cardNumber, double newLimit) {
-        //return cardController.modifyExpenditureMax(cardNumber, newLimit);
-        return "";
+        return cardController.modifyExpenditureMax(activeBankAccount, cardNumber, newLimit);
     }
 
     public String allowOnlineTransactions() {
@@ -361,8 +358,7 @@ public class Facade {
      * @return String confirmation of success or failure
      */
     public String blockOnlineTransactions(String cardNumber) {
-        //return cardController.modifyOnlineStatus(cardNumber);
-        return "";
+        return cardController.modifyOnlineStatus(activeBankAccount, cardNumber);
     }
 
     /**
@@ -373,8 +369,8 @@ public class Facade {
      * @param pin            the pin of the card
      * @return String confirmation of success or failure
      */
-    public String deleteCard(String bankAccountID, String cardNumber, String reason, int pin) {
-        return cardController.deleteCard(storage.getBankAccount(bankAccountID), cardNumber, pin, reason);
+    public String deleteCard(String cardNumber, String reason, int pin) {
+        return cardController.deleteCard(activeBankAccount, cardNumber, pin, reason);
     }
 
     /**
@@ -384,8 +380,8 @@ public class Facade {
      * @return String with the reminder message
      */
     //Should be only cardNumber and UUID?
-    public String cardExpiration(BankAccount bankAccount, String cardNumber, UserAccount userAccount) {
-        return cardController.remainderDays(bankAccount, cardNumber, userAccount);
+    public String cardExpiration(String cardNumber) {
+        return cardController.remainderDays(activeBankAccount, cardNumber, activeUser);
     }
 
 
@@ -400,8 +396,8 @@ public class Facade {
      * @return String confirmation of success or failure
      */
     //String username removed, not in requirements?
-    public String changePin(String bankAccountID, String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
-        return cardController.resetPin(storage.getBankAccount(bankAccountID), cardNumber, oldPin, newPin, newPinConfirmation);
+    public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
+        return cardController.resetPin(activeBankAccount, cardNumber, oldPin, newPin, newPinConfirmation);
     }
 
     /**

@@ -1,2 +1,3 @@
 {"BANK_ACCOUNT_ID":"299741","bankAccountName":"Money","balance":8000.00}
 {"BANK_ACCOUNT_ID":"648218","bankAccountName":"Savings","balance":2000.00}
+{"BANK_ACCOUNT_ID":"0","bankAccountName":"Central","balance":10000.00}
