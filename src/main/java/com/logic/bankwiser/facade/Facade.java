@@ -146,31 +146,51 @@ public class Facade {
         return bankAccountController.createBankAccount(activeUser, accountName);
     }
 
+    /**
+     *
+     * @param accountName
+     * @return
+     */
     public String createBankAccount(UUID userAccountID, String accountName) {
         return bankAccountController.createBankAccount(storage.getUserFromMap(userAccountID), accountName);
     }
 
+    /**
+     *
+     * @return currently selected BankAccount
+     */
     public BankAccount getActiveBankAccount() {
         return activeBankAccount;
     }
 
+    /**
+     *
+     * @return List of users' bank accounts
+     */
     public List<String> getBankAccounts() {
         return activeUser.getBankAccountList();
     }
 
-    public void selectedBankAccount(String bankAccountID){
+    /**
+     * Changes the active bank account to input
+     */
+    public void selectedBankAccount(String bankAccountID) {
         this.activeBankAccount = storage.getBankAccount(bankAccountID);
     }
 
+
+    public String renameBankAccount(String bankAccountID, String newName) {
+        return bankAccountController.renameBankAccount(activeUser, bankAccountID, newName);
+    }
+
     /**
-     * Deletes the bank account
+     * Deletes the bank account.
      *
-     * Deletes a bank account
      * @param accountId     The id of the account that will be removed
      * @return String confirmation of deleting the bank account.
      */
     public String deleteBankAccount(String accountId) {
-        return "";
+        return bankAccountController.deleteBankAccount(activeUser, accountId);
     }
 
     /**
