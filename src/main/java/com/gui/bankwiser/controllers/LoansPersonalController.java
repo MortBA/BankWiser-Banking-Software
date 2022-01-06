@@ -148,8 +148,6 @@ public class LoansPersonalController {
         new BankWiserApp().changeScene("LoansVechile.fxml");
     }
 
-
-
     @FXML
     public void onDeleteUserAccountClicked() throws IOException {
         stg.showAndWait();

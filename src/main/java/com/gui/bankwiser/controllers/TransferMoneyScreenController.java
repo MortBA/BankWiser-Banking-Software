@@ -97,7 +97,6 @@ public class TransferMoneyScreenController {
         app.changeScene("BankCardMenu.fxml");
     }
 
-
     @FXML
     void onTransferMoneyClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
@@ -114,7 +113,6 @@ public class TransferMoneyScreenController {
         new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 
-    //todo Sejal input fxml
     @FXML
     void onDeleteBankAccountClicked() throws Exception {
         stg.showAndWait();

@@ -5,12 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller class to perform all functionalities for 'forgot password' screen for employee.
@@ -64,7 +67,16 @@ public class ForgotPasswordEmployeeController {
      */
     @FXML
     private void confirmButtonClicked() throws IOException {
-        stg.showAndWait();
+        if (ssNumber.getText().trim().isEmpty() || email.getText().trim().isEmpty() || retypeEmail.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }else {
+            stg.showAndWait();
+        }
     }
 
     /**

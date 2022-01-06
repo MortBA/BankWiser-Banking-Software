@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller class for performing functionalities for 'Create Account' screen for customers.
@@ -172,9 +170,36 @@ public class CreateAccountScreenUser {
     }
 
     @FXML
-    void createUser(ActionEvent event) {
-        facade.createUserAccount(email.getText(), fullName.getText(), password.getText(), retypedPassword.getText(),
-                phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
+    void createUser(ActionEvent event) throws IOException {
+        if (email.getText().trim().isEmpty() || fullName.getText().trim().isEmpty() || password.getText().trim().isEmpty()
+        || retypedPassword.getText().trim().isEmpty() || phoneNumber.getText().trim().isEmpty() || address.getText().trim().isEmpty()
+        || socialSecurityNumber.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }else if(!(password.getText().trim().equals(retypedPassword.getText().trim()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Both passwords should match");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your account is successfully registered.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("LoginScreenCustomer.fxml");
+                facade.createUserAccount(email.getText(), fullName.getText(), password.getText(), retypedPassword.getText(),
+                        phoneNumber.getText(), address.getText(), socialSecurityNumber.getText());
+            }
+        }
+
     }
 
 }

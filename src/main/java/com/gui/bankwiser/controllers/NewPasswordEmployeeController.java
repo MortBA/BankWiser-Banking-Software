@@ -37,11 +37,27 @@ public class NewPasswordEmployeeController {
      */
     @FXML
     private void onConfirmNewPasswordClicked() throws IOException {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBox.setContentText("Your password is updated successfully.");
-        Optional<ButtonType> result = alertBox.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            // probably not implement anything here
+        if (newPassword.getText().trim().isEmpty() || confirmNewPass.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }else if(!(newPassword.getText().trim().equals(confirmNewPass.getText().trim()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Both passwords must match.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your password is updated successfully.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                // probably not implement anything here
+            }
         }
     }
 

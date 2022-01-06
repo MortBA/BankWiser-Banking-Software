@@ -272,7 +272,6 @@ public class BankCardMenuController {
         }
     }
 
-
     @FXML
     public void cardFuncHoverIn() {
         cardFunctionality.setUnderline(true);
@@ -521,7 +520,15 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else {
+        }else if(!(newPin.getText().trim().equals(confirmPin.getText().trim()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Both new pins should match");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your card pin is changed successfully.");
             alertBox.setTitle("Success!");
@@ -552,7 +559,15 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else {
+        } else if(!(debitCardPin.getText().trim().equals(confirmDebitCardPin.getText().trim()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Both pins should match");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
             Optional<ButtonType> result = alertBox.showAndWait();
@@ -583,7 +598,15 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else {
+        } else if(!(creditCardPin.getText().trim().equals(confirmCreditCardPin.getText().trim()))){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Both pins should match");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your application for a credit card has been submitted." +
                     "We’ll let you know whether it has been accepted or rejected after evaluation.");
