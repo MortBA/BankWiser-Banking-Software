@@ -7,6 +7,9 @@ import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -98,13 +101,13 @@ public class Facade {
      * Creates a user account based on the inputted parameters.
      *
      * @param password             the users' password which has to be smaller than 16 characters
-     * @param confirmPwd           the users' password repeated for confirmation
+     * @param confirmPassword           the users' password repeated for confirmation
      * @param socialSecurityNumber the users' social security number
      * @return String confirmation of user creation or failure.
      */
-    public String createUserAccount(String userName, String fullName, String password, String confirmPwd,
+    public String createUserAccount(String userName, String fullName, String password, String confirmPassword,
                                     String phoneNumber, String userAddress, String socialSecurityNumber) {
-        return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, userName, password);
+        return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, userName, password, confirmPassword);
     }
 
     //TODO finish deleteUserAccount method
@@ -127,13 +130,10 @@ public class Facade {
     /**
      * Resets the users' password.
      *
-     * @param newPwd
-     * @param newPwdConfirm
      * @return String confirmation of reset password.
      */
-    //TODO finish reset resetUserPassword method
-    public String resetUserPassword(String accountId, String username, String newPwd, String newPwdConfirm) {
-        return "";
+    public String resetUserPassword(String accountId) {
+        return userAccountController.resetPassword(accountId);
     }
 
     /**

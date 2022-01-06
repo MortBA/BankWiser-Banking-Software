@@ -6,6 +6,7 @@ import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,23 +29,38 @@ public class UserAccountController {
      * @return A string that confirms successful user account creation or specifies the relevant input error.
      */
     public String createUserAccount(String fullName, String phoneNumber, String address,
-                                    String socialSecurityNum, String emailID, String password) {
+                                    String socialSecurityNum, String emailID, String password, String confirmPassword) {
         StringBuilder sb = new StringBuilder();
         UUID userID = UUID.randomUUID();
+        HashSet<UserAccount> userAccountHashSet = new HashSet<>(storage.getUserAccountMap().values());
 
         try {
-            storage.addUserAccount(userID, new UserAccount(userID, fullName, phoneNumber, address, socialSecurityNum, emailID, password));
-            sb.append("New account for ").append(emailID).append(" was successfully created.");
+            if (Objects.equals(password, confirmPassword)) {
+                if (userAccountHashSet.add(new UserAccount(userID, fullName, phoneNumber, address, socialSecurityNum, emailID, password))) {
+                    storage.addUserAccount(userID, new UserAccount(userID, fullName, phoneNumber, address, socialSecurityNum, emailID, password));
+                    sb.append("New account for ").append(emailID).append(" was successfully created.");
+                } else {
+                    sb.append("A user with these details already exists.");
+                }
+            } else {
+                sb.append("The passwords don't match.");
+            }
         } catch (Exception e) {
             sb.append(e.getMessage());
         }
         return sb.toString();
     }
 
+    /**
+     * Facilitates user login from facade.
+     * Accepts user parameters and returns that information paired.
+     *
+     * @return Pair&#60;UserAccount, String&#62; where userAccount is null on a fail, and String always returns a success or fail response.
+     */
     public Pair<UserAccount, String> loginUser(String email, String password) {
         if (storage.getUserFromMap(email) != null) {
             if (Objects.equals(password, storage.getUserFromMap(email).getPassword())) {
-                return new Pair<>(storage.getUserFromMap(email), "Successfully logged in");
+                return new Pair<>(storage.getUserFromMap(email), "Successfully logged in.");
             } else {
                 return new Pair<>(null,"Password is incorrect.");
             }
@@ -53,9 +69,15 @@ public class UserAccountController {
         }
     }
 
+    /**
+     * Checks the provided user account to verify if it is allowed to be deleted or not.
+     * There must be no money on any user bank account, and no liabilities (such as credit or loans) either
+     *
+     * @return Pair&#60;UserAccount, String&#62; where userAccount is null on a fail, and String always returns a success or fail response.
+     */
     public Pair<UserAccount, String> processDeleteUserAccountRequest(UserAccount userAccount) {
         StringBuilder sb = new StringBuilder();
-        while (sb.isEmpty()) {
+        if (userAccount != null) {
             for (String bankAccountID : userAccount.getBankAccountList()) {
                 BankAccount bankAccount = storage.getBankAccount(bankAccountID);
                 if (bankAccount.getBalance().compareTo(BigDecimal.ZERO) > 0) {
@@ -67,15 +89,21 @@ public class UserAccountController {
                     sb.append("Please speak to the clerk about how loans can be transferred first.");
                 }
             }
+            if (sb.isEmpty()) {
+                sb.append("User account deletion request has been sent.");
+                return new Pair<>(userAccount, sb.toString());
+            }
+        } else {
+            sb.append("A user with that email does not exist.");
         }
-        if (sb.isEmpty()) {
-            sb.append("User Account deletion request has been sent.");
-        }
-        return new Pair<>(userAccount, sb.toString());
+        return new Pair<>(null, sb.toString());
     }
 
     public String resetPassword(String emailID) {
-        return "An email has been sent to " + emailID + " with a link that will allow you to reset your password.";
+        if (storage.getUserFromMap(emailID) != null) {
+            return "An email has been sent to " + emailID + " with a link that will allow you to reset your password.";
+        } else {
+            return "A user with that email does not exist.";
+        }
     }
-
 }
