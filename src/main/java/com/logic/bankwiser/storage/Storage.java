@@ -247,7 +247,7 @@ public class Storage {
         List<String> content = new ArrayList<>();
         HashSet<Transaction> transactionHashSet = new HashSet<>();
         Files.readAllLines(path).forEach((String transactionString) -> transactionHashSet.add(gson.fromJson(transactionString, Transaction.class)));
-        
+
         if (!transactionHashSet.add(senderTransactionToStore)) {
             transactionHashSet.remove(senderTransactionToStore);
             transactionHashSet.add(senderTransactionToStore);
@@ -333,7 +333,7 @@ public class Storage {
 
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
-    
+
     public void storeVehicleLoans() throws IOException {
         Path path = StoragePaths.VEHICLE_LOANS.getPath();
         List<String> content = new ArrayList<>();
@@ -369,7 +369,7 @@ public class Storage {
 
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
-    
+
     public void storeDebitCards() throws IOException {
         Path path = StoragePaths.DEBIT_CARDS.getPath();
         List<String> content = new ArrayList<>();

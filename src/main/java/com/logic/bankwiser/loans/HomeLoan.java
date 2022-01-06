@@ -2,7 +2,13 @@ package com.logic.bankwiser.loans;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
 
-
+/**
+ * A loan intended for the purchase of a home.
+ *
+ * @author Burak Askan
+ * @author Dragos Florinel Isar
+ * @author Mathias Hallander
+ */
 public class HomeLoan extends Loan {
 
     private final double HOME_LOAN_INTEREST_RATE = 0.02;

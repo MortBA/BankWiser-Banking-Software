@@ -16,11 +16,10 @@ import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
-public class DeleteCustomerAccountScreenController  implements Initializable{
+public class DeleteCustomerAccountScreenController implements Initializable {
 
     private ArrayList<UserAccount> userAccounts;
     private Facade facade;
@@ -34,20 +33,20 @@ public class DeleteCustomerAccountScreenController  implements Initializable{
     @FXML
     private Label accountIdLabel;
     @FXML
-    private CheckBox  agreementCheckbox;
+    private CheckBox agreementCheckbox;
     @FXML
     private TextArea noteTextArea;
-    
-    
+
+
     @FXML
     private ListView<UserAccount> requestList;
 
 
-    private void selectionChanged(UserAccount userAccount){
-        fullNameLabel           .setText(userAccount.getFullName());
-        socialSecurityLabel     .setText(String.valueOf(userAccount.getSocialSecurityNum()));
-        emailLabel              .setText(userAccount.getEmailID());
-        accountIdLabel          .setText(String.valueOf(userAccount.getUserID() ) );
+    private void selectionChanged(UserAccount userAccount) {
+        fullNameLabel.setText(userAccount.getFullName());
+        socialSecurityLabel.setText(String.valueOf(userAccount.getSocialSecurityNum()));
+        emailLabel.setText(userAccount.getEmailID());
+        accountIdLabel.setText(String.valueOf(userAccount.getUserID()));
     }
 
     @Override
@@ -56,11 +55,13 @@ public class DeleteCustomerAccountScreenController  implements Initializable{
 
         ArrayList<UserAccount> temp = new ArrayList<>();
         try {
-            temp.add(new UserAccount( UUID.randomUUID(), "Chanisra Magnusson", "0712345678" , "Drottningatan 14", "199703241114", "channi@email.com", "Yuki0324") );
-            temp.add(new UserAccount( UUID.randomUUID(), "Sejal Kanaskar", "0723456789" , "Drottningatan 15", "199803241114", "sejal@email.com", "Sejal0324") );
-            temp.add(new UserAccount( UUID.randomUUID(), "Kevin Collins", "0734567890" , "Drottningatan 16", "199903241114", "kevin@email.com", "Kevin0324") );
+            temp.add(new UserAccount(UUID.randomUUID(), "Chanisra Magnusson", "0712345678", "Drottningatan 14", "199703241114", "channi@email.com", "Yuki0324"));
+            temp.add(new UserAccount(UUID.randomUUID(), "Sejal Kanaskar", "0723456789", "Drottningatan 15", "199803241114", "sejal@email.com", "Sejal0324"));
+            temp.add(new UserAccount(UUID.randomUUID(), "Kevin Collins", "0734567890", "Drottningatan 16", "199903241114", "kevin@email.com", "Kevin0324"));
 
-        }catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         requestList.getItems().addAll(temp);
 
@@ -74,29 +75,23 @@ public class DeleteCustomerAccountScreenController  implements Initializable{
     }
 
 
-
-
-
-
-
-
-    public void onDeleteClicked         (ActionEvent  event) {
+    public void onDeleteClicked(ActionEvent event) {
     }
 
-    public void onDeclineClicked        (ActionEvent event) {
+    public void onDeclineClicked(ActionEvent event) {
     }
 
-    public void onLogOutClicked         (ActionEvent event) throws Exception{
+    public void onLogOutClicked(ActionEvent event) throws Exception {
         new BankWiserApp().changeScene("LoginScreenEmployee.fxml");
     }
 
-    public void onReportErrorClicked    (ActionEvent event) {
+    public void onReportErrorClicked(ActionEvent event) {
     }
 
-    public void onUserAccReqClicked     (ActionEvent event) {
+    public void onUserAccReqClicked(ActionEvent event) {
     }
 
-    public void onCustomerAccReqClicked (ActionEvent event) {
+    public void onCustomerAccReqClicked(ActionEvent event) {
     }
 
 }

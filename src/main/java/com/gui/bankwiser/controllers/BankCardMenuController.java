@@ -1,6 +1,7 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import com.logic.bankwiser.facade.Facade;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -134,12 +134,12 @@ public class BankCardMenuController {
 
     //toDO get arraylist which stores all the active card number and replace it with card1, card2,...
 
-    ObservableList<String> activeCards = FXCollections.observableArrayList("card1","card2", "card3");
+    ObservableList<String> activeCards = FXCollections.observableArrayList("card1", "card2", "card3");
     ObservableList<String> activeRegions = FXCollections.observableArrayList("Europe", "Asia", "North America",
             "Australia", "Africa");
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
             Parent root = loader.load();
@@ -159,8 +159,8 @@ public class BankCardMenuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       // cardList.setItems(activeCards);
-      //  regions.setItems(activeRegions);
+        // cardList.setItems(activeCards);
+        //  regions.setItems(activeRegions);
 
     }
 
@@ -168,6 +168,7 @@ public class BankCardMenuController {
     void onDeleteUserAccountClicked(ActionEvent event) {
         stg.showAndWait();
     }
+
     @FXML
     void onDeleteBankAccountClicked(ActionEvent event) {
         stg.showAndWait();
@@ -522,15 +523,14 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else if(!(newPin.getText().trim().equals(confirmPin.getText().trim()))){
+        } else if (!(newPin.getText().trim().equals(confirmPin.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both new pins should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your card pin is changed successfully.");
             alertBox.setTitle("Success!");
@@ -561,15 +561,14 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else if(!(debitCardPin.getText().trim().equals(confirmDebitCardPin.getText().trim()))){
+        } else if (!(debitCardPin.getText().trim().equals(confirmDebitCardPin.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both pins should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
             Optional<ButtonType> result = alertBox.showAndWait();
@@ -622,11 +621,12 @@ public class BankCardMenuController {
         }
 
     }
+
     public TextField getNewPin() {
         newPin.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if(!t1.matches("\\d*")){
+                if (!t1.matches("\\d*")) {
                     newPin.setText(t1.replaceAll("[^\\d]", ""));
                 }
             }

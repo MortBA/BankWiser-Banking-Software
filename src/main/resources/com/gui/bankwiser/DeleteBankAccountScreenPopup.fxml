@@ -1,74 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane fx:id="LoginElements" prefHeight="608.0" prefWidth="496.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.DeleteBankAccountScreenController">
-   <children>
-      <Button fx:id="buttonCancel" layoutX="80.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#CancelClicked" onMouseEntered="#CancelHoverIn" onMouseExited="#CancelHoverOut" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="buttonConfirm" layoutX="268.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#ConfirmClicked" onMouseEntered="#ConfirmHoverIn" onMouseExited="#ConfirmHoverOut" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Confirm" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="16.0" />
-         </font>
-      </Button>
-      <Label layoutX="81.0" layoutY="55.0" text="Delete Bank Account" textFill="WHITE" AnchorPane.topAnchor="55.0">
-         <font>
-            <Font name="Calibri Bold" size="39.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutX="48.0" layoutY="126.0" prefHeight="77.0" prefWidth="405.0">
-         <children>
-            <TextField fx:id="bankAccountNumber" layoutX="1.0" layoutY="30.0" prefHeight="25.0" prefWidth="400.0" promptText="0123-4567-8901-234" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="30.0" />
-            <Label text="Bank Account Number" textFill="#030035" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Calibri Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="46.0" layoutY="204.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="204.0">
-         <children>
-            <TextField fx:id="socialSecurityNumber" layoutX="1.0" layoutY="30.0" prefHeight="25.0" prefWidth="400.0" promptText="yyymmd-xxxx" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="30.0" />
-            <Label text="Social Security number" textFill="#030035" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Calibri Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="46.0" layoutY="281.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="281.0">
-         <children>
-            <TextField fx:id="fullName" prefHeight="25.0" prefWidth="400.0" promptText="Username" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0" />
-            <Label text="Full Name" textFill="#030035" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Calibri Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="46.0" layoutY="358.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="358.0">
-         <children>
-            <TextField fx:id="email" prefHeight="25.0" prefWidth="400.0" promptText="JohnDoe@Mail.com" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0" />
-            <Label text="E-Mail" textFill="#030035" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Calibri Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <CheckBox fx:id="agreementCheckbox" cache="true" layoutX="46.0" layoutY="435.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="405.0" text="  I agree that my account will be deleted permanently according to the User     Agreement" wrapText="true">
-         <font>
-            <Font size="11.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </CheckBox>
-   </children>
+<AnchorPane fx:id="LoginElements" prefHeight="608.0" prefWidth="496.0" style="-fx-background-color: #5ab9bf;"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gui.bankwiser.controllers.DeleteBankAccountScreenController">
+    <children>
+        <Button fx:id="buttonCancel" layoutX="80.0" layoutY="520.0" mnemonicParsing="false"
+                onMouseClicked="#CancelClicked" onMouseEntered="#CancelHoverIn" onMouseExited="#CancelHoverOut"
+                prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel"
+                textFill="WHITE">
+            <font>
+                <Font name="Calibri Bold" size="16.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonConfirm" layoutX="268.0" layoutY="520.0" mnemonicParsing="false"
+                onMouseClicked="#ConfirmClicked" onMouseEntered="#ConfirmHoverIn" onMouseExited="#ConfirmHoverOut"
+                prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Confirm"
+                textFill="WHITE">
+            <font>
+                <Font name="Calibri Bold" size="16.0"/>
+            </font>
+        </Button>
+        <Label layoutX="81.0" layoutY="55.0" text="Delete Bank Account" textFill="WHITE" AnchorPane.topAnchor="55.0">
+            <font>
+                <Font name="Calibri Bold" size="39.0"/>
+            </font>
+        </Label>
+        <AnchorPane layoutX="48.0" layoutY="126.0" prefHeight="77.0" prefWidth="405.0">
+            <children>
+                <TextField fx:id="bankAccountNumber" layoutX="1.0" layoutY="30.0" prefHeight="25.0" prefWidth="400.0"
+                           promptText="0123-4567-8901-234" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="30.0"/>
+                <Label text="Bank Account Number" textFill="#030035" AnchorPane.leftAnchor="4.0"
+                       AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="46.0" layoutY="204.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="46.0"
+                    AnchorPane.topAnchor="204.0">
+            <children>
+                <TextField fx:id="socialSecurityNumber" layoutX="1.0" layoutY="30.0" prefHeight="25.0" prefWidth="400.0"
+                           promptText="yyymmd-xxxx" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="30.0"/>
+                <Label text="Social Security number" textFill="#030035" AnchorPane.leftAnchor="4.0"
+                       AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="46.0" layoutY="281.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="46.0"
+                    AnchorPane.topAnchor="281.0">
+            <children>
+                <TextField fx:id="fullName" prefHeight="25.0" prefWidth="400.0" promptText="Username"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0"/>
+                <Label text="Full Name" textFill="#030035" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="46.0" layoutY="358.0" prefHeight="77.0" prefWidth="405.0" AnchorPane.leftAnchor="46.0"
+                    AnchorPane.topAnchor="358.0">
+            <children>
+                <TextField fx:id="email" prefHeight="25.0" prefWidth="400.0" promptText="JohnDoe@Mail.com"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0"/>
+                <Label text="E-Mail" textFill="#030035" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="Calibri Bold" size="18.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <CheckBox fx:id="agreementCheckbox" cache="true" layoutX="46.0" layoutY="435.0" mnemonicParsing="false"
+                  prefHeight="45.0" prefWidth="405.0"
+                  text="  I agree that my account will be deleted permanently according to the User     Agreement"
+                  wrapText="true">
+            <font>
+                <Font size="11.0"/>
+            </font>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </CheckBox>
+    </children>
 </AnchorPane>

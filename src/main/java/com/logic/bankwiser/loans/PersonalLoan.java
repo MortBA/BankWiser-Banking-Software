@@ -2,7 +2,13 @@ package com.logic.bankwiser.loans;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
 
-
+/**
+ * A loan intended for personal use which does not involve a vehicle or home.
+ *
+ * @author Burak Askan
+ * @author Dragos Florinel Isar
+ * @author Mathias Hallander
+ */
 public class PersonalLoan extends Loan {
 
     private final String PERSONAL_REASONS;

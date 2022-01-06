@@ -172,23 +172,22 @@ public class CreateAccountScreenUser {
     @FXML
     void createUser(ActionEvent event) throws IOException {
         if (email.getText().trim().isEmpty() || fullName.getText().trim().isEmpty() || password.getText().trim().isEmpty()
-        || retypedPassword.getText().trim().isEmpty() || phoneNumber.getText().trim().isEmpty() || address.getText().trim().isEmpty()
-        || socialSecurityNumber.getText().trim().isEmpty()) {
+                || retypedPassword.getText().trim().isEmpty() || phoneNumber.getText().trim().isEmpty() || address.getText().trim().isEmpty()
+                || socialSecurityNumber.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else if(!(password.getText().trim().equals(retypedPassword.getText().trim()))){
+        } else if (!(password.getText().trim().equals(retypedPassword.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both passwords should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your account is successfully registered.");
             Optional<ButtonType> result = alertBox.showAndWait();

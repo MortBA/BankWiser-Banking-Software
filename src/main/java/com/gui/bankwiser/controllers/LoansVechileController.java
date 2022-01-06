@@ -148,7 +148,6 @@ public class LoansVechileController {
     }
 
 
-
     @FXML
     public void onDeleteUserAccountClicked() throws IOException {
         stg.showAndWait();

@@ -53,8 +53,8 @@ public class Epic5RegularTests {
 
     /**
      * Expected value: date + ", " + bankAccountID + ", -100, -100.00" + Input.EOL +
-     *                 date + ", " + bankAccountID + ", -100, -200.00" + Input.EOL +
-     *                 date + ", " + bankAccountID + ", -100, -300.00" + Input.EOL;
+     * date + ", " + bankAccountID + ", -100, -200.00" + Input.EOL +
+     * date + ", " + bankAccountID + ", -100, -300.00" + Input.EOL;
      */
     @Test
     public void shouldRetrieveTransactionHistory() {
@@ -66,8 +66,8 @@ public class Epic5RegularTests {
         facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "transfer", 100);
 
         String transactions = date + ", " + bankAccountID + ", -100.0, -100.00" + Input.EOL +
-                              date + ", " + bankAccountID + ", -100.0, -200.00" + Input.EOL +
-                              date + ", " + bankAccountID + ", -100.0, -300.00" + Input.EOL;
+                date + ", " + bankAccountID + ", -100.0, -200.00" + Input.EOL +
+                date + ", " + bankAccountID + ", -100.0, -300.00" + Input.EOL;
 
         assertEquals(transactions, facade.viewTransactionHistory(johnBankAccount.getBankAccountID()));
 

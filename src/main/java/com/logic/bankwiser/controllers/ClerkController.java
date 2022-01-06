@@ -3,6 +3,9 @@ package com.logic.bankwiser.controllers;
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.storage.Storage;
 
+/**
+ * Controller
+ */
 public class ClerkController {
 
     private final Storage storage;

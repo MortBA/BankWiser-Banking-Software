@@ -8,13 +8,13 @@ import com.logic.bankwiser.utils.MathUtils;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
+ * Controller class responsible for bank accounts.
+ *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
-
 public class BankAccountController {
 
     private final Storage storage;

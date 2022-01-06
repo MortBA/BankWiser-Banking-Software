@@ -221,6 +221,7 @@ public class LoansPersonalController {
 
     public void onCancelClicked(ActionEvent event) {
     }
+
     @FXML
     private void confirmHoverIn() {
         confirm.setStyle("-fx-background-color: #4bacf7;");
@@ -232,7 +233,8 @@ public class LoansPersonalController {
     }
 
     @FXML
-    private void cancelHoverIn() {cancel.setStyle("-fx-background-color: #fc4a7f;");
+    private void cancelHoverIn() {
+        cancel.setStyle("-fx-background-color: #fc4a7f;");
     }
 
     @FXML
