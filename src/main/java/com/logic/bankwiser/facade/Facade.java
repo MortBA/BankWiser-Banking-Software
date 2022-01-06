@@ -110,16 +110,18 @@ public class Facade {
     //TODO finish deleteUserAccount method
 
     /**
-     * Deletes the user account based on the given id
+     * Deletes the user account based on the given username
      *
-     * @param accountId     The id of the user account
      * @param username      The username of the user
-     * @param fullName      The full name of the user
-     * @param signature     The signature of the user
      * @return String confirmation of user deletion or failure
      */
-    public String deleteUserAccount(String accountId, String username, String fullName, boolean signature) {
-        return "";
+    public String deleteUserAccount(String username) {
+        Pair<UserAccount, String> request = userAccountController.processDeleteUserAccountRequest(storage.getUserFromMap(username));
+
+        if (request.getKey() != null) {
+            storage.addDeleteUserRequest(request.getKey());
+        }
+        return request.getValue();
     }
 
     /**
