@@ -3,7 +3,9 @@ package com.logic.bankwiser.facade;
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
+import com.logic.bankwiser.loans.Loan;
 import com.logic.bankwiser.storage.Storage;
+import com.logic.bankwiser.utils.Input;
 import javafx.util.Pair;
 
 import java.io.IOException;
@@ -135,7 +137,7 @@ public class Facade {
         Pair<UserAccount, String> request = userAccountController.processDeleteUserAccountRequest(storage.getUserFromMap(username));
 
         if (request.getKey() != null) {
-            storage.addDeleteUserRequest(request.getKey());
+            //storage.addDeleteUserRequest(request.getKey());
         }
         return request.getValue();
     }
@@ -275,6 +277,20 @@ public class Facade {
         return loanController.vehicleLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, vehicleType, fuelType, mileage, yearOfManufacture);
     }
 
+    public String loanOverview() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for(Loan loans : activeBankAccount.getLoanMap().values()) {
+
+            sb.append(loans.toString()).append(Input.EOL);
+
+        }
+
+        return sb.toString();
+    }
+
+
     /**
      * Creates the credit card
      *
@@ -314,6 +330,10 @@ public class Facade {
      */
     public String toggleFreezeCard(String cardNumber) {
         return cardController.modifyStatus(activeBankAccount, cardNumber);
+    }
+
+    public String modifyRegion(String cardNumber, String region) {
+        return cardController.modifyRegion(activeBankAccount, cardNumber, region);
     }
 
     /**
@@ -370,4 +390,6 @@ public class Facade {
     public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
         return cardController.resetPin(activeBankAccount, cardNumber, oldPin, newPin, newPinConfirmation);
     }
+
+
 }

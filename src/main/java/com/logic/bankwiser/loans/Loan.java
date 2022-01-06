@@ -94,7 +94,7 @@ public abstract class Loan {
 
     @Override
     public String toString() {
-        return "Loan id: " + this.LOAN_ID + Input.EOL +
+        return  "Loan id: " + this.LOAN_ID + Input.EOL +
                 "Bank account id: " + this.BANK_ACCOUNT_ID + Input.EOL +
                 "Loan amount: " + this.LOAN_AMOUNT + Input.EOL +
                 "Loan interest: " + this.interestRate + Input.EOL +
