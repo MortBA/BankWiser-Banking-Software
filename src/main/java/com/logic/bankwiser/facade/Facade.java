@@ -98,6 +98,12 @@ public class Facade {
         return loginRequest.getValue();
     }
 
+    /**
+     * A method checks payments on current user in regards to existing credit cards and loans.
+     *
+     * @return a String
+     */
+
     public String checkPayments() {
         StringBuilder userPaymentsString = new StringBuilder();
 
