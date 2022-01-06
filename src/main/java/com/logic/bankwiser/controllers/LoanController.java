@@ -11,6 +11,7 @@ import com.logic.bankwiser.utils.Input;
 import com.logic.bankwiser.utils.MathUtils;
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -256,15 +257,33 @@ public class LoanController {
     }
 
     public void createHomeLoan(BankAccount bankAccount, double loanAmount, int loanDuration, String propertyAddress, String propertyType, double propertySize, int propertyFloors) {
-        bankAccount.addLoan(new HomeLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloors));
+        HomeLoan homeLoan = new HomeLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloors);
+        bankAccount.addLoan(homeLoan);
+        try {
+            storage.storeHomeLoans(homeLoan);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void createPersonalLoan(BankAccount bankAccount, double loanAmount, int loanDuration, String personalReasons) {
-        bankAccount.addLoan(new PersonalLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, personalReasons));
+        PersonalLoan personalLoan = new PersonalLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, personalReasons);
+        bankAccount.addLoan(personalLoan);
+        try {
+            storage.storePersonalLoans(personalLoan);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void createVehicleLoan(BankAccount bankAccount, double loanAmount, int loanDuration, String typeOfFuel, double mileage, int manufactureYear) {
-        bankAccount.addLoan(new VehicleLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, typeOfFuel, mileage, manufactureYear));
+        VehicleLoan vehicleLoan = new VehicleLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, typeOfFuel, mileage, manufactureYear);
+        bankAccount.addLoan(vehicleLoan);
+        try {
+            storage.storeVehicleLoans(vehicleLoan);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

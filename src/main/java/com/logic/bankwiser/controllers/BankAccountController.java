@@ -33,9 +33,7 @@ public class BankAccountController {
         StringBuilder sb = new StringBuilder();
         try {
             List<String> usedNames = new ArrayList<>();
-            userAccount.getBankAccountList().forEach((String bankAccountID) -> {
-                usedNames.add(storage.getBankAccount(bankAccountID).getBankAccountName());
-            });
+            userAccount.getBankAccountList().forEach((String bankAccountID) -> usedNames.add(storage.getBankAccount(bankAccountID).getBankAccountName()));
             if (!usedNames.contains(bankAccountName)) {
                 String bankAccountID = generateBankAccountID();
                 BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
@@ -93,7 +91,7 @@ public class BankAccountController {
             } else {
                 String name = storage.getBankAccount(bankAccountID).getBankAccountName();
                 userAccount.getBankAccountList().remove(bankAccountID);
-                storage.getBankAccountMap().remove(bankAccountID);
+                storage.deleteBankAccount(bankAccountID);
                 return "Deleted bank account " + name + ".";
             }
         } else {

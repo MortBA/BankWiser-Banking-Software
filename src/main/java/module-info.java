@@ -22,7 +22,7 @@ module main {
 
     exports com.gui.bankwiser;
     exports com.gui.bankwiser.controllers;
-    //exports com.logic.bankwiser;
+    exports com.logic.bankwiser;
     exports com.logic.bankwiser.transactions;
     exports com.logic.bankwiser.cards;
     exports com.logic.bankwiser.controllers;

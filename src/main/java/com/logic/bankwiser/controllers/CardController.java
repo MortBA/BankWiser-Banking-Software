@@ -7,6 +7,7 @@ import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -20,12 +21,12 @@ import java.time.temporal.ChronoUnit;
  */
 public class CardController {
 
-    private final Storage STORAGE;
+    private final Storage storage;
     private final TransactionController TRANSACTION_CONTROLLER;
     private final String ln = System.lineSeparator();
 
     public CardController(Storage storage, TransactionController transactionController) {
-        this.STORAGE = storage;
+        this.storage = storage;
         this.TRANSACTION_CONTROLLER = transactionController;
     }
 
@@ -51,7 +52,13 @@ public class CardController {
 
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if (keyAcceptance.getKey()) {
-            bankAccount.addCard(new CreditCard(bankAccount, pin, maxCredit));
+            CreditCard creditCard = new CreditCard(bankAccount, pin, maxCredit);
+            bankAccount.addCard(creditCard);
+            try {
+                storage.storeCreditCards(creditCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation.";
         } else {
             return keyAcceptance.getValue();
@@ -70,7 +77,13 @@ public class CardController {
             return "PIN codes must match";
         }
         if (keyAcceptance.getKey()) {
-            bankAccount.addCard(new DebitCard(bankAccount, pin));
+            DebitCard debitCard = new DebitCard(bankAccount, pin);
+            bankAccount.addCard(debitCard);
+            try {
+                storage.storeDebitCards(debitCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         } else {
             return keyAcceptance.getValue();
@@ -89,7 +102,13 @@ public class CardController {
             return "PIN codes must match";
         }
         if (keyAcceptance.getKey()) {
-            bankAccount.addCard(new DebitCard(bankAccount, cardNumber, pin));
+            DebitCard debitCard = new DebitCard(bankAccount, cardNumber, pin);
+            bankAccount.addCard(debitCard);
+            try {
+                storage.storeDebitCards(debitCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         } else {
             return keyAcceptance.getValue();
@@ -172,7 +191,7 @@ public class CardController {
     public String creditCardPayment(UserAccount activeUser) {
 
         for (String bankAccountID : activeUser.getBankAccountList()) {
-            BankAccount bankAccount = STORAGE.getBankAccount(bankAccountID);
+            BankAccount bankAccount = storage.getBankAccount(bankAccountID);
 
             if (bankAccount.getBalance().intValue() < 0) {
                 for (DebitCard card : bankAccount.getCardMap().values()) {
@@ -204,7 +223,7 @@ public class CardController {
     public String annualCardPayment(UserAccount activeUser) {
 
         for (String bankAccountID : activeUser.getBankAccountList()) {
-            BankAccount bankAccount = STORAGE.getBankAccount(bankAccountID);
+            BankAccount bankAccount = storage.getBankAccount(bankAccountID);
 
             for (DebitCard card : bankAccount.getCardMap().values()) {
                 LocalDateTime yearlyPaymentDate = card.getYearlyPaymentDate();
@@ -334,7 +353,11 @@ public class CardController {
             if (pin != bankAccount.getCard(cardNumber).getPin()) {
                 return "Incorrect PIN code.";
             }
-            bankAccount.getCardMap().remove(cardNumber);
+            if (bankAccount.getCard(cardNumber) instanceof CreditCard) {
+                storage.deleteCreditCard((CreditCard) bankAccount.getCard(cardNumber));
+            } else {
+                storage.deleteDebitCard(bankAccount.getCard(cardNumber));
+            }
             return "Your card has been successfully terminated.";
         }
         return "Card number you entered was not found in the list of your cards.";

@@ -6,6 +6,7 @@ import com.logic.bankwiser.transactions.Transaction;
 import com.logic.bankwiser.utils.Input;
 import com.logic.bankwiser.utils.MathUtils;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -50,8 +51,17 @@ public class TransactionController {
             BigDecimal senderNewBalance = senderBankAccount.getBalance();
             receiverBankAccount.processPaymentRequest(true, moneyTransferred);
             BigDecimal receiverNewBalance = receiverBankAccount.getBalance();
-            senderBankAccount.addTransaction(new Transaction(generateTransactionID(receiverBankAccountID), receiverBankAccountID, moneyTransferred.negate(), note, transactionDate, senderNewBalance));
-            receiverBankAccount.addTransaction(new Transaction(generateTransactionID(senderBankAccountID), senderBankAccountID, moneyTransferred, note, transactionDate, receiverNewBalance));
+
+            Transaction senderTransaction = new Transaction(generateTransactionID(receiverBankAccountID), receiverBankAccountID, moneyTransferred.negate(), note, transactionDate, senderNewBalance);
+            Transaction receiverTransaction = new Transaction(generateTransactionID(senderBankAccountID), senderBankAccountID, moneyTransferred, note, transactionDate, receiverNewBalance);
+            senderBankAccount.addTransaction(senderTransaction);
+            receiverBankAccount.addTransaction(receiverTransaction);
+
+            try {
+                storage.storeTransactions(senderTransaction, receiverTransaction);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             sb.append("Successfully sent ").append(moneyTransferred).append(" SEK from ").append(senderBankAccountID);
             sb.append(" to ").append(receiverBankAccountID).append(". ");

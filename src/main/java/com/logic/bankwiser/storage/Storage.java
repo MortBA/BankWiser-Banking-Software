@@ -557,6 +557,73 @@ public class Storage {
     }
 
     public void deleteUserAccount(UUID userAccountID) {
+        UserAccount userAccountToDelete = getUserFromMap(userAccountID);
         userAccountMap.remove(userAccountID);
+        Path path = StoragePaths.USERS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<UserAccount> userAccountHashSet = new HashSet<>(userAccountMap.values());
+        try {
+            Files.readAllLines(path).forEach((String userString) -> userAccountHashSet.add(gson.fromJson(userString, UserAccount.class)));
+
+            userAccountHashSet.remove(userAccountToDelete);
+
+            userAccountHashSet.forEach((UserAccount userAccount) -> content.add(gson.toJson(userAccount)));
+
+            Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteBankAccount(String bankAccountID) {
+        BankAccount bankAccountToDelete = getBankAccount(bankAccountID);
+        Path path = StoragePaths.BANK_ACCOUNTS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<BankAccount> bankAccountHashSet = new HashSet<>(bankAccountMap.values());
+        try {
+            Files.readAllLines(path).forEach((String bankAccountString) -> bankAccountHashSet.add(gson.fromJson(bankAccountString, BankAccount.class)));
+
+            bankAccountHashSet.remove(bankAccountToDelete);
+
+            bankAccountHashSet.forEach((BankAccount bankAccount) -> content.add(gson.toJson(bankAccount)));
+
+            Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteDebitCard(DebitCard cardToDelete) {
+        Path path = StoragePaths.DEBIT_CARDS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<DebitCard> debitCardHashSet = new HashSet<>();
+        try {
+            Files.readAllLines(path).forEach((String cardString) -> debitCardHashSet.add(gson.fromJson(cardString, DebitCard.class)));
+
+            debitCardHashSet.remove(cardToDelete);
+
+            debitCardHashSet.forEach((DebitCard debitCard) -> content.add(gson.toJson(debitCard)));
+
+            Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCreditCard(CreditCard cardToDelete) {
+        Path path = StoragePaths.CREDIT_CARDS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<CreditCard> creditCardHashSet = new HashSet<>();
+        try {
+            Files.readAllLines(path).forEach((String cardString) -> creditCardHashSet.add(gson.fromJson(cardString, CreditCard.class)));
+
+            creditCardHashSet.remove(cardToDelete);
+
+            creditCardHashSet.forEach((CreditCard creditCard) -> content.add(gson.toJson(creditCard)));
+
+            Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
