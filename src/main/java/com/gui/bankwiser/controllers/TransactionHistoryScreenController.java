@@ -7,10 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +40,8 @@ public class TransactionHistoryScreenController implements Initializable {
     private TableColumn accountNumberColumn;
     @FXML
     private TableColumn balanceColumn;
+    @FXML
+    private Stage stg = new Stage();
 
 
     //***********//just to test//**********//
@@ -44,10 +51,29 @@ public class TransactionHistoryScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
-            BAcc = new BankAccount("280872273", "Channi's fake bankacount");
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            try {
+                BAcc = new BankAccount("280872273", "Channi's fake bankacount");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 //        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50)));
@@ -63,6 +89,9 @@ public class TransactionHistoryScreenController implements Initializable {
 
     private ObservableList<Transaction> getObservableTransactionList() {
         return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionMap().values());
+
+        //for delete account pop up screens
+
     }
 
     @FXML
@@ -111,12 +140,12 @@ public class TransactionHistoryScreenController implements Initializable {
     //todo Sejal input fxml
     @FXML
     void onDeleteBankAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        stg.showAndWait();
     }
 
     @FXML
     void onDeleteUserAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        stg.showAndWait();
     }
 
 }

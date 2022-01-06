@@ -63,7 +63,7 @@
                 </MenuButton>
                 <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" text="Delete Bank Account" />
+                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
                         <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                     </items>
                     <font>
@@ -164,7 +164,7 @@
                   <Font name="Calibri Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="submitDebitCard" layoutX="547.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#onSubmitDebitCardClicked" onMouseEntered="#confirmHoverIn3" onMouseExited="#confirmHoverOut3" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="200.0">
+            <Button fx:id="submitDebitCard" layoutX="547.0" layoutY="406.0" mnemonicParsing="false" onAction="#createDebitCard" onMouseEntered="#confirmHoverIn3" onMouseExited="#confirmHoverOut3" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="200.0">
                <font>
                   <Font name="Calibri Bold" size="24.0" />
                </font>

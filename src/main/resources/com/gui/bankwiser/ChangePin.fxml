@@ -57,7 +57,7 @@
                 </MenuButton>
                 <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" text="Delete Bank Account" />
+                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
                         <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                     </items>
                     <font>
@@ -133,7 +133,7 @@
                </font>
             </Label>
             <TextField fx:id="cardNumber" layoutX="178.0" layoutY="121.0" prefHeight="35.0" prefWidth="249.0" promptText="1234 5678 1234 5678" />
-            <PasswordField fx:id="newPin" layoutX="178.0" layoutY="217.0" prefHeight="35.0" prefWidth="250.0" />
+            <PasswordField fx:id="newPin" layoutX="178.0" layoutY="217.0" prefHeight="35.0" prefWidth="250.0" onAction="#getNewPin" />
             <PasswordField fx:id="confirmPin" layoutX="622.0" layoutY="217.0" prefHeight="35.0" prefWidth="250.0" />
             <PasswordField fx:id="currentPin" layoutX="622.0" layoutY="121.0" prefHeight="35.0" prefWidth="250.0" />
             <CheckBox fx:id="TnC" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
@@ -171,7 +171,7 @@
                   <Font name="Calibri Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="submitChangePin" layoutX="492.0" layoutY="395.0" mnemonicParsing="false" onMouseClicked="#onSubmitChangePinClicked" onMouseEntered="#confirmHoverIn5" onMouseExited="#confirmHoverOut5" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="215.0">
+            <Button fx:id="submitChangePin" layoutX="492.0" layoutY="395.0" mnemonicParsing="false" onAction="#changeCardPin" onMouseEntered="#confirmHoverIn5" onMouseExited="#confirmHoverOut5" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="215.0">
                <font>
                   <Font name="Calibri Bold" size="20.0" />
                </font>

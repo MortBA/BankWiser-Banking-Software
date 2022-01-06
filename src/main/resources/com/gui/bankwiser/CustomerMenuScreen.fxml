@@ -180,6 +180,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Label fx:id="expirationLabel" layoutX="544.0" layoutY="122.0" />
          </children>
       </AnchorPane>
    </children>

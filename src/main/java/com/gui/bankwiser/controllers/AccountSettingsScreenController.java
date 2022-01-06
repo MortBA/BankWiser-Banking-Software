@@ -69,6 +69,25 @@ public class AccountSettingsScreenController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -115,13 +134,15 @@ public class AccountSettingsScreenController {
 
     @FXML
     void onDeleteBankAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        stg.showAndWait();
     }
 
     @FXML
     void onDeleteUserAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        stg.showAndWait();
     }
+
+
 
     /**
      * Opens the 'change password' screen, which is initialized in the beginning.

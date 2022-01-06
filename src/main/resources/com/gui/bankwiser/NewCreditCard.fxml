@@ -63,7 +63,7 @@
                 </MenuButton>
                 <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" text="Delete Bank Account" />
+                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
                         <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                     </items>
                     <font>
@@ -158,13 +158,13 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </CheckBox>
-                <PasswordField fx:id="confirmPin" layoutX="371.0" layoutY="230.0" prefHeight="35.0" prefWidth="182.0" />
+                <PasswordField fx:id="confirmCreditCardPin" layoutX="371.0" layoutY="230.0" prefHeight="35.0" prefWidth="182.0" />
                 <Button fx:id="cancelCreditCard" layoutX="198.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#onCancelButtonClicked" onMouseEntered="#cancelHoverIn2" onMouseExited="#cancelHoverOut2" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font name="Calibri Bold" size="24.0" />
                     </font>
                 </Button>
-                <Button fx:id="submitCreditCard" layoutX="547.0" layoutY="406.0" onMouseClicked="#onSubmitCreditCardClicked" onMouseEntered="#confirmHoverIn2" onMouseExited="#confirmHoverOut2" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="200.0">
+                <Button fx:id="submitCreditCard" layoutX="547.0" layoutY="406.0" mnemonicParsing="false" onAction="#createCreditCard" onMouseEntered="#confirmHoverIn2" onMouseExited="#confirmHoverOut2" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="200.0">
                     <font>
                         <Font name="Calibri Bold" size="24.0" />
                     </font>

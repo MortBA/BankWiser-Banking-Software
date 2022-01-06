@@ -1,9 +1,19 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import com.logic.bankwiser.facade.Facade;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -15,6 +25,8 @@ import java.util.Optional;
  */
 
 public class BankCardMenuController {
+
+    private final Facade facade = Facade.getInstance();
 
     @FXML
     private MenuItem accountSettings;
@@ -107,12 +119,54 @@ public class BankCardMenuController {
     private RadioButton blockTransaction;
     @FXML
     private RadioButton unblockTransaction;
+    @FXML
+    private Stage stg = new Stage();
 
     @FXML
     private ChoiceBox cardList;
 
     @FXML
+    private ChoiceBox regions;
+
+    //toDO get arraylist which stores all the active card number and replace it with card1, card2,...
+
+    ObservableList<String> activeCards = FXCollections.observableArrayList("card1","card2", "card3");
+    ObservableList<String> activeRegions = FXCollections.observableArrayList("Europe", "Asia", "North America",
+            "Australia", "Africa");
+
+    @FXML
+    public void initialize(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       // cardList.setItems(activeCards);
+      //  regions.setItems(activeRegions);
+
+    }
+
+    @FXML
     void onDeleteUserAccountClicked(ActionEvent event) {
+        stg.showAndWait();
+    }
+    @FXML
+    void onDeleteBankAccountClicked(ActionEvent event) {
+        stg.showAndWait();
     }
 
     @FXML
@@ -177,54 +231,14 @@ public class BankCardMenuController {
 
     @FXML
     public void onModifyFuncClicked() throws IOException {
-        if ((!blockCard.isSelected() && !unblockCard.isSelected())
-                || (!blockTransaction.isSelected() && !unblockTransaction.isSelected()) || !cardList.isShowing()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill the required fields.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                alert.close();
-            }
-        } else {
-            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-            alertBox.setContentText("Your card pin is changed successfully.");
-            alertBox.setTitle("Success!");
-            Optional<ButtonType> result = alertBox.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                BankWiserApp app = new BankWiserApp();
-                app.changeScene("BankCardMenu.fxml");
-            }
-        }
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("ModifyFunctionality.fxml");
     }
 
-    /**
-     * The method functions when 'submit' button on 'change pin' screen is clicked.
-     * The method checks if all fields on 'change pin' screen are filled and then submits request for changing card pin.
-     * Alert box showing warning appears if any field is empty or unchecked and informs user to fill them.
-     * Confirmation alert box appears when all fields are filled and the card pin is changed.
-     *
-     * @throws IOException IOException
-     */
     @FXML
-    public void onSubmitChangePinClicked() throws IOException {
-        if (!TnC.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
-                || confirmPin.getText().trim().isEmpty() || cardNumber.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill the required fields.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                alert.close();
-            }
-        } else {
-            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-            alertBox.setContentText("Your card pin is changed successfully.");
-            alertBox.setTitle("Success!");
-            Optional<ButtonType> result = alertBox.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                BankWiserApp app = new BankWiserApp();
-                app.changeScene("BankCardMenu.fxml");
-            }
-        }
+    public void onCancelButtonClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("BankCardMenu.fxml");
     }
 
     /**
@@ -253,98 +267,6 @@ public class BankCardMenuController {
         }
     }
 
-    /**
-     * The method functions when 'confirm' button on delete card menu screen is clicked.
-     * The method checks if all fields are filled on 'delete card' screen and then confirms delete card request.
-     * Warning alert box appears if any field is empty or unchecked, notifying the user to fill them.
-     * Confirmation alert box appears when all fields are filled and the Card is deleted.
-     *
-     * @throws IOException IOException
-     */
-    @FXML
-    public void onConfirmDeleteCardClicked() throws IOException {
-        if (!TnC.isSelected() || lostCard.getText().trim().isEmpty() || dislikeService.getText().trim().isEmpty()
-                || cardPinToDelete.getText().trim().isEmpty() || cardNumberToDelete.getText().trim().isEmpty()
-                || cardUnused.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill the required fields.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                alert.close();
-            }
-        } else {
-            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-            alertBox.setContentText("Your card is deleted successfully.");
-            Optional<ButtonType> result = alertBox.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                BankWiserApp app = new BankWiserApp();
-                app.changeScene("BankCardMenu.fxml");
-            }
-        }
-    }
-
-    @FXML
-    public void onCancelButtonClicked() throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("BankCardMenu.fxml");
-    }
-
-    /**
-     * The method functions when 'submit' button on 'new credit card' screen is clicked.
-     * The method checks if all fields are filled on 'credit card' screen and then submits the new credit card request.
-     * Warning alert box appears if any field is empty or unchecked.
-     * Confirmation alert box appears when all fields are filled and request is sent.
-     *
-     * @throws IOException IOException
-     */
-    @FXML
-    public void onSubmitCreditCardClicked() throws IOException {
-        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill the required fields.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                alert.close();
-            }
-        } else {
-            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-            alertBox.setContentText("Your application for a credit card has been submitted." +
-                    "We’ll let you know whether it has been accepted or rejected after evaluation.");
-            Optional<ButtonType> result = alertBox.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                BankWiserApp app = new BankWiserApp();
-                app.changeScene("BankCardMenu.fxml");
-            }
-        }
-    }
-
-    /**
-     * The method functions when 'submit' button on 'debit card' screen is clicked.
-     * THe method checks if all fields on 'debit card' screen are filled and then submits the new debit card request.
-     * Warning alert box appears if any field is empty or unchecked.
-     * Confirmation alert box appears when all fields are filled and card is made.
-     *
-     * @throws IOException IOException
-     */
-    @FXML
-    public void onSubmitDebitCardClicked() throws IOException {
-        if (!TnC.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill the required fields.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                alert.close();
-            }
-        } else {
-            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-            alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
-            Optional<ButtonType> result = alertBox.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                BankWiserApp app = new BankWiserApp();
-                app.changeScene("BankCardMenu.fxml");
-            }
-        }
-    }
 
     @FXML
     public void cardFuncHoverIn() {
@@ -514,4 +436,171 @@ public class BankCardMenuController {
         cancelChangePin.setStyle("-fx-background-color: #ed2762;");
     }
 
+    @FXML
+    public void onSubmitFuncClicked() throws Exception {
+        if ((!blockCard.isSelected() && !unblockCard.isSelected())
+                || (!blockTransaction.isSelected() && !unblockTransaction.isSelected())) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your card pin is changed successfully.");
+            alertBox.setTitle("Success!");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+                facade.freezeCard(cardList.getSelectionModel().getSelectedItem().toString());
+                facade.unfreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
+                facade.blockOnlineTransactions(cardList.getSelectionModel().getSelectedItem().toString());
+                facade.changeSpendingLimit(cardList.getSelectionModel().getSelectedItem().toString(), Double.parseDouble(transactionLimit.getText()));
+                facade.allowOnlineTransactions();
+
+            }
+        }
+    }
+
+    /**
+     * The method functions when 'confirm' button on delete card menu screen is clicked.
+     * The method checks if all fields are filled on 'delete card' screen and then confirms delete card request.
+     * Warning alert box appears if any field is empty or unchecked, notifying the user to fill them.
+     * Confirmation alert box appears when all fields are filled and the Card is deleted.
+     *
+     * @throws IOException IOException
+     */
+
+    @FXML
+    void deleteCard(ActionEvent event) throws IOException {
+        if (!TnC.isSelected() || lostCard.getText().trim().isEmpty() || dislikeService.getText().trim().isEmpty()
+                || cardPinToDelete.getText().trim().isEmpty() || cardNumberToDelete.getText().trim().isEmpty()
+                || cardUnused.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your card is deleted successfully.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+                facade.deleteCard(cardNumberToDelete.getText(), cardUnused.getText(), Integer.parseInt(cardPinToDelete.getText()));
+            }
+        }
+
+    }
+
+    /**
+     * The method functions when 'submit' button on 'change pin' screen is clicked.
+     * The method checks if all fields on 'change pin' screen are filled and then submits request for changing card pin.
+     * Alert box showing warning appears if any field is empty or unchecked and informs user to fill them.
+     * Confirmation alert box appears when all fields are filled and the card pin is changed.
+     *
+     * @throws IOException IOException
+     */
+
+    @FXML
+    void changeCardPin(ActionEvent event) throws IOException {
+        if (!TnC.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
+                || confirmPin.getText().trim().isEmpty() || cardNumber.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your card pin is changed successfully.");
+            alertBox.setTitle("Success!");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+                facade.changePin(cardNumber.getText(), Integer.parseInt(currentPin.getText()),
+                        Integer.parseInt(newPin.getText()), Integer.parseInt(confirmPin.getText()));
+            }
+        }
+    }
+
+    /**
+     * The method functions when 'submit' button on 'debit card' screen is clicked.
+     * THe method checks if all fields on 'debit card' screen are filled and then submits the new debit card request.
+     * Warning alert box appears if any field is empty or unchecked.
+     * Confirmation alert box appears when all fields are filled and card is made.
+     *
+     * @throws IOException IOException
+     */
+    @FXML
+    void createDebitCard(ActionEvent event) throws IOException {
+        if (!TnC.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+                facade.createDebitCard(Integer.parseInt(confirmDebitCardPin.getText()));
+            }
+        }
+
+    }
+
+    /**
+     * The method functions when 'submit' button on 'new credit card' screen is clicked.
+     * The method checks if all fields are filled on 'credit card' screen and then submits the new credit card request.
+     * Warning alert box appears if any field is empty or unchecked.
+     * Confirmation alert box appears when all fields are filled and request is sent.
+     *
+     * @throws IOException IOException
+     */
+
+    @FXML
+    void createCreditCard(ActionEvent event) throws IOException {
+        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your application for a credit card has been submitted." +
+                    "We’ll let you know whether it has been accepted or rejected after evaluation.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("BankCardMenu.fxml");
+                facade.createCreditCard(Integer.parseInt(confirmCreditCardPin.getText()));
+            }
+        }
+
+    }
+
+    public TextField getNewPin() {
+        newPin.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if(!t1.matches("\\d*")){
+                    newPin.setText(t1.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        return newPin;
+    }
 }

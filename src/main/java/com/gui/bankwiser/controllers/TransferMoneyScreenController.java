@@ -3,8 +3,13 @@ package com.gui.bankwiser.controllers;
 import com.gui.bankwiser.BankWiserApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -42,6 +47,32 @@ public class TransferMoneyScreenController {
 
     @FXML
     private Button buttonLogOut;
+
+    @FXML
+    private Stage stg = new Stage();
+
+    @FXML
+    private void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {
@@ -87,12 +118,12 @@ public class TransferMoneyScreenController {
     //todo Sejal input fxml
     @FXML
     void onDeleteBankAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        stg.showAndWait();
     }
 
     @FXML
     void onDeleteUserAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        stg.showAndWait();
     }
 
 }

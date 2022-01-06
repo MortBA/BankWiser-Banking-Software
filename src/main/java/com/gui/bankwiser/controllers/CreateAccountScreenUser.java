@@ -74,7 +74,6 @@ public class CreateAccountScreenUser {
     @FXML
     private TextField socialSecurityNumber;
 
-
     @FXML
     private TextField fullName;
 
