@@ -84,8 +84,6 @@ public class BankCardMenuController {
     @FXML
     public TextField monthlyIncome;
     @FXML
-    private TextField cardNumberToDelete;
-    @FXML
     private TextField cardPinToDelete;
     @FXML
     private TextField creditCardPin;
@@ -99,8 +97,6 @@ public class BankCardMenuController {
     private TextField confirmPin;
     @FXML
     private TextField currentPin;
-    @FXML
-    private TextField cardNumber;
     @FXML
     private TextField confirmCreditCardPin;
     @FXML
@@ -127,19 +123,37 @@ public class BankCardMenuController {
     private Stage stg = new Stage();
 
     @FXML
+    private ChoiceBox cardNumberToDelete;
+    @FXML
+    private ChoiceBox cardNumberChangePin;
+    @FXML
     private ChoiceBox cardList;
-
     @FXML
     private ChoiceBox regions;
 
     //toDO get arraylist which stores all the active card number and replace it with card1, card2,...
+   // ObservableList<String> activeCards = FXCollections.observableArrayList();
 
-    ObservableList<String> activeCards = FXCollections.observableArrayList("card1","card2", "card3");
-    ObservableList<String> activeRegions = FXCollections.observableArrayList("Europe", "Asia", "North America",
-            "Australia", "Africa");
+    ObservableList<String> activeRegions = FXCollections.observableArrayList();
+
+    private void regionsData(){
+        activeRegions.removeAll();
+        String a = "Africa";
+        String b = "North America";
+        String c = "Asia";
+        String d = "South America";
+        String e = "Oceania";
+        String f = "Europe";
+        activeRegions.addAll(a,b,c,d,e,f);
+
+    }
 
     @FXML
     public void initialize(){
+        regions = new ChoiceBox();
+        regions.getItems().add("a");
+        regionsData();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
             Parent root = loader.load();
@@ -160,7 +174,7 @@ public class BankCardMenuController {
             e.printStackTrace();
         }
        // cardList.setItems(activeCards);
-      //  regions.setItems(activeRegions);
+
 
     }
 
@@ -446,15 +460,6 @@ public class BankCardMenuController {
 
     @FXML
     public void onSubmitFuncClicked() throws Exception {
-        if ((!blockCard.isSelected() && !unblockCard.isSelected())
-                || (!blockTransaction.isSelected() && !unblockTransaction.isSelected())) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill the required fields.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                alert.close();
-            }
-        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your card pin is changed successfully.");
             alertBox.setTitle("Success!");
@@ -466,7 +471,6 @@ public class BankCardMenuController {
                 facade.toggleFreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
                 facade.toggleOnlineTransactions(cardList.getSelectionModel().getSelectedItem().toString());
                 facade.changeSpendingLimit(cardList.getSelectionModel().getSelectedItem().toString(), Double.parseDouble(transactionLimit.getText()));
-            }
         }
     }
 
@@ -482,7 +486,7 @@ public class BankCardMenuController {
     @FXML
     void deleteCard(ActionEvent event) throws IOException {
         if (!TnC.isSelected() || lostCard.getText().trim().isEmpty() || dislikeService.getText().trim().isEmpty()
-                || cardPinToDelete.getText().trim().isEmpty() || cardNumberToDelete.getText().trim().isEmpty()
+                || cardPinToDelete.getText().trim().isEmpty() || cardNumberToDelete.getSelectionModel().getSelectedItem().toString().trim().isEmpty()
                 || cardUnused.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
@@ -497,10 +501,9 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.deleteCard(cardNumberToDelete.getText(), cardUnused.getText(), Integer.parseInt(cardPinToDelete.getText()));
+                facade.deleteCard(cardNumberToDelete.getSelectionModel().getSelectedItem().toString(), cardUnused.getText(), Integer.parseInt(cardPinToDelete.getText()));
             }
         }
-
     }
 
     /**
@@ -515,7 +518,7 @@ public class BankCardMenuController {
     @FXML
     void changeCardPin(ActionEvent event) throws IOException {
         if (!TnC.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
-                || confirmPin.getText().trim().isEmpty() || cardNumber.getText().trim().isEmpty()) {
+                || confirmPin.getText().trim().isEmpty() || cardNumberChangePin.getSelectionModel().getSelectedItem().toString().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
@@ -538,7 +541,7 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.changePin(cardNumber.getText(), Integer.parseInt(currentPin.getText()),
+                facade.changePin(cardNumberChangePin.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(currentPin.getText()),
                         Integer.parseInt(newPin.getText()), Integer.parseInt(confirmPin.getText()));
             }
         }
