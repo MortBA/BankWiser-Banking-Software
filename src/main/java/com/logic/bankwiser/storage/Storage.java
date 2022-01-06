@@ -32,19 +32,26 @@ import java.util.*;
  * there are more IO calls than would normally occur in a program like this. Although the function of overwriting
  * individual objects works exactly as written, it still requires that the entire file is both read and rewritten
  * in its entirety. This will have performance implications down the line, unless a database solution is implemented.
+ * <p>
+ * There are a couple sections in this class which could have used Generics or similar to reduce repetition,
+ * however, as this project requires that anyone in the project should be able to answer any question about it,
+ * it is not feasible to teach generics for this purpose.
  *
  * @author Burak Askan
  * @author Kevin Collins
  * @author Mathias Hallander
  */
+
+//TODO add individual storage sections to controllers
 public class Storage {
 
     protected final HashMap<UUID, UserAccount> userAccountMap;
     protected final HashMap<String, UUID> userEmailMap;
     protected final HashMap<String, BankAccount> bankAccountMap;
-    private final List<Integer> caseIDList;
+    private final HashMap<Integer, UserAccount> requestMap;
     private final List<String> errorReportList;
     protected final Gson gson;
+    private boolean tests = false;
 
     /**
      * Constructor for the Storage branches
@@ -53,7 +60,7 @@ public class Storage {
         userAccountMap = new HashMap<>();
         userEmailMap = new HashMap<>();
         bankAccountMap = new HashMap<>();
-        caseIDList = new ArrayList<>();
+        requestMap = new HashMap<>();
         errorReportList = new ArrayList<>();
         gson = new Gson();
 
@@ -63,6 +70,16 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Storage(boolean test) {
+        userAccountMap = new HashMap<>();
+        userEmailMap = new HashMap<>();
+        bankAccountMap = new HashMap<>();
+        requestMap = new HashMap<>();
+        errorReportList = new ArrayList<>();
+        gson = new Gson();
+        tests = test;
     }
 
     public HashMap<String, BankAccount> getBankAccountMap() {
@@ -89,14 +106,16 @@ public class Storage {
         return bankAccountMap.get(bankAccountID);
     }
 
-    public void addCaseID(int caseID) {
-        caseIDList.add(caseID);
+    public HashMap<Integer, UserAccount> getRequestMap() {
+        return requestMap;
     }
 
     public void addBankAccount(String bankAccountID, BankAccount bankAccount) {
         bankAccountMap.put(bankAccountID, bankAccount);
         try {
-            storeBankAccounts(bankAccount);
+            if (!tests) {
+                storeBankAccounts(bankAccount);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,10 +125,16 @@ public class Storage {
         userAccountMap.put(userAccountID, userAccount);
         userEmailMap.put(userAccount.getEmailID(), userAccountID);
         try {
-            storeUser(userAccount);
+            if (!tests) {
+                storeUsers(userAccount);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addDeleteUserRequest(UserAccount userAccount) {
+        requestMap.put(requestMap.size(), userAccount);
     }
 
     public void addErrorReport(String errorReport) {
@@ -149,7 +174,7 @@ public class Storage {
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
-    public void storeUser(UserAccount userAccountToStore) throws IOException {
+    public void storeUsers(UserAccount userAccountToStore) throws IOException {
         Path path = StoragePaths.USERS.getPath();
         List<String> content = new ArrayList<>();
         HashSet<UserAccount> userAccountHashSet = new HashSet<>();
@@ -217,6 +242,26 @@ public class Storage {
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
+    public void storeTransactions(Transaction senderTransactionToStore, Transaction receiverTransactionToStore) throws IOException {
+        Path path = StoragePaths.TRANSACTIONS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<Transaction> transactionHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String transactionString) -> transactionHashSet.add(gson.fromJson(transactionString, Transaction.class)));
+        
+        if (!transactionHashSet.add(senderTransactionToStore)) {
+            transactionHashSet.remove(senderTransactionToStore);
+            transactionHashSet.add(senderTransactionToStore);
+        }
+        if (!transactionHashSet.add(receiverTransactionToStore)) {
+            transactionHashSet.remove(receiverTransactionToStore);
+            transactionHashSet.add(receiverTransactionToStore);
+        }
+
+        transactionHashSet.forEach((Transaction transaction) -> content.add(gson.toJson(transaction)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
     public void storePersonalLoans() throws IOException {
         Path path = StoragePaths.PERSONAL_LOANS.getPath();
         List<String> content = new ArrayList<>();
@@ -232,7 +277,23 @@ public class Storage {
             }
         }));
 
-        personalLoanHashSet.forEach((Loan loan) -> content.add(gson.toJson(loan)));
+        personalLoanHashSet.forEach((PersonalLoan loan) -> content.add(gson.toJson(loan)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    public void storePersonalLoans(PersonalLoan loanToStore) throws IOException {
+        Path path = StoragePaths.PERSONAL_LOANS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<PersonalLoan> personalLoanHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String loanString) -> personalLoanHashSet.add(gson.fromJson(loanString, PersonalLoan.class)));
+
+        if (!personalLoanHashSet.add(loanToStore)) {
+            personalLoanHashSet.remove(loanToStore);
+            personalLoanHashSet.add(loanToStore);
+        }
+
+        personalLoanHashSet.forEach((PersonalLoan loan) -> content.add(gson.toJson(loan)));
 
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
@@ -257,6 +318,22 @@ public class Storage {
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
+    public void storeHomeLoans(HomeLoan loanToStore) throws IOException {
+        Path path = StoragePaths.HOME_LOANS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<HomeLoan> homeLoanHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String loanString) -> homeLoanHashSet.add(gson.fromJson(loanString, HomeLoan.class)));
+
+        if (!homeLoanHashSet.add(loanToStore)) {
+            homeLoanHashSet.remove(loanToStore);
+            homeLoanHashSet.add(loanToStore);
+        }
+
+        homeLoanHashSet.forEach((HomeLoan loan) -> content.add(gson.toJson(loan)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+    
     public void storeVehicleLoans() throws IOException {
         Path path = StoragePaths.VEHICLE_LOANS.getPath();
         List<String> content = new ArrayList<>();
@@ -277,6 +354,22 @@ public class Storage {
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
+    public void storeVehicleLoans(VehicleLoan loanToStore) throws IOException {
+        Path path = StoragePaths.VEHICLE_LOANS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<VehicleLoan> vehicleLoanHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String loanString) -> vehicleLoanHashSet.add(gson.fromJson(loanString, VehicleLoan.class)));
+
+        if (!vehicleLoanHashSet.add(loanToStore)) {
+            vehicleLoanHashSet.remove(loanToStore);
+            vehicleLoanHashSet.add(loanToStore);
+        }
+
+        vehicleLoanHashSet.forEach((Loan loan) -> content.add(gson.toJson(loan)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+    
     public void storeDebitCards() throws IOException {
         Path path = StoragePaths.DEBIT_CARDS.getPath();
         List<String> content = new ArrayList<>();
@@ -291,6 +384,22 @@ public class Storage {
                 }
             }
         }));
+
+        debitCardHashSet.forEach((DebitCard debitCard) -> content.add(gson.toJson(debitCard)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    public void storeDebitCards(DebitCard cardToStore) throws IOException {
+        Path path = StoragePaths.DEBIT_CARDS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<DebitCard> debitCardHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String cardString) -> debitCardHashSet.add(gson.fromJson(cardString, DebitCard.class)));
+
+        if (!debitCardHashSet.add(cardToStore)) {
+            debitCardHashSet.remove(cardToStore);
+            debitCardHashSet.add(cardToStore);
+        }
 
         debitCardHashSet.forEach((DebitCard debitCard) -> content.add(gson.toJson(debitCard)));
 
@@ -314,6 +423,29 @@ public class Storage {
         creditCardHashSet.forEach((CreditCard creditCard) -> content.add(gson.toJson(creditCard)));
 
         Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    public void storeCreditCards(CreditCard cardToStore) throws IOException {
+        Path path = StoragePaths.CREDIT_CARDS.getPath();
+        List<String> content = new ArrayList<>();
+        HashSet<CreditCard> creditCardHashSet = new HashSet<>();
+        Files.readAllLines(path).forEach((String cardString) -> creditCardHashSet.add(gson.fromJson(cardString, CreditCard.class)));
+
+        if (!creditCardHashSet.add(cardToStore)) {
+            creditCardHashSet.remove(cardToStore);
+            creditCardHashSet.add(cardToStore);
+        }
+
+        creditCardHashSet.forEach((CreditCard creditCard) -> content.add(gson.toJson(creditCard)));
+
+        Files.write(path, content, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    //TODO finalize implementation
+    public void storeRequests() throws IOException {
+        Path path = StoragePaths.REQUESTS.getPath();
+        List<String> content = new ArrayList<>();
+
     }
 
     public void retrieveUsers() throws IOException {

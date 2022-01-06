@@ -16,7 +16,8 @@ public enum StoragePaths {
     CREDIT_CARDS("src/main/resources/com/logic/bankwiser/storage/creditCardStorage.txt"),
     PERSONAL_LOANS("src/main/resources/com/logic/bankwiser/storage/personalLoanStorage.txt"),
     HOME_LOANS("src/main/resources/com/logic/bankwiser/storage/homeLoanStorage.txt"),
-    VEHICLE_LOANS("src/main/resources/com/logic/bankwiser/storage/vehicleLoanStorage.txt");
+    VEHICLE_LOANS("src/main/resources/com/logic/bankwiser/storage/vehicleLoanStorage.txt"),
+    REQUESTS("src/main/resources/com/logic/bankwiser/storage/requestStorage.txt");
 
     StoragePaths(String stringPath) {
         this.stringPath = stringPath;
