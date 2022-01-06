@@ -174,43 +174,20 @@ public class Facade {
     }
 
     /**
-     * Retrieves information about a bank account
-     *
-     * @param accountName     the name of the bank account
-     * @return
-     */
-    public String bankAccountInformation(String accountName) {
-        return activeBankAccount.toString();
-    }
-
-    /**
-     * Resets the password of the clerk with a chosen password
-     *
-     * @param clerkId           the ID of the clerk
-     * @param username          the username of the clerk
-     * @param newPwd            the new password
-     * @param newPwdConfirm     the repeat of the new password
-     * @return String confirmation of resetting the clerk password.
-     */
-    public String resetClerkPassword(String clerkId, String username, String newPwd, String newPwdConfirm) {
-        return "";
-    }
-
-    /**
-     * Transferring the money from one account to another
+     * Transferring the money from one account to another.
      *
      * @param sender       the account of the sender
      * @param receiver     the account of the receiver
      * @param note         a small message attached to the transaction
      * @param amount       total amount/price of transaction
-     * @return String confirmation of deleting the bank account.
+     * @return String confirmation on success or fail.
      */
     public String transferMoney(String sender, String receiver, String note, double amount) {
-        return "";
+        return transactionController.transferMoney(sender, receiver, BigDecimal.valueOf(amount), note, LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
     }
 
     /**
-     * Shows history of transactions of a bank-account
+     * Shows history of transactions of a bank-account.
      *
      * @param bankAccountID     the account that the history belongs to
      * @return String containing the history

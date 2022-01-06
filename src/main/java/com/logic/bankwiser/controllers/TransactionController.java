@@ -28,16 +28,24 @@ public class TransactionController {
         BankAccount senderBankAccount = storage.getBankAccount(senderBankAccountID);
         BankAccount receiverBankAccount = storage.getBankAccount(receiverBankAccountID);
 
-        senderBankAccount.processPaymentRequest(false, moneyTransferred);
-        BigDecimal senderNewBalance = senderBankAccount.getBalance();
-        receiverBankAccount.processPaymentRequest(true, moneyTransferred);
-        BigDecimal receiverNewBalance = receiverBankAccount.getBalance();
-        senderBankAccount.addTransaction(new Transaction(generateTransactionID(receiverBankAccountID), receiverBankAccountID, moneyTransferred.negate(), note, transactionDate, senderNewBalance));
-        receiverBankAccount.addTransaction(new Transaction(generateTransactionID(senderBankAccountID), senderBankAccountID, moneyTransferred, note, transactionDate, receiverNewBalance));
+        if (senderBankAccount == null) {
+            sb.append("Cannot transfer: {sender} was not found.");
+        } else if (receiverBankAccount == null) {
+            sb.append("Cannot transfer: {receiver} was not found.");
+        } else if (moneyTransferred.compareTo(BigDecimal.ZERO) == 0) {
+            sb.append("Cannot transfer: You need to enter an amount to send.");
+        } else {
+            senderBankAccount.processPaymentRequest(false, moneyTransferred);
+            BigDecimal senderNewBalance = senderBankAccount.getBalance();
+            receiverBankAccount.processPaymentRequest(true, moneyTransferred);
+            BigDecimal receiverNewBalance = receiverBankAccount.getBalance();
+            senderBankAccount.addTransaction(new Transaction(generateTransactionID(receiverBankAccountID), receiverBankAccountID, moneyTransferred.negate(), note, transactionDate, senderNewBalance));
+            receiverBankAccount.addTransaction(new Transaction(generateTransactionID(senderBankAccountID), senderBankAccountID, moneyTransferred, note, transactionDate, receiverNewBalance));
 
-        sb.append("Successfully sent ").append(moneyTransferred).append(" SEK from ").append(senderBankAccountID);
-        sb.append(" to ").append(receiverBankAccountID).append(".");
-        sb.append("Note: ").append(note);
+            sb.append("Successfully sent ").append(moneyTransferred).append(" SEK from ").append(senderBankAccountID);
+            sb.append(" to ").append(receiverBankAccountID).append(". ");
+            sb.append("Note: ").append(note).append(".");
+        }
         return sb.toString();
     }
 
@@ -59,8 +67,12 @@ public class TransactionController {
         StringBuilder sb = new StringBuilder();
         List<Transaction> transactionList = storage.getBankAccount(bankAccountID).getTransactionMap().values().stream().toList();
 
-        for (Transaction transaction : transactionList) {
-            sb.append(transaction).append(Input.EOL);
+        if (transactionList.isEmpty()) {
+            sb.append("No previous transaction history.");
+        } else {
+            for (Transaction transaction : transactionList) {
+                sb.append(transaction).append(Input.EOL);
+            }
         }
 
         return sb.toString();
