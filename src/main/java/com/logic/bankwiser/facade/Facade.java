@@ -7,6 +7,9 @@ import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,6 +44,15 @@ public class Facade {
      */
     public Facade() {
         storage = new Storage();
+        userAccountController = new UserAccountController(storage);
+        bankAccountController = new BankAccountController(storage);
+        transactionController = new TransactionController(storage);
+        cardController = new CardController(storage, transactionController);
+        loanController = new LoanController(storage, transactionController);
+    }
+
+    public Facade(boolean tests) {
+        storage = new Storage(tests);
         userAccountController = new UserAccountController(storage);
         bankAccountController = new BankAccountController(storage);
         transactionController = new TransactionController(storage);
@@ -98,13 +110,13 @@ public class Facade {
      * Creates a user account based on the inputted parameters.
      *
      * @param password             the users' password which has to be smaller than 16 characters
-     * @param confirmPwd           the users' password repeated for confirmation
+     * @param confirmPassword           the users' password repeated for confirmation
      * @param socialSecurityNumber the users' social security number
      * @return String confirmation of user creation or failure.
      */
-    public String createUserAccount(String userName, String fullName, String password, String confirmPwd,
+    public String createUserAccount(String userName, String fullName, String password, String confirmPassword,
                                     String phoneNumber, String userAddress, String socialSecurityNumber) {
-        return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, userName, password);
+        return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, userName, password, confirmPassword);
     }
 
     //TODO finish deleteUserAccount method
@@ -127,13 +139,10 @@ public class Facade {
     /**
      * Resets the users' password.
      *
-     * @param newPwd
-     * @param newPwdConfirm
      * @return String confirmation of reset password.
      */
-    //TODO finish reset resetUserPassword method
-    public String resetUserPassword(String accountId, String username, String newPwd, String newPwdConfirm) {
-        return "";
+    public String resetUserPassword(String accountId) {
+        return userAccountController.resetPassword(accountId);
     }
 
     /**
@@ -146,71 +155,68 @@ public class Facade {
         return bankAccountController.createBankAccount(activeUser, accountName);
     }
 
+    /**
+     *
+     * @param accountName
+     * @return
+     */
     public String createBankAccount(UUID userAccountID, String accountName) {
         return bankAccountController.createBankAccount(storage.getUserFromMap(userAccountID), accountName);
     }
 
+    /**
+     *
+     * @return currently selected BankAccount
+     */
     public BankAccount getActiveBankAccount() {
         return activeBankAccount;
     }
 
+    /**
+     *
+     * @return List of users' bank accounts
+     */
     public List<String> getBankAccounts() {
         return activeUser.getBankAccountList();
     }
 
-    public void selectedBankAccount(String bankAccountID){
+    /**
+     * Changes the active bank account to input
+     */
+    public void selectedBankAccount(String bankAccountID) {
         this.activeBankAccount = storage.getBankAccount(bankAccountID);
     }
 
+
+    public String renameBankAccount(String bankAccountID, String newName) {
+        return bankAccountController.renameBankAccount(activeUser, bankAccountID, newName);
+    }
+
     /**
-     * Deletes the bank account
+     * Deletes the bank account.
      *
-     * Deletes a bank account
      * @param accountId     The id of the account that will be removed
      * @return String confirmation of deleting the bank account.
      */
     public String deleteBankAccount(String accountId) {
-        return "";
+        return bankAccountController.deleteBankAccount(activeUser, accountId);
     }
 
     /**
-     * Retrieves information about a bank account
-     *
-     * @param accountName     the name of the bank account
-     * @return
-     */
-    public String bankAccountInformation(String accountName) {
-        return activeBankAccount.toString();
-    }
-
-    /**
-     * Resets the password of the clerk with a chosen password
-     *
-     * @param clerkId           the ID of the clerk
-     * @param username          the username of the clerk
-     * @param newPwd            the new password
-     * @param newPwdConfirm     the repeat of the new password
-     * @return String confirmation of resetting the clerk password.
-     */
-    public String resetClerkPassword(String clerkId, String username, String newPwd, String newPwdConfirm) {
-        return "";
-    }
-
-    /**
-     * Transferring the money from one account to another
+     * Transferring the money from one account to another.
      *
      * @param sender       the account of the sender
      * @param receiver     the account of the receiver
      * @param note         a small message attached to the transaction
      * @param amount       total amount/price of transaction
-     * @return String confirmation of deleting the bank account.
+     * @return String confirmation on success or fail.
      */
     public String transferMoney(String sender, String receiver, String note, double amount) {
-        return "";
+        return transactionController.transferMoney(sender, receiver, BigDecimal.valueOf(amount), note, LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
     }
 
     /**
-     * Shows history of transactions of a bank-account
+     * Shows history of transactions of a bank-account.
      *
      * @param bankAccountID     the account that the history belongs to
      * @return String containing the history
@@ -220,7 +226,7 @@ public class Facade {
     }
 
     /**
-     * Sends an application for a personal-loan to be processed
+     * Sends an application for a personal-loan to be processed.
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
@@ -230,92 +236,57 @@ public class Facade {
      * @return confirmation of loan acceptation or rejection.
      */
     public String personalLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int duration, String note) {
-        return loanController.personalLoanApplication(activeUser, activeUser.getBankAccountList().get(0), monthlyIncome, monthlyExpenses, desiredLoanAmount, duration, note);
+        return loanController.personalLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, duration, note);
     }
 
     /**
-     * Sends an application for a home-loan to be processed
+     * Sends an application for a home-loan to be processed.
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
-     * @param propertyPrice       the total price of the property
      * @param propertySize        the size of the total property
-     * @param liabilities         the total liabilities
-     * @param homeAddress         the address of the lodging
-     * @param homeType            the type of lodging
-     * @param storiesNum          //the number of the flat?
-     * @param duration            the length of time for repayment
+     * @param propertyAddress         the address of the lodging
+     * @param propertyType            the type of lodging
+     * @param propertyFloor          //the number of the flat?
+     * @param loanDuration        the length of time for repayment in months
      * @return confirmation of loan acceptation or rejection.
      */
-    public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double propertyPrice,
-                                      double propertySize, String liabilities, String homeAddress,
-                                      String homeType, int storiesNum, int duration) {
-        return "";
+    public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, double propertySize,
+                                      String propertyAddress, String propertyType, int propertyFloor, int loanDuration) {
+        return loanController.homeLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloor);
     }
 
     /**
-     * Sends an application for a vehicle-loan to be processed
+     * Sends an application for a vehicle-loan to be processed.
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
-     * @param millage             the age of the car by miles
-     * @param liabilities         the total liabilities
+     * @param mileage             the age of the car by miles
      * @param vehicleType         the type of the vehicle
      * @param fuelType            the type of fuel on the car
-     * @param yearOfManufacture
+     * @param yearOfManufacture   the year the car was built
+     * @param desiredLoanAmount   the desired loan amount
+     * @param loanDuration        the duration of the loan in months
      * @return confirmation of loan acceptation or rejection.
      */
-    public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses,
-                                         double millage, String liabilities, String vehicleType,
-                                         String fuelType, int yearOfManufacture) {
-        return "";
-    }
-
-    /**
-     * Calculates the loan size
-     *
-     * @param monthlyIncome     total income on a monthly basis of the user
-     * @param duration          the duration of the loan
-     * @return the size of the calculated loan
-     */
-    public double calculateLoanSize(double monthlyIncome, int duration) {
-        return -1;
-    }
-
-    /**
-     * Calculates the interest rate
-     *
-     * @param loanType     the type of the loan
-     * @return  double containing interest rate depending on the loan type
-     */
-    public double calculateInterestRate(String loanType) {
-        return -1;
-    }
-
-    /**
-     * Gives either approval or disapproval of a loan
-     *
-     * @param username     the user that requests the loan
-     * @param fullName     the fullname of the user
-     * @param reason       the reasoning for the loan request
-     * @param loanSize     the total amount of the loan
-     * @return string containing approval or disapproval of the loan
-     */
-    public String loanApproval(String username, String fullName, String reason, double loanSize) {
-        return "";
+    public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, double mileage,
+                                         int loanDuration, String vehicleType, String fuelType, int yearOfManufacture) {
+        return loanController.vehicleLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, vehicleType, fuelType, mileage, yearOfManufacture);
     }
 
     /**
      * Creates the credit card
+     *
      * @param pin input give in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createCreditCard(int pin) {
-        return cardController.addCard(activeBankAccount, pin);
+    public String createCreditCard(int pin, double monthlyIncome, double monthlyExpenses) {
+        return cardController.addCard(activeBankAccount, pin, monthlyIncome, monthlyExpenses);
     }
 
     /**
      * Creates the debit card
+     *
      * @param pin input given in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
@@ -323,30 +294,29 @@ public class Facade {
         return cardController.addCard(activeBankAccount,pin);
     }
 
-
-
     /**
-     * Toggle the card to freeze
+     * Creates the debit card
      *
-     * @param cardNumber     the card to be frozen
-     * @return
+     * @param pin input given in by the user as their card code
+     * @return string with approval or disapproval for the card creation.
      */
-    public String freezeCard(String cardNumber) {
-        return cardController.modifyStatus(activeBankAccount, cardNumber);
+    public String createDebitCard(String cardNumber, int pin) {
+        return cardController.addCard(activeBankAccount, cardNumber, pin);
     }
+
 
     /**
      * Toggle the card to unfreeze
      *
-     * @param cardNumber     the card to be unfrozen
-     * @return
+     * @param cardNumber     the card to be toggled
+     * @return String confirmation of success or failure
      */
-    public String unfreezeCard(String cardNumber) {
-        return cardController.modifyStatus(activeBankAccount,cardNumber);
+    public String toggleFreezeCard(String cardNumber) {
+        return cardController.modifyStatus(activeBankAccount, cardNumber);
     }
 
     /**
-     * Modify the instore spending limit
+     * Modify the spending limit of a card.
      *
      * @param newLimit     the new limit as chosen by the user
      * @return String confirmation of success or failure
@@ -355,17 +325,12 @@ public class Facade {
         return cardController.modifyExpenditureMax(activeBankAccount, cardNumber, newLimit);
     }
 
-    public String allowOnlineTransactions() {
-        return "";
-    }
-
     /**
-     * Modify the online transaction ability of a card
+     * Toggle online transactions
      *
-     * @param cardNumber     the number of the card that will be modified
      * @return String confirmation of success or failure
      */
-    public String blockOnlineTransactions(String cardNumber) {
+    public String toggleOnlineTransactions(String cardNumber) {
         return cardController.modifyOnlineStatus(activeBankAccount, cardNumber);
     }
 

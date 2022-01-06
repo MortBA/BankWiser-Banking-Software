@@ -5,6 +5,9 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.utils.MathUtils;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -29,11 +32,19 @@ public class BankAccountController {
     public String createBankAccount(UserAccount userAccount, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
         try {
-            String bankAccountID = generateBankAccountID();
-            BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
-            storage.addBankAccount(bankAccountID, bankAccount);
-            userAccount.addBankAccount(bankAccount.getBankAccountID());
-            sb.append("New banking account ").append(bankAccountName).append(" has been created.");
+            List<String> usedNames = new ArrayList<>();
+            userAccount.getBankAccountList().forEach((String bankAccountID) -> {
+                usedNames.add(storage.getBankAccount(bankAccountID).getBankAccountName());
+            });
+            if (!usedNames.contains(bankAccountName)) {
+                String bankAccountID = generateBankAccountID();
+                BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
+                storage.addBankAccount(bankAccountID, bankAccount);
+                userAccount.addBankAccount(bankAccount.getBankAccountID());
+                sb.append("New banking account ").append(bankAccountName).append(" has been created.");
+            } else {
+                sb.append("Cannot create a new account named ").append(bankAccountName).append(": an account of that name already exists.");
+            }
         } catch (Exception e) {
             sb.append(e.getMessage());
         }
@@ -48,26 +59,40 @@ public class BankAccountController {
      * @return A string that either confirms the bank account being renamed or
      * informs the user that the bank account could not be renamed.
      */
-    public String renameBankAccount(String bankAccountID, String bankAccountName) {
+    public String renameBankAccount(UserAccount userAccount, String bankAccountID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
-        if (bankAccountName.length() <= 30) {
-            storage.getBankAccount(bankAccountID).setBankAccountName(bankAccountName);
-            sb.append("Your bank account has been renamed to ").append(bankAccountName).append(".");
+
+        if (userAccount.getBankAccountList().contains(bankAccountID)) {
+            if (bankAccountName.length() <= 30) {
+                storage.getBankAccount(bankAccountID).setBankAccountName(bankAccountName);
+                sb.append("Your bank account has been renamed to ").append(bankAccountName).append(".");
+            } else {
+                sb.append("Your bank account cannot be renamed as the new name is ").append(bankAccountName.length()).append(" characters long.");
+            }
         } else {
-            sb.append("Your bank account cannot be renamed as the new name is ").append(bankAccountName.length()).append(" characters long.");
+            sb.append("That bank account does not exist.");
         }
         return sb.toString();
     }
 
     //TODO Implement after UserAccount link is functional -K
-    public void deleteBankAccount() {
-        /*
-        The user has permission to delete any bank account they own, provided
-        it is not their only bank account left, and the bank account is empty.
-
-        Should the user attempt to remove an account which does not fulfil this
-        criteria, the system will inform the user that the action was not performed.
-         */
+    public String deleteBankAccount(UserAccount userAccount, String bankAccountID) {
+        if (userAccount.getBankAccountList().contains(bankAccountID)) {
+            if (storage.getBankAccount(bankAccountID).getBalance().compareTo(BigDecimal.ZERO) > 0) {
+                return "Please transfer all money from this bank account first.";
+            } else if (storage.getBankAccount(bankAccountID).getBalance().compareTo(BigDecimal.ZERO) < 0) {
+                return "Please pay off or transfer your credit card to another account first.";
+            } else if (!storage.getBankAccount(bankAccountID).getLoanMap().isEmpty()) {
+                return "Please speak to the clerk about how loans can be transferred first.";
+            } else {
+                String name = storage.getBankAccount(bankAccountID).getBankAccountName();
+                userAccount.getBankAccountList().remove(bankAccountID);
+                storage.getBankAccountMap().remove(bankAccountID);
+                return "Deleted bank account " + name + ".";
+            }
+        } else {
+            return "That bank account does not exist.";
+        }
     }
 
     public String generateBankAccountID() {

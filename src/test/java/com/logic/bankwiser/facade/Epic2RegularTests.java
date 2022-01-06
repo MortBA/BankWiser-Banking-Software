@@ -1,6 +1,8 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,11 +16,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Mathias Hallander
  */
 public class Epic2RegularTests {
-    static Facade facade;
+    private Facade facade;
+    UserAccount johnAccount;
+    UserAccount peterAccount;
+    BankAccount johnBankAccount;
 
-    @BeforeAll
-    public static void setup() {
-        facade = new Facade();
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
+
+        facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
+        facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
+
+        johnAccount = facade.storage.getUserFromMap("john@gmail.com");
+        peterAccount = facade.storage.getUserFromMap("peter@gmail.com");
+
+        facade.createBankAccount(johnAccount.getUserID(), "testing1");
+        facade.createBankAccount(peterAccount.getUserID(), "testing2");
+
+        johnBankAccount = facade.storage.getBankAccount(johnAccount.getBankAccountList().get(0));
     }
 
     @Test
@@ -38,19 +54,19 @@ public class Epic2RegularTests {
 
     @Test
     public void deleteUserAccountTest() {
-        String expectedValue = "Account for john.doe@gmail.com has been successfully terminated.";
-        String actualValue = facade.deleteUserAccount("john.doe@gmail.com");
+        String expectedValue = "User account deletion request has been sent.";
+        String actualValue = facade.deleteUserAccount("john@gmail.com");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "Account for mary.jane@yahoo.com has been successfully terminated.";
-        actualValue = facade.deleteUserAccount("mary.jane@yahoo.com");
+        expectedValue = "User account deletion request has been sent.";
+        actualValue = facade.deleteUserAccount("peter@gmail.com");
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
     public void resetUserPasswordTest() {
-        String expectedValue = "Password reset for ‘sem.mogilevich@mafiamail.com’ was successful.";
-        String actualValue = facade.resetUserPassword("", "AcceptablePassword894", "NewPassword123", "NewPassword123");
+        String expectedValue = "An email has been sent to john@gmail.com with a link that will allow you to reset your password.";
+        String actualValue = facade.resetUserPassword("john@gmail.com");
         assertEquals(expectedValue, actualValue);
     }
 }

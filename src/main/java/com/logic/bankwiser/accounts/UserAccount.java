@@ -137,11 +137,11 @@ public class UserAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserAccount that = (UserAccount) o;
-        return userID.equals(that.userID) || SOCIAL_SECURITY_NUMBER.equals(that.SOCIAL_SECURITY_NUMBER);
+        return this.userID.equals(that.userID) || this.SOCIAL_SECURITY_NUMBER.equals(that.SOCIAL_SECURITY_NUMBER) || this.emailID.equals(that.emailID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, SOCIAL_SECURITY_NUMBER);
+        return Objects.hash(SOCIAL_SECURITY_NUMBER, emailID);
     }
 }

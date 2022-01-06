@@ -7,6 +7,7 @@ import com.logic.bankwiser.utils.Input;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
 /**
@@ -18,7 +19,7 @@ public class BankAccount {
     private final String BANK_ACCOUNT_ID;
     private String bankAccountName;
     private BigDecimal balance;
-    private transient HashMap<String, Transaction> transactionHashMap;
+    private transient LinkedHashMap<String, Transaction> transactionHashMap;
     private transient HashMap<String, Loan> loanHashMap;
     private transient HashMap<String, DebitCard> cardHashMap;
 
@@ -34,7 +35,7 @@ public class BankAccount {
             this.BANK_ACCOUNT_ID = bankAccountID;
             this.bankAccountName = bankAccountName;
             this.balance = new BigDecimal("0.00");
-            this.transactionHashMap = new HashMap<>();
+            this.transactionHashMap = new LinkedHashMap<>();
             this.loanHashMap = new HashMap<>();
             this.cardHashMap = new HashMap<>();
         } else {
@@ -56,7 +57,7 @@ public class BankAccount {
     }
 
     public void flushMaps() {
-        this.transactionHashMap = new HashMap<>();
+        this.transactionHashMap = new LinkedHashMap<>();
         this.cardHashMap = new HashMap<>();
         this.loanHashMap = new HashMap<>();
     }

@@ -14,7 +14,7 @@ public class Epic6AlternativeTests {
 
     @BeforeEach
     public void setup() {
-        facade = new Facade();
+        facade = new Facade(true);
     }
 
     /**
@@ -76,5 +76,4 @@ public class Epic6AlternativeTests {
     public void shouldPrintErrorFor() {
 
     }
-
 }
