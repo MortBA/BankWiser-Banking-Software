@@ -38,21 +38,21 @@ public class DeleteBankAccountScreenController {
     @FXML
     private void ConfirmClicked() {
         if (socialSecurityNumber.getText().trim().isEmpty() || socialSecurityNumber1.getText().trim().isEmpty()
-        || fullName.getText().trim().isEmpty() || email.getText().trim().isEmpty() || !agreementCheckbox.isSelected()) {
+                || fullName.getText().trim().isEmpty() || email.getText().trim().isEmpty() || !agreementCheckbox.isSelected()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else {
-                Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-                alertBox.setContentText("Your bank account is deleted successfully.");
-                Optional<ButtonType> result = alertBox.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    // probably not implement anything here
-                }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Your bank account is deleted successfully.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                // probably not implement anything here
             }
+        }
     }
 
     /**

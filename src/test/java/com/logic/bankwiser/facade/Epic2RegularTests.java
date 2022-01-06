@@ -40,11 +40,11 @@ public class Epic2RegularTests {
     @Test
     public void createUserAccountTest() {
         String expectedValue = "New account for john.doe@gmail.com was successfully created.";
-        String actualValue = facade.createUserAccount("john.doe@gmail.com", "John Doe", "Password123", "Password123","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
+        String actualValue = facade.createUserAccount("john.doe@gmail.com", "John Doe", "Password123", "Password123", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New account for mary.jane@yahoo.com was successfully created.";
-        actualValue = facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "Password123", "Password123","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
+        actualValue = facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "Password123", "Password123", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New account for sem.mogilevich@mafiamail.com was successfully created.";

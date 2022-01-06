@@ -5,8 +5,6 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -96,17 +94,17 @@ public class Epic7AlternativeTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333.";
-        facade.createDebitCard(cardNumber, 1596,  1596);
+        facade.createDebitCard(cardNumber, 1596, 1596);
 
-        String actualValue = facade.deleteCard("186516515", "Too expensive",1596);
+        String actualValue = facade.deleteCard("186516515", "Too expensive", 1596);
         String expectedValue = "Card number you entered was not found in the list of your cards.";
         assertEquals(expectedValue, actualValue);
 
-        actualValue = facade.deleteCard(cardNumber, "Too expensive",8914);
+        actualValue = facade.deleteCard(cardNumber, "Too expensive", 8914);
         expectedValue = "Incorrect PIN code.";
         assertEquals(expectedValue, actualValue);
 
-        actualValue = facade.deleteCard(cardNumber, "",1596);
+        actualValue = facade.deleteCard(cardNumber, "", 1596);
         expectedValue = "You have to provide at least one reason why you wish to terminate your card.";
         assertEquals(expectedValue, actualValue);
     }

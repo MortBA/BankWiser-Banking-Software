@@ -1,8 +1,15 @@
 package com.logic.bankwiser.loans;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.utils.Input;
 
-
+/**
+ * A loan intended for the purchase of a home.
+ *
+ * @author Burak Askan
+ * @author Dragos Florinel Isar
+ * @author Mathias Hallander
+ */
 public class HomeLoan extends Loan {
 
     private final double HOME_LOAN_INTEREST_RATE = 0.02;
@@ -39,5 +46,15 @@ public class HomeLoan extends Loan {
 
     public int getPropertyFloors() {
         return PROPERTY_FLOORS;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString() + Input.EOL);
+        sb.append("Property address: " + PROPERTY_ADDRESS + Input.EOL +
+                "Property type: " + PROPERTY_TYPE + Input.EOL +
+                "Property size: " + PROPERTY_SIZE + Input.EOL +
+                "Property floor: " + PROPERTY_FLOORS);
+        return sb.toString();
     }
 }

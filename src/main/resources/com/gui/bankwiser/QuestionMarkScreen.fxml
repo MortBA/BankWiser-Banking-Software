@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-
-<AnchorPane prefHeight="402.0" prefWidth="394.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.QuestionMarkScreenController">
-   <children>
-      <TextArea layoutX="22.0" layoutY="38.0" opacity="0.89" prefHeight="326.0" prefWidth="358.0" style="fx-background-color: #5ab9bf;" text="Password Specification&#10;&#10;Minimum 8 digits &#10;(include special symbols and &#10;mix of capital &amp; small letters)&#10;&#10;" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="38.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </TextArea>
-   </children>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="402.0" prefWidth="394.0" style="-fx-background-color: #5ab9bf;"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gui.bankwiser.controllers.QuestionMarkScreenController">
+    <children>
+        <TextArea layoutX="22.0" layoutY="38.0" opacity="0.89" prefHeight="326.0" prefWidth="358.0"
+                  style="fx-background-color: #5ab9bf;"
+                  text="Password Specification&#10;&#10;Minimum 8 digits &#10;(include special symbols and &#10;mix of capital &amp; small letters)&#10;&#10;"
+                  AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0"
+                  AnchorPane.topAnchor="38.0">
+            <font>
+                <Font size="22.0"/>
+            </font>
+        </TextArea>
+    </children>
 </AnchorPane>

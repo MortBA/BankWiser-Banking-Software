@@ -11,6 +11,11 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 
 /**
+ * Object representation of a bank account object.
+ * The object is responsible for its own transactions, cards and loans as they are intrinsically tied to it.
+ * The object does not store the user account object it is connected to,
+ * rather the string id, which later gets mapped in storage.
+ *
  * @author Kevin Collins
  * @author Mathias Hallander
  */

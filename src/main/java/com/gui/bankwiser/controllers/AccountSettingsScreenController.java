@@ -142,7 +142,6 @@ public class AccountSettingsScreenController {
     }
 
 
-
     /**
      * Opens the 'change password' screen, which is initialized in the beginning.
      * The screen opens only when 'change password' button on the account settings screen is clicked.

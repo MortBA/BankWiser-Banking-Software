@@ -44,14 +44,14 @@ public class NewPasswordEmployeeController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else if(!(newPassword.getText().trim().equals(confirmNewPass.getText().trim()))){
+        } else if (!(newPassword.getText().trim().equals(confirmNewPass.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both passwords must match.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your password is updated successfully.");
             Optional<ButtonType> result = alertBox.showAndWait();

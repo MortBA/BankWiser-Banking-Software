@@ -20,8 +20,8 @@ public class Epic1RegularTests {
     public void setup() {
         facade = new Facade(true);
 
-        facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
-        facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
+        facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
+        facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
     }
 
     @Test

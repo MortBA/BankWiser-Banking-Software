@@ -73,24 +73,24 @@ public class Epic3RegularTests {
     @Test
     public void viewUserAccountsTest() {
         String expectedValue = "userID: " + johnAccount.getUserID() + Input.EOL +
-                                "fullName: John Smith" + Input.EOL +
-                                "phoneNumber: +46707012345" + Input.EOL +
-                                "address: Street 1" + Input.EOL +
-                                "SOCIAL_SECURITY_NUMBER: 200001010001" + Input.EOL +
-                                "emailID: john@gmail.com" + Input.EOL +
-                                "password: password" + Input.EOL +
-                                "bankAccountList: [" + johnBankAccount.getBankAccountID() + "]";
+                "fullName: John Smith" + Input.EOL +
+                "phoneNumber: +46707012345" + Input.EOL +
+                "address: Street 1" + Input.EOL +
+                "SOCIAL_SECURITY_NUMBER: 200001010001" + Input.EOL +
+                "emailID: john@gmail.com" + Input.EOL +
+                "password: password" + Input.EOL +
+                "bankAccountList: [" + johnBankAccount.getBankAccountID() + "]";
         String actualValue = johnAccount.toString();
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "userID: " + peterAccount.getUserID() + Input.EOL +
-                        "fullName: Peter Smith" + Input.EOL +
-                        "phoneNumber: +46707023456" + Input.EOL +
-                        "address: Street 2" + Input.EOL +
-                        "SOCIAL_SECURITY_NUMBER: 200001010002" + Input.EOL +
-                        "emailID: peter@gmail.com" + Input.EOL +
-                        "password: password" + Input.EOL +
-                        "bankAccountList: [" + peterBankAccount.getBankAccountID() + "]";
+                "fullName: Peter Smith" + Input.EOL +
+                "phoneNumber: +46707023456" + Input.EOL +
+                "address: Street 2" + Input.EOL +
+                "SOCIAL_SECURITY_NUMBER: 200001010002" + Input.EOL +
+                "emailID: peter@gmail.com" + Input.EOL +
+                "password: password" + Input.EOL +
+                "bankAccountList: [" + peterBankAccount.getBankAccountID() + "]";
         actualValue = peterAccount.toString();
         assertEquals(expectedValue, actualValue);
     }
@@ -98,11 +98,11 @@ public class Epic3RegularTests {
     @Test
     public void viewBankAccountDetails() {
         String expectedValue = "bankAccountID: " + johnBankAccount.getBankAccountID() + Input.EOL +
-                                "Name: Personal" + Input.EOL +
-                                "Balance: 0.00" + Input.EOL +
-                                "Transactions: []" + Input.EOL +
-                                "Loans: []" + Input.EOL +
-                                "Cards: []";
+                "Name: Personal" + Input.EOL +
+                "Balance: 0.00" + Input.EOL +
+                "Transactions: []" + Input.EOL +
+                "Loans: []" + Input.EOL +
+                "Cards: []";
         String actualValue = johnBankAccount.toString();
         assertEquals(expectedValue, actualValue);
 
