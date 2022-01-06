@@ -49,19 +49,19 @@ public class Epic7AlternativeTests {
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333.";
 
-        String actualValue = facade.createDebitCard(cardNumber, 1116);
+        String actualValue = facade.createDebitCard(cardNumber, 1116, 1116);
         String expectedValue = "Invalid PIN: A number cannot be repeated more than once.";
         assertEquals(expectedValue, actualValue);
 
-        actualValue = facade.createDebitCard(cardNumber, 1234);
+        actualValue = facade.createDebitCard(cardNumber, 1234, 1234);
         expectedValue = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.";
         assertEquals(expectedValue, actualValue);
 
-        actualValue = facade.createDebitCard(cardNumber, 153);
+        actualValue = facade.createDebitCard(cardNumber, 153, 153);
         expectedValue = "Invalid PIN: PIN must be four digits.";
         assertEquals(expectedValue, actualValue);
 
-        actualValue = facade.createDebitCard(cardNumber, 84675);
+        actualValue = facade.createDebitCard(cardNumber, 84675, 84675);
         expectedValue = "Invalid PIN: PIN must be four digits.";
         assertEquals(expectedValue, actualValue);
     }
@@ -75,7 +75,7 @@ public class Epic7AlternativeTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333.";
-        facade.createDebitCard(cardNumber, 1596);
+        facade.createDebitCard(cardNumber, 1596, 1596);
 
         String actualValue = facade.toggleFreezeCard("1234");
         String expectedValue = "Cannot toggle freezing of card: Incorrect card details.";
@@ -96,7 +96,7 @@ public class Epic7AlternativeTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333.";
-        facade.createDebitCard(cardNumber, 1596);
+        facade.createDebitCard(cardNumber, 1596,  1596);
 
         String actualValue = facade.deleteCard("186516515", "Too expensive",1596);
         String expectedValue = "Card number you entered was not found in the list of your cards.";
@@ -124,7 +124,7 @@ public class Epic7AlternativeTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333.";
-        facade.createDebitCard(cardNumber, 1596);
+        facade.createDebitCard(cardNumber, 1596, 1596);
 
         String actualValue = facade.changePin("1234", 1596, 1869, 1869);
         String expectedValue = "Card number you entered was not found in the list of your cards.";

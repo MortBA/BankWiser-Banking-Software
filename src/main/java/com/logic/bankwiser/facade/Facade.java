@@ -21,7 +21,6 @@ import java.util.UUID;
  * @author Mathias Hallander
  */
 public class Facade {
-//TODO: return types for all methods need to be updated -MH
 
     protected Storage storage;
     private final UserAccountController userAccountController;
@@ -118,8 +117,6 @@ public class Facade {
                                     String phoneNumber, String userAddress, String socialSecurityNumber) {
         return userAccountController.createUserAccount(fullName, phoneNumber, userAddress, socialSecurityNumber, userName, password, confirmPassword);
     }
-
-    //TODO finish deleteUserAccount method
 
     /**
      * Deletes the user account based on the given username
@@ -280,8 +277,8 @@ public class Facade {
      * @param pin input give in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createCreditCard(int pin, double monthlyIncome, double monthlyExpenses) {
-        return cardController.addCard(activeBankAccount, pin, monthlyIncome, monthlyExpenses);
+    public String createCreditCard(int pin, int pinConfirmation, double monthlyIncome, double monthlyExpenses) {
+        return cardController.addCard(activeBankAccount, pin, pinConfirmation, monthlyIncome, monthlyExpenses);
     }
 
     /**
@@ -290,8 +287,8 @@ public class Facade {
      * @param pin input given in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createDebitCard(int pin) {
-        return cardController.addCard(activeBankAccount,pin);
+    public String createDebitCard(int pin, int pinConfirmation) {
+        return cardController.addCard(activeBankAccount, pin, pinConfirmation);
     }
 
     /**
@@ -300,8 +297,8 @@ public class Facade {
      * @param pin input given in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createDebitCard(String cardNumber, int pin) {
-        return cardController.addCard(activeBankAccount, cardNumber, pin);
+    public String createDebitCard(String cardNumber, int pin, int pinConfirmation) {
+        return cardController.addCard(activeBankAccount, cardNumber, pin, pinConfirmation);
     }
 
 

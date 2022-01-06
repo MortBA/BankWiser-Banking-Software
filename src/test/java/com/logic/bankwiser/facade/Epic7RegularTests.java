@@ -43,11 +43,11 @@ public class Epic7RegularTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String expectedValue = "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
-        String actualValue = facade.createDebitCard(1596);
+        String actualValue = facade.createDebitCard(1596, 1596);
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation.";
-        actualValue = facade.createCreditCard(1596, 10000, 5000);
+        actualValue = facade.createCreditCard(1596, 1596, 10000, 5000);
         assertEquals(expectedValue, actualValue);
     }
 
@@ -63,7 +63,7 @@ public class Epic7RegularTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333";
-        facade.createDebitCard(cardNumber, 1596);
+        facade.createDebitCard(cardNumber, 1596, 1596);
 
         String expectedValue = "Your card has been successfully blocked.";
         String actualValue = facade.toggleFreezeCard(cardNumber); // Should be changed later
@@ -94,7 +94,7 @@ public class Epic7RegularTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333";
-        facade.createDebitCard(cardNumber, 1596);
+        facade.createDebitCard(cardNumber, 1596, 1596);
 
         String expectedValue = "Your card has been successfully terminated.";
         String actualValue = facade.deleteCard(cardNumber, "too young", 1596);
@@ -109,7 +109,7 @@ public class Epic7RegularTests {
         facade.activeUser = johnAccount;
         facade.activeBankAccount = johnBankAccount;
         String cardNumber = "4405111122223333";
-        facade.createDebitCard(cardNumber, 1596);
+        facade.createDebitCard(cardNumber, 1596, 1596);
         String expectedValue = "Successfully changed PIN code.";
         String actualValue = facade.changePin(cardNumber, 1596, 5246, 5246);
         assertEquals(expectedValue, actualValue);

@@ -38,9 +38,12 @@ public class CardController {
      * @param monthlyExpenses expenses of the user to assess size of credit.
      * @return affirmative or negative string.
      */
-    public String addCard(BankAccount bankAccount, int pin, double monthlyIncome, double monthlyExpenses) {
+    public String addCard(BankAccount bankAccount, int pin, int confirmPin, double monthlyIncome, double monthlyExpenses) {
         BigDecimal maxCredit;
         Pair<Boolean, BigDecimal> creditAssessment = calculateCredit(monthlyIncome, monthlyExpenses);
+        if (pin != confirmPin) {
+            return "PIN codes must match";
+        }
         if (creditAssessment.getKey()) {
             maxCredit = creditAssessment.getValue();
         } else {
@@ -62,8 +65,11 @@ public class CardController {
      * @param pin the pin code for the card as written by user
      * @return affirmative or negative string
      */
-    public String addCard(BankAccount bankAccount, int pin) {
+    public String addCard(BankAccount bankAccount, int pin, int confirmPin) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
+        if (pin != confirmPin) {
+            return "PIN codes must match";
+        }
         if (keyAcceptance.getKey()) {
             bankAccount.addCard(new DebitCard(bankAccount, pin));
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
@@ -78,8 +84,11 @@ public class CardController {
      * @param pin the pin code for the card as written by user
      * @return affirmative or negative string
      */
-    public String addCard(BankAccount bankAccount, String cardNumber, int pin) {
+    public String addCard(BankAccount bankAccount, String cardNumber, int pin, int confirmPin) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
+        if (pin != confirmPin) {
+            return "PIN codes must match";
+        }
         if (keyAcceptance.getKey()) {
             bankAccount.addCard(new DebitCard(bankAccount, cardNumber, pin));
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
