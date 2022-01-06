@@ -52,12 +52,13 @@ public class LoanController {
         BankAccount bankAccount = storage.getBankAccount(bankAccountID);
         Pair<Boolean, String> loanApplication = verifyPersonalLoan(bankAccount, monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration);
         if (loanApplication.getKey()) {
-            createPersonalLoan(storage.getBankAccount(bankAccountID), userAccount, desiredLoanAmount, loanDuration, personalReasons);
+            createPersonalLoan(storage.getBankAccount(bankAccountID), desiredLoanAmount, loanDuration, personalReasons);
             return loanApplication.getValue() + Input.EOL +
-                    " Applicant: " + userAccount.getFullName() + Input.EOL +
-                    " Income: " + monthlyIncome + " SEK/mo" + Input.EOL +
-                    " Expenses: " + monthlyExpenses + " SEK/mo" + Input.EOL +
-                    " Duration of the loan: " + loanDuration + " months";
+                    "Applicant: " + userAccount.getFullName() + Input.EOL +
+                    "Loan amount: " + desiredLoanAmount + " SEK" + Input.EOL +
+                    "Income: " + monthlyIncome + " SEK/mo" + Input.EOL +
+                    "Expenses: " + monthlyExpenses + " SEK/mo" + Input.EOL +
+                    "Duration of the loan: " + loanDuration + " months";
         } else {
             return loanApplication.getValue();
         }
@@ -82,15 +83,16 @@ public class LoanController {
         BankAccount bankAccount = storage.getBankAccount(bankAccountID);
         Pair<Boolean, String> loanApplication = verifyVehicleLoan(bankAccount, monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration);
         if (loanApplication.getKey()) {
-            createVehicleLoan(storage.getBankAccount(bankAccountID), userAccount, desiredLoanAmount, loanDuration, typeOfFuel, mileage, manufactureYear);
+            createVehicleLoan(storage.getBankAccount(bankAccountID), desiredLoanAmount, loanDuration, typeOfFuel, mileage, manufactureYear);
             return loanApplication.getValue() + Input.EOL +
-                    " Applicant: " + userAccount.getFullName() + Input.EOL +
-                    " Income: " + monthlyIncome + " SEK/mo" + Input.EOL +
-                    " Expenses: " + monthlyExpenses + " SEK/mo" + Input.EOL +
-                    " Manufacturer & Model: " + typeOfCar + Input.EOL +
-                    " Millage: " + mileage + " km" + Input.EOL +
-                    " Year manufactured: " + manufactureYear + Input.EOL +
-                    " Duration of the loan: " + loanDuration + " months";
+                    "Applicant: " + userAccount.getFullName() + Input.EOL +
+                    "Loan amount: " + desiredLoanAmount + Input.EOL +
+                    "Income: " + monthlyIncome + " SEK/mo" + Input.EOL +
+                    "Expenses: " + monthlyExpenses + " SEK/mo" + Input.EOL +
+                    "Manufacturer & Model: " + typeOfCar + Input.EOL +
+                    "Millage: " + mileage + " km" + Input.EOL +
+                    "Year manufactured: " + manufactureYear + Input.EOL +
+                    "Duration of the loan: " + loanDuration + " months";
         } else {
             return loanApplication.getValue();
         }
@@ -116,17 +118,18 @@ public class LoanController {
         Pair<Boolean, String> loanApplication = verifyHomeLoan(bankAccount, monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration);
 
         if (loanApplication.getKey()) {
-            createHomeLoan(storage.getBankAccount(bankAccountID), userAccount, desiredLoanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloor);
+            createHomeLoan(storage.getBankAccount(bankAccountID), desiredLoanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloor);
             return loanApplication.getValue() + Input.EOL +
-                    " Home loan application submitted:" + Input.EOL +
-                    " Applicant: " + userAccount.getFullName() + Input.EOL +
-                    " Income: " + monthlyIncome + " SEK/mo" + Input.EOL +
-                    " Expenses: " + monthlyExpenses + " SEK/mo" + Input.EOL +
-                    " Home address: " + propertyAddress + Input.EOL +
-                    " Type of home: " + propertyType + Input.EOL +
-                    " Property size: " + propertySize + " m^2" + Input.EOL +
-                    " Amount of stories: " + propertySize + Input.EOL +
-                    " Duration of the loan: " + loanDuration + " months";
+                    "Home loan application submitted:" + Input.EOL +
+                    "Applicant: " + userAccount.getFullName() + Input.EOL +
+                    "Loan amount: " + desiredLoanAmount + Input.EOL +
+                    "Income: " + monthlyIncome + " SEK/mo" + Input.EOL +
+                    "Expenses: " + monthlyExpenses + " SEK/mo" + Input.EOL +
+                    "Home address: " + propertyAddress + Input.EOL +
+                    "Type of home: " + propertyType + Input.EOL +
+                    "Property size: " + propertySize + " m^2" + Input.EOL +
+                    "Amount of stories: " + propertySize + Input.EOL +
+                    "Duration of the loan: " + loanDuration + " months";
         } else {
             return loanApplication.getValue();
         }
@@ -254,20 +257,16 @@ public class LoanController {
         return "";
     }
 
-    //TODO fix strings
-    public void createHomeLoan(BankAccount bankAccount, UserAccount userAccount, double loanAmount, int loanDuration, String propertyAddress, String propertyType, double propertySize, int propertyFloors) {
+    public void createHomeLoan(BankAccount bankAccount, double loanAmount, int loanDuration, String propertyAddress, String propertyType, double propertySize, int propertyFloors) {
         bankAccount.addLoan(new HomeLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloors));
-        //String returned = "User’s" + userAccount.getFullName() + "loan for" + loanAmount + "SEK was approved.";
     }
 
-    public void createPersonalLoan(BankAccount bankAccount, UserAccount userAccount, double loanAmount, int loanDuration, String personalReasons) {
+    public void createPersonalLoan(BankAccount bankAccount, double loanAmount, int loanDuration, String personalReasons) {
         bankAccount.addLoan(new PersonalLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, personalReasons));
-        //String returned = "User’s" + userAccount.getFullName() + "loan for" + loanAmount + "SEK was approved.";
     }
 
-    public void createVehicleLoan(BankAccount bankAccount, UserAccount userAccount, double loanAmount, int loanDuration, String typeOfFuel, double mileage, int manufactureYear) {
+    public void createVehicleLoan(BankAccount bankAccount, double loanAmount, int loanDuration, String typeOfFuel, double mileage, int manufactureYear) {
         bankAccount.addLoan(new VehicleLoan(bankAccount, generateLoanID(bankAccount), loanAmount, loanDuration, typeOfFuel, mileage, manufactureYear));
-        //String returned = "User’s" + userAccount.getFullName() + "loan for" + loanAmount + "SEK was approved.";
     }
 
     /**
