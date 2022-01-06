@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Object representation of a transaction event.
  * This object stores all information relevant to its creation.
- * As it is a representation of an event it stores its own identifier, time & date, and relevant bank account id.
+ * As it is a representation of an event it stores its own identifier, time  date, and relevant bank account id.
  *
  * @author Kevin Collins
  * @author Mathias Hallander

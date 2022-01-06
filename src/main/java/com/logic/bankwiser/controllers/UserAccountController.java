@@ -11,9 +11,10 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Controller responsible for all user accounts.
+ * Controller responsible for user accounts.
  *
  * @author Kevin Collins
+ * @author Mathias Hallander
  */
 public class UserAccountController {
 

@@ -13,8 +13,7 @@ import java.time.temporal.ChronoUnit;
 
 
 /**
- * CardController class
- * Acts as the controller which contains all logic regarding bank cards which is passed to Facade.
+ * Controller class responsible for bank cards.
  *
  * @author Burak Askan
  * @author Mathias Hallander

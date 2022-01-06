@@ -11,12 +11,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Controller class responsible for handling bank transactions.
+ * Controller class responsible for transactions.
  *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
-
 public class TransactionController {
 
     private final Storage storage;
@@ -35,7 +34,6 @@ public class TransactionController {
      * @param transactionDate
      * @return
      */
-
     public String transferMoney(String senderBankAccountID, String receiverBankAccountID, BigDecimal moneyTransferred, String note, LocalDateTime transactionDate) {
         StringBuilder sb = new StringBuilder();
         BankAccount senderBankAccount = storage.getBankAccount(senderBankAccountID);
@@ -82,8 +80,6 @@ public class TransactionController {
      * @param bankAccountID
      * @return
      */
-
-
     public String viewTransactionHistory(String bankAccountID) {
         StringBuilder sb = new StringBuilder();
         List<Transaction> transactionList = storage.getBankAccount(bankAccountID).getTransactionMap().values().stream().toList();

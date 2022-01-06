@@ -17,8 +17,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 /**
- * LoanController class
- * Acts as the controller which contains all logic regarding loans which is passed to Facade
+ * Controller class responsible for loans.
  *
  * @author Burak Askan
  * @author Dragos Florinel Isar
