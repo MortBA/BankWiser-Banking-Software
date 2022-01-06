@@ -1,4 +1,4 @@
-module com.bankwiser {
+module main {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -8,7 +8,6 @@ module com.bankwiser {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.google.gson;
-    requires org.junit.jupiter.api;
 
     opens com.gui.bankwiser to javafx.fxml;
     opens com.gui.bankwiser.controllers to javafx.fxml;
@@ -18,9 +17,10 @@ module com.bankwiser {
     opens com.logic.bankwiser.controllers to com.google.gson;
     opens com.logic.bankwiser.cards to com.google.gson;
     opens com.logic.bankwiser.loans to com.google.gson;
+    opens com.logic.bankwiser.facade to org.junit.platform.commons;
 
-    exports com.gui.bankwiser;
     exports com.gui.bankwiser.controllers;
+    exports com.gui.bankwiser;
     exports com.logic.bankwiser.transactions;
     exports com.logic.bankwiser.cards;
     exports com.logic.bankwiser.controllers;

@@ -7,50 +7,48 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Controller class for performing all functionalities of 'Customer Menu' screen
- *
- * @author Chanisra
- */
 
-public class CustomerMenuScreenController {
+
+public class LoansOverviewController {
 
     @FXML
     private MenuItem accountSettings;
-
     @FXML
     private MenuItem deleteBankAccount;
-
     @FXML
     private MenuItem deleteUserAccount;
-
     @FXML
     private MenuItem transactionsHistory;
-
     @FXML
     private MenuItem loans;
-
     @FXML
     private MenuItem myCards;
-
     @FXML
     private MenuItem transferMoney;
-
     @FXML
     private Button overview;
-
     @FXML
     private Button buttonLogOut;
 
     @FXML
-    public Stage stg = new Stage();
+    private Label overviewLoan;
+    @FXML
+    private Label applyPersonalLoan;
+    @FXML
+    private Label applyHomeLoan;
+    @FXML
+    private Label applyVehicleLoan;
 
+    @FXML
+    public Stage stg = new Stage();
     @FXML
     public Stage stg2 = new Stage();
 
@@ -83,36 +81,15 @@ public class CustomerMenuScreenController {
         }
     }
 
-    /**
-     * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
-     *
-     * @throws IOException IOException
-     * @author Sejal
-     */
     @FXML
-    public void onDeleteUserAccountClicked() throws IOException {
-        stg.showAndWait();
-    }
-
-    /**
-     * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
-     *
-     * @throws IOException IOException
-     */
-    @FXML
-    public void onDeleteBankAccountClicked() throws IOException {
-        stg2.showAndWait();
+    public void onLogOutClicked(ActionEvent event) throws IOException {
+        new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
     @FXML
     void onOverviewClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("CustomerMenuScreen.fxml");
-    }
-
-    @FXML
-    public void onLogOutClicked(ActionEvent event) throws IOException {
-        new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
     @FXML
@@ -142,5 +119,77 @@ public class CustomerMenuScreenController {
     void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("LoansOverview.fxml");
     }
-}
 
+    public void onApplyPersonalLoanClicked(MouseEvent mouseEvent) throws Exception {
+        new BankWiserApp().changeScene("LoansPersonal.fxml");
+    }
+
+    public void onApplyHomeLoanClicked(MouseEvent mouseEvent) throws Exception {
+        new BankWiserApp().changeScene("LoansHome.fxml");
+    }
+
+    public void onOverviewLoanClicked(MouseEvent mouseEvent) throws Exception {
+            new BankWiserApp().changeScene("LoansOverview.fxml");
+        }
+
+    public void onApplyVechileLoanClicked(MouseEvent mouseEvent) throws Exception {
+        new BankWiserApp().changeScene("LoansVechile.fxml");
+    }
+
+
+
+    @FXML
+    public void onDeleteUserAccountClicked() throws IOException {
+        stg.showAndWait();
+    }
+
+    /**
+     * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
+     *
+     * @throws IOException IOException
+     */
+    @FXML
+    public void onDeleteBankAccountClicked() throws IOException {
+        stg2.showAndWait();
+    }
+
+    @FXML
+    public void onOverviewLoanHoverIn() {
+        overviewLoan.setUnderline(true);
+    }
+
+    @FXML
+    public void onOverviewLoanHoverOut() {
+        overviewLoan.setUnderline(false);
+    }
+
+    @FXML
+    public void onApplyPersonalLoanHoverIn() {
+        applyPersonalLoan.setUnderline(true);
+    }
+
+    @FXML
+    public void onApplyPersonalLoanHoverOut() {
+        applyPersonalLoan.setUnderline(false);
+    }
+
+    @FXML
+    public void onApplyHomeLoanHoverIn() {
+        applyHomeLoan.setUnderline(true);
+    }
+
+    @FXML
+    public void onApplyHomeLoanHoverOut() {
+        applyHomeLoan.setUnderline(false);
+    }
+
+    @FXML
+    public void onApplyVehicleLoanHoverIn() {
+        applyVehicleLoan.setUnderline(true);
+    }
+
+    @FXML
+    public void onApplyVehicleLoanOut() {
+        applyVehicleLoan.setUnderline(false);
+    }
+}

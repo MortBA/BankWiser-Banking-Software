@@ -1,5 +1,6 @@
 package com.logic.bankwiser.controllers;
 
+import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.utils.MathUtils;
@@ -25,13 +26,13 @@ public class BankAccountController {
      * @return A string that confirms bank account creation or an input error that
      * informs the user of an invalid bank account name.
      */
-    public String createBankAccount(UUID UserID, String bankAccountName) {
+    public String createBankAccount(UserAccount userAccount, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
         try {
             String bankAccountID = generateBankAccountID();
             BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
             storage.addBankAccount(bankAccountID, bankAccount);
-            storage.getUserFromMap(UserID).addBankAccount(bankAccount.getBankAccountID());
+            userAccount.addBankAccount(bankAccount.getBankAccountID());
             sb.append("New banking account ").append(bankAccountName).append(" has been created.");
         } catch (Exception e) {
             sb.append(e.getMessage());

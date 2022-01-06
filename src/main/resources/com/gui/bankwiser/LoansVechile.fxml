@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.LoansHomeController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0">
+               <image>
+                  <Image url="@../../../img/CustomerIconBW.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" layoutY="33.0" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../../../img/BwLogo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="logOut" layoutX="1168.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLogOutClicked" text="Log Out" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="overview" layoutX="65.0" layoutY="67.0" mnemonicParsing="false" onAction="#onOverviewClicked" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
+               <items>
+                  <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
+                  <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
+               </items>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
+               <items>
+                  <MenuItem fx:id="transferMoney" mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transfer Money" />
+                  <MenuItem fx:id="transactionHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
+               </items>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
+               <items>
+                  <MenuItem fx:id="loans" mnemonicParsing="false" text="Loans" />
+               </items>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MenuButton>
+            <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
+               <items>
+                  <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" text="Delete Bank Account" />
+                  <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
+               </items>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="506.0" prefWidth="284.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="956.0">
+         <children>
+            <Label fx:id="applyPersonalLoan" layoutX="9.0" layoutY="170.0" onMouseClicked="#onApplyPersonalLoanClicked" onMouseEntered="#onApplyPersonalLoanHoverIn" onMouseExited="#onApplyPersonalLoanHoverOut" text="Apply Personal Loan" textFill="#017c83" AnchorPane.leftAnchor="9.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="9.0" layoutY="10.0" text="My Loans" textFill="#017c83" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="applyHomeLoan" layoutX="8.0" layoutY="243.0" onMouseClicked="#onApplyHomeLoanClicked" onMouseEntered="#onApplyHomeLoanHoverIn" onMouseExited="#onApplyHomeLoanHoverOut" text="Apply Home Loan" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="overviewLoan" layoutX="9.0" layoutY="105.0" onMouseClicked="#onOverviewLoanClicked" onMouseEntered="#onOverviewLoanHoverIn" onMouseExited="#onOverviewLoanHoverOut" text="Overview" textFill="#017c83">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onMouseClicked="#onApplyVechileLoanClicked" onMouseEntered="#onApplyVehicleLoanHoverIn" onMouseExited="#onApplyVehicleLoanOut" text="Apply Vechile Loan" textFill="#017c83">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="49.0" fitWidth="67.0" layoutX="204.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/BankCard.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="366.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0" style="-fx-background-color: #d8fffa;">
+         <children>
+            <Label alignment="CENTER" layoutY="14.0" prefHeight="46.0" prefWidth="887.0" text="Vechile Loan Application" textFill="#017c83">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="108.0" layoutY="139.0" prefHeight="47.0" prefWidth="405.0" text="Preliminary Assessment" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="105.0">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="168.0" prefHeight="40.0" prefWidth="349.0" text="Total Monthly Income:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="168.0">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="218.0" prefHeight="40.0" prefWidth="320.0" text="Total Monthly Expense:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="218.0">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="268.0" prefHeight="40.0" prefWidth="384.0" text="Liabilities/Dependencies:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="268.0">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="318.0" prefHeight="40.0" prefWidth="359.0" text="Duration of Loan:" textFill="#017c83" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="318.0">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="totalMonthlyIncome" layoutX="529.0" layoutY="176.0" onAction="#onTotalMonthlyIncomeClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="totalMonthlyExpense" layoutX="535.0" layoutY="225.0" onAction="#onTotalMonthlyExpenseClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="liabilitiesDependencies" layoutX="529.0" layoutY="275.0" onAction="#onLiabilitiesDependenciesClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="durationOfLoan" layoutX="529.0" layoutY="325.0" onAction="#durationOfLoanClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="793.0" layoutY="177.0" text="SEK" textFill="#017c83">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="793.0" layoutY="226.0" text="SEK" textFill="#017c83">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="793.0" layoutY="276.0" text="SEK" textFill="#017c83">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="793.0" layoutY="324.0" text="Months" textFill="#017c83">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="cancel" layoutX="359.0" layoutY="410.0" mnemonicParsing="false" onAction="#onCancelClicked" style="-fx-background-color: #0088FF;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="410.0">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="confirm" layoutX="370.0" layoutY="418.0" mnemonicParsing="false" onAction="#onConfirmClicked" style="-fx-background-color: #FF0000;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="490.0" AnchorPane.topAnchor="410.0">
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

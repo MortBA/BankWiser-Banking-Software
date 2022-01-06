@@ -4,6 +4,7 @@ import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.storage.Storage;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +29,6 @@ public class Facade {
 
     private static Facade facade_instance = null;
     UserAccount activeUser;
-    UUID activeUserID;
     BankAccount activeBankAccount;
 
 
@@ -74,9 +74,14 @@ public class Facade {
      * @return String confirmation of successful login or failure
      */
     public String userLogin(String username, String password) {
-        this.activeUserID = storage.getUserUUID(username);
-        this.activeUser = storage.getUserFromMap(storage.getUserUUID(username));
-        return "";
+        Pair<UserAccount, String> loginRequest = userAccountController.loginUser(username, password);
+        if (loginRequest.getKey() != null) {
+            this.activeUser = loginRequest.getKey();
+            if (!activeUser.getBankAccountList().isEmpty()) {
+                this.activeBankAccount = storage.getBankAccount(activeUser.getBankAccountList().get(0));
+            }
+        }
+        return loginRequest.getValue();
     }
 
     public String checkPayments(){
@@ -105,16 +110,18 @@ public class Facade {
     //TODO finish deleteUserAccount method
 
     /**
-     * Deletes the user account based on the given id
+     * Deletes the user account based on the given username
      *
-     * @param accountId     The id of the user account
      * @param username      The username of the user
-     * @param fullName      The full name of the user
-     * @param signature     The signature of the user
      * @return String confirmation of user deletion or failure
      */
-    public String deleteUserAccount(String accountId, String username, String fullName, boolean signature) {
-        return "";
+    public String deleteUserAccount(String username) {
+        Pair<UserAccount, String> request = userAccountController.processDeleteUserAccountRequest(storage.getUserFromMap(username));
+
+        if (request.getKey() != null) {
+            storage.addDeleteUserRequest(request.getKey());
+        }
+        return request.getValue();
     }
 
     /**
@@ -132,12 +139,15 @@ public class Facade {
     /**
      * Creates the bank account
      *
-     * @param userAccount     Users' UUID
      * @param accountName     Name of bank account
      * @return success message
      */
-    public String createBankAccount(UUID userAccount, String accountName) {
-        return bankAccountController.createBankAccount(userAccount, accountName);
+    public String createBankAccount(String accountName) {
+        return bankAccountController.createBankAccount(activeUser, accountName);
+    }
+
+    public String createBankAccount(UUID userAccountID, String accountName) {
+        return bankAccountController.createBankAccount(storage.getUserFromMap(userAccountID), accountName);
     }
 
     public BankAccount getActiveBankAccount() {
@@ -382,7 +392,6 @@ public class Facade {
     }
 
 
-
     /**
      * Change the pin of the card
      *
@@ -394,16 +403,5 @@ public class Facade {
      */
     public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
         return cardController.resetPin(activeBankAccount, cardNumber, oldPin, newPin, newPinConfirmation);
-    }
-
-    /**
-     * Deposit the money into an account
-     *
-     * @param accountName     name of the account that will receive the deposit
-     * @param amount          the amount that will deposit
-     * @return String confirmation of success or failure
-     */
-    public String depositMoney(String accountName, double amount) {
-        return "";
     }
 }

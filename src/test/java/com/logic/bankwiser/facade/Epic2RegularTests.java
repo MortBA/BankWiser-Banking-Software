@@ -39,11 +39,11 @@ public class Epic2RegularTests {
     @Test
     public void deleteUserAccountTest() {
         String expectedValue = "Account for john.doe@gmail.com has been successfully terminated.";
-        String actualValue = facade.deleteUserAccount("", "john.doe@gmail.com", "John Doe", true);
+        String actualValue = facade.deleteUserAccount("john.doe@gmail.com");
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "Account for mary.jane@yahoo.com has been successfully terminated.";
-        actualValue = facade.deleteUserAccount("","mary.jane@yahoo.com", "Mary Jane", true);
+        actualValue = facade.deleteUserAccount("mary.jane@yahoo.com");
         assertEquals(expectedValue, actualValue);
     }
 

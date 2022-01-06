@@ -1,6 +1,6 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,10 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Mathias Hallander
  */
 public class Epic1RegularTests {
-    static Facade facade; // Creates Facade object
+    private Facade facade; // Creates Facade object
 
-    @BeforeAll
-    public static void setup() {
+    @BeforeEach
+    public void setup() {
+        facade = Facade.getInstance();
+
         facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
         facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
     }
