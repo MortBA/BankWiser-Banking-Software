@@ -1,6 +1,7 @@
 package com.logic.bankwiser.loans;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.utils.Input;
 
 
 public class PersonalLoan extends Loan {
@@ -20,5 +21,12 @@ public class PersonalLoan extends Loan {
 
     public String getPersonalReasons() {
         return PERSONAL_REASONS;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString() + Input.EOL);
+        sb.append("Note from applicant: " + PERSONAL_REASONS);
+        return sb.toString();
     }
 }

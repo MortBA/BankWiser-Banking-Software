@@ -1,6 +1,7 @@
 package com.logic.bankwiser.loans;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.utils.Input;
 
 
 public class HomeLoan extends Loan {
@@ -39,5 +40,15 @@ public class HomeLoan extends Loan {
 
     public int getPropertyFloors() {
         return PROPERTY_FLOORS;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString() + Input.EOL);
+        sb.append("Property address: " + PROPERTY_ADDRESS + Input.EOL +
+                "Property type: " + PROPERTY_TYPE + Input.EOL +
+                "Property size: " + PROPERTY_SIZE + Input.EOL +
+                "Property floor: " + PROPERTY_FLOORS);
+        return sb.toString();
     }
 }

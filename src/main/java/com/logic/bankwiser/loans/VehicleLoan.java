@@ -1,6 +1,7 @@
 package com.logic.bankwiser.loans;
 
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.utils.Input;
 
 
 public class VehicleLoan extends Loan {
@@ -32,6 +33,15 @@ public class VehicleLoan extends Loan {
 
     public int getManufacturingYear() {
         return MANUFACTURING_YEAR;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString() + Input.EOL);
+        sb.append("Type of fuel: " + TYPE_OF_FUEL + Input.EOL+
+                "Mileage of vehicle: " + TYPE_OF_FUEL + Input.EOL+
+                "Manufacture year of vehicle: " + MANUFACTURING_YEAR);
+        return sb.toString();
     }
 
 }
