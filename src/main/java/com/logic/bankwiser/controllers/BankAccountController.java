@@ -51,7 +51,6 @@ public class BankAccountController {
         return sb.toString();
     }
 
-    //TODO return strings not specified in requirements
 
     /**
      * The method allows the user to rename the selected bank account.
@@ -75,7 +74,14 @@ public class BankAccountController {
         return sb.toString();
     }
 
-    //TODO Implement after UserAccount link is functional -K
+    /**
+     * A method that allows for the deletion of a user's bank account.
+     * Checks existing balance of the account before proceeding.
+     *
+     * @param userAccount
+     * @param bankAccountID
+     * @return
+     */
     public String deleteBankAccount(UserAccount userAccount, String bankAccountID) {
         if (userAccount.getBankAccountList().contains(bankAccountID)) {
             if (storage.getBankAccount(bankAccountID).getBalance().compareTo(BigDecimal.ZERO) > 0) {
@@ -95,6 +101,12 @@ public class BankAccountController {
         }
     }
 
+
+    /**
+     * Method used for the random generation of a Bank Account ID.
+     *
+     * @return
+     */
     public String generateBankAccountID() {
         return MathUtils.generateUniqueID(storage.getBankAccountMap().keySet().toString());
     }

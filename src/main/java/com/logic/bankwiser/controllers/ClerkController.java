@@ -4,7 +4,9 @@ import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.storage.Storage;
 
 /**
- * Controller
+ * Controller class responsible for clerk accounts.
+ *
+ * @author Kevin Collins
  */
 public class ClerkController {
 

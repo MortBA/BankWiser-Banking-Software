@@ -16,6 +16,19 @@ public class VehicleLoan extends Loan {
     private final int MANUFACTURING_YEAR;
     private final double VEHICLE_LOAN_INTEREST_RATE = 0.055;
 
+
+    /**
+     * Constructor for Loans of type VehicleLoan, that uses different parameters that receive input from user.
+     * Uses the current bankAccount as a parameter in order to link the created loan to it.
+     * @param bankAccount
+     * @param loanID
+     * @param loanAmount
+     * @param loanDuration
+     * @param typeOfFuel
+     * @param mileage
+     * @param manufactureYear
+     */
+
     public VehicleLoan(BankAccount bankAccount, String loanID, double loanAmount, int loanDuration, String typeOfFuel, double mileage, int manufactureYear) {
         super(bankAccount, loanID, loanAmount, loanDuration);
         setInterestRate(VEHICLE_LOAN_INTEREST_RATE);

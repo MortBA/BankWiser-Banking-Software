@@ -6,6 +6,14 @@ public class ClerkAccount {
     private final String EMAIL_ID;
     private String password;
 
+    /**
+     * Constructor for the ClerkAccount class.
+     *
+     * @param fullName
+     * @param emailID
+     * @param password
+     */
+
     public ClerkAccount(String fullName, String emailID, String password) {
         this.fullName = fullName;
         this.EMAIL_ID = emailID;

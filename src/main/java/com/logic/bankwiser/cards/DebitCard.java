@@ -63,6 +63,11 @@ public class DebitCard {
         this.yearlyPaymentDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
     }
 
+    /**
+     * A method used for the random generation of a card number.
+     *
+     * @return zero + cardNumber
+     */
     public String generateCardNumber() {
         int cardNumberMin = 0;
         int cardNumberMax = 9999999;
@@ -81,6 +86,12 @@ public class DebitCard {
         }
         return zero + cardNumber;
     }
+
+    /**
+     * A method used for the random generation of a card CVV.
+     *
+     * @return CVV
+     */
 
     public String generateCVV() {
         int CCVMin = 0;

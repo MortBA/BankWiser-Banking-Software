@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
+ * Controller class responsible for handling bank transactions.
+ *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
@@ -22,6 +24,17 @@ public class TransactionController {
     public TransactionController(Storage storage) {
         this.storage = storage;
     }
+
+    /**
+     * This method is responsible for the logic of transfering money from one account to another.
+     *
+     * @param senderBankAccountID
+     * @param receiverBankAccountID
+     * @param moneyTransferred
+     * @param note
+     * @param transactionDate
+     * @return
+     */
 
     public String transferMoney(String senderBankAccountID, String receiverBankAccountID, BigDecimal moneyTransferred, String note, LocalDateTime transactionDate) {
         StringBuilder sb = new StringBuilder();
@@ -62,6 +75,14 @@ public class TransactionController {
 
         return MathUtils.generateUniqueID(stringBuilder.toString());
     }
+
+    /**
+     * Method responsible for retrieving the user's transaction history.
+     *
+     * @param bankAccountID
+     * @return
+     */
+
 
     public String viewTransactionHistory(String bankAccountID) {
         StringBuilder sb = new StringBuilder();
