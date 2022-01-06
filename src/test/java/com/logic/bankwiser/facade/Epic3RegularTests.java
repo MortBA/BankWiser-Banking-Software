@@ -68,9 +68,9 @@ public class Epic3RegularTests {
 
     @Test
     public void viewUserAccountsTest() {
-        facade.depositMoney("account-name3", 10000);
-        facade.depositMoney("account-name4", 2000);
-        facade.depositMoney("account-name5", 5000);
+//        facade.depositMoney("account-name3", 10000);
+//        facade.depositMoney("account-name4", 2000);
+//        facade.depositMoney("account-name5", 5000);
 
         String expectedValue = "[account-name3 = 10000]";
         String actualValue = johnAccount.toString();

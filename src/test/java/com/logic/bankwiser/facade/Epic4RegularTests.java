@@ -18,9 +18,9 @@ public class Epic4RegularTests {
     @BeforeAll
     public static void setup() {
         facade.createUserAccount("bank.clerk@bankwiser.com", "Bank Clerk", "rr2e2w28ew53d!", "rr2e2w28ew53d", "+46 72-373 11 29", "Streetgatan 1 2265, 45612 Somethingborg, Sweden", "19991024-7884");
-        facade.loanApplication("john.doe@fictmail.com", 200000);
-        facade.loanApplication("john.doe@fictmail.com", 3000000);
-        facade.loanApplication("mary.jane@fictmail.com", 5000000);
+//        facade.loanApplication("john.doe@fictmail.com", 200000);
+//        facade.loanApplication("john.doe@fictmail.com", 3000000);
+//        facade.loanApplication("mary.jane@fictmail.com", 5000000);
     }
 
     @Test

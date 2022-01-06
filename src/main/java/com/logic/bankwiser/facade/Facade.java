@@ -137,12 +137,15 @@ public class Facade {
     /**
      * Creates the bank account
      *
-     * @param userAccount     Users' UUID
      * @param accountName     Name of bank account
      * @return success message
      */
-    public String createBankAccount(UUID userAccount, String accountName) {
-        return bankAccountController.createBankAccount(userAccount, accountName);
+    public String createBankAccount(String accountName) {
+        return bankAccountController.createBankAccount(activeUser, accountName);
+    }
+
+    public String createBankAccount(UUID userAccountID, String accountName) {
+        return bankAccountController.createBankAccount(storage.getUserFromMap(userAccountID), accountName);
     }
 
     public BankAccount getActiveBankAccount() {
@@ -387,7 +390,6 @@ public class Facade {
     }
 
 
-
     /**
      * Change the pin of the card
      *
@@ -399,16 +401,5 @@ public class Facade {
      */
     public String changePin(String cardNumber, int oldPin, int newPin, int newPinConfirmation) {
         return cardController.resetPin(activeBankAccount, cardNumber, oldPin, newPin, newPinConfirmation);
-    }
-
-    /**
-     * Deposit the money into an account
-     *
-     * @param accountName     name of the account that will receive the deposit
-     * @param amount          the amount that will deposit
-     * @return String confirmation of success or failure
-     */
-    public String depositMoney(String accountName, double amount) {
-        return "";
     }
 }
