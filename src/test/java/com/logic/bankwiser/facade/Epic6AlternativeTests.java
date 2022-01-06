@@ -1,5 +1,7 @@
 package com.logic.bankwiser.facade;
 
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +13,26 @@ import org.junit.jupiter.api.Test;
  */
 public class Epic6AlternativeTests {
     private Facade facade; // Creates Facade object
+    UserAccount johnAccount;
+    UserAccount peterAccount;
+    BankAccount johnBankAccount;
+    BankAccount peterBankAccount;
 
     @BeforeEach
     public void setup() {
         facade = new Facade(true);
+
+        facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
+        facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
+
+        johnAccount = facade.storage.getUserFromMap("john@gmail.com");
+        peterAccount = facade.storage.getUserFromMap("peter@gmail.com");
+
+        facade.createBankAccount(johnAccount.getUserID(), "Personal");
+        facade.createBankAccount(peterAccount.getUserID(), "Checking");
+
+        johnBankAccount = facade.storage.getBankAccount(johnAccount.getBankAccountList().get(0));
+        peterBankAccount = facade.storage.getBankAccount(peterAccount.getBankAccountList().get(0));
     }
 
     /**

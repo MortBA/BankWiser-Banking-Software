@@ -120,7 +120,6 @@ public class LoanController {
         if (loanApplication.getKey()) {
             createHomeLoan(storage.getBankAccount(bankAccountID), desiredLoanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloor);
             return loanApplication.getValue() + Input.EOL +
-                    "Home loan application submitted:" + Input.EOL +
                     "Applicant: " + userAccount.getFullName() + Input.EOL +
                     "Loan amount: " + desiredLoanAmount + Input.EOL +
                     "Income: " + monthlyIncome + " SEK/mo" + Input.EOL +

@@ -95,7 +95,7 @@ public class Facade {
         return loginRequest.getValue();
     }
 
-    public String checkPayments(){
+    public String checkPayments() {
         StringBuilder userPaymentsString = new StringBuilder();
 
         userPaymentsString.append(cardController.annualCardPayment(activeUser));
@@ -248,8 +248,8 @@ public class Facade {
      * @param loanDuration        the length of time for repayment in months
      * @return confirmation of loan acceptation or rejection.
      */
-    public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, double propertySize,
-                                      String propertyAddress, String propertyType, int propertyFloor, int loanDuration) {
+    public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int loanDuration,
+                                      double propertySize, String propertyAddress, String propertyType, int propertyFloor) {
         return loanController.homeLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloor);
     }
 
@@ -266,8 +266,8 @@ public class Facade {
      * @param loanDuration        the duration of the loan in months
      * @return confirmation of loan acceptation or rejection.
      */
-    public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, double mileage,
-                                         int loanDuration, String vehicleType, String fuelType, int yearOfManufacture) {
+    public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int loanDuration,
+                                         double mileage, String vehicleType, String fuelType, int yearOfManufacture) {
         return loanController.vehicleLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, vehicleType, fuelType, mileage, yearOfManufacture);
     }
 

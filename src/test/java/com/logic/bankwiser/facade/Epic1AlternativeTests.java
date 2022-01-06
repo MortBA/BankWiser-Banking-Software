@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-//TODO: Convert to using User objects once implemented
 /**
  * Alternative tests for Epic Feature 1.
  * There should be only one test for US 1.1

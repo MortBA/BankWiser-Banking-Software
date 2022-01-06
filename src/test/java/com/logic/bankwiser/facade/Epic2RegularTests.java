@@ -53,17 +53,6 @@ public class Epic2RegularTests {
     }
 
     @Test
-    public void deleteUserAccountTest() {
-        String expectedValue = "User account deletion request has been sent.";
-        String actualValue = facade.deleteUserAccount("john@gmail.com");
-        assertEquals(expectedValue, actualValue);
-
-        expectedValue = "User account deletion request has been sent.";
-        actualValue = facade.deleteUserAccount("peter@gmail.com");
-        assertEquals(expectedValue, actualValue);
-    }
-
-    @Test
     public void resetUserPasswordTest() {
         String expectedValue = "An email has been sent to john@gmail.com with a link that will allow you to reset your password.";
         String actualValue = facade.resetUserPassword("john@gmail.com");

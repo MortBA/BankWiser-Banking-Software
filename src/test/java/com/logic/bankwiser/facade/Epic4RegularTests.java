@@ -22,6 +22,18 @@ public class Epic4RegularTests {
     public void setup() {
         facade = new Facade(true);
         facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
+        facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
+    }
+
+    @Test
+    public void deleteUserAccountTest() {
+        String expectedValue = "User account deletion request has been sent.";
+        String actualValue = facade.deleteUserAccount("john@gmail.com");
+        assertEquals(expectedValue, actualValue);
+
+        expectedValue = "User account deletion request has been sent.";
+        actualValue = facade.deleteUserAccount("peter@gmail.com");
+        assertEquals(expectedValue, actualValue);
     }
 
     @Test
