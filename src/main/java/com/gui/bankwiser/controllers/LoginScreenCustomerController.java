@@ -115,7 +115,9 @@ public class LoginScreenCustomerController implements Initializable {
     @FXML
     private void LoginClicked() throws IOException {
         BankWiserApp app = new BankWiserApp();
+        facade.userLogin(UsernameBox.getText(), PasswordBox.getText());
         app.changeScene("CustomerMenuScreen.fxml");
+
     }
 
     @FXML
@@ -154,5 +156,6 @@ public class LoginScreenCustomerController implements Initializable {
     private void ForgotPasswordHoverOut() {
         ForgottenPassword.setUnderline(false);
     }
+
 }
 

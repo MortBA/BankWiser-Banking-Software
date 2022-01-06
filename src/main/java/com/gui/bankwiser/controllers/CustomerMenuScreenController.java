@@ -1,17 +1,20 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Controller class for performing all functionalities of 'Customer Menu' screen
@@ -20,6 +23,17 @@ import java.io.IOException;
  */
 
 public class CustomerMenuScreenController {
+
+    @FXML
+    public Label PersonAccountAmount;
+    @FXML
+    public Label SharedAccountNumber;
+    @FXML
+    public Label SharedAccountAmount;
+    @FXML
+    public Label PersonAccountNumber;
+
+    Facade facade = Facade.getInstance();
 
     @FXML
     private MenuItem accountSettings;
@@ -81,7 +95,13 @@ public class CustomerMenuScreenController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if (!facade.getBankAccounts().isEmpty()) {
+            List<String> bankAccountNumbers = facade.getBankAccounts();
+            PersonAccountNumber.setText(bankAccountNumbers.get(0));
+        }
     }
+
 
     /**
      * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
