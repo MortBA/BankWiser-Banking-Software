@@ -2,6 +2,11 @@ package com.logic.bankwiser.utils;
 
 import java.util.Random;
 
+/**
+ * Stores any relevant mathematical method which can be commonly extracted from any part of the backend.
+ *
+ * @author Mathias Hallander
+ */
 public class MathUtils {
 
     /**

@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-
 public class LoansOverviewController {
 
     @FXML
@@ -129,13 +128,12 @@ public class LoansOverviewController {
     }
 
     public void onOverviewLoanClicked(MouseEvent mouseEvent) throws Exception {
-            new BankWiserApp().changeScene("LoansOverview.fxml");
-        }
+        new BankWiserApp().changeScene("LoansOverview.fxml");
+    }
 
     public void onApplyVechileLoanClicked(MouseEvent mouseEvent) throws Exception {
         new BankWiserApp().changeScene("LoansVechile.fxml");
     }
-
 
 
     @FXML

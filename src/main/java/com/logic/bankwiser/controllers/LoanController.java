@@ -227,7 +227,7 @@ public class LoanController {
      * @return String confirmation of success or failure
      */
     public String loanRepayment(UserAccount activeUser) {
-        for(String bankAccountID: activeUser.getBankAccountList()) {
+        for (String bankAccountID : activeUser.getBankAccountList()) {
             BankAccount bankAccount = storage.getBankAccount(bankAccountID);
 
             for (Loan loans : bankAccount.getLoanMap().values()) {

@@ -62,10 +62,10 @@ public class UserAccountController {
             if (Objects.equals(password, storage.getUserFromMap(email).getPassword())) {
                 return new Pair<>(storage.getUserFromMap(email), "Successfully logged in.");
             } else {
-                return new Pair<>(null,"Password is incorrect.");
+                return new Pair<>(null, "Password is incorrect.");
             }
         } else {
-            return new Pair<>(null,"No account is registered with that email address.");
+            return new Pair<>(null, "No account is registered with that email address.");
         }
     }
 

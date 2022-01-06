@@ -51,15 +51,14 @@ public class ChangePasswordController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else if(!(confirmNewPass.getText().trim().equals(newPassword.getText().trim()))){
+        } else if (!(confirmNewPass.getText().trim().equals(newPassword.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both passwords should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your password is changed successfully");
             Optional<ButtonType> result = alertBox.showAndWait();

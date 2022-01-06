@@ -172,7 +172,7 @@ public class CardController {
      */
     public String creditCardPayment(UserAccount activeUser) {
 
-        for(String bankAccountID: activeUser.getBankAccountList()){
+        for (String bankAccountID : activeUser.getBankAccountList()) {
             BankAccount bankAccount = STORAGE.getBankAccount(bankAccountID);
 
             if (bankAccount.getBalance().intValue() < 0) {
@@ -183,8 +183,8 @@ public class CardController {
                             ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) < 0) {
 
                         BigDecimal moneyTransferred = bankAccount.getBalance().multiply(BigDecimal.valueOf(creditCard.getInterest() * -1));
-                        if(moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
-                            return "You are unable to pay the credit. Interests has incurred on the credit."+ln;
+                        if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
+                            return "You are unable to pay the credit. Interests has incurred on the credit." + ln;
                         }
                         String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
                         TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
@@ -204,7 +204,7 @@ public class CardController {
      */
     public String annualCardPayment(UserAccount activeUser) {
 
-        for(String bankAccountID: activeUser.getBankAccountList()) {
+        for (String bankAccountID : activeUser.getBankAccountList()) {
             BankAccount bankAccount = STORAGE.getBankAccount(bankAccountID);
 
             for (DebitCard card : bankAccount.getCardMap().values()) {
@@ -214,7 +214,7 @@ public class CardController {
                     String paymentNote = "Payment on your card number: " + card.getCardNumber();
                     BigDecimal moneyTransferred = new BigDecimal(999);
                     if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
-                        return "You are unable to pay the card. You will be contacted by the bank shortly."+ln;
+                        return "You are unable to pay the card. You will be contacted by the bank shortly." + ln;
                     }
                     TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
 

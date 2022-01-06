@@ -74,7 +74,7 @@ public class ForgotPasswordEmployeeController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else {
+        } else {
             stg.showAndWait();
         }
     }
