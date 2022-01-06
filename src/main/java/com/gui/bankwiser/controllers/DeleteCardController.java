@@ -17,18 +17,30 @@ import java.util.Optional;
 public class DeleteCardController {
 
     private final Facade facade = Facade.getInstance();
+    @FXML
+    public ChoiceBox cardNumberList;
+
+    @FXML
+    public TextArea reasonToDelete;
 
     @FXML
     private Button cancelDeleteCard;
     @FXML
     private Button confirmDeleteCard;
 
-
     @FXML
     private TextField cardPinToDelete;
 
     @FXML
+    private Label cardFunctionality;
+    @FXML
+    private Label changeCardPin;
+    @FXML
     private Label deleteCard;
+    @FXML
+    private Label newCreditCard;
+    @FXML
+    private Label newDebitCard;
 
     @FXML
     private CheckBox lostCard;
@@ -36,7 +48,6 @@ public class DeleteCardController {
     private CheckBox dislikeService;
     @FXML
     private CheckBox cardUnused;
-
     @FXML
     private CheckBox TnC;
 
@@ -103,6 +114,92 @@ public class DeleteCardController {
             }
         }
     }
+    @FXML
+    void onDeleteUserAccountClicked(ActionEvent event) {
+        stg.showAndWait();
+    }
+    @FXML
+    void onDeleteBankAccountClicked(ActionEvent event) {
+        stg.showAndWait();
+    }
+
+    @FXML
+    void onLogOutClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("LoginScreenCustomer.fxml");
+    }
+
+    @FXML
+    void onMyCardsClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("BankCardMenu.fxml");
+    }
+
+    @FXML
+    void onAccountSettingsClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("AccountSettingsScreen.fxml");
+    }
+
+    @FXML
+    void onTransactionHistoryClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransactionHistoryScreen.fxml");
+    }
+
+    @FXML
+    void onTransferMoneyClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("TransferMoneyScreen.fxml");
+    }
+
+    @FXML
+    void onOverviewClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("CustomerMenuScreen.fxml");
+    }
+
+    @FXML
+    void onLoansClicked() throws Exception {
+        new BankWiserApp().changeScene("LoansOverview.fxml");
+    }
+
+    @FXML
+    public void onChangePinClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("ChangePin.fxml");
+    }
+
+    @FXML
+    public void onDeleteCardClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("DeleteCard.fxml");
+    }
+
+    @FXML
+    public void onCreditCardClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("NewCreditCard.fxml");
+    }
+
+    @FXML
+    public void onDebitCardClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("NewDebitCard.fxml");
+    }
+
+    @FXML
+    public void onModifyFuncClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("ModifyFunctionality.fxml");
+    }
+
+    @FXML
+    public void onCancelButtonClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("BankCardMenu.fxml");
+    }
+
 
     // Button color change for delete card menu
     @FXML
@@ -124,4 +221,55 @@ public class DeleteCardController {
     private void cancelHoverOut() {
         cancelDeleteCard.setStyle("-fx-background-color: #ed2762;");
     }
+
+    @FXML
+    public void cardFuncHoverIn() {
+        cardFunctionality.setUnderline(true);
+    }
+
+    @FXML
+    public void cardFuncHoverOut() {
+        cardFunctionality.setUnderline(false);
+    }
+
+    @FXML
+    public void deleteCardHoverIn() {
+        deleteCard.setUnderline(true);
+    }
+
+    @FXML
+    public void deleteCardHoverOut() {
+        deleteCard.setUnderline(false);
+    }
+
+    @FXML
+    public void creditCardHoverIn() {
+        newCreditCard.setUnderline(true);
+    }
+
+    @FXML
+    public void creditCardHoverOut() {
+        newCreditCard.setUnderline(false);
+    }
+
+    @FXML
+    public void debitCardHoverIn() {
+        newDebitCard.setUnderline(true);
+    }
+
+    @FXML
+    public void debitCardHoverOut() {
+        newDebitCard.setUnderline(false);
+    }
+
+    @FXML
+    public void changePinHoverIn() {
+        changeCardPin.setUnderline(true);
+    }
+
+    @FXML
+    public void changePinHoverOut() {
+        changeCardPin.setUnderline(false);
+    }
+
 }

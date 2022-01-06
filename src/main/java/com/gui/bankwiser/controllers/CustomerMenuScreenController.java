@@ -102,7 +102,6 @@ public class CustomerMenuScreenController {
         }
     }
 
-
     /**
      * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
      *
