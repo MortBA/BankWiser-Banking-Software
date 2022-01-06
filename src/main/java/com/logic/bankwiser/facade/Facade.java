@@ -271,7 +271,7 @@ public class Facade {
         return loanController.vehicleLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, vehicleType, fuelType, mileage, yearOfManufacture);
     }
 
-    public String LoanOverview() {
+    public String loanOverview() {
 
         StringBuilder sb = new StringBuilder();
 
@@ -283,6 +283,7 @@ public class Facade {
 
         return sb.toString();
     }
+
 
     /**
      * Creates the credit card
@@ -323,6 +324,10 @@ public class Facade {
      */
     public String toggleFreezeCard(String cardNumber) {
         return cardController.modifyStatus(activeBankAccount, cardNumber);
+    }
+
+    public String modifyRegion(String cardNumber, String region) {
+        return cardController.modifyRegion(activeBankAccount, cardNumber, region);
     }
 
     /**
