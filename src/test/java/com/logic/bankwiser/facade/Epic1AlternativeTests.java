@@ -1,6 +1,6 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Mathias Hallander
  */
 public class Epic1AlternativeTests {
-    static Facade facade;
+    private Facade facade;
 
-    @BeforeAll
-    public static void setup() {
-        facade = new Facade();
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
         facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897",
                 "+46 72-373 89 30", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "890213-1032");
         facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888",
@@ -28,11 +28,11 @@ public class Epic1AlternativeTests {
 
     @Test
     public void userLoginTest() {
-        String expectedValue = "User johndoe@gmail.com could not be logged in. Invalid username or password.";
+        String expectedValue = "No account is registered with that email address.";
         String actualValue = facade.userLogin("johndoe@gmail.com", "UnknownPhantom897");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "User mary.jane@yahoo.com could not be logged in. Invalid username or password.";
+        expectedValue = "Password is incorrect.";
         actualValue = facade.userLogin("mary.jane@yahoo.com", "WrongPassword123");
         assertEquals(expectedValue, actualValue);
     }

@@ -12,9 +12,10 @@ import org.junit.jupiter.api.Test;
 public class Epic6RegularTests {
     private Facade facade; // Creates Facade object
 
+    //TODO create tests
     @BeforeEach
     public void setup() {
-        facade = new Facade();
+        facade = new Facade(true);
 
     }
 

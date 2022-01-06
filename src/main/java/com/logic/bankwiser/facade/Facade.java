@@ -51,6 +51,15 @@ public class Facade {
         loanController = new LoanController(storage, transactionController);
     }
 
+    public Facade(boolean tests) {
+        storage = new Storage(tests);
+        userAccountController = new UserAccountController(storage);
+        bankAccountController = new BankAccountController(storage);
+        transactionController = new TransactionController(storage);
+        cardController = new CardController(storage, transactionController);
+        loanController = new LoanController(storage, transactionController);
+    }
+
     /**
      * This method is crucial to how the Singleton pattern works.
      * When the frontend wants to communicate with the backend, it will go through the Facade by calling this method.

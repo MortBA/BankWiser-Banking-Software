@@ -1,6 +1,6 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,10 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Mathias Hallander
  */
 public class Epic2AlternativeTests {
-    static Facade facade;
+    private Facade facade;
 
-    @BeforeAll
-    public static void setup() {
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
+
         facade.createUserAccount("john.doe@gmail.com", "John Doe", "Password123", "Password123",
                 "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
     }
@@ -30,33 +32,31 @@ public class Epic2AlternativeTests {
                 "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "Email address is invalid";
+        expectedValue = "Email address is invalid.";
         actualValue = facade.createUserAccount("mary.janeyahoo.com", "Mary Jane", "Password123", "Password123",
                 "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "The passwords don't match";
-        actualValue = facade.createUserAccount("mary.janeyahoo.com", "Mary Jane", "ThePassword123", "Password123",
+        expectedValue = "The passwords don't match.";
+        actualValue = facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "ThePassword123", "Password123",
                 "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
     public void resetUserPassword() {
-        //TODO which approval signature? -MH
-        String expectedValue = "Approval signature is missing.";
-        String actualValue = facade.resetUserPassword("1","john.doe@gmail.com", "Password456", "Password123");
+        String expectedValue = "A user with that email does not exist.";
+        String actualValue = facade.resetUserPassword("leroy@gmail.com");
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
     public void deleteUserAccountTest() {
-        String expectedValue = "Email address is invalid";
-        String actualValue = facade.createUserAccount("mary.janeyahoo.com", "Mary Jane", "ThePassword123", "Password123",
-                "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
+        String expectedValue = "A user with that email does not exist.";
+        String actualValue = facade.deleteUserAccount("mary.janeyahoo.com");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "User with this username wasn’t found.";
+        expectedValue = "A user with that email does not exist.";
         actualValue = facade.deleteUserAccount("2");
         assertEquals(expectedValue, actualValue);
     }
