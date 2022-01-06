@@ -72,7 +72,7 @@
       </AnchorPane>
       <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="506.0" prefWidth="284.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="956.0">
          <children>
-            <Label fx:id="applyPersonalLoan" layoutX="9.0" layoutY="170.0" onDragDetected="#onApplyPersonalLoanClicked" onMouseClicked="#onCreditCardClicked" onMouseEntered="#creditCardHoverIn" onMouseExited="#creditCardHoverOut" text="Apply Personal Loan" textFill="#017c83" AnchorPane.leftAnchor="9.0">
+            <Label fx:id="applyPersonalLoan" layoutX="9.0" layoutY="170.0" onMouseClicked="#onApplyPersonalLoanClicked" onMouseEntered="#onApplyPersonalLoanHoverIn" onMouseExited="#onApplyPersonalLoanHoverOut" text="Apply Personal Loan" textFill="#017c83" AnchorPane.leftAnchor="9.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -82,17 +82,17 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="applyHomeLoan" layoutX="8.0" layoutY="243.0" onDragDetected="#onApplyHomeLoanClicked" onMouseClicked="#onChangePinClicked" onMouseEntered="#changePinHoverIn" onMouseExited="#changePinHoverOut" text="Apply Home Loan" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
+            <Label fx:id="applyHomeLoan" layoutX="8.0" layoutY="243.0" onMouseClicked="#onApplyHomeLoanClicked" onMouseEntered="#onApplyHomeLoanHoverIn" onMouseExited="#onApplyHomeLoanHoverOut" text="Apply Home Loan" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="overviewLoan" layoutX="9.0" layoutY="105.0" onDragDetected="#onOverviewLoanClicked" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Overview" textFill="#017c83">
+            <Label fx:id="overviewLoan" layoutX="9.0" layoutY="105.0" onMouseClicked="#onOverviewLoanClicked" onMouseEntered="#onOverviewLoanHoverIn" onMouseExited="#onOverviewLoanHoverOut" text="Overview" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onDragDetected="#onApplyVechileLoanClicked" onMouseClicked="#onModifyFuncClicked" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" text="Apply Vechile Loan" textFill="#017c83">
+            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onMouseClicked="#onApplyVechileLoanClicked" onMouseEntered="#onApplyVehicleLoanHoverIn" onMouseExited="#onApplyVehicleLoanOut" text="Apply Vechile Loan" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>

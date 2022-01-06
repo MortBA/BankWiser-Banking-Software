@@ -152,6 +152,11 @@ public class BankCardMenuController {
     }
 
     @FXML
+    void onLoansClicked() throws Exception {
+        new BankWiserApp().changeScene("LoansOverview.fxml");
+    }
+
+    @FXML
     public void onChangePinClicked() throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("ChangePin.fxml");

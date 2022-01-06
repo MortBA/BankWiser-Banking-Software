@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.LoansPersonalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.LoansHomeController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -73,7 +73,7 @@
       </AnchorPane>
       <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="506.0" prefWidth="284.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="956.0">
          <children>
-            <Label fx:id="applyPersonalLoan" layoutX="9.0" layoutY="170.0" onDragDetected="#onApplyPersonalLoanClicked" onMouseClicked="#onCreditCardClicked" onMouseEntered="#creditCardHoverIn" onMouseExited="#creditCardHoverOut" text="Apply Personal Loan" textFill="#017c83" AnchorPane.leftAnchor="9.0">
+            <Label fx:id="applyPersonalLoan" layoutX="9.0" layoutY="170.0" onMouseClicked="#onApplyPersonalLoanClicked" onMouseEntered="#onApplyPersonalLoanHoverIn" onMouseExited="#onApplyPersonalLoanHoverOut" text="Apply Personal Loan" textFill="#017c83" AnchorPane.leftAnchor="9.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -83,17 +83,17 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="applyHomeLoan" layoutX="8.0" layoutY="243.0" onDragDetected="#onApplyHomeLoanClicked" onMouseClicked="#onChangePinClicked" onMouseEntered="#changePinHoverIn" onMouseExited="#changePinHoverOut" text="Apply Home Loan" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
+            <Label fx:id="applyHomeLoan" layoutX="8.0" layoutY="243.0" onMouseClicked="#onApplyHomeLoanClicked" onMouseEntered="#onApplyHomeLoanHoverIn" onMouseExited="#onApplyHomeLoanHoverOut" text="Apply Home Loan" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="overviewLoan" layoutX="9.0" layoutY="105.0" onDragDetected="#onOverviewLoanClicked" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Overview" textFill="#017c83">
+            <Label fx:id="overviewLoan" layoutX="9.0" layoutY="105.0" onMouseClicked="#onOverviewLoanClicked" onMouseEntered="#onOverviewLoanHoverIn" onMouseExited="#onOverviewLoanHoverOut" text="Overview" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onDragDetected="#onApplyVechileLoanClicked" onMouseClicked="#onModifyFuncClicked" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" text="Apply Vechile Loan" textFill="#017c83">
+            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onMouseClicked="#onApplyVechileLoanClicked" onMouseEntered="#onApplyVehicleLoanHoverIn" onMouseExited="#onApplyVehicleLoanOut" text="Apply Vechile Loan" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
@@ -137,22 +137,22 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField layoutX="529.0" layoutY="176.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="totalMonthlyIncome" layoutX="529.0" layoutY="176.0" onAction="#onTotalMonthlyIncomeClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField layoutX="535.0" layoutY="225.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="totalMonthlyExpense" layoutX="535.0" layoutY="225.0" onAction="#onTotalMonthlyExpenseClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField layoutX="529.0" layoutY="275.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="liabilitiesDependencies" layoutX="529.0" layoutY="275.0" onAction="#onLiabilitiesDependenciesClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField layoutX="529.0" layoutY="325.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="durationOfLoan" layoutX="529.0" layoutY="325.0" onAction="#durationOfLoanClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -177,12 +177,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="359.0" layoutY="410.0" mnemonicParsing="false" style="-fx-background-color: #0088FF;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="410.0">
+            <Button fx:id="cancel" layoutX="359.0" layoutY="410.0" mnemonicParsing="false" onAction="#onCancelClicked" style="-fx-background-color: #0088FF;" text="Cancel" textFill="WHITE" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="410.0">
                <font>
                   <Font name="Calibri Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="370.0" layoutY="418.0" mnemonicParsing="false" style="-fx-background-color: #FF0000;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="490.0" AnchorPane.topAnchor="410.0">
+            <Button fx:id="confirm" layoutX="370.0" layoutY="418.0" mnemonicParsing="false" onAction="#onConfirmClicked" style="-fx-background-color: #FF0000;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="490.0" AnchorPane.topAnchor="410.0">
                <font>
                   <Font name="Calibri Bold" size="24.0" />
                </font>

@@ -1,7 +1,9 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.facade.Facade;
 import com.logic.bankwiser.transactions.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +18,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 /**
  * Controller class for transaction history screen.
@@ -39,17 +44,13 @@ public class TransactionHistoryScreenController implements Initializable {
 
 
     //***********//just to test//**********//
-    private BankAccount BAcc;
+    private Facade facade;
 
-    //TODO only works in main branch?? \/\/\/
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            BAcc = new BankAccount("280872273", "Channi's fake bankacount");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        facade = Facade.getInstance();
 
 //        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50)));
 //        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(609.60), "N/A", LocalDate.of(2021, 11, 14), BigDecimal.valueOf(623.51)));
@@ -63,7 +64,31 @@ public class TransactionHistoryScreenController implements Initializable {
     }
 
     private ObservableList<Transaction> getObservableTransactionList() {
-        return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionMap().values());
+        try {
+            facade.createUserAccount("Channi", "Chanisra Magnusson", "Yuki" , "Yuki", "199703241114", "channi@email.com", "Yuki0324");
+            facade.userLogin("Channi", "Yuki");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<String> bankaccounts = facade.getBankAccounts();
+        HashMap<String, Transaction> transactionHashMap;
+        BankAccount Temp;
+
+        ObservableList<Transaction> allTransactions = FXCollections.observableArrayList();
+
+        for (String bankaccount : bankaccounts) {
+            facade.selectedBankAccount(bankaccount);
+            Temp = facade.getActiveBankAccount();
+
+            transactionHashMap = Temp.getTransactionMap();
+            transactionHashMap.forEach((id, transaction) -> {
+                allTransactions.add(transaction);
+            });
+        }
+
+
+        return allTransactions;
     }
 
     @FXML
@@ -103,10 +128,9 @@ public class TransactionHistoryScreenController implements Initializable {
     }
 
 
-    //Todo loan screen
     @FXML
     void onLoansClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 
     //todo Sejal input fxml
@@ -121,4 +145,3 @@ public class TransactionHistoryScreenController implements Initializable {
     }
 
 }
-// TODO: 2021-12-22

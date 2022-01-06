@@ -111,7 +111,7 @@ public class CustomerMenuScreenController {
     }
 
     @FXML
-    public void onLogOutClicked() throws IOException {
+    public void onLogOutClicked(ActionEvent event) throws IOException {
         new BankWiserApp().changeScene("LoginScreenCustomer.fxml");
     }
 
@@ -138,10 +138,9 @@ public class CustomerMenuScreenController {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
-    //Todo loan screen
     @FXML
     void onLoansClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 }
 

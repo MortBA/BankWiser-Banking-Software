@@ -107,10 +107,9 @@ public class AccountSettingsScreenController {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
-    //Todo loan screen
     @FXML
     void onLoansClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 
     @FXML

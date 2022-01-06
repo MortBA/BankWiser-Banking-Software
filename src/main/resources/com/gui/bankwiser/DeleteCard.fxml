@@ -56,7 +56,7 @@
                 </MenuButton>
                 <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="loans" mnemonicParsing="false" text="Loans" />
+                        <MenuItem fx:id="loans" mnemonicParsing="false" onAction="#onLoansClicked" text="Loans" />
                     </items>
                     <font>
                         <Font size="18.0" />
