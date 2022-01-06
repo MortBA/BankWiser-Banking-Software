@@ -50,7 +50,7 @@ public class CardController {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if (keyAcceptance.getKey()) {
             bankAccount.addCard(new CreditCard(bankAccount, pin, maxCredit));
-            return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
+            return "Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation.";
         } else {
             return keyAcceptance.getValue();
         }
@@ -66,6 +66,22 @@ public class CardController {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if (keyAcceptance.getKey()) {
             bankAccount.addCard(new DebitCard(bankAccount, pin));
+            return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
+        } else {
+            return keyAcceptance.getValue();
+        }
+    }
+
+    /**
+     * adding a debit card into list in storage
+     *
+     * @param pin the pin code for the card as written by user
+     * @return affirmative or negative string
+     */
+    public String addCard(BankAccount bankAccount, String cardNumber, int pin) {
+        Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
+        if (keyAcceptance.getKey()) {
+            bankAccount.addCard(new DebitCard(bankAccount, cardNumber, pin));
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         } else {
             return keyAcceptance.getValue();
@@ -100,19 +116,18 @@ public class CardController {
     public Pair<Boolean, String> createPasswordCheck(int pin) {
         String pinString = String.valueOf(pin);
         String failCause = "";
-        boolean acceptablePassword = true;
+
+        if (String.valueOf(pin).length() != 4) {
+            return new Pair<>(false, "Invalid PIN: PIN must be four digits.");
+        }
 
         int pinOne = Integer.parseInt(String.valueOf(pinString.charAt(0)));
         int pinTwo = Integer.parseInt(String.valueOf(pinString.charAt(1)));
         int pinThree = Integer.parseInt(String.valueOf(pinString.charAt(2)));
         int pinFour = Integer.parseInt(String.valueOf(pinString.charAt(3)));
 
-        if (String.valueOf(pin).length() != 4) {
-            failCause = "Invalid Pin: PIN must be four digits";
-        }
-
         if (pin < 0) {
-            failCause = "Invalid PIN: PIN code cannot be negative numbers";
+            return new Pair<>(false, "Invalid PIN: PIN code cannot be negative.");
         }
 
         int duplicateNumberCounter = 0;
@@ -122,8 +137,7 @@ public class CardController {
                     if (Integer.parseInt(String.valueOf(pinString.charAt(i))) == Integer.parseInt(String.valueOf(pinString.charAt(y)))) {
                         duplicateNumberCounter++;
                         if (duplicateNumberCounter == 2) {
-                            acceptablePassword = false;
-                            failCause = "Invalid PIN: A number cannot be repeated more than once";
+                            return new Pair<>(false, "Invalid PIN: A number cannot be repeated more than once.");
                         }
                     }
                 }
@@ -131,18 +145,15 @@ public class CardController {
         }
 
         if (pinOne - pinTwo == -1 || pinOne - pinTwo == 1) {
-            acceptablePassword = false;
-            failCause = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+            return new Pair<>(false, "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.");
         }
         if (pinThree - pinTwo == -1 || pinThree - pinTwo == 1) {
-            acceptablePassword = false;
-            failCause = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+            return new Pair<>(false, "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.");
         }
         if (pinThree - pinFour == -1 || pinThree - pinFour == 1) {
-            acceptablePassword = false;
-            failCause = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+            return new Pair<>(false, "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.");
         }
-        return new Pair<>(acceptablePassword, failCause);
+        return new Pair<>(true, failCause);
     }
 
 
@@ -173,9 +184,7 @@ public class CardController {
                     }
                 }
             }
-
         }
-
         return "";
     }
 
@@ -215,7 +224,7 @@ public class CardController {
      */
     public String modifyStatus(BankAccount bankAccount, String cardNumber) {
         DebitCard debitCard = bankAccount.getCard(cardNumber);
-        if (debitCard == null) return "Cannot unfreeze card: Incorrect card details.";
+        if (debitCard == null) return "Cannot toggle freezing of card: Incorrect card details.";
         if (!bankAccount.getCard(cardNumber).getFrozenStatus()) {
             bankAccount.getCard(cardNumber).setFrozenStatus(true);
             return "Your card has been successfully blocked.";
@@ -256,7 +265,7 @@ public class CardController {
                 return "You successfully turned on online transactions.";
             }
         }
-        return "Invalid input: Given card number does not exist!";
+        return "Cannot toggle online transactions: Incorrect card details.";
     }
 
     /**
@@ -271,10 +280,9 @@ public class CardController {
             return "Invalid input: The new spending limit should not be negative.";
         }
         if (bankAccount.getCard(cardNumber) != null) {
-            double oldLimit = bankAccount.getCard(cardNumber).getExpenditureMax();
             bankAccount.getCard(cardNumber).setExpenditureMax(expenditureMax);
             double newLimit = bankAccount.getCard(cardNumber).getExpenditureMax();
-            return "You successfully changed your spending limit from " + oldLimit + " to " + newLimit + ".";
+            return "You successfully changed your spending limit to " + newLimit + ".";
         }
         return "Invalid input: Given card number does not exist!";
     }
@@ -340,7 +348,7 @@ public class CardController {
                     Pair<Boolean, String> keyAcceptance = createPasswordCheck(newPin);
                     if (keyAcceptance.getKey()) {
                         bankAccount.getCard(cardNumber).setPin(newPin);
-                        return "Card’s PIN code has been changed successfully.";
+                        return "Successfully changed PIN code.";
                     } else {
                         return keyAcceptance.getValue();
                     }
@@ -351,7 +359,7 @@ public class CardController {
                 return "Incorrect PIN code.";
             }
         }
-        return "Card could not be found.";
+        return "Card number you entered was not found in the list of your cards.";
     }
 
     /**

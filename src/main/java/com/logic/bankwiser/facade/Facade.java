@@ -304,15 +304,17 @@ public class Facade {
 
     /**
      * Creates the credit card
+     *
      * @param pin input give in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
-    public String createCreditCard(int pin) {
-        return cardController.addCard(activeBankAccount, pin);
+    public String createCreditCard(int pin, double monthlyIncome, double monthlyExpenses) {
+        return cardController.addCard(activeBankAccount, pin, monthlyIncome, monthlyExpenses);
     }
 
     /**
      * Creates the debit card
+     *
      * @param pin input given in by the user as their card code
      * @return string with approval or disapproval for the card creation.
      */
@@ -320,30 +322,29 @@ public class Facade {
         return cardController.addCard(activeBankAccount,pin);
     }
 
-
-
     /**
-     * Toggle the card to freeze
+     * Creates the debit card
      *
-     * @param cardNumber     the card to be frozen
-     * @return
+     * @param pin input given in by the user as their card code
+     * @return string with approval or disapproval for the card creation.
      */
-    public String freezeCard(String cardNumber) {
-        return cardController.modifyStatus(activeBankAccount, cardNumber);
+    public String createDebitCard(String cardNumber, int pin) {
+        return cardController.addCard(activeBankAccount, cardNumber, pin);
     }
+
 
     /**
      * Toggle the card to unfreeze
      *
-     * @param cardNumber     the card to be unfrozen
-     * @return
+     * @param cardNumber     the card to be toggled
+     * @return String confirmation of success or failure
      */
-    public String unfreezeCard(String cardNumber) {
-        return cardController.modifyStatus(activeBankAccount,cardNumber);
+    public String toggleFreezeCard(String cardNumber) {
+        return cardController.modifyStatus(activeBankAccount, cardNumber);
     }
 
     /**
-     * Modify the instore spending limit
+     * Modify the spending limit of a card.
      *
      * @param newLimit     the new limit as chosen by the user
      * @return String confirmation of success or failure
@@ -352,17 +353,12 @@ public class Facade {
         return cardController.modifyExpenditureMax(activeBankAccount, cardNumber, newLimit);
     }
 
-    public String allowOnlineTransactions() {
-        return "";
-    }
-
     /**
-     * Modify the online transaction ability of a card
+     * Toggle online transactions
      *
-     * @param cardNumber     the number of the card that will be modified
      * @return String confirmation of success or failure
      */
-    public String blockOnlineTransactions(String cardNumber) {
+    public String toggleOnlineTransactions(String cardNumber) {
         return cardController.modifyOnlineStatus(activeBankAccount, cardNumber);
     }
 

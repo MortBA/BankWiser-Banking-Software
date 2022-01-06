@@ -459,12 +459,10 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.freezeCard(cardList.getSelectionModel().getSelectedItem().toString());
-                facade.unfreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
-                facade.blockOnlineTransactions(cardList.getSelectionModel().getSelectedItem().toString());
+                facade.toggleFreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
+                facade.toggleFreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
+                facade.toggleOnlineTransactions(cardList.getSelectionModel().getSelectedItem().toString());
                 facade.changeSpendingLimit(cardList.getSelectionModel().getSelectedItem().toString(), Double.parseDouble(transactionLimit.getText()));
-                facade.allowOnlineTransactions();
-
             }
         }
     }
@@ -573,7 +571,6 @@ public class BankCardMenuController {
      *
      * @throws IOException IOException
      */
-
     @FXML
     void createCreditCard(ActionEvent event) throws IOException {
         if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()) {
@@ -591,7 +588,8 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.createCreditCard(Integer.parseInt(confirmCreditCardPin.getText()));
+                //TODO more inputs for credit card needed.
+                //facade.createCreditCard(Integer.parseInt(confirmCreditCardPin.getText()));
             }
         }
 
