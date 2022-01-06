@@ -217,7 +217,7 @@ public class Facade {
     }
 
     /**
-     * Sends an application for a personal-loan to be processed
+     * Sends an application for a personal-loan to be processed.
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
@@ -227,79 +227,42 @@ public class Facade {
      * @return confirmation of loan acceptation or rejection.
      */
     public String personalLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, int duration, String note) {
-        return loanController.personalLoanApplication(activeUser, activeUser.getBankAccountList().get(0), monthlyIncome, monthlyExpenses, desiredLoanAmount, duration, note);
+        return loanController.personalLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, duration, note);
     }
 
     /**
-     * Sends an application for a home-loan to be processed
+     * Sends an application for a home-loan to be processed.
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
-     * @param propertyPrice       the total price of the property
      * @param propertySize        the size of the total property
-     * @param liabilities         the total liabilities
-     * @param homeAddress         the address of the lodging
-     * @param homeType            the type of lodging
-     * @param storiesNum          //the number of the flat?
-     * @param duration            the length of time for repayment
+     * @param propertyAddress         the address of the lodging
+     * @param propertyType            the type of lodging
+     * @param propertyFloor          //the number of the flat?
+     * @param loanDuration        the length of time for repayment in months
      * @return confirmation of loan acceptation or rejection.
      */
-    public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double propertyPrice,
-                                      double propertySize, String liabilities, String homeAddress,
-                                      String homeType, int storiesNum, int duration) {
-        return "";
+    public String homeLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, double propertySize,
+                                      String propertyAddress, String propertyType, int propertyFloor, int loanDuration) {
+        return loanController.homeLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, propertyAddress, propertyType, propertySize, propertyFloor);
     }
 
     /**
-     * Sends an application for a vehicle-loan to be processed
+     * Sends an application for a vehicle-loan to be processed.
      *
      * @param monthlyIncome       total income on a monthly basis of the user
      * @param monthlyExpenses     total expenses on a monthly basis of the user
-     * @param millage             the age of the car by miles
-     * @param liabilities         the total liabilities
+     * @param mileage             the age of the car by miles
      * @param vehicleType         the type of the vehicle
      * @param fuelType            the type of fuel on the car
-     * @param yearOfManufacture
+     * @param yearOfManufacture   the year the car was built
+     * @param desiredLoanAmount   the desired loan amount
+     * @param loanDuration        the duration of the loan in months
      * @return confirmation of loan acceptation or rejection.
      */
-    public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses,
-                                         double millage, String liabilities, String vehicleType,
-                                         String fuelType, int yearOfManufacture) {
-        return "";
-    }
-
-    /**
-     * Calculates the loan size
-     *
-     * @param monthlyIncome     total income on a monthly basis of the user
-     * @param duration          the duration of the loan
-     * @return the size of the calculated loan
-     */
-    public double calculateLoanSize(double monthlyIncome, int duration) {
-        return -1;
-    }
-
-    /**
-     * Calculates the interest rate
-     *
-     * @param loanType     the type of the loan
-     * @return  double containing interest rate depending on the loan type
-     */
-    public double calculateInterestRate(String loanType) {
-        return -1;
-    }
-
-    /**
-     * Gives either approval or disapproval of a loan
-     *
-     * @param username     the user that requests the loan
-     * @param fullName     the fullname of the user
-     * @param reason       the reasoning for the loan request
-     * @param loanSize     the total amount of the loan
-     * @return string containing approval or disapproval of the loan
-     */
-    public String loanApproval(String username, String fullName, String reason, double loanSize) {
-        return "";
+    public String vehicleLoanApplication(double monthlyIncome, double monthlyExpenses, double desiredLoanAmount, double mileage,
+                                         int loanDuration, String vehicleType, String fuelType, int yearOfManufacture) {
+        return loanController.vehicleLoanApplication(activeUser, activeBankAccount.getBankAccountID(), monthlyIncome, monthlyExpenses, desiredLoanAmount, loanDuration, vehicleType, fuelType, mileage, yearOfManufacture);
     }
 
     /**
