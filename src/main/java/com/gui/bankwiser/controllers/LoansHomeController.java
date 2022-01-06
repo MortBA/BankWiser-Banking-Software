@@ -240,4 +240,19 @@ public class LoansHomeController {
     private void cancelHoverOut2() {
         cancel.setStyle("-fx-background-color: #ed2762;");
     }
+
+    public void personalLoanNoteClicked(ActionEvent event) {
+    }
+
+    public void onAddressClicked(ActionEvent event) {
+    }
+
+    public void onPropertyTypeClicked(ActionEvent event) {
+    }
+
+    public void onPropertySizeClicked(ActionEvent event) {
+    }
+
+    public void onPropertyFloorClicked(ActionEvent event) {
+    }
 }
