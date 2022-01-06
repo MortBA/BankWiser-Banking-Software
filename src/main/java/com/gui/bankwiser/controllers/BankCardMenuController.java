@@ -80,6 +80,10 @@ public class BankCardMenuController {
     private Button submitFunc;
 
     @FXML
+    public TextField monthlyExpense;
+    @FXML
+    public TextField monthlyIncome;
+    @FXML
     private TextField cardNumberToDelete;
     @FXML
     private TextField cardPinToDelete;
@@ -572,7 +576,7 @@ public class BankCardMenuController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.createDebitCard(Integer.parseInt(confirmDebitCardPin.getText()));
+                facade.createDebitCard(Integer.parseInt(debitCardPin.getText()), Integer.parseInt(confirmDebitCardPin.getText()));
             }
         }
 
@@ -588,22 +592,22 @@ public class BankCardMenuController {
      */
     @FXML
     void createCreditCard(ActionEvent event) throws IOException {
-        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()) {
+        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()
+                || monthlyExpense.getText().trim().isEmpty() || monthlyIncome.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else if(!(creditCardPin.getText().trim().equals(confirmCreditCardPin.getText().trim()))){
+        } else if (!(creditCardPin.getText().trim().equals(confirmCreditCardPin.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both pins should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your application for a credit card has been submitted." +
                     "We’ll let you know whether it has been accepted or rejected after evaluation.");
@@ -612,12 +616,12 @@ public class BankCardMenuController {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
                 //TODO more inputs for credit card needed.
-                //facade.createCreditCard(Integer.parseInt(confirmCreditCardPin.getText()));
+                facade.createCreditCard(Integer.parseInt(creditCardPin.getText()), Integer.parseInt(confirmCreditCardPin.getText()),
+                        Integer.parseInt(monthlyIncome.getText()), Integer.parseInt(monthlyExpense.getText()));
             }
         }
 
     }
-
     public TextField getNewPin() {
         newPin.textProperty().addListener(new ChangeListener<String>() {
             @Override
