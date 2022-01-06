@@ -56,24 +56,22 @@ public class ModifyFunctionalityController {
     @FXML
     private Stage stg = new Stage();
 
-
     ObservableList<String> activeRegions = FXCollections.observableArrayList();
 
     private void regionsData(){
-        activeRegions.removeAll();
-        String a = "Africa";
+        String a = "Europe";
         String b = "North America";
         String c = "Asia";
         String d = "South America";
         String e = "Oceania";
-        String f = "Europe";
+        String f = "Africa";
         activeRegions.addAll(a,b,c,d,e,f);
     }
 
     @FXML
     public void initialize() {
-        regionsChoiceBox = new ChoiceBox();
-        regionsChoiceBox.getItems().add("a");
+        regionsChoiceBox.setItems(activeRegions);
+        regionsChoiceBox.setValue("Europe");
         regionsData();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
