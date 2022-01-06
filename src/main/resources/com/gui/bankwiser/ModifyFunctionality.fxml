@@ -1,226 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.BankCardMenuController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.ModifyFunctionalityController">
     <children>
-        <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;"
-                    AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                    AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <ImageView fitHeight="100.0" fitWidth="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0">
                     <image>
-                        <Image url="@../../../img/CustomerIconBW.png"/>
+                        <Image url="@../../../img/CustomerIconBW.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="50.0" fitWidth="320.0" layoutX="501.0" layoutY="33.0" AnchorPane.topAnchor="10.0">
                     <image>
-                        <Image url="@../../../img/BwLogo.png"/>
+                        <Image url="@../../../img/BwLogo.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="logOut" layoutX="1168.0" layoutY="121.0" mnemonicParsing="false"
-                        onAction="#onLogOutClicked" text="Log Out" AnchorPane.rightAnchor="28.0"
-                        AnchorPane.topAnchor="117.0">
+                <Button fx:id="logOut" layoutX="1168.0" layoutY="121.0" mnemonicParsing="false" onAction="#onLogOutClicked" text="Log Out" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="117.0">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="overview" layoutX="65.0" layoutY="67.0" mnemonicParsing="false"
-                        onAction="#onOverviewClicked" text="Overview" AnchorPane.leftAnchor="40.0"
-                        AnchorPane.topAnchor="117.0">
+                <Button fx:id="overview" layoutX="65.0" layoutY="67.0" mnemonicParsing="false" onAction="#onOverviewClicked" text="Overview" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Button>
-                <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account"
-                            AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
+                <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info"/>
-                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" text="Account Settings"/>
-                        <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards"/>
+                        <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info" />
+                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" text="Account Settings" />
+                        <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                     </items>
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </MenuButton>
-                <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments"
-                            AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
+                <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" text="Transaction History"/>
+                        <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" text="Transaction History" />
                     </items>
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </MenuButton>
-                <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services"
-                            AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
+                <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="loans" mnemonicParsing="false" text="Loans"/>
+                        <MenuItem fx:id="loans" mnemonicParsing="false" text="Loans" />
                     </items>
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </MenuButton>
-                <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support"
-                            AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
+                <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="690.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false"
-                                  onAction="#onDeleteBankAccountClicked" text="Delete Bank Account"/>
-                        <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false"
-                                  onAction="#onDeleteUserAccountClicked" text="Delete User Account"/>
+                        <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
+                        <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                     </items>
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </MenuButton>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="506.0" prefWidth="284.0"
-                    style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="956.0">
+        <AnchorPane layoutX="40.0" layoutY="190.0" prefHeight="506.0" prefWidth="284.0" style="-fx-background-color: #d8fffa;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="956.0">
             <children>
-                <Label fx:id="newCreditCard" layoutX="9.0" layoutY="170.0" onMouseClicked="#onCreditCardClicked"
-                       onMouseEntered="#creditCardHoverIn" onMouseExited="#creditCardHoverOut" text="New Credit Card"
-                       textFill="#017c83" AnchorPane.leftAnchor="9.0">
+                <Label fx:id="newCreditCard" layoutX="9.0" layoutY="170.0" onMouseClicked="#onCreditCardClicked" onMouseEntered="#creditCardHoverIn" onMouseExited="#creditCardHoverOut" text="New Credit Card" textFill="#017c83" AnchorPane.leftAnchor="9.0">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <Label layoutX="9.0" layoutY="10.0" text="My cards" textFill="#017c83" AnchorPane.leftAnchor="9.0"
-                       AnchorPane.topAnchor="10.0">
+                <Label layoutX="9.0" layoutY="10.0" text="My cards" textFill="#017c83" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="10.0">
                     <font>
-                        <Font name="System Bold" size="36.0"/>
+                        <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
-                <Label fx:id="changeCardPin" layoutX="8.0" layoutY="243.0" onMouseClicked="#onChangePinClicked"
-                       onMouseEntered="#changePinHoverIn" onMouseExited="#changePinHoverOut" text="Change Card Pin"
-                       textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
+                <Label fx:id="changeCardPin" layoutX="8.0" layoutY="243.0" onMouseClicked="#onChangePinClicked" onMouseEntered="#changePinHoverIn" onMouseExited="#changePinHoverOut" text="Change Card Pin" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="243.0">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="deleteCard" layoutX="8.0" layoutY="392.0" onMouseClicked="#onDeleteCardClicked"
-                       onMouseEntered="#deleteCardHoverIn" onMouseExited="#deleteCardHoverOut" text="Delete Card"
-                       textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="392.0">
+                <Label fx:id="deleteCard" layoutX="8.0" layoutY="392.0" onMouseClicked="#onDeleteCardClicked" onMouseEntered="#deleteCardHoverIn" onMouseExited="#deleteCardHoverOut" text="Delete Card" textFill="#017c83" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="392.0">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="newDebitCard" layoutX="12.0" layoutY="100.0" onMouseClicked="#onDebitCardClicked"
-                       onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="New Debit Card"
-                       textFill="#017c83">
+                <Label fx:id="newDebitCard" layoutX="12.0" layoutY="100.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="New Debit Card" textFill="#017c83">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="cardFunctionality" layoutX="6.0" layoutY="317.0" onMouseClicked="#onModifyFuncClicked"
-                       onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut"
-                       text="Modify Card Functionality" textFill="#017c83">
+                <Label fx:id="cardFunctionality" layoutX="6.0" layoutY="317.0" onMouseClicked="#onModifyFuncClicked" onMouseEntered="#cardFuncHoverIn" onMouseExited="#cardFuncHoverOut" text="Modify Card Functionality" textFill="#017c83">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="49.0" fitWidth="67.0" layoutX="204.0" layoutY="16.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="49.0" fitWidth="67.0" layoutX="204.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../img/BankCard.png"/>
+                        <Image url="@../../../img/BankCard.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="366.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0"
-                    style="-fx-background-color: #d8fffa;">
+        <AnchorPane layoutX="366.0" layoutY="190.0" prefHeight="506.0" prefWidth="887.0" style="-fx-background-color: #d8fffa;">
             <children>
                 <Label layoutX="33.0" layoutY="14.0" text="Modify Card Functionality" textFill="#017c83">
                     <font>
-                        <Font name="System Bold" size="38.0"/>
+                        <Font name="System Bold" size="38.0" />
                     </font>
                 </Label>
-                <Label layoutX="190.0" layoutY="103.0" onMouseClicked="#onDebitCardClicked"
-                       onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number:"
-                       textFill="#017c83" AnchorPane.leftAnchor="190.0">
+                <Label layoutX="190.0" layoutY="103.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number:" textFill="#017c83" AnchorPane.leftAnchor="190.0">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <ChoiceBox fx:id="cardsList" layoutX="341.0" layoutY="103.0" prefHeight="35.0" prefWidth="252.0"/>
-                <Label layoutX="33.0" layoutY="170.0" onMouseClicked="#onDebitCardClicked"
-                       onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" textFill="#017c83">
+                <ChoiceBox fx:id="cardList" layoutX="341.0" layoutY="103.0" prefHeight="35.0" prefWidth="252.0" />
+                <Label layoutX="33.0" layoutY="170.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" textFill="#017c83">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
                 <AnchorPane layoutX="234.0" layoutY="168.0" prefHeight="40.0" prefWidth="418.0">
                     <children>
-                        <RadioButton fx:id="blockCard" layoutX="-45.0" mnemonicParsing="false" text="Block Card"
-                                     textFill="#017c83" AnchorPane.leftAnchor="-45.0">
+                        <RadioButton fx:id="blockCard" layoutX="-45.0" mnemonicParsing="false" text="Block Card" textFill="#017c83" AnchorPane.leftAnchor="-45.0">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </RadioButton>
-                        <RadioButton fx:id="unblockCard" layoutX="236.0" mnemonicParsing="false" text="Unblock Card"
-                                     textFill="#017c83" AnchorPane.leftAnchor="236.0">
+                        <RadioButton fx:id="unblockCard" layoutX="236.0" mnemonicParsing="false" text="Unblock Card" textFill="#017c83" AnchorPane.leftAnchor="236.0">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </RadioButton>
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutX="234.0" layoutY="213.0" prefHeight="40.0" prefWidth="418.0">
                     <children>
-                        <RadioButton fx:id="blockTransaction" layoutX="-46.0" mnemonicParsing="false"
-                                     text="Block online transactions" textFill="#017c83" AnchorPane.leftAnchor="-45.0">
+                        <RadioButton fx:id="blockTransaction" layoutX="-46.0" mnemonicParsing="false" text="Block online transactions" textFill="#017c83" AnchorPane.leftAnchor="-45.0">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </RadioButton>
-                        <RadioButton fx:id="unblockTransaction" layoutX="233.0" mnemonicParsing="false"
-                                     text="Unblock online transactions" textFill="#017c83"
-                                     AnchorPane.leftAnchor="236.0">
+                        <RadioButton fx:id="unblockTransaction" layoutX="233.0" mnemonicParsing="false" text="Unblock online transactions" textFill="#017c83" AnchorPane.leftAnchor="236.0">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </RadioButton>
                     </children>
                 </AnchorPane>
-                <Label layoutX="190.0" layoutY="260.0" onMouseClicked="#onDebitCardClicked"
-                       onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut"
-                       text="Transaction limit (SEK):" textFill="#017c83" AnchorPane.leftAnchor="190.0">
+                <Label layoutX="190.0" layoutY="260.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Transaction limit (SEK):" textFill="#017c83" AnchorPane.leftAnchor="190.0">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <TextField fx:id="transactionLimit" layoutX="443.0" layoutY="260.0" prefHeight="35.0"
-                           prefWidth="273.0"/>
-                <Button fx:id="submitFunc" layoutX="531.0" layoutY="404.0" mnemonicParsing="false"
-                        onAction="#onSubmitFuncClicked" onMouseEntered="#confirmHoverIn4"
-                        onMouseExited="#confirmHoverOut4" prefHeight="45.0" prefWidth="145.0"
-                        style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE"
-                        AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="215.0">
+                <TextField fx:id="transactionLimit" layoutX="443.0" layoutY="260.0" prefHeight="35.0" prefWidth="273.0" />
+                <Button fx:id="submitFunc" layoutX="531.0" layoutY="404.0" mnemonicParsing="false" onAction="#onSubmitFuncClicked" onMouseEntered="#confirmHoverIn4" onMouseExited="#confirmHoverOut4" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="215.0">
                     <font>
-                        <Font name="Calibri Bold" size="18.0"/>
+                        <Font name="Calibri Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="cancelFunc" layoutX="234.0" layoutY="392.0" mnemonicParsing="false"
-                        onMouseClicked="#onCancelButtonClicked" onMouseEntered="#cancelHoverIn4"
-                        onMouseExited="#cancelHoverOut4" prefHeight="45.0" prefWidth="140.0"
-                        style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE"
-                        AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="215.0">
+                <Button fx:id="cancelFunc" layoutX="234.0" layoutY="392.0" mnemonicParsing="false" onMouseClicked="#onCancelButtonClicked" onMouseEntered="#cancelHoverIn4" onMouseExited="#cancelHoverOut4" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="215.0">
                     <font>
-                        <Font name="Calibri Bold" size="18.0"/>
+                        <Font name="Calibri Bold" size="18.0" />
                     </font>
                 </Button>
-                <Label layoutX="190.0" layoutY="314.0" onMouseClicked="#onDebitCardClicked"
-                       onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Regions:"
-                       textFill="#017c83">
+                <Label layoutX="190.0" layoutY="314.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Regions:" textFill="#017c83">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <ChoiceBox fx:id="regions" layoutX="444.0" layoutY="314.0" prefHeight="35.0" prefWidth="273.0"/>
+            <ChoiceBox fx:id="regionsChoiceBox" layoutX="443.0" layoutY="319.0" prefHeight="35.0" prefWidth="273.0" />
             </children>
         </AnchorPane>
     </children>
