@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -68,6 +69,29 @@ public class CustomerMenuScreenController {
     @FXML
     public Stage stg2 = new Stage();
 
+
+
+
+    @FXML
+    private Label accountIDLabel;
+
+    @FXML
+    private Label accountNameLabel;
+
+    @FXML
+    private Label availableAmount;
+
+    @FXML
+    private Label cardAmount;
+
+    @FXML
+    private MenuButton cardSelector;
+
+    @FXML
+    private MenuButton accountSelector;
+
+
+
     /**
      * Initializes new stages to delete user account and bank account.
      * Both stages have initModality functionality.
@@ -98,9 +122,24 @@ public class CustomerMenuScreenController {
 
         if (!facade.getBankAccounts().isEmpty()) {
             List<String> bankAccountNumbers = facade.getBankAccounts();
-            PersonAccountNumber.setText(bankAccountNumbers.get(0));
+            accountIDLabel.setText(bankAccountNumbers.get(0));
         }
+
+
+
+        List<String> bankacounts = facade.getBankAccounts();
+
+
+
+
     }
+
+
+
+
+
+
+
 
 
     /**
@@ -154,12 +193,12 @@ public class CustomerMenuScreenController {
     }
 
     @FXML
-    void onTransactionHistoryClicked() throws Exception {
+    void onTransactionHistoryClicked(ActionEvent event) throws Exception {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
     @FXML
-    void onLoansClicked() throws Exception {
+    void onLoansClicked(ActionEvent event) throws Exception {
         new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 }

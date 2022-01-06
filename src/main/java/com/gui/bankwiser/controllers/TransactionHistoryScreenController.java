@@ -1,26 +1,25 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.facade.Facade;
 import com.logic.bankwiser.transactions.Transaction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+import java.time.LocalDateTime;
+import java.util.*;
 
 /**
  * Controller class for transaction history screen.
@@ -28,70 +27,71 @@ import java.util.ResourceBundle;
  * @author Chanisra
  */
 public class TransactionHistoryScreenController implements Initializable {
+    private Facade facade;
+
     @FXML
     private TableView<Transaction> transactionHistoryTable;
     @FXML
     private TableColumn<Transaction, LocalDate> dateColumn;
     @FXML
-    private TableColumn nameColumn;
+    private TableColumn<Transaction, String> nameColumn;
     @FXML
-    private TableColumn amountColumn;
+    private TableColumn<Transaction, BigDecimal> amountColumn;
     @FXML
-    private TableColumn accountNumberColumn;
+    private TableColumn<Transaction, String> accountNumberColumn;
     @FXML
-    private TableColumn balanceColumn;
-    @FXML
-    private Stage stg = new Stage();
+    private TableColumn<Transaction, BigDecimal> balanceColumn;
 
 
     //***********//just to test//**********//
-    private BankAccount BAcc;
+    UserAccount temp;
 
-    //TODO only works in main branch?? \/\/\/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        facade = Facade.getInstance();
+
         try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
+            BankAccount temporary ;
+           facade.userLogin("second@gmail.com", "password");
+            System.out.println(facade.createBankAccount("savings"));
+            facade.selectedBankAccount("63136517");
+            temporary = facade.getActiveBankAccount();
+            temporary.addTransaction(new Transaction("001", temporary.getBankAccountID(), new BigDecimal("69.42" ), "", LocalDateTime.of(2021, 3, 21, 14, 59), new BigDecimal("2401.40")));
+            temporary.addTransaction(new Transaction("002", temporary.getBankAccountID(), new BigDecimal("69.52" ), "", LocalDateTime.of(2021, 3, 21, 15, 5), new BigDecimal("2413.40")));
+            temporary.addTransaction(new Transaction("003", temporary.getBankAccountID(), new BigDecimal("-69.62" ), "", LocalDateTime.of(2021, 3, 21, 17, 1), new BigDecimal("240183.40")));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-            try {
-                BAcc = new BankAccount("280872273", "Channi's fake bankacount");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-//        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(-40.20), "N/A", LocalDate.of(2019, 3, 21), BigDecimal.valueOf(600.50)));
-//        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(609.60), "N/A", LocalDate.of(2021, 11, 14), BigDecimal.valueOf(623.51)));
-//        BAcc.addTransaction(new Transaction(BAcc.getBankAccountID(), BigDecimal.valueOf(231.10), "N/A", LocalDate.of(2022, 12, 20), BigDecimal.valueOf(1003.57)));
-
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("TransactionDate"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>(facade.getActiveBankAccount().getBankAccountName()));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, BigDecimal>("MoneyTransferred"));
+        balanceColumn.setCellValueFactory(new PropertyValueFactory<Transaction, BigDecimal>("BalanceAfterTransaction"));
+        accountNumberColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("BankAccountID"));
 
 
         transactionHistoryTable.setItems(getObservableTransactionList());
     }
 
     private ObservableList<Transaction> getObservableTransactionList() {
-        return (ObservableList<Transaction>) FXCollections.observableArrayList(BAcc.getTransactionMap().values());
 
-        //for delete account pop up screens
+        List<String> bankaccounts                   = facade.getBankAccounts();
+        ObservableList<Transaction> transactions    = FXCollections.observableArrayList();
 
+        for (String bankaccount : bankaccounts) {
+            facade.selectedBankAccount(bankaccount);
+            BankAccount temp = facade.getActiveBankAccount();
+
+            HashMap<String, Transaction> transactionHashMap = temp.getTransactionMap();
+            transactionHashMap.forEach( (id, transaction) -> {
+                transactions.add(transaction);
+            });
+        }
+
+        return transactions;
     }
 
     @FXML
@@ -140,12 +140,12 @@ public class TransactionHistoryScreenController implements Initializable {
     //todo Sejal input fxml
     @FXML
     void onDeleteBankAccountClicked() throws Exception {
-        stg.showAndWait();
+        new BankWiserApp().changeScene("");
     }
 
     @FXML
     void onDeleteUserAccountClicked() throws Exception {
-        stg.showAndWait();
+        new BankWiserApp().changeScene("");
     }
 
 }
