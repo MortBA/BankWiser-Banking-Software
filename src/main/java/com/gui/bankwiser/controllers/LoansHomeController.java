@@ -1,6 +1,7 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoansHomeController {
+
+    Facade facade = Facade.getInstance();
+
     @FXML
     private MenuItem accountSettings;
     @FXML
@@ -48,15 +52,22 @@ public class LoansHomeController {
     private Label applyHomeLoan;
     @FXML
     private Label applyVehicleLoan;
-
+    @FXML
+    public TextField loanAmount;
     @FXML
     private TextField totalMonthlyIncome;
     @FXML
     private TextField totalMonthlyExpense;
     @FXML
-    private TextField liabilitiesDependencies;
-    @FXML
     private TextField durationOfLoan;
+    @FXML
+    private TextField propertyType;
+    @FXML
+    private TextField propertySize;
+    @FXML
+    private TextField address;
+    @FXML
+    private TextField propertyFloor;
 
     @FXML
     public Stage stg = new Stage();
@@ -144,7 +155,7 @@ public class LoansHomeController {
     }
 
     public void onApplyVechileLoanClicked(MouseEvent mouseEvent) throws Exception {
-        new BankWiserApp().changeScene("LoansVechile.fxml");
+        new BankWiserApp().changeScene("LoansVehicle.fxml");
     }
 
     @FXML
@@ -203,56 +214,15 @@ public class LoansHomeController {
     }
 
 
-    public void onTotalMonthlyIncomeClicked(ActionEvent event) {
-    }
-
-    public void onTotalMonthlyExpenseClicked(ActionEvent event) {
-    }
-
-    public void onLiabilitiesDependenciesClicked(ActionEvent event) {
-    }
-
-    public void durationOfLoanClicked(ActionEvent event) {
-    }
-
     public void onConfirmClicked(ActionEvent event) {
+        facade.homeLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()), Double.parseDouble(totalMonthlyExpense.getText()),
+                Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()), Double.parseDouble(propertySize.getText()),
+                address.getText(), propertyType.getText(), Integer.parseInt(propertyFloor.getText()));
+
     }
 
-    public void onCancelClicked(ActionEvent event) {
-    }
-
-    @FXML
-    private void confirmHoverIn2() {
-        confirm.setStyle("-fx-background-color: #4bacf7;");
-    }
-
-    @FXML
-    private void confirmHoverOut2() {
-        confirm.setStyle("-fx-background-color: #2d9bf0;");
-    }
-
-    @FXML
-    private void cancelHoverIn2() {
-        cancel.setStyle("-fx-background-color: #fc4a7f;");
-    }
-
-    @FXML
-    private void cancelHoverOut2() {
-        cancel.setStyle("-fx-background-color: #ed2762;");
-    }
-
-    public void personalLoanNoteClicked(ActionEvent event) {
-    }
-
-    public void onAddressClicked(ActionEvent event) {
-    }
-
-    public void onPropertyTypeClicked(ActionEvent event) {
-    }
-
-    public void onPropertySizeClicked(ActionEvent event) {
-    }
-
-    public void onPropertyFloorClicked(ActionEvent event) {
+    public void onCancelClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("LoansHome.fxml");
     }
 }

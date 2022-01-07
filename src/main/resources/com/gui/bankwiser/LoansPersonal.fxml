@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.LoansHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.LoansPersonalController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -93,7 +88,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onMouseClicked="#onApplyVechileLoanClicked" onMouseEntered="#onApplyVehicleLoanHoverIn" onMouseExited="#onApplyVehicleLoanOut" text="Apply Vechile Loan" textFill="#017c83">
+            <Label fx:id="applyVehicleLoan" layoutX="6.0" layoutY="317.0" onMouseClicked="#onApplyVehicleLoanClicked" onMouseEntered="#onApplyVehicleLoanHoverIn" onMouseExited="#onApplyVehicleLoanOut" text="Apply Vechile Loan" textFill="#017c83">
                <font>
                   <Font size="24.0" />
                </font>
@@ -137,22 +132,22 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="totalMonthlyIncome" layoutX="529.0" layoutY="176.0" onAction="#onTotalMonthlyIncomeClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="totalMonthlyIncome" layoutX="529.0" layoutY="176.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="totalMonthlyExpense" layoutX="535.0" layoutY="225.0" onAction="#onTotalMonthlyExpenseClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="totalMonthlyExpense" layoutX="535.0" layoutY="225.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="liabilitiesDependencies" layoutX="529.0" layoutY="275.0" onAction="#onLiabilitiesDependenciesClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="loanAmount" layoutX="529.0" layoutY="275.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="durationOfLoan" layoutX="529.0" layoutY="325.0" onAction="#durationOfLoanClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
+            <TextField fx:id="durationOfLoan" layoutX="529.0" layoutY="325.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -192,7 +187,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <TextField fx:id="personalLoanNote" layoutX="472.0" layoutY="374.0" onAction="#personalLoanNoteClicked" prefWidth="300.0" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="375.0">
+            <TextField fx:id="personalLoanNote" layoutX="472.0" layoutY="374.0" prefWidth="300.0" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="375.0">
                <font>
                   <Font size="14.0" />
                </font>
