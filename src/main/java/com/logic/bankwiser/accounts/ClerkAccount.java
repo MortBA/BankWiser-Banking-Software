@@ -1,5 +1,8 @@
 package com.logic.bankwiser.accounts;
 
+/**
+ * @author Kevin Collins
+ */
 public class ClerkAccount {
 
     private String fullName;
@@ -14,6 +17,12 @@ public class ClerkAccount {
      * @param password
      */
 
+    /**
+     * Constructor for the ClerkAccount class
+     * @param fullName
+     * @param emailID
+     * @param password
+     */
     public ClerkAccount(String fullName, String emailID, String password) {
         this.fullName = fullName;
         this.EMAIL_ID = emailID;

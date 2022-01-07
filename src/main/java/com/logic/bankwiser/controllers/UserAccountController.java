@@ -100,6 +100,12 @@ public class UserAccountController {
         return new Pair<>(null, sb.toString());
     }
 
+    /**
+     * The method acts as an abstraction for how a password might be reset.
+     *
+     * @return A string that either confirms that reset password link has been to the inputted email or
+     * states that the email is not registered.
+     */
     public String resetPassword(String emailID) {
         if (storage.getUserFromMap(emailID) != null) {
             return "An email has been sent to " + emailID + " with a link that will allow you to reset your password.";

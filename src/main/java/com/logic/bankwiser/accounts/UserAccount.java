@@ -18,7 +18,7 @@ public class UserAccount {
     private String phoneNumber;
     private String address;
     private final String SOCIAL_SECURITY_NUMBER;
-    private final String emailID;
+    private final String EMAIL_ID;
     private String password;
     private final List<String> bankAccountList;
 
@@ -60,7 +60,7 @@ public class UserAccount {
                 this.phoneNumber = phoneNumber;
                 this.address = address;
                 this.SOCIAL_SECURITY_NUMBER = socialSecurityNum;
-                this.emailID = emailID;
+                this.EMAIL_ID = emailID;
                 this.password = password;
                 this.bankAccountList = new ArrayList<>();
             }
@@ -88,7 +88,7 @@ public class UserAccount {
     }
 
     public String getEmailID() {
-        return emailID;
+        return EMAIL_ID;
     }
 
     public String getPassword() {
@@ -127,7 +127,7 @@ public class UserAccount {
                 "phoneNumber: " + phoneNumber + Input.EOL +
                 "address: " + address + Input.EOL +
                 "SOCIAL_SECURITY_NUMBER: " + SOCIAL_SECURITY_NUMBER + Input.EOL +
-                "emailID: " + emailID + Input.EOL +
+                "EMAIL_ID: " + EMAIL_ID + Input.EOL +
                 "password: " + password + Input.EOL +
                 "bankAccountList: " + bankAccountList;
     }
@@ -137,11 +137,11 @@ public class UserAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserAccount that = (UserAccount) o;
-        return this.userID.equals(that.userID) || this.SOCIAL_SECURITY_NUMBER.equals(that.SOCIAL_SECURITY_NUMBER) || this.emailID.equals(that.emailID);
+        return this.userID.equals(that.userID) || this.SOCIAL_SECURITY_NUMBER.equals(that.SOCIAL_SECURITY_NUMBER) || this.EMAIL_ID.equals(that.EMAIL_ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(SOCIAL_SECURITY_NUMBER, emailID);
+        return Objects.hash(SOCIAL_SECURITY_NUMBER, EMAIL_ID);
     }
 }
