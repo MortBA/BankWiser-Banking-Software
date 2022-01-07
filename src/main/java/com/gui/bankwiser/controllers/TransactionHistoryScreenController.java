@@ -83,6 +83,26 @@ public class TransactionHistoryScreenController implements Initializable {
 
 
         transactionHistoryTable.setItems(getObservableTransactionList());
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg2.setScene(scene);
+            stg2.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private ObservableList<Transaction> getObservableTransactionList() {
@@ -144,35 +164,7 @@ public class TransactionHistoryScreenController implements Initializable {
         new BankWiserApp().changeScene("LoanOverview.fxml");
     }
 
-    /**
-     * Initializes new stages to delete user account and bank account.
-     * Both stages have initModality functionality.
-     *
-     * @author Sejal
-     */
-    @FXML
-    private void initialize() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     /**
      * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked

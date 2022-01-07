@@ -32,7 +32,7 @@
                 <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                     <items>
                         <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info" />
-                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" text="Account Settings" />
+                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
                         <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                     </items>
                     <font>
@@ -41,7 +41,8 @@
                 </MenuButton>
                 <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" text="Transaction History" />
+                        <MenuItem fx:id="transferMoney" mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transaction History" />
+                  <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
                     </items>
                     <font>
                         <Font size="18.0" />
