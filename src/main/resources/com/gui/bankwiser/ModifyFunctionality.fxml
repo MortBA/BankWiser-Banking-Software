@@ -38,8 +38,7 @@
                 </Button>
                 <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info" />
-                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" text="Account Settings" />
+                        <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
                         <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                     </items>
                     <font>
@@ -48,7 +47,8 @@
                 </MenuButton>
                 <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" text="Transaction History" />
+                        <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
+                  <MenuItem fx:id="transferMoney" mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transfer Money" />
                     </items>
                     <font>
                         <Font size="18.0" />
@@ -56,7 +56,7 @@
                 </MenuButton>
                 <MenuButton layoutX="543.0" layoutY="117.0" mnemonicParsing="false" text="Services" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="loans" mnemonicParsing="false" text="Loans" />
+                        <MenuItem fx:id="loans" mnemonicParsing="false" onAction="#onLoansClicked" text="Loans" />
                     </items>
                     <font>
                         <Font size="18.0" />
