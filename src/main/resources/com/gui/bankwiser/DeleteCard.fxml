@@ -151,7 +151,7 @@
                         <Font name="Calibri Bold" size="20.0" />
                     </font>
                 </Button>
-            <ChoiceBox fx:id="cardNumberList" layoutX="358.0" layoutY="100.0" prefHeight="35.0" prefWidth="274.0" />
+            <ChoiceBox fx:id="cardChoiceBox" layoutX="358.0" layoutY="100.0" prefHeight="35.0" prefWidth="274.0" />
             <TextArea fx:id="reasonToDelete" layoutX="178.0" layoutY="253.0" prefHeight="71.0" prefWidth="457.0" />
             </children>
         </AnchorPane>

@@ -1,7 +1,10 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.facade.Facade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,13 +15,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class DeleteCardController {
 
     private final Facade facade = Facade.getInstance();
-    @FXML
-    public ChoiceBox cardNumberList;
 
     @FXML
     public TextArea reasonToDelete;
@@ -58,12 +60,6 @@ public class DeleteCardController {
     private Label newDebitCard;
 
     @FXML
-    private CheckBox lostCard;
-    @FXML
-    private CheckBox dislikeService;
-    @FXML
-    private CheckBox cardUnused;
-    @FXML
     private CheckBox termsAndConditions;
 
     @FXML
@@ -71,12 +67,17 @@ public class DeleteCardController {
 
 
     @FXML
-    private ChoiceBox cardNumberToDelete;
+    private ChoiceBox<String> cardChoiceBox;
 
     @FXML
     public void initialize() {
-
-        // cardList.setItems(activeCards);
+        HashMap<String, DebitCard> cardHashMap = facade.getActiveBankAccount().getCardMap();
+        if (!cardHashMap.isEmpty()) {
+            ObservableList<String> cardNumberList = FXCollections.observableArrayList();
+            cardNumberList.addAll(cardHashMap.keySet().stream().toList());
+            cardChoiceBox.setItems(cardNumberList);
+            cardChoiceBox.setValue(cardNumberList.get(0));
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
@@ -109,9 +110,7 @@ public class DeleteCardController {
      */
     @FXML
     void deleteCard(ActionEvent event) throws IOException {
-        if (!termsAndConditions.isSelected() || lostCard.getText().trim().isEmpty() || dislikeService.getText().trim().isEmpty()
-                || cardPinToDelete.getText().trim().isEmpty() || cardNumberToDelete.getSelectionModel().getSelectedItem().toString().trim().isEmpty()
-                || cardUnused.getText().trim().isEmpty()) {
+        if (!termsAndConditions.isSelected() || cardPinToDelete.getText().trim().isEmpty() || cardChoiceBox.getSelectionModel().getSelectedItem().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
@@ -125,7 +124,7 @@ public class DeleteCardController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.deleteCard(cardNumberToDelete.getSelectionModel().getSelectedItem().toString(), cardUnused.getText(), Integer.parseInt(cardPinToDelete.getText()));
+                facade.deleteCard(cardChoiceBox.getSelectionModel().getSelectedItem(), reasonToDelete.getText(), Integer.parseInt(cardPinToDelete.getText()));
             }
         }
     }

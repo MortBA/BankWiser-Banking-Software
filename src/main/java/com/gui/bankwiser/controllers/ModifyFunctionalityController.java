@@ -95,10 +95,14 @@ public class ModifyFunctionalityController {
         }));
         regionsData();
         regionsChoiceBox.setItems(activeRegions);
-        ObservableList<String> cardList = FXCollections.observableArrayList(facade.getActiveBankAccount().getCardMap().keySet());
-        cardListChoiceBox.setItems(cardList);
-        cardListChoiceBox.setValue(cardList.get(0));
-        updateScreenInformation(facade.getActiveBankAccount().getCard(cardListChoiceBox.getValue()));
+        if (!facade.getActiveBankAccount().getCardMap().isEmpty()) {
+            ObservableList<String> cardList = FXCollections.observableArrayList(facade.getActiveBankAccount().getCardMap().keySet());
+            cardListChoiceBox.setItems(cardList);
+            cardListChoiceBox.setValue(cardList.get(0));
+            updateScreenInformation(facade.getActiveBankAccount().getCard(cardListChoiceBox.getValue()));
+        } else {
+            cardListChoiceBox.setValue("No cards on this account");
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {

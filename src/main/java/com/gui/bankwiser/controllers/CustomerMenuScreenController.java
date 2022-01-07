@@ -17,10 +17,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Controller class for performing all functionalities of 'Customer Menu' screen
@@ -113,13 +110,6 @@ public class CustomerMenuScreenController {
      */
     @FXML
     private void initialize() {
-        bankAccountChoiceBox.setOnAction((actionEvent -> {
-            updateScreenInformation(facade.getBankAccount(bankAccountChoiceBox.getValue()));
-        }));
-        cardChoiceBox.setOnAction((actionEvent -> {
-            updateScreenInformation(facade.getActiveBankAccount().getCard(cardChoiceBox.getValue()));
-        }));
-
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
@@ -148,14 +138,38 @@ public class CustomerMenuScreenController {
 
             bankAccountChoiceBox.setItems(bankAccountNumbers);
             bankAccountChoiceBox.setValue(bankAccountNumbers.get(0));
+            facade.selectedBankAccount(bankAccountChoiceBox.getValue());
+            updateScreenInformation(facade.getBankAccount(bankAccountNumbers.get(0)));
+            updateCardChoiceBox();
         }
 
-        HashMap<String, DebitCard> cardHashMap = facade.getAllCards();
+        bankAccountChoiceBox.setOnAction((actionEvent -> {
+            updateScreenInformation(facade.getBankAccount(bankAccountChoiceBox.getValue()));
+            facade.selectedBankAccount(bankAccountChoiceBox.getValue());
+            if (facade.getBankAccount(bankAccountChoiceBox.getValue()).getCardMap().isEmpty()) {
+                ObservableList<String> emptyList = FXCollections.observableArrayList();
+                emptyList.add("No cards on this account");
+                cardChoiceBox.setItems(emptyList);
+                cardChoiceBox.setValue("No cards on this account");
+            } else {
+                updateCardChoiceBox();
+            }
+        }));
+        cardChoiceBox.setOnAction((actionEvent -> {
+            updateScreenInformation(facade.getActiveBankAccount().getCard(cardChoiceBox.getValue()));
+        }));
+    }
+
+    @FXML
+    public void updateCardChoiceBox() {
+        HashMap<String, DebitCard> cardHashMap = facade.getActiveBankAccount().getCardMap();
         if (!cardHashMap.isEmpty()) {
             ObservableList<String> cardNumberList = FXCollections.observableArrayList();
+            cardNumberList.clear();
             cardNumberList.addAll(cardHashMap.keySet().stream().toList());
             cardChoiceBox.setItems(cardNumberList);
             cardChoiceBox.setValue(cardNumberList.get(0));
+            updateScreenInformation(facade.getActiveBankAccount().getCard(cardNumberList.get(0)));
         }
     }
 
@@ -168,10 +182,14 @@ public class CustomerMenuScreenController {
     @FXML
     public void updateScreenInformation(DebitCard debitCard) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append((debitCard.getFrozenStatus() ? "Card is currently: Frozen" : "Card is currently: Not frozen")).append(Input.EOL);
-        stringBuilder.append((debitCard.getOnlineStatus() ? "Card is currently: Blocked" : "Card is currently: Open to transactions")).append(Input.EOL);
-        stringBuilder.append("Transaction limit: ").append(debitCard.getExpenditureMax()).append(Input.EOL);
-        stringBuilder.append("Current region: ").append(debitCard.getRegion()).append(Input.EOL);
+        if (debitCard != null) {
+            stringBuilder.append((debitCard.getFrozenStatus() ? "Card is currently: Frozen" : "Card is currently: Not frozen")).append(Input.EOL);
+            stringBuilder.append((debitCard.getOnlineStatus() ? "Card is currently: Blocked" : "Card is currently: Open to transactions")).append(Input.EOL);
+            stringBuilder.append("Transaction limit: ").append(debitCard.getExpenditureMax()).append(Input.EOL);
+            stringBuilder.append("Current region: ").append(debitCard.getRegion()).append(Input.EOL);
+        } else {
+            stringBuilder.append("Nothing here");
+        }
         cardStatusLabel.setText(stringBuilder.toString());
     }
     /**

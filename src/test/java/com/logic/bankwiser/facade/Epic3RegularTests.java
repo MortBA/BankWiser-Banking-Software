@@ -77,7 +77,7 @@ public class Epic3RegularTests {
                 "phoneNumber: +46707012345" + Input.EOL +
                 "address: Street 1" + Input.EOL +
                 "SOCIAL_SECURITY_NUMBER: 200001010001" + Input.EOL +
-                "emailID: john@gmail.com" + Input.EOL +
+                "EMAIL_ID: john@gmail.com" + Input.EOL +
                 "password: password" + Input.EOL +
                 "bankAccountList: [" + johnBankAccount.getBankAccountID() + "]";
         String actualValue = johnAccount.toString();
@@ -88,7 +88,7 @@ public class Epic3RegularTests {
                 "phoneNumber: +46707023456" + Input.EOL +
                 "address: Street 2" + Input.EOL +
                 "SOCIAL_SECURITY_NUMBER: 200001010002" + Input.EOL +
-                "emailID: peter@gmail.com" + Input.EOL +
+                "EMAIL_ID: peter@gmail.com" + Input.EOL +
                 "password: password" + Input.EOL +
                 "bankAccountList: [" + peterBankAccount.getBankAccountID() + "]";
         actualValue = peterAccount.toString();
