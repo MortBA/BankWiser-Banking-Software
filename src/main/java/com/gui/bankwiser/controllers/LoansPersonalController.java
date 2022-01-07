@@ -232,9 +232,6 @@ public class LoansPersonalController {
 
             }
         }
-
-
-
     }
 
     public void onCancelClicked(ActionEvent event) throws IOException {

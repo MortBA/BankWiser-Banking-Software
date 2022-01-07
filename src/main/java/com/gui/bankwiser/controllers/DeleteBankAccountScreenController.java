@@ -12,7 +12,6 @@ import java.util.Optional;
  *
  * @author Chanisra
  */
-
 public class DeleteBankAccountScreenController {
 
     @FXML
@@ -65,25 +64,4 @@ public class DeleteBankAccountScreenController {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-
-    @FXML
-    private void CancelHoverIn() {
-
-    }
-
-    @FXML
-    private void CancelHoverOut() {
-
-    }
-
-    @FXML
-    private void ConfirmHoverIn() {
-
-    }
-
-    @FXML
-    private void ConfirmHoverOut() {
-
-    }
-
 }

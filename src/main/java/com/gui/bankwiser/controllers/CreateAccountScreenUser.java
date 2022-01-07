@@ -22,7 +22,6 @@ import java.util.Optional;
  *
  * @author Chanisra
  */
-
 public class CreateAccountScreenUser {
 
     private final Facade facade = Facade.getInstance();
@@ -83,7 +82,6 @@ public class CreateAccountScreenUser {
      *
      * @author Sejal
      */
-
     @FXML
     public void initialize() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/QuestionMarkScreen.fxml"));
@@ -102,21 +100,9 @@ public class CreateAccountScreenUser {
      *
      * @author Sejal
      */
-
     @FXML
     private void questionMarkClicked() {
         stg.showAndWait();
-    }
-
-    @FXML
-    void onMyCardsClicked(ActionEvent event) throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        app.changeScene("BankCardMenuController.fxml");
-    }
-
-    @FXML
-    void onOverviewClicked(ActionEvent event) {
-
     }
 
     @FXML
@@ -145,9 +131,7 @@ public class CreateAccountScreenUser {
     void LoginClicked(MouseEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("LoginScreenCustomer.fxml");
-        // TODO: 2021-12-21 Make A Screen "Account Successfully registered. 
     }
-
 
     @FXML
     private void LoginHoverIn() {
@@ -157,16 +141,6 @@ public class CreateAccountScreenUser {
     @FXML
     private void LoginHoverOut() {
         buttonLogin.setStyle("-fx-background-color: #2d9bf0;");
-    }
-
-    //QuestionMarkButton // todo:  implement if time over
-    @FXML
-    private void QuestionMarkHoverIn() {
-    }
-
-    @FXML
-    private void QuestionMarkHoverOut() {
-
     }
 
     @FXML

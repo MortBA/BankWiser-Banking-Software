@@ -17,8 +17,6 @@ import java.util.Optional;
 
 public class LoansHomeController {
 
-    public MenuItem transactionHistory;
-    public Button logOut;
     Facade facade = Facade.getInstance();
 
     @FXML
@@ -43,7 +41,10 @@ public class LoansHomeController {
     private Button cancel;
     @FXML
     private Button confirm;
-
+    @FXML
+    public MenuItem transactionHistory;
+    @FXML
+    public Button logOut;
     @FXML
     private Label overviewLoan;
     @FXML

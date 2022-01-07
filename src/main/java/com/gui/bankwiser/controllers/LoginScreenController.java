@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
  *
  * @author Chanisra
  */
-
 public class LoginScreenController implements Initializable {
     @FXML
     private AnchorPane BankwiserLogo;

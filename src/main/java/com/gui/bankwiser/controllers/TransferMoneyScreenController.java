@@ -22,7 +22,6 @@ import java.util.Optional;
  *
  * @author Chanisra
  */
-
 public class TransferMoneyScreenController {
 
 
@@ -98,7 +97,6 @@ public class TransferMoneyScreenController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML

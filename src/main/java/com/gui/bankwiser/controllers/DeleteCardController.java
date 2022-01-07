@@ -44,10 +44,8 @@ public class DeleteCardController {
     private Button cancelDeleteCard;
     @FXML
     private Button confirmDeleteCard;
-
     @FXML
     private TextField cardPinToDelete;
-
     @FXML
     private Label cardFunctionality;
     @FXML
@@ -58,7 +56,6 @@ public class DeleteCardController {
     private Label newCreditCard;
     @FXML
     private Label newDebitCard;
-
     @FXML
     private CheckBox termsAndConditions;
 
@@ -213,7 +210,6 @@ public class DeleteCardController {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("BankCardMenu.fxml");
     }
-
 
     // Button color change for delete card menu
     @FXML

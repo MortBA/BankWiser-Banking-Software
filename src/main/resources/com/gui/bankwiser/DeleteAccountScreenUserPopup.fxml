@@ -9,7 +9,7 @@
             fx:controller="com.gui.bankwiser.controllers.DeleteAccountScreenUser">
     <children>
         <Button fx:id="buttonCancel" layoutX="82.0" layoutY="478.0" mnemonicParsing="false"
-                onMouseClicked="#CancelClicked" onMouseEntered="#CancelHoverIn" onMouseExited="#CancelHoverOut"
+                onMouseClicked="#CancelClicked"
                 prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #ed2762;" text="Cancel"
                 textFill="WHITE">
             <font>
@@ -17,7 +17,7 @@
             </font>
         </Button>
         <Button fx:id="buttonConfirm" layoutX="270.0" layoutY="478.0" mnemonicParsing="false"
-                onMouseClicked="#ConfirmClicked" onMouseEntered="#ConfirmHoverIn" onMouseExited="#ConfirmHoverOut"
+                onMouseClicked="#ConfirmClicked"
                 prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Confirm"
                 textFill="WHITE">
             <font>

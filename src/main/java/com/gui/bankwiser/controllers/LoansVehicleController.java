@@ -17,9 +17,12 @@ import java.util.Optional;
 
 public class LoansVehicleController {
 
-    public Button logOut;
-    public MenuItem transactionHistory;
     Facade facade = Facade.getInstance();
+
+    @FXML
+    public Button logOut;
+    @FXML
+    public MenuItem transactionHistory;
     @FXML
     private MenuItem accountSettings;
     @FXML
@@ -235,15 +238,12 @@ public class LoansVehicleController {
                         Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()), Double.parseDouble(vehicleMileage.getText()),
                         vehicleType.getText(), fuelType.getText(), Integer.parseInt(manufactureYear.getText()));
                 app.changeScene("LoansOverview.fxml");
-
             }
         }
-
     }
 
     public void onCancelClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
         app.changeScene("LoansVehicle.fxml");
     }
-
 }

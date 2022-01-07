@@ -75,10 +75,9 @@
                 </MenuButton>
             </children>
         </AnchorPane>
-        <TableView fx:id="transactionHistoryTable" layoutX="112.0" layoutY="332.0" prefHeight="430.0" stylesheets="@styleSheets/styleTransactionHistoryTable.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+        <TableView fx:id="transactionHistoryTable" layoutX="112.0" layoutY="332.0" prefHeight="430.0" prefWidth="943.0" stylesheets="@styleSheets/styleTransactionHistoryTable.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="297.0">
             <columns>
                 <TableColumn fx:id="dateColumn" editable="false" prefWidth="174.66665649414062" resizable="false" text="Date" />
-                <TableColumn fx:id="nameColumn" editable="false" prefWidth="260.0" resizable="false" text="Name" />
                 <TableColumn fx:id="amountColumn" editable="false" prefWidth="190.6666259765625" resizable="false" text="Amount" />
                 <TableColumn fx:id="accountNumberColumn" editable="false" prefWidth="288.888916015625" resizable="false" text="AccountNumber" />
                 <TableColumn fx:id="balanceColumn" editable="false" minWidth="-1.0" prefWidth="283.0" resizable="false" text="Balance" />

@@ -24,37 +24,26 @@ import java.util.*;
  *
  * @author Chanisra
  */
-
 public class CustomerMenuScreenController {
-
-
 
     Facade facade = Facade.getInstance();
 
     @FXML
     private MenuItem accountSettings;
-
     @FXML
     private MenuItem deleteBankAccount;
-
     @FXML
     private MenuItem deleteUserAccount;
-
     @FXML
     private MenuItem transactionsHistory;
-
     @FXML
     private MenuItem loans;
-
     @FXML
     private MenuItem myCards;
-
     @FXML
     private MenuItem transferMoney;
-
     @FXML
     private Button overview;
-
     @FXML
     private Button buttonLogOut;
     @FXML
@@ -75,32 +64,20 @@ public class CustomerMenuScreenController {
     public Label expirationLabel;
     @FXML
     public Label cardNumberLabel;
-
     @FXML
     public Stage stg = new Stage();
-
     @FXML
     public Stage stg2 = new Stage();
-
-
-
-
     @FXML
     private Label accountNameLabel;
-
     @FXML
     private Label amountLabel;
-
     @FXML
     private Label cardStatusLabel;
-
     @FXML
     private ChoiceBox<String> cardChoiceBox;
-
     @FXML
     private ChoiceBox<String> bankAccountChoiceBox;
-
-
 
     /**
      * Initializes new stages to delete user account and bank account.

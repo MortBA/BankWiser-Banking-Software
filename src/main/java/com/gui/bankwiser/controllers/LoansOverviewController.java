@@ -17,8 +17,9 @@ import java.io.IOException;
 
 
 public class LoansOverviewController {
-
+    @FXML
     public MenuItem transactionHistory;
+    @FXML
     public Button logOut;
     @FXML
     private MenuItem accountSettings;

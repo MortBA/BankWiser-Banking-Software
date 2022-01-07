@@ -18,7 +18,6 @@ import java.util.Optional;
  *
  * @author Sejal
  */
-
 public class ChangePasswordController {
 
     @FXML

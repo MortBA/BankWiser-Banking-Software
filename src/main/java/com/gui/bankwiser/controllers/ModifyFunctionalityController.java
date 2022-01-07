@@ -22,14 +22,24 @@ import java.util.Optional;
 public class ModifyFunctionalityController {
 
     private final Facade facade = Facade.getInstance();
+
+    @FXML
     public Button logOut;
+    @FXML
     public Button overview;
+    @FXML
     public MenuItem personalInfo;
+    @FXML
     public MenuItem accountSettings;
+    @FXML
     public MenuItem myCards;
+    @FXML
     public MenuItem transferMoney;
-    public MenuItem transactionsHistory1;
+    @FXML
+    public MenuItem transactionsHistory;
+    @FXML
     public MenuItem deleteBankAccount;
+    @FXML
     public MenuItem deleteUserAccount;
 
     @FXML

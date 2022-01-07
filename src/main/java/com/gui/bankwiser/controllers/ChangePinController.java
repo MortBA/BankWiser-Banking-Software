@@ -23,7 +23,8 @@ import java.util.Optional;
 public class ChangePinController {
 
     private final Facade facade = Facade.getInstance();
-
+    @FXML
+    public MenuItem transferMoney;
     @FXML
     private MenuItem accountSettings;
     @FXML
@@ -106,7 +107,6 @@ public class ChangePinController {
             e.printStackTrace();
         }
     }
-
 
     /**
      * The method functions when 'submit' button on 'change pin' screen is clicked.

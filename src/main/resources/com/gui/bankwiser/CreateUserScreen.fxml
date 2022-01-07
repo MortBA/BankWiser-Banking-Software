@@ -159,7 +159,6 @@
                                 </Label>
                                 <ImageView fx:id="QuestionMarkButton" fitHeight="20.0" fitWidth="20.0" layoutX="381.0"
                                            layoutY="4.0" onMouseClicked="#questionMarkClicked"
-                                           onMouseEntered="#QuestionMarkHoverIn" onMouseExited="#QuestionMarkHoverOut"
                                            pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../../img/QuestionMark.png"/>
