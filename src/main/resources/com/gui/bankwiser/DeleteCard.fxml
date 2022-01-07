@@ -136,7 +136,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <CheckBox fx:id="TnC" layoutX="178.0" layoutY="342.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
+                <CheckBox fx:id="termsAndConditions" layoutX="178.0" layoutY="342.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>

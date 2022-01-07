@@ -63,7 +63,7 @@ public class ChangePinController {
     private TextField currentPin;
 
     @FXML
-    private CheckBox TnC;
+    private CheckBox termsAndConditions;
 
     @FXML
     private ChoiceBox cardList;
@@ -108,7 +108,7 @@ public class ChangePinController {
      */
     @FXML
     void changeCardPin(ActionEvent event) throws IOException {
-        if (!TnC.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
+        if (!termsAndConditions.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
                 || confirmPin.getText().trim().isEmpty() || cardList.getSelectionModel().getSelectedItem().toString().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");

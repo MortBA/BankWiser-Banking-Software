@@ -17,13 +17,21 @@ import java.util.Optional;
 public class NewDebitCardController {
 
     private final Facade facade = Facade.getInstance();
+    @FXML
     public MenuItem accountSettings;
+    @FXML
     public MenuItem myCards;
+    @FXML
     public MenuItem transactionHistory;
+    @FXML
     public MenuItem loans;
+    @FXML
     public MenuItem deleteBankAccount;
+    @FXML
     public MenuItem deleteUserAccount;
+    @FXML
     public Button overview;
+    @FXML
     public Button logOut;
 
     @FXML
@@ -55,9 +63,8 @@ public class NewDebitCardController {
     @FXML
     private Stage stg = new Stage();
 
-
     @FXML
-    private CheckBox TnC;
+    private CheckBox termsAndConditions;
 
 
     @FXML
@@ -88,15 +95,15 @@ public class NewDebitCardController {
 
     /**
      * The method functions when 'submit' button on 'debit card' screen is clicked.
-     * THe method checks if all fields on 'debit card' screen are filled and then submits the new debit card request.
+     * The method checks if all fields on 'debit card' screen are filled and then submits the new debit card request.
      * Warning alert box appears if any field is empty or unchecked.
      * Confirmation alert box appears when all fields are filled and card is made.
      *
      * @throws IOException IOException
      */
     @FXML
-    void createDebitCard(ActionEvent event) throws IOException {
-        if (!TnC.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()) {
+    void submitDebitCard(ActionEvent event) throws IOException {
+        if (!termsAndConditions.isSelected() || debitCardPin.getText().trim().isEmpty() || confirmDebitCardPin.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();

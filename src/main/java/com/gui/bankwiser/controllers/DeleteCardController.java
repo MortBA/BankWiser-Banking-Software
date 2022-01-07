@@ -22,18 +22,22 @@ public class DeleteCardController {
 
     @FXML
     public TextArea reasonToDelete;
+    @FXML
     public Button logOut;
+    @FXML
     public MenuItem personalInfo;
+    @FXML
     public MenuItem myCards;
+    @FXML
     public MenuItem accountSettings;
+    @FXML
     public MenuItem transferMoney;
+    @FXML
     public MenuItem transactionsHistory;
+    @FXML
     public MenuItem deleteBankAccount;
+    @FXML
     public MenuItem deleteUserAccount;
-    public Label newDebitCard1;
-    public Label newDebitCard11;
-    public Label newDebitCard111;
-
     @FXML
     private Button cancelDeleteCard;
     @FXML
@@ -60,7 +64,7 @@ public class DeleteCardController {
     @FXML
     private CheckBox cardUnused;
     @FXML
-    private CheckBox TnC;
+    private CheckBox termsAndConditions;
 
     @FXML
     private Stage stg = new Stage();
@@ -105,7 +109,7 @@ public class DeleteCardController {
      */
     @FXML
     void deleteCard(ActionEvent event) throws IOException {
-        if (!TnC.isSelected() || lostCard.getText().trim().isEmpty() || dislikeService.getText().trim().isEmpty()
+        if (!termsAndConditions.isSelected() || lostCard.getText().trim().isEmpty() || dislikeService.getText().trim().isEmpty()
                 || cardPinToDelete.getText().trim().isEmpty() || cardNumberToDelete.getSelectionModel().getSelectedItem().toString().trim().isEmpty()
                 || cardUnused.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);

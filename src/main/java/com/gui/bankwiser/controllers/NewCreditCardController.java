@@ -22,16 +22,24 @@ public class NewCreditCardController {
     public TextField monthlyExpense;
     @FXML
     public TextField monthlyIncome;
+    @FXML
     public MenuItem deleteBankAccount;
+    @FXML
     public MenuItem deleteUserAccount;
+    @FXML
     public MenuItem loans;
+    @FXML
     public MenuItem transactionsHistory;
+    @FXML
     public MenuItem transferMoney;
+    @FXML
     public MenuItem myCards;
+    @FXML
     public MenuItem accountSettings;
+    @FXML
     public Button overview;
+    @FXML
     public Button logOut;
-
     @FXML
     private Button cancelCreditCard;
     @FXML
@@ -54,7 +62,7 @@ public class NewCreditCardController {
     private TextField confirmCreditCardPin;
 
     @FXML
-    private CheckBox TnC;
+    private CheckBox termsAndConditions;
 
 
     @FXML
@@ -97,8 +105,8 @@ public class NewCreditCardController {
      * @throws IOException IOException
      */
     @FXML
-    void createCreditCard(ActionEvent event) throws IOException {
-        if (!TnC.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()
+    void submitCreditCard(ActionEvent event) throws IOException {
+        if (!termsAndConditions.isSelected() || creditCardPin.getText().trim().isEmpty() || confirmCreditCardPin.getText().trim().isEmpty()
                 || monthlyExpense.getText().trim().isEmpty() || monthlyIncome.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");

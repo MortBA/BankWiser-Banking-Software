@@ -142,7 +142,7 @@
                 <PasswordField fx:id="newPin" layoutX="178.0" layoutY="217.0" onAction="#getNewPin" prefHeight="35.0" prefWidth="234.0" />
                 <PasswordField fx:id="confirmPin" layoutX="630.0" layoutY="217.0" prefHeight="35.0" prefWidth="234.0" />
                 <PasswordField fx:id="currentPin" layoutX="630.0" layoutY="121.0" prefHeight="35.0" prefWidth="234.0" />
-                <CheckBox fx:id="TnC" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
+                <CheckBox fx:id="termsAndConditions" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" text="Agree with terms and conditions" textFill="#017c83">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
