@@ -2,6 +2,7 @@ package com.logic.bankwiser.facade;
 
 import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.controllers.*;
 import com.logic.bankwiser.loans.Loan;
 import com.logic.bankwiser.storage.Storage;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -187,6 +189,10 @@ public class Facade {
         return activeUser.getBankAccountList();
     }
 
+    public BankAccount getBankAccount(String bankAccountID) {
+        return storage.getBankAccount(bankAccountID);
+    }
+
     /**
      * Changes the active bank account to input
      */
@@ -325,7 +331,15 @@ public class Facade {
         return cardController.addCard(activeBankAccount, cardNumber, pin, pinConfirmation);
     }
 
-
+    public HashMap<String, DebitCard> getAllCards() {
+        HashMap<String, DebitCard> cardHashMap = new HashMap<>();
+        for (String bankAccountID : getActiveUser().getBankAccountList()) {
+            HashMap<String, DebitCard> temp = new HashMap<>(getBankAccount(bankAccountID).getCardMap());
+            temp.keySet().removeAll(cardHashMap.keySet());
+            cardHashMap.putAll(temp);
+        }
+        return cardHashMap;
+    }
     /**
      * Toggle the card to unfreeze
      *
