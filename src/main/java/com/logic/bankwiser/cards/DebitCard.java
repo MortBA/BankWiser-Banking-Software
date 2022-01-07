@@ -18,7 +18,7 @@ public class DebitCard {
 
     private final String CARD_NUMBER;
     private final String BANK_ACCOUNT_ID;
-    private final String CCV;
+    private final String CVV;
     private final String CREATION_DATE;
     private final String EXPIRATION_DATE;
     private int pin;
@@ -36,37 +36,9 @@ public class DebitCard {
      */
     public DebitCard(BankAccount bankAccount, int pin) { //BankAccount
 
-        int cardNumberMin = 0;
-        int cardNumberMax = 9999999;
-
-        Random cardNumberRand = new Random();
-        String cardNumber = "" + cardNumberRand.nextInt((cardNumberMax - cardNumberMin) + 1) + cardNumberMin;
-        cardNumber = cardNumber + "" + cardNumberRand.nextInt((cardNumberMax - cardNumberMin) + 1) + cardNumberMin;
-
-        int CCVMin = 0;
-        int CCVMax = 999;
-        Random CCVRand = new Random();
-        String CCV = "" + CCVRand.nextInt((CCVMax - CCVMin) + 1) + CCVMin;
-
-        if (CCV.length() == 2) {
-            CCV = "0" + CCV;
-        } else if (CCV.length() == 1) {
-            CCV = "00" + CCV;
-        }
-
-        StringBuilder zero = new StringBuilder();
-        for (int i = 2; i < 16; i++) {
-            if (cardNumber.length() == i) {
-                for (int y = 2; i < 16; i++) {
-                    zero.append(0);
-                }
-            }
-        }
-        cardNumber = zero + cardNumber;
-
-        this.CARD_NUMBER = cardNumber;
+        this.CARD_NUMBER = generateCardNumber();
         this.BANK_ACCOUNT_ID = bankAccount.getBankAccountID();
-        this.CCV = CCV;
+        this.CVV = generateCVV();
         this.CREATION_DATE = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
         this.EXPIRATION_DATE = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).plusYears(3).toString();
         this.pin = pin;
@@ -77,13 +49,70 @@ public class DebitCard {
         this.yearlyPaymentDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
     }
 
+    public DebitCard(BankAccount bankAccount, String cardNumber, int pin) {
+        this.CARD_NUMBER = cardNumber;
+        this.BANK_ACCOUNT_ID = bankAccount.getBankAccountID();
+        this.CVV = generateCVV();
+        this.CREATION_DATE = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
+        this.EXPIRATION_DATE = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).plusYears(3).toString();
+        this.pin = pin;
+        this.frozenStatus = false;
+        this.region = "Sweden";
+        this.onlineStatus = true;
+        this.expenditureMax = 10000;
+        this.yearlyPaymentDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
+    }
+
+    /**
+     * A method used for the random generation of a card number.
+     *
+     * @return zero + cardNumber
+     */
+    public String generateCardNumber() {
+        int cardNumberMin = 0;
+        int cardNumberMax = 9999999;
+
+        Random cardNumberRand = new Random();
+        String cardNumber = "" + cardNumberRand.nextInt((cardNumberMax - cardNumberMin) + 1) + cardNumberMin;
+        cardNumber = cardNumber + "" + cardNumberRand.nextInt((cardNumberMax - cardNumberMin) + 1) + cardNumberMin;
+
+        StringBuilder zero = new StringBuilder();
+        for (int i = 2; i < 16; i++) {
+            if (cardNumber.length() == i) {
+                for (int y = 2; i < 16; i++) {
+                    zero.append(0);
+                }
+            }
+        }
+        return zero + cardNumber;
+    }
+
+    /**
+     * A method used for the random generation of a card CVV.
+     *
+     * @return CVV
+     */
+
+    public String generateCVV() {
+        int CCVMin = 0;
+        int CCVMax = 999;
+        Random CCVRand = new Random();
+        String CCV = "" + CCVRand.nextInt((CCVMax - CCVMin) + 1) + CCVMin;
+
+        if (CCV.length() == 2) {
+            CCV = "0" + CCV;
+        } else if (CCV.length() == 1) {
+            CCV = "00" + CCV;
+        }
+        return CVV;
+    }
 
     public String getCardNumber() {
         return this.CARD_NUMBER;
     }
 
-    public String getCCV() {
-        return this.CCV;
+    public String getCVV() {
+        return this.CVV;
     }
 
     public LocalDateTime getExpirationDate() {

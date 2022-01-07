@@ -5,10 +5,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
+ * Object representation of a transaction event.
+ * This object stores all information relevant to its creation.
+ * As it is a representation of an event it stores its own identifier, time  date, and relevant bank account id.
+ *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
-
 public final class Transaction {
 
     private final String TRANSACTION_ID;
@@ -18,6 +21,28 @@ public final class Transaction {
     private final String TRANSACTION_DATE;
     private final BigDecimal BALANCE_AFTER_TRANSACTION;
 
+
+    /**
+     * Constructor for Transaction objects.
+     *
+     * @param transactionID
+     * @param bankAccountID
+     * @param moneyTransferred
+     * @param note
+     * @param transactionDate
+     * @param balanceAfterTransaction
+     */
+
+    /**
+     * Constructor for the Transaction class.
+     *
+     * @param transactionID
+     * @param bankAccountID
+     * @param moneyTransferred
+     * @param note
+     * @param transactionDate
+     * @param balanceAfterTransaction
+     */
     public Transaction(String transactionID, String bankAccountID, BigDecimal moneyTransferred,
                        String note, LocalDateTime transactionDate, BigDecimal balanceAfterTransaction) {
         String TRANSACTION_IDENTIFIER = "T";

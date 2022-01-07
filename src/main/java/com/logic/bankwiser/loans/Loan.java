@@ -24,6 +24,17 @@ public abstract class Loan {
     private String lastRepaymentDate;
     private String status;
 
+
+    /**
+     * Constructor for Loan objects, that uses different parameters that receive input from the user.
+     * Uses the current bankAccount as a parameter in order to link the created loan to it.
+     *
+     * @param bankAccount
+     * @param loanID
+     * @param loanAmount
+     * @param loanDuration
+     */
+
     public Loan(BankAccount bankAccount, String loanID, double loanAmount, int loanDuration) {
         String LOAN_IDENTIFIER = "L";
 

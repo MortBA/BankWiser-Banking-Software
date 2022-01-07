@@ -1,11 +1,11 @@
-
 /* Table header */
-.table-view .column-header{
-    -fx-background-color:  #017C83FF;
+
+.table-view .column-header {
+    -fx-background-color: #017C83FF;
     -fx-border-color: #335d60;
 }
 
-.table-view .column-header .label{
+.table-view .column-header .label {
     -fx-text-fill: #FFFFFFFF;
 }
 

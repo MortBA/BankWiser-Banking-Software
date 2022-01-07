@@ -1,23 +1,21 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller class to perform all functionalities for 'forgot password' screen for employee.
  *
  * @author Sejal
  */
-
 public class ForgotPasswordEmployeeController {
 
     @FXML
@@ -27,44 +25,34 @@ public class ForgotPasswordEmployeeController {
     private Button cancelForgotPassButton;
 
     @FXML
-    private TextField ssNumber;
-
-    @FXML
     private TextField email;
 
     @FXML
     private TextField retypeEmail;
 
-    @FXML
-    public Stage stg = new Stage();
-
-    /**
-     * Initializes 'new password' screen for employee as a new stage when 'forgot password' (this) screen appears.
-     * The stage has initModality functionality.
-     */
-    @FXML
-    private void initialize() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordEmployee.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Functions as a controller method to display 'new password' screen.
      * The 'new password' screen opens when confirm button on forgot password window is clicked.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     private void confirmButtonClicked() throws IOException {
-        stg.showAndWait();
+        if (email.getText().trim().isEmpty() || retypeEmail.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("An email will be sent to set new password.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
     }
 
     /**

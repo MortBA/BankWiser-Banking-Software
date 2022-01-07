@@ -1,6 +1,6 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,21 +14,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Mathias Hallander
  */
 public class Epic1RegularTests {
-    static Facade facade; // Creates Facade object
+    private Facade facade; // Creates Facade object
 
-    @BeforeAll
-    public static void setup() {
-        facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
-        facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
+
+        facade.createUserAccount("john.doe@gmail.com", "John Doe", "UnknownPhantom897", "UnknownPhantom897", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
+        facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "NonExistentPerson888", "NonExistentPerson888", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
     }
 
     @Test
     public void userLoginTest() {
-        String expectedValue = "User john.doe@gmail.com was logged in.";
-        String actualValue = facade.userLogin("john.doe@gmail.com", "Password123");
+        String expectedValue = "Successfully logged in.";
+        String actualValue = facade.userLogin("john.doe@gmail.com", "UnknownPhantom897");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "User mary.jane@yahoo.com was logged in";
+        expectedValue = "Successfully logged in.";
         actualValue = facade.userLogin("mary.jane@yahoo.com", "NonExistentPerson888");
         assertEquals(expectedValue, actualValue);
     }

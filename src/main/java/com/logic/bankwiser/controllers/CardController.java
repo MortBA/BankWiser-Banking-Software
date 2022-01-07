@@ -7,25 +7,26 @@ import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.storage.Storage;
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 
 /**
- * CardController class
- * Acts as the controller which contains all logic regarding bank cards which is passed to Facade.
+ * Controller class responsible for bank cards.
  *
  * @author Burak Askan
  * @author Mathias Hallander
  */
 public class CardController {
 
-    private final Storage STORAGE;
+    private final Storage storage;
     private final TransactionController TRANSACTION_CONTROLLER;
+    private final String ln = System.lineSeparator();
 
     public CardController(Storage storage, TransactionController transactionController) {
-        this.STORAGE = storage;
+        this.storage = storage;
         this.TRANSACTION_CONTROLLER = transactionController;
     }
 
@@ -37,9 +38,12 @@ public class CardController {
      * @param monthlyExpenses expenses of the user to assess size of credit.
      * @return affirmative or negative string.
      */
-    public String addCard(BankAccount bankAccount, int pin, double monthlyIncome, double monthlyExpenses) {
+    public String addCard(BankAccount bankAccount, int pin, int confirmPin, double monthlyIncome, double monthlyExpenses) {
         BigDecimal maxCredit;
         Pair<Boolean, BigDecimal> creditAssessment = calculateCredit(monthlyIncome, monthlyExpenses);
+        if (pin != confirmPin) {
+            return "PIN codes must match";
+        }
         if (creditAssessment.getKey()) {
             maxCredit = creditAssessment.getValue();
         } else {
@@ -48,8 +52,14 @@ public class CardController {
 
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
         if (keyAcceptance.getKey()) {
-            bankAccount.addCard(new CreditCard(bankAccount, pin, maxCredit));
-            return "Your application for a credit card had been submitted. We’ll let you know whether it had been accepted or rejected after evaluation.";
+            CreditCard creditCard = new CreditCard(bankAccount, pin, maxCredit);
+            bankAccount.addCard(creditCard);
+            try {
+                storage.storeCreditCards(creditCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "Your application for a credit card has been submitted. We’ll let you know whether it has been accepted or rejected after evaluation.";
         } else {
             return keyAcceptance.getValue();
         }
@@ -61,11 +71,44 @@ public class CardController {
      * @param pin the pin code for the card as written by user
      * @return affirmative or negative string
      */
-    // Modified method to use LocalDate rather than String -KC
-    public String addCard(BankAccount bankAccount, int pin) {
+    public String addCard(BankAccount bankAccount, int pin, int confirmPin) {
         Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
+        if (pin != confirmPin) {
+            return "PIN codes must match";
+        }
         if (keyAcceptance.getKey()) {
-            bankAccount.addCard(new DebitCard(bankAccount, pin));
+            DebitCard debitCard = new DebitCard(bankAccount, pin);
+            bankAccount.addCard(debitCard);
+            try {
+                storage.storeDebitCards(debitCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
+        } else {
+            return keyAcceptance.getValue();
+        }
+    }
+
+    /**
+     * adding a debit card into list in storage
+     *
+     * @param pin the pin code for the card as written by user
+     * @return affirmative or negative string
+     */
+    public String addCard(BankAccount bankAccount, String cardNumber, int pin, int confirmPin) {
+        Pair<Boolean, String> keyAcceptance = createPasswordCheck(pin);
+        if (pin != confirmPin) {
+            return "PIN codes must match";
+        }
+        if (keyAcceptance.getKey()) {
+            DebitCard debitCard = new DebitCard(bankAccount, cardNumber, pin);
+            bankAccount.addCard(debitCard);
+            try {
+                storage.storeDebitCards(debitCard);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "Your application for a debit card has been accepted. We’ll let you know when it will be shipped soon.";
         } else {
             return keyAcceptance.getValue();
@@ -100,19 +143,18 @@ public class CardController {
     public Pair<Boolean, String> createPasswordCheck(int pin) {
         String pinString = String.valueOf(pin);
         String failCause = "";
-        boolean acceptablePassword = true;
+
+        if (String.valueOf(pin).length() != 4) {
+            return new Pair<>(false, "Invalid PIN: PIN must be four digits.");
+        }
 
         int pinOne = Integer.parseInt(String.valueOf(pinString.charAt(0)));
         int pinTwo = Integer.parseInt(String.valueOf(pinString.charAt(1)));
         int pinThree = Integer.parseInt(String.valueOf(pinString.charAt(2)));
         int pinFour = Integer.parseInt(String.valueOf(pinString.charAt(3)));
 
-        if (String.valueOf(pin).length() != 4) {
-            failCause = "Invalid Pin: PIN must be four digits";
-        }
-
         if (pin < 0) {
-            failCause = "Invalid PIN: PIN code cannot be negative numbers";
+            return new Pair<>(false, "Invalid PIN: PIN code cannot be negative.");
         }
 
         int duplicateNumberCounter = 0;
@@ -122,8 +164,7 @@ public class CardController {
                     if (Integer.parseInt(String.valueOf(pinString.charAt(i))) == Integer.parseInt(String.valueOf(pinString.charAt(y)))) {
                         duplicateNumberCounter++;
                         if (duplicateNumberCounter == 2) {
-                            acceptablePassword = false;
-                            failCause = "Invalid PIN: A number cannot be repeated more than once";
+                            return new Pair<>(false, "Invalid PIN: A number cannot be repeated more than once.");
                         }
                     }
                 }
@@ -131,18 +172,15 @@ public class CardController {
         }
 
         if (pinOne - pinTwo == -1 || pinOne - pinTwo == 1) {
-            acceptablePassword = false;
-            failCause = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+            return new Pair<>(false, "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.");
         }
         if (pinThree - pinTwo == -1 || pinThree - pinTwo == 1) {
-            acceptablePassword = false;
-            failCause = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+            return new Pair<>(false, "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.");
         }
         if (pinThree - pinFour == -1 || pinThree - pinFour == 1) {
-            acceptablePassword = false;
-            failCause = "Invalid PIN: Your PIN cannot consist of numbers in consecutive order";
+            return new Pair<>(false, "Invalid PIN: Your PIN cannot consist of numbers in consecutive order.");
         }
-        return new Pair<>(acceptablePassword, failCause);
+        return new Pair<>(true, failCause);
     }
 
 
@@ -150,9 +188,11 @@ public class CardController {
      * Monthly credit card payments
      * Checks if payment due on any credit card. If there is then it does the payments.
      */
-    public void creditCardPayment() {
+    public String creditCardPayment(UserAccount activeUser) {
 
-        for (BankAccount bankAccount : STORAGE.getBankAccountMap().values()) {
+        for (String bankAccountID : activeUser.getBankAccountList()) {
+            BankAccount bankAccount = storage.getBankAccount(bankAccountID);
+
             if (bankAccount.getBalance().intValue() < 0) {
                 for (DebitCard card : bankAccount.getCardMap().values()) {
                     CreditCard creditCard = (CreditCard) card;
@@ -161,35 +201,47 @@ public class CardController {
                             ChronoUnit.DAYS.between(monthlyPaymentDate.plusMonths(1), monthlyPaymentDate) < 0) {
 
                         BigDecimal moneyTransferred = bankAccount.getBalance().multiply(BigDecimal.valueOf(creditCard.getInterest() * -1));
+                        if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
+                            return "You are unable to pay the credit. Interests has incurred on the credit." + ln;
+                        }
                         String paymentNote = "Credit payment on your credit-card number: " + card.getCardNumber();
                         TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
 
                         creditCard.setMonthlyPaymentDate(LocalDateTime.now());
+                        storeCard(bankAccount, creditCard.getCardNumber());
                     }
                 }
             }
         }
+        return "";
     }
+
 
     /**
      * Annual card payments
      * Checks if annual payments are due on any cards. If there is then it does the payments.
      */
-    public void annualCardPayment() {
+    public String annualCardPayment(UserAccount activeUser) {
 
-        for (BankAccount bankAccount : STORAGE.getBankAccountMap().values()) {
+        for (String bankAccountID : activeUser.getBankAccountList()) {
+            BankAccount bankAccount = storage.getBankAccount(bankAccountID);
+
             for (DebitCard card : bankAccount.getCardMap().values()) {
                 LocalDateTime yearlyPaymentDate = card.getYearlyPaymentDate();
                 if (ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) == 0 || ChronoUnit.DAYS.between(yearlyPaymentDate.plusYears(1), yearlyPaymentDate) < 0) {
 
                     String paymentNote = "Payment on your card number: " + card.getCardNumber();
                     BigDecimal moneyTransferred = new BigDecimal(999);
+                    if (moneyTransferred.compareTo(bankAccount.getBalance()) > 0) {
+                        return "You are unable to pay the card. You will be contacted by the bank shortly." + ln;
+                    }
                     TRANSACTION_CONTROLLER.transferMoney(bankAccount.getBankAccountID(), "0", moneyTransferred, paymentNote, LocalDateTime.now());
 
                     card.setYearlyPaymentDate(LocalDateTime.now());
                 }
             }
         }
+        return "";
     }
 
     /**
@@ -200,12 +252,14 @@ public class CardController {
      */
     public String modifyStatus(BankAccount bankAccount, String cardNumber) {
         DebitCard debitCard = bankAccount.getCard(cardNumber);
-        if (debitCard == null) return "Cannot unfreeze card: Incorrect card details.";
+        if (debitCard == null) return "Cannot toggle freezing of card: Incorrect card details.";
         if (!bankAccount.getCard(cardNumber).getFrozenStatus()) {
             bankAccount.getCard(cardNumber).setFrozenStatus(true);
+            storeCard(bankAccount, cardNumber);
             return "Your card has been successfully blocked.";
         } else {
             bankAccount.getCard(cardNumber).setFrozenStatus(false);
+            storeCard(bankAccount, cardNumber);
             return "Your card has been successfully unblocked.";
         }
     }
@@ -220,6 +274,7 @@ public class CardController {
     public String modifyRegion(BankAccount bankAccount, String cardNumber, String region) {
         if (bankAccount.getCard(cardNumber) != null) {
             bankAccount.getCard(cardNumber).setRegion(region);
+            storeCard(bankAccount, cardNumber);
             return "Your region has been successfully changed.";
         }
         return "Invalid input: Given card number does not exist!";
@@ -235,13 +290,15 @@ public class CardController {
         if (bankAccount.getCard(cardNumber) != null) {
             if (bankAccount.getCard(cardNumber).getOnlineStatus()) {
                 bankAccount.getCard(cardNumber).setOnlineStatus(false);
+                storeCard(bankAccount, cardNumber);
                 return "You successfully turned off online transactions.";
             } else {
                 bankAccount.getCard(cardNumber).setOnlineStatus(true);
+                storeCard(bankAccount, cardNumber);
                 return "You successfully turned on online transactions.";
             }
         }
-        return "Invalid input: Given card number does not exist!";
+        return "Cannot toggle online transactions: Incorrect card details.";
     }
 
     /**
@@ -256,10 +313,10 @@ public class CardController {
             return "Invalid input: The new spending limit should not be negative.";
         }
         if (bankAccount.getCard(cardNumber) != null) {
-            double oldLimit = bankAccount.getCard(cardNumber).getExpenditureMax();
             bankAccount.getCard(cardNumber).setExpenditureMax(expenditureMax);
             double newLimit = bankAccount.getCard(cardNumber).getExpenditureMax();
-            return "You successfully changed your spending limit from " + oldLimit + " to " + newLimit + ".";
+            storeCard(bankAccount, cardNumber);
+            return "You successfully changed your spending limit to " + newLimit + ".";
         }
         return "Invalid input: Given card number does not exist!";
     }
@@ -303,7 +360,15 @@ public class CardController {
             if (pin != bankAccount.getCard(cardNumber).getPin()) {
                 return "Incorrect PIN code.";
             }
-            bankAccount.getCardMap().remove(cardNumber);
+            try {
+                if (bankAccount.getCard(cardNumber) instanceof CreditCard) {
+                    storage.storeCreditCards((CreditCard) bankAccount.getCard(cardNumber));
+                } else {
+                    storage.storeDebitCards(bankAccount.getCard(cardNumber));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "Your card has been successfully terminated.";
         }
         return "Card number you entered was not found in the list of your cards.";
@@ -325,7 +390,8 @@ public class CardController {
                     Pair<Boolean, String> keyAcceptance = createPasswordCheck(newPin);
                     if (keyAcceptance.getKey()) {
                         bankAccount.getCard(cardNumber).setPin(newPin);
-                        return "Card’s PIN code has been changed successfully.";
+                        storeCard(bankAccount, cardNumber);
+                        return "Successfully changed PIN code.";
                     } else {
                         return keyAcceptance.getValue();
                     }
@@ -336,7 +402,7 @@ public class CardController {
                 return "Incorrect PIN code.";
             }
         }
-        return "Card could not be found.";
+        return "Card number you entered was not found in the list of your cards.";
     }
 
     /**
@@ -346,8 +412,19 @@ public class CardController {
      * @param pin        the pin that user entered with that pin
      * @return boolean if the pin entered was correct ot not
      */
-
     public boolean checkPin(BankAccount bankAccount, String cardNumber, int pin) {
         return (bankAccount.getCard(cardNumber).getPin() == pin);
+    }
+
+    public void storeCard(BankAccount bankAccount, String cardNumber) {
+        try {
+            if (bankAccount.getCard(cardNumber) instanceof CreditCard) {
+                storage.storeCreditCards((CreditCard) bankAccount.getCard(cardNumber));
+            } else {
+                storage.storeDebitCards(bankAccount.getCard(cardNumber));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

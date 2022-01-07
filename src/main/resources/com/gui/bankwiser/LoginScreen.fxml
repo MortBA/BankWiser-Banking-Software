@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #007178;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.Controllers.LoginScreenController">
-   <children>
-      <AnchorPane fx:id="BankwiserLogo" layoutX="94.0" layoutY="269.0" prefHeight="164.0" prefWidth="556.0">
-         <children>
-            <ImageView fitHeight="188.0" fitWidth="488.0" layoutX="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/BwLogo.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="-42.0" layoutY="77.0" prefHeight="104.0" prefWidth="597.0" text="Your money, your way" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Arial Black" size="47.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <Pane layoutX="682.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="598.0" style="-fx-background-color: #5ab9bf;">
-         <children>
-            <AnchorPane fx:id="LoginElements" prefHeight="720.0" prefWidth="598.0">
-               <children>
-                  <Label fx:id="NotCustomer" layoutX="417.0" layoutY="672.0" onMouseClicked="#NotCustomerClicked" onMouseEntered="#NotCustomerHoverIn" onMouseExited="#NotCustomerHoverOut" prefHeight="47.0" prefWidth="176.0" text="Not a customer?" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane fx:id="EmployeeBox" layoutX="105.0" layoutY="265.0" onMouseClicked="#EmployeeBoxClicked" prefHeight="190.0" prefWidth="166.0">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../img/EmployeeIconBW.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="29.0" layoutY="146.0" text="Employee" textFill="#050038">
-                           <font>
-                              <Font name="Calibri Bold" size="26.0" />
-                           </font>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-color: #007178;" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.LoginScreenController">
+    <children>
+        <AnchorPane fx:id="BankwiserLogo" layoutX="94.0" layoutY="269.0" prefHeight="164.0" prefWidth="556.0">
+            <children>
+                <ImageView fitHeight="188.0" fitWidth="488.0" layoutX="-1.0" nodeOrientation="INHERIT"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../img/BwLogo.png"/>
+                    </image>
+                </ImageView>
+                <Label layoutX="-42.0" layoutY="77.0" prefHeight="104.0" prefWidth="597.0" text="Your money, your way"
+                       textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Black" size="47.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Pane layoutX="682.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="598.0"
+              style="-fx-background-color: #5ab9bf;">
+            <children>
+                <AnchorPane fx:id="LoginElements" opacity="0.0" prefHeight="720.0" prefWidth="598.0">
+                    <children>
+                        <Label fx:id="NotCustomer" layoutX="417.0" layoutY="672.0" onMouseClicked="#NotCustomerClicked"
+                               onMouseEntered="#NotCustomerHoverIn" onMouseExited="#NotCustomerHoverOut"
+                               prefHeight="47.0" prefWidth="176.0" text="Not a customer?" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold" size="24.0"/>
+                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-                  <Label layoutX="246.0" layoutY="161.0" text="Login" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri Bold" size="47.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane fx:id="CustomerBox" layoutX="334.0" layoutY="265.0" onMouseClicked="#CustomerBoxClicked" prefHeight="190.0" prefWidth="166.0">
-                     <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../img/CustomerIconBW.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="29.0" layoutY="146.0" text="Customer" textFill="#050038">
-                           <font>
-                              <Font name="Calibri Bold" size="26.0" />
-                           </font>
+                        <AnchorPane fx:id="EmployeeBox" layoutX="105.0" layoutY="265.0"
+                                    onMouseClicked="#EmployeeBoxClicked" prefHeight="190.0" prefWidth="166.0">
+                            <children>
+                                <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="23.0" layoutY="14.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../img/EmployeeIconBW.png"/>
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="29.0" layoutY="146.0" text="Employee" textFill="#050038">
+                                    <font>
+                                        <Font name="Calibri Bold" size="26.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <Label layoutX="246.0" layoutY="161.0" text="Login" textFill="WHITE">
+                            <font>
+                                <Font name="Calibri Bold" size="47.0"/>
+                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children></Pane>
-   </children>
+                        <AnchorPane fx:id="CustomerBox" layoutX="334.0" layoutY="265.0"
+                                    onMouseClicked="#CustomerBoxClicked" prefHeight="190.0" prefWidth="166.0">
+                            <children>
+                                <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="23.0" layoutY="14.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../img/CustomerIconBW.png"/>
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="29.0" layoutY="146.0" text="Customer" textFill="#050038">
+                                    <font>
+                                        <Font name="Calibri Bold" size="26.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

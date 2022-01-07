@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.fxml.FXML;
@@ -18,7 +18,6 @@ import java.util.Optional;
  *
  * @author Sejal
  */
-
 public class ChangePasswordController {
 
     @FXML
@@ -40,13 +39,20 @@ public class ChangePasswordController {
      * Confirmation alert box appears when all fields are filled and the password is changed.
      *
      * @param event
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     void onConfirmChangePasswordClicked(MouseEvent event) throws IOException {
         if (confirmNewPass.getText().trim().isEmpty() || newPassword.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else if (!(confirmNewPass.getText().trim().equals(newPassword.getText().trim()))) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Both passwords should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();

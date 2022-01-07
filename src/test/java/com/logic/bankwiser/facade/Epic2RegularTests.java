@@ -1,34 +1,50 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Epic Feature 2 Regular Tests
+ * Regular tests for Epic Feature 2.
  * The methods will be provided correct input to see whether they would process it
  *
  * @author Daniel Dovhun
  * @author Mathias Hallander
  */
 public class Epic2RegularTests {
-    static Facade facade;
+    private Facade facade;
+    UserAccount johnAccount;
+    UserAccount peterAccount;
+    BankAccount johnBankAccount;
 
-    @BeforeAll
-    public static void setup() {
-        facade = new Facade();
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
+
+        facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
+        facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
+
+        johnAccount = facade.storage.getUserFromMap("john@gmail.com");
+        peterAccount = facade.storage.getUserFromMap("peter@gmail.com");
+
+        facade.createBankAccount(johnAccount.getUserID(), "testing1");
+        facade.createBankAccount(peterAccount.getUserID(), "testing2");
+
+        johnBankAccount = facade.storage.getBankAccount(johnAccount.getBankAccountList().get(0));
     }
 
     @Test
     public void createUserAccountTest() {
         String expectedValue = "New account for john.doe@gmail.com was successfully created.";
-        String actualValue = facade.createUserAccount("john.doe@gmail.com", "John Doe", "Password123", "Password123","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
+        String actualValue = facade.createUserAccount("john.doe@gmail.com", "John Doe", "Password123", "Password123", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-1032");
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New account for mary.jane@yahoo.com was successfully created.";
-        actualValue = facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "Password123", "Password123","+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
+        actualValue = facade.createUserAccount("mary.jane@yahoo.com", "Mary Jane", "Password123", "Password123", "+46 72-373 89 56", "Gatangatan 8 1152, 422 42 Hisings Backa, Sweden", "19890213-5698");
         assertEquals(expectedValue, actualValue);
 
         expectedValue = "New account for sem.mogilevich@mafiamail.com was successfully created.";
@@ -37,20 +53,9 @@ public class Epic2RegularTests {
     }
 
     @Test
-    public void deleteUserAccountTest() {
-        String expectedValue = "Account for john.doe@gmail.com has been successfully terminated.";
-        String actualValue = facade.deleteUserAccount("", "john.doe@gmail.com", "John Doe", true);
-        assertEquals(expectedValue, actualValue);
-
-        expectedValue = "Account for mary.jane@yahoo.com has been successfully terminated.";
-        actualValue = facade.deleteUserAccount("","mary.jane@yahoo.com", "Mary Jane", true);
-        assertEquals(expectedValue, actualValue);
-    }
-
-    @Test
     public void resetUserPasswordTest() {
-        String expectedValue = "Password reset for ‘sem.mogilevich@mafiamail.com’ was successful.";
-        String actualValue = facade.resetUserPassword("", "AcceptablePassword894", "NewPassword123", "NewPassword123");
+        String expectedValue = "An email has been sent to john@gmail.com with a link that will allow you to reset your password.";
+        String actualValue = facade.resetUserPassword("john@gmail.com");
         assertEquals(expectedValue, actualValue);
     }
 }

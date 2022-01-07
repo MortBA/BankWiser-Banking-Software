@@ -1,10 +1,10 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.utils.Input;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,77 +15,104 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Mathias Hallander
  */
 public class Epic3RegularTests {
-    static Facade facade;
-    String[] accountNames = {"account-name1", "account-name2", "account-name3", "account-name4", "account-name5"};
+    private Facade facade;
+    UserAccount johnAccount;
+    UserAccount peterAccount;
+    BankAccount johnBankAccount;
+    BankAccount peterBankAccount;
 
-    @BeforeAll
-    public static void setup() {
-        facade = new Facade();
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
 
-        facade.createUserAccount("john.doe@fictmail.com", "John Doe", "NotPassword123", "NotPassword123", "+46 72-373 46 79", "Streetgatan 1 1234, 45612 Somethingborg, Sweden", "19421231-7894");
-        facade.createUserAccount("mary.jane@fictmail.com", "Mary Jane", "NonexistentPwd123", "NonexistentPwd123", "+46 72-373 40 96", "Streetgatan 1 1234, 45612 Somethingborg, Sweden", "19430228-0012");
+        facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
+        facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
+
+        johnAccount = facade.storage.getUserFromMap("john@gmail.com");
+        peterAccount = facade.storage.getUserFromMap("peter@gmail.com");
+
+        facade.createBankAccount(johnAccount.getUserID(), "Personal");
+        facade.createBankAccount(peterAccount.getUserID(), "Checking");
+
+        johnBankAccount = facade.storage.getBankAccount(johnAccount.getBankAccountList().get(0));
+        peterBankAccount = facade.storage.getBankAccount(peterAccount.getBankAccountList().get(0));
     }
 
     @Test
     public void createBankAccountTest() {
-        String expectedValue = "New banking account account-name1 had been created";
-        String actualValue = facade.createBankAccount(facade.storage.getUserUUID("john.doe@fictmail.com"), accountNames[0]);
+        String expectedValue = "New banking account Savings has been created.";
+        String actualValue = facade.createBankAccount(johnAccount.getUserID(), "Savings");
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "New banking account account-name2 had been created";
-        actualValue = facade.createBankAccount(facade.storage.getUserUUID("mary.jane@fictmail.com"), accountNames[1]);
+        expectedValue = "New banking account Money has been created.";
+        actualValue = facade.createBankAccount(peterAccount.getUserID(), "Money");
         assertEquals(expectedValue, actualValue);
+    }
 
-        expectedValue = "New banking account account-name3 had been created";
-        actualValue = facade.createBankAccount(facade.storage.getUserUUID("john.doe@fictmail.com"), accountNames[2]);
-        assertEquals(expectedValue, actualValue);
-
-        expectedValue = "New banking account account-name4 had been created";
-        actualValue = facade.createBankAccount(facade.storage.getUserUUID("mary.jane@fictmail.com"), accountNames[3]);
-        assertEquals(expectedValue, actualValue);
-
-        expectedValue = "New banking account account-name5 had been created";
-        actualValue = facade.createBankAccount(facade.storage.getUserUUID("mary.jane@fictmail.com"), accountNames[4]);
+    @Test
+    public void renameBankAccountTest() {
+        facade.activeUser = johnAccount;
+        String expectedValue = "Your bank account has been renamed to Finances.";
+        String actualValue = facade.renameBankAccount(johnBankAccount.getBankAccountID(), "Finances");
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
     public void deleteBankAccountTest() {
-        String expectedValue = "Deleted account account-name1.";
-        String actualValue = facade.deleteBankAccount(accountNames[0]);
+        facade.activeUser = johnAccount;
+        String expectedValue = "Deleted bank account Personal.";
+        String actualValue = facade.deleteBankAccount(johnBankAccount.getBankAccountID());
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "Deleted account account-name2";
-        actualValue = facade.deleteBankAccount(accountNames[1]);
+        facade.activeUser = peterAccount;
+        expectedValue = "Deleted bank account Checking.";
+        actualValue = facade.deleteBankAccount(peterBankAccount.getBankAccountID());
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
     public void viewUserAccountsTest() {
-        facade.depositMoney("account-name3", 10000);
-        facade.depositMoney("account-name4", 2000);
-        facade.depositMoney("account-name5", 5000);
-
-        String expectedValue = "[account-name3 = 10000]";
-        String actualValue = facade.getUserAccountsInfo("john.doe@fictmail.com").toString();
+        String expectedValue = "userID: " + johnAccount.getUserID() + Input.EOL +
+                "fullName: John Smith" + Input.EOL +
+                "phoneNumber: +46707012345" + Input.EOL +
+                "address: Street 1" + Input.EOL +
+                "SOCIAL_SECURITY_NUMBER: 200001010001" + Input.EOL +
+                "EMAIL_ID: john@gmail.com" + Input.EOL +
+                "password: password" + Input.EOL +
+                "bankAccountList: [" + johnBankAccount.getBankAccountID() + "]";
+        String actualValue = johnAccount.toString();
         assertEquals(expectedValue, actualValue);
 
-        expectedValue = "[account-name4 = 2000, account-name5 = 5000]";
-        actualValue = facade.getUserAccountsInfo("mary.jane@fictmail.com").toString();
+        expectedValue = "userID: " + peterAccount.getUserID() + Input.EOL +
+                "fullName: Peter Smith" + Input.EOL +
+                "phoneNumber: +46707023456" + Input.EOL +
+                "address: Street 2" + Input.EOL +
+                "SOCIAL_SECURITY_NUMBER: 200001010002" + Input.EOL +
+                "EMAIL_ID: peter@gmail.com" + Input.EOL +
+                "password: password" + Input.EOL +
+                "bankAccountList: [" + peterBankAccount.getBankAccountID() + "]";
+        actualValue = peterAccount.toString();
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
-    public void viewAccountDetails() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        Date date = new Date();
+    public void viewBankAccountDetails() {
+        String expectedValue = "bankAccountID: " + johnBankAccount.getBankAccountID() + Input.EOL +
+                "Name: Personal" + Input.EOL +
+                "Balance: 0.00" + Input.EOL +
+                "Transactions: []" + Input.EOL +
+                "Loans: []" + Input.EOL +
+                "Cards: []";
+        String actualValue = johnBankAccount.toString();
+        assertEquals(expectedValue, actualValue);
 
-        facade.createBankAccount(facade.storage.getUserUUID("john.doe@fictmail.com"), "account-name6");
-        facade.transferMoney("bank-account3", "bank-account6", "", 1000);
-
-        String expectedValue = "[" + dateFormat.format(date) + ", 1000, 1, [" + dateFormat.format(date) + ", bank-account3, 1000, 1000]";
-        String actualValue = facade.getAccountInfo("john.doe@fictmail.com", "bank-account6").toString();
-
+        expectedValue = "bankAccountID: " + peterBankAccount.getBankAccountID() + Input.EOL +
+                "Name: Checking" + Input.EOL +
+                "Balance: 0.00" + Input.EOL +
+                "Transactions: []" + Input.EOL +
+                "Loans: []" + Input.EOL +
+                "Cards: []";
+        actualValue = peterBankAccount.toString();
         assertEquals(expectedValue, actualValue);
     }
 }

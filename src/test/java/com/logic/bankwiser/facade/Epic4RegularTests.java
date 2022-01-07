@@ -1,40 +1,47 @@
 package com.logic.bankwiser.facade;
 
-import org.junit.jupiter.api.BeforeAll;
+import com.logic.bankwiser.accounts.UserAccount;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
- * Regular tests for Epic Feature 4
+ * Regular tests for Epic Feature 4.
  *
  * @author Daniel Dovhun
  * @author Mathias Hallander
  */
 public class Epic4RegularTests {
-    static Facade facade;
+    private Facade facade;
 
-    @BeforeAll
-    public static void setup() {
-        facade.createUserAccount("bank.clerk@bankwiser.com", "Bank Clerk", "rr2e2w28ew53d!", "rr2e2w28ew53d", "+46 72-373 11 29", "Streetgatan 1 2265, 45612 Somethingborg, Sweden", "19991024-7884");
-        facade.loanApplication("john.doe@fictmail.com", 200000);
-        facade.loanApplication("john.doe@fictmail.com", 3000000);
-        facade.loanApplication("mary.jane@fictmail.com", 5000000);
+    @BeforeEach
+    public void setup() {
+        facade = new Facade(true);
+        facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
+        facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
     }
 
     @Test
-    public void pendingRequestsTest() {
-        String expectedValue = "[200000 SEK from ohn.doe@fictmail.com, 3000000 SEK from john.doe@fictmail.com, 5000000 SEK from mary.jane@fictmail.com]";
-        String actualValue = facade.pendingRequests().toString();
+    public void deleteUserAccountTest() {
+        String expectedValue = "User account deletion request has been sent.";
+        String actualValue = facade.deleteUserAccount("john@gmail.com");
+        assertEquals(expectedValue, actualValue);
 
+        expectedValue = "User account deletion request has been sent.";
+        actualValue = facade.deleteUserAccount("peter@gmail.com");
         assertEquals(expectedValue, actualValue);
     }
 
     @Test
-    public void resetClerkPasswordTest() {
-        String expectedValue = "Password reset for ‘bank.clerk@bankwiser.com’ was successful.";
-        String actualValue = facade.resetClerkPassword("19991024-7884", "bank.clerk@bankwiser.com", "NewPassword123", "NewPassword123");
+    public void requestMapAccessed() {
+        HashMap<String, UserAccount> expectedValue = new HashMap<>();
+        expectedValue.put("0", facade.storage.getUserFromMap("john@gmail.com"));
+        facade.deleteUserAccount("john@gmail.com");
+        HashMap<String, UserAccount> actualValue = facade.storage.getRequestMap();
         assertEquals(expectedValue, actualValue);
     }
 }

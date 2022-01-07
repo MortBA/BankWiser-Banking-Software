@@ -1,28 +1,30 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
- * Controller class for performing all functionalities of 'Customer Menu' screen
+ * Controller class for Transfer money screen.
  *
  * @author Chanisra
  */
+public class TransferMoneyScreenController {
 
-public class CustomerMenuScreenController {
 
-    @FXML
-    private MenuItem accountSettings;
+    Facade facade = Facade.getInstance();
 
     @FXML
     private MenuItem deleteBankAccount;
@@ -49,20 +51,32 @@ public class CustomerMenuScreenController {
     private Button buttonLogOut;
 
     @FXML
-    public Stage stg = new Stage();
+    private ChoiceBox fromAccount;
+    @FXML
+    public TextField receiverAccount;
 
     @FXML
-    public Stage stg2 = new Stage();
+    public TextField amount;
+    @FXML
+    public TextArea note;
+    @FXML
+    public Button buttonConfirm;
+    @FXML
+    public Button buttonCancel;
+    @FXML
+    public MenuItem transactionHistory;
+    @FXML
+    private MenuItem accountSettings;
 
-    /**
-     * Initializes new stages to delete user account and bank account.
-     * Both stages have initModality functionality.
-     *
-     * @param
-     * @author Sejal
-     */
+    @FXML
+    private Stage stg = new Stage();
+
     @FXML
     private void initialize() {
+
+        ObservableList<String> cardList = FXCollections.observableArrayList(facade.getBankAccounts());
+        fromAccount.setItems(cardList);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
             Parent root = loader.load();
@@ -77,32 +91,11 @@ public class CustomerMenuScreenController {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
-     *
-     * @throws IOException
-     * @author Sejal
-     */
-    @FXML
-    public void onDeleteUserAccountClicked() throws IOException {
-        stg.showAndWait();
-    }
-
-    /**
-     * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
-     *
-     * @throws IOException
-     */
-    @FXML
-    public void onDeleteBankAccountClicked() throws IOException {
-        stg2.showAndWait();
     }
 
     @FXML
@@ -139,10 +132,40 @@ public class CustomerMenuScreenController {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
-    //Todo loan screen
     @FXML
     void onLoansClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        new BankWiserApp().changeScene("LoansOverview.fxml");
+    }
+
+    @FXML
+    void onDeleteBankAccountClicked() throws Exception {
+        stg.showAndWait();
+    }
+
+    @FXML
+    void onDeleteUserAccountClicked() throws Exception {
+        stg.showAndWait();
+    }
+
+    public void onSubmitClicked(ActionEvent event) throws IOException {
+        if (receiverAccount.getText().trim().isEmpty() || amount.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Money transferred successfully.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                app.changeScene("CustomerMenuScreen.fxml");
+                StringBuilder stringBuilder = new StringBuilder();
+                facade.transferMoney(fromAccount.getSelectionModel().getSelectedItem().toString(),
+                        receiverAccount.getText(), note.getText(), Double.parseDouble(amount.getText()));
+            }
+        }
     }
 }
-

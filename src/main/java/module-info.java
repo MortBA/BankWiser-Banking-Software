@@ -1,4 +1,4 @@
-module main {
+module com {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -10,7 +10,7 @@ module main {
     requires com.google.gson;
 
     opens com.gui.bankwiser to javafx.fxml;
-    opens com.gui.bankwiser.Controllers to javafx.fxml;
+    opens com.gui.bankwiser.controllers to javafx.fxml;
     opens com.logic.bankwiser.accounts to com.google.gson;
     opens com.logic.bankwiser.bank_accounts to com.google.gson;
     opens com.logic.bankwiser.transactions to com.google.gson;
@@ -18,6 +18,15 @@ module main {
     opens com.logic.bankwiser.cards to com.google.gson;
     opens com.logic.bankwiser.loans to com.google.gson;
 
-    exports com.gui.bankwiser.Controllers;
     exports com.gui.bankwiser;
+    exports com.gui.bankwiser.controllers;
+    exports com.logic.bankwiser.transactions;
+    exports com.logic.bankwiser.cards;
+    exports com.logic.bankwiser.controllers;
+    exports com.logic.bankwiser.loans;
+    exports com.logic.bankwiser.storage;
+    exports com.logic.bankwiser.utils;
+    exports com.logic.bankwiser.accounts;
+    exports com.logic.bankwiser.bank_accounts;
+    exports com.logic.bankwiser.facade;
 }

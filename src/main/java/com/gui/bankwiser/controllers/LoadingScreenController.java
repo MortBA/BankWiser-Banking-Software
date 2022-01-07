@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.animation.*;
@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
  *
  * @author Chanisra
  */
-
 public class LoadingScreenController implements Initializable {
     @FXML
     private AnchorPane BankwiserLogo;

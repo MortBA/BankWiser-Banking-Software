@@ -22,7 +22,7 @@ public class Epic5AlternativeTests {
 
     @BeforeEach
     public void setup() {
-        facade = new Facade();
+        facade = new Facade(true);
 
         facade.createUserAccount("john@gmail.com", "John Smith", "password", "password", "+46707012345", "Street 1", "200001010001");
         facade.createUserAccount("peter@gmail.com", "Peter Smith", "password", "password", "+46707023456", "Street 2", "200001010002");
@@ -38,27 +38,28 @@ public class Epic5AlternativeTests {
     }
 
     /**
-     * Expected value 1: “Cannot transfer: {sender} was not found.“
-     * Expected value 2: “Cannot transfer: {receiver} was not found.”
-     * Expected value 3: “Cannot transfer: Only enter positive numbers.”
-     * Expected value 4: “The sender field shouldn’t be left blank.”
-     * Expected value 5: "The receiver field shouldn't be left blank."
-     * Expected value 6: "The amount field shouldn't be left blank."
+     * Expected value 1: "Cannot transfer: {sender} was not found."
+     * Expected value 2: "Cannot transfer: {receiver} was not found."
+     * Expected value 6: "Cannot transfer: You need to enter an amount to send."
      */
     @Test
     public void shouldPrintErrorTransactionFailure() {
 
-        assertEquals("Cannot transfer: {sender} was not found.", facade.transferMoney("1584", peterBankAccount.getBankAccountID(), "", 100));
-        assertEquals("Cannot transfer: {receiver} was not found.", facade.transferMoney(johnBankAccount.getBankAccountID(), "1543", "", 100));
-        assertEquals("Cannot transfer: Only enter positive numbers.", facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", -100));
-        assertEquals("The sender field shouldn’t be left blank.", facade.transferMoney("", peterBankAccount.getBankAccountID(), "", 100));
-        assertEquals("The receiver field shouldn’t be left blank.", facade.transferMoney(johnBankAccount.getBankAccountID(), "", "", 100));
-        assertEquals("The amount field shouldn’t be left blank.", facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", 0));
+        String expectedValue = "Cannot transfer: {sender} was not found.";
+        String actualValue = facade.transferMoney("1584", peterBankAccount.getBankAccountID(), "", 100);
+        assertEquals(expectedValue, actualValue);
 
+        expectedValue = "Cannot transfer: {receiver} was not found.";
+        actualValue = facade.transferMoney(johnBankAccount.getBankAccountID(), "1543", "", 100);
+        assertEquals(expectedValue, actualValue);
+
+        expectedValue = "Cannot transfer: You need to enter an amount to send.";
+        actualValue = facade.transferMoney(johnBankAccount.getBankAccountID(), peterBankAccount.getBankAccountID(), "", 0);
+        assertEquals(expectedValue, actualValue);
     }
 
     /**
-     * Expected value: “No previous transaction history.”
+     * Expected value: "No previous transaction history."
      */
     @Test
     public void shouldPrintErrorWhenNoTransactionHistory() {

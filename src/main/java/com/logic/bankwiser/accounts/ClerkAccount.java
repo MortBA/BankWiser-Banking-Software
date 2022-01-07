@@ -1,20 +1,33 @@
 package com.logic.bankwiser.accounts;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+/**
+ * @author Kevin Collins
+ */
 public class ClerkAccount {
 
     private String fullName;
     private final String EMAIL_ID;
     private String password;
-    private final HashMap<UUID, UserAccount> usersToBeDeleted;
 
+    /**
+     * Constructor for the ClerkAccount class.
+     *
+     * @param fullName
+     * @param emailID
+     * @param password
+     */
+
+    /**
+     * Constructor for the ClerkAccount class
+     *
+     * @param fullName
+     * @param emailID
+     * @param password
+     */
     public ClerkAccount(String fullName, String emailID, String password) {
         this.fullName = fullName;
         this.EMAIL_ID = emailID;
         this.password = password;
-        usersToBeDeleted = new HashMap<>();
     }
 
     public String getFullName() {
@@ -29,7 +42,11 @@ public class ClerkAccount {
         return password;
     }
 
-    public HashMap<UUID, UserAccount> getUsersToBeDeleted() {
-        return usersToBeDeleted;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

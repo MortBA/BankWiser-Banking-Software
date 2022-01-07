@@ -1,3 +1,2 @@
-{"userID":"128aa88d-4171-4d8b-b005-dbcc91152609","fullName":"Alex Doe","phoneNumber":"3411352155","address":"Gothenburgstreet 2","emailID":"second@gmail.com","password":"password","bankAccountList":["299741"]}
-{"userID":"8a3616e9-73a2-46c5-adae-888eec1f1865","fullName":"John Doe","phoneNumber":"0123456789","address":"Gothenburgstreet 2","emailID":"first@gmail.com","password":"password","bankAccountList":["648218"]}
-{"userID":"81f0da6d-468f-4ee3-996c-ab39c8b08f35","fullName":"Peter Doe","phoneNumber":"8787464831","address":"Gothenburgstreet 2","emailID":"third@gmail.com","password":"password","bankAccountList":[]}
+{"userID":"8a3616e9-73a2-46c5-adae-888eec1f1865","fullName":"John Doe","phoneNumber":"0123456789","address":"Gothenburgstreet 2","SOCIAL_SECURITY_NUMBER":"12344545-4545","EMAIL_ID":"first@gmail.com","password":"password","bankAccountList":["72903638"]}
+{"userID":"128aa88d-4171-4d8b-b005-dbcc91152609","fullName":"Alex Doe","phoneNumber":"3411352155","address":"Gothenburgstreet 2","SOCIAL_SECURITY_NUMBER":"12345678-1234","EMAIL_ID":"second@gmail.com","password":"password","bankAccountList":["63136517","25165450"]}

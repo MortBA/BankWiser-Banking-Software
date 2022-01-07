@@ -1,16 +1,20 @@
 package com.logic.bankwiser.controllers;
 
+import com.logic.bankwiser.accounts.UserAccount;
 import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.storage.Storage;
 import com.logic.bankwiser.utils.MathUtils;
 
-import java.util.UUID;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
+ * Controller class responsible for bank accounts.
+ *
  * @author Kevin Collins
  * @author Mathias Hallander
  */
-
 public class BankAccountController {
 
     private final Storage storage;
@@ -22,57 +26,82 @@ public class BankAccountController {
     /**
      * The method handles bank account creation and links it to the appropriate user account.
      *
-     * @param UserID
-     * @param bankAccountName
      * @return A string that confirms bank account creation or an input error that
      * informs the user of an invalid bank account name.
      */
-    public String createBankAccount(UUID UserID, String bankAccountName) {
+    public String createBankAccount(UserAccount userAccount, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
         try {
-            String bankAccountID = generateBankAccountID();
-            BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
-            storage.addBankAccount(bankAccountID, bankAccount);
-            storage.getUserFromMap(UserID).addBankAccount(bankAccount.getBankAccountID());
-            sb.append("New banking account ").append(bankAccountName).append(" has been created.");
+            List<String> usedNames = new ArrayList<>();
+            userAccount.getBankAccountList().forEach((String bankAccountID) -> usedNames.add(storage.getBankAccount(bankAccountID).getBankAccountName()));
+            if (!usedNames.contains(bankAccountName)) {
+                String bankAccountID = generateBankAccountID();
+                BankAccount bankAccount = new BankAccount(bankAccountID, bankAccountName);
+                storage.addBankAccount(bankAccountID, bankAccount);
+                userAccount.addBankAccount(bankAccount.getBankAccountID());
+                sb.append("New banking account ").append(bankAccountName).append(" has been created.");
+            } else {
+                sb.append("Cannot create a new account named ").append(bankAccountName).append(": an account of that name already exists.");
+            }
         } catch (Exception e) {
             sb.append(e.getMessage());
         }
         return sb.toString();
     }
 
-    //TODO return strings not specified in requirements
-
     /**
      * The method allows the user to rename the selected bank account.
      *
-     * @param bankAccountID
-     * @param bankAccountName
      * @return A string that either confirms the bank account being renamed or
      * informs the user that the bank account could not be renamed.
      */
-    public String renameBankAccount(String bankAccountID, String bankAccountName) {
+    public String renameBankAccount(UserAccount userAccount, String bankAccountID, String bankAccountName) {
         StringBuilder sb = new StringBuilder();
-        if (bankAccountName.length() <= 30) {
-            storage.getBankAccount(bankAccountID).setBankAccountName(bankAccountName);
-            sb.append("Your bank account has been renamed to ").append(bankAccountName).append(".");
+
+        if (userAccount.getBankAccountList().contains(bankAccountID)) {
+            if (bankAccountName.length() <= 30) {
+                storage.getBankAccount(bankAccountID).setBankAccountName(bankAccountName);
+                sb.append("Your bank account has been renamed to ").append(bankAccountName).append(".");
+            } else {
+                sb.append("Your bank account cannot be renamed as the new name is ").append(bankAccountName.length()).append(" characters long.");
+            }
         } else {
-            sb.append("Your bank account cannot be renamed as the new name is ").append(bankAccountName.length()).append(" characters long.");
+            sb.append("That bank account does not exist.");
         }
         return sb.toString();
     }
 
-    //TODO Implement after UserAccount link is functional -K
-    public void deleteBankAccount() {
-        /*
-        The user has permission to delete any bank account they own, provided
-        it is not their only bank account left, and the bank account is empty.
-
-        Should the user attempt to remove an account which does not fulfil this
-        criteria, the system will inform the user that the action was not performed.
-         */
+    /**
+     * The method allows the user to delete the selected bank account.
+     *
+     * @return A string that either confirms the bank account being deleted or
+     * informs the user that the bank account could not be deleted due to a specific reason.
+     */
+    public String deleteBankAccount(UserAccount userAccount, String bankAccountID) {
+        if (userAccount.getBankAccountList().contains(bankAccountID)) {
+            if (storage.getBankAccount(bankAccountID).getBalance().compareTo(BigDecimal.ZERO) > 0) {
+                return "Please transfer all money from this bank account first.";
+            } else if (storage.getBankAccount(bankAccountID).getBalance().compareTo(BigDecimal.ZERO) < 0) {
+                return "Please pay off or transfer your credit card to another account first.";
+            } else if (!storage.getBankAccount(bankAccountID).getLoanMap().isEmpty()) {
+                return "Please speak to the clerk about how loans can be transferred first.";
+            } else {
+                String name = storage.getBankAccount(bankAccountID).getBankAccountName();
+                userAccount.getBankAccountList().remove(bankAccountID);
+                storage.deleteBankAccount(bankAccountID);
+                return "Deleted bank account " + name + ".";
+            }
+        } else {
+            return "That bank account does not exist.";
+        }
     }
 
+
+    /**
+     * Method used for the random generation of a Bank Account ID.
+     *
+     * @return
+     */
     public String generateBankAccountID() {
         return MathUtils.generateUniqueID(storage.getBankAccountMap().keySet().toString());
     }

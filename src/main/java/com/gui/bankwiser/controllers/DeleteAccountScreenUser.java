@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,7 +12,6 @@ import java.util.Optional;
  *
  * @author Chanisra
  */
-
 public class DeleteAccountScreenUser {
 
     @FXML
@@ -55,25 +54,4 @@ public class DeleteAccountScreenUser {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-
-    @FXML
-    private void CancelHoverIn() {
-
-    }
-
-    @FXML
-    private void CancelHoverOut() {
-
-    }
-
-    @FXML
-    private void ConfirmHoverIn() {
-
-    }
-
-    @FXML
-    private void ConfirmHoverOut() {
-
-    }
-
 }

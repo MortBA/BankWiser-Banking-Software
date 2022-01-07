@@ -1,4 +1,4 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import javafx.animation.FadeTransition;
@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
  *
  * @author Chanisra
  */
-
 public class LoginScreenController implements Initializable {
     @FXML
     private AnchorPane BankwiserLogo;

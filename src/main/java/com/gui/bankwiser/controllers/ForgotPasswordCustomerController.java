@@ -1,67 +1,60 @@
-package com.gui.bankwiser.Controllers;
+package com.gui.bankwiser.controllers;
 
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller class to perform all functionalities for 'Forgot password' screen for customer.
  *
  * @author Sejal
  */
-
 public class ForgotPasswordCustomerController {
+    Facade facade = Facade.getInstance();
 
     @FXML
     private Button confirmForgotPassButton;
     @FXML
     private Button cancelForgotPassButton;
-    @FXML
-    private TextField ssNumber;
+
     @FXML
     private TextField email;
     @FXML
     private TextField retypeEmail;
 
-    @FXML
-    public Stage stg = new Stage();
-
-    /**
-     * Initializes new stage for 'new password' screen
-     * The stage is initialized when forgot password (this) screen appears.
-     * The new stage is used to fill new password for the customer.
-     * The stage has initModality functionality.
-     */
-    @FXML
-    public void initialize() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/NewPasswordCustomer.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Functions as a controller method to display the 'new password' screen.
      * The new screen appears when confirm button on 'forgot password' screen is clicked.
      *
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     private void confirmButtonClicked() throws IOException {
-        stg.showAndWait();
+        if (email.getText().trim().isEmpty() || retypeEmail.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("An email will be sent to set new password.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+            facade.resetUserPassword(retypeEmail.getText());
+        }
     }
 
     /**
