@@ -5,20 +5,6 @@
 
 BankWiser is a Java application which is perfectly suited for financial institutions.
 
-//TODO
-
-## Goal
-//TODO
-
-## Documentation
-//TODO
-
-## Installation
-//TODO
-
-## License
-//TODO
-
 ## Contributors
 
 Burak Askan
