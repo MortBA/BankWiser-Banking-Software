@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 
-import org.junit.jupiter.api.Test;
-
 /**
  * Acts as the middleman between the backend and user interface,
  * facilitates testing for the software.
@@ -144,9 +142,8 @@ public class Facade {
      */
     public String deleteUserAccount(String username) {
         Pair<UserAccount, String> request = userAccountController.processDeleteUserAccountRequest(storage.getUserFromMap(username));
-
         if (request.getKey() != null) {
-            //storage.addDeleteUserRequest(request.getKey());
+            storage.addDeleteUserRequest(request.getKey());
         }
         return request.getValue();
     }
@@ -413,8 +410,4 @@ public class Facade {
         return cardController.resetPin(activeBankAccount, cardNumber, oldPin, newPin, newPinConfirmation);
     }
 
-    @Test
-    public void doesNothing() {
-
-    }
 }

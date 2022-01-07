@@ -1,4 +1,4 @@
-module main {
+module com {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -8,10 +8,6 @@ module main {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.google.gson;
-    requires org.junit.jupiter.api;
-    requires org.junit.jupiter.engine;
-    requires org.junit.platform.commons;
-    requires org.junit.platform.engine;
 
     opens com.gui.bankwiser to javafx.fxml;
     opens com.gui.bankwiser.controllers to javafx.fxml;
