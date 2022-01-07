@@ -69,25 +69,10 @@ public class TransactionHistoryScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        facade = Facade.getInstance();
-
-        try {
-            BankAccount temporary;
-            facade.userLogin("second@gmail.com", "password");
-            System.out.println(facade.createBankAccount("Savings"));
-            facade.selectedBankAccount("63136517");
-            temporary = facade.getActiveBankAccount();
-            facade.transferMoney(temporary.getBankAccountID(), "0", "testing", 100);
-            facade.transferMoney(temporary.getBankAccountID(), "0", "testing", 342);
-            facade.transferMoney(temporary.getBankAccountID(), "0", "testing", 3466);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        facade.getActiveBankAccount().getTransactionMap().keySet();
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("TransactionDate"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>(facade.getActiveBankAccount().getBankAccountName()));
+        //nameColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("BankAccountName"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, BigDecimal>("MoneyTransferred"));
         balanceColumn.setCellValueFactory(new PropertyValueFactory<Transaction, BigDecimal>("BalanceAfterTransaction"));
         accountNumberColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("BankAccountID"));
@@ -123,9 +108,9 @@ public class TransactionHistoryScreenController implements Initializable {
 
         for (String bankaccount : bankaccounts) {
             facade.selectedBankAccount(bankaccount);
-            BankAccount temp = facade.getActiveBankAccount();
+            BankAccount bankAccount = facade.getActiveBankAccount();
 
-            HashMap<String, Transaction> transactionHashMap = temp.getTransactionMap();
+            HashMap<String, Transaction> transactionHashMap = bankAccount.getTransactionMap();
             transactionHashMap.forEach( (id, transaction) -> {
                 transactions.add(transaction);
             });

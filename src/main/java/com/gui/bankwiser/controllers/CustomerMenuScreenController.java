@@ -30,14 +30,7 @@ import java.util.List;
 
 public class CustomerMenuScreenController {
 
-    @FXML
-    public Label PersonAccountAmount;
-    @FXML
-    public Label SharedAccountNumber;
-    @FXML
-    public Label SharedAccountAmount;
-    @FXML
-    public Label PersonAccountNumber;
+
 
     Facade facade = Facade.getInstance();
 
@@ -67,6 +60,24 @@ public class CustomerMenuScreenController {
 
     @FXML
     private Button buttonLogOut;
+    @FXML
+    public Label PersonAccountAmount;
+    @FXML
+    public Label SharedAccountNumber;
+    @FXML
+    public Label SharedAccountAmount;
+    @FXML
+    public Label PersonAccountNumber;
+    @FXML
+    public MenuItem transactionHistory;
+    @FXML
+    public Label acccountNameLabel;
+    @FXML
+    public Label accontNameLabel;
+    @FXML
+    public Label expirationLabel;
+    @FXML
+    public Label cardNumberLabel;
 
     @FXML
     public Stage stg = new Stage();

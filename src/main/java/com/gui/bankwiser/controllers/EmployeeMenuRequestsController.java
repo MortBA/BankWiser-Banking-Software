@@ -43,6 +43,7 @@ public class EmployeeMenuRequestsController {
 
     @FXML
     public void initialize() {
+
         requestList = new ListView<>();
         requestList.getItems().addAll(requests);
         requestList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {

@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Controller class for performing all functionalities of Account settings screen.
@@ -102,16 +100,7 @@ public class AccountSettingsScreenController {
 
         updateScreenInformation(facade.getActiveUser());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ChangePasswordScreen.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stg.setScene(scene);
-            stg.initModality(Modality.APPLICATION_MODAL);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -192,7 +181,12 @@ public class AccountSettingsScreenController {
      */
     @FXML
     void onChangePasswordClicked() throws Exception {
-        stg.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("We have sent a link to change password on your email.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            alert.close();
+        }
     }
 
     @FXML
@@ -204,9 +198,18 @@ public class AccountSettingsScreenController {
         socialSecurityNum.setText(userAccount.getSocialSecurityNum());
     }
 
-
     public void submitChangesClicked() throws Exception {
-        updateUserInformation(facade.getActiveUser());
+        if (phoneNumber.getText().trim().isEmpty() || address1.getText().trim().isEmpty() || firstName.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        } else {
+            updateUserInformation(facade.getActiveUser());
+            new BankWiserApp().changeScene("AccountSettingsScreen.fxml");
+        }
     }
 
     @FXML

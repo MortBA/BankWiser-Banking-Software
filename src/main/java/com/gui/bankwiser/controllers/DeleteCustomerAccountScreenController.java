@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -49,13 +50,29 @@ public class DeleteCustomerAccountScreenController implements Initializable {
         emailLabel.setText(userAccount.getEmailID());
         accountIdLabel.setText(String.valueOf(userAccount.getUserID()));
     }
+    //List<String> bankaccounts                   = facade.getBankAccounts();
+    //        ObservableList<Transaction> transactions    = FXCollections.observableArrayList();
+    //
+    //        for (String bankaccount : bankaccounts) {
+    //            facade.selectedBankAccount(bankaccount);
+    //            BankAccount bankAccount = facade.getActiveBankAccount();
+    //
+    //            HashMap<String, Transaction> transactionHashMap = bankAccount.getTransactionMap();
+    //            transactionHashMap.forEach( (id, transaction) -> {
+    //                transactions.add(transaction);
+    //            });
+    //        }
+    //
+    //        return transactions;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        facade = Facade.getInstance();
 
-        ArrayList<UserAccount> temp = new ArrayList<>();
-        try {
+        ArrayList<UserAccount> userAccounts = new ArrayList<>();
+       // userAccounts.addAll(facade.)
+       // facade.getActiveBankAccount().getCardMap().keySet();
+
+        /*try {
             temp.add(new UserAccount(UUID.randomUUID(), "Chanisra Magnusson", "0712345678", "Drottningatan 14", "199703241114", "channi@email.com", "Yuki0324"));
             temp.add(new UserAccount(UUID.randomUUID(), "Sejal Kanaskar", "0723456789", "Drottningatan 15", "199803241114", "sejal@email.com", "Sejal0324"));
             temp.add(new UserAccount(UUID.randomUUID(), "Kevin Collins", "0734567890", "Drottningatan 16", "199903241114", "kevin@email.com", "Kevin0324"));
@@ -64,7 +81,9 @@ public class DeleteCustomerAccountScreenController implements Initializable {
             e.printStackTrace();
         }
 
-        requestList.getItems().addAll(temp);
+         */
+
+        requestList.getItems().addAll(userAccounts);
 
         requestList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<UserAccount>() {
             @Override
@@ -86,13 +105,15 @@ public class DeleteCustomerAccountScreenController implements Initializable {
         new BankWiserApp().changeScene("LoginScreenEmployee.fxml");
     }
 
-    public void onReportErrorClicked(ActionEvent event) {
+    public void onReportErrorClicked(ActionEvent event) throws IOException {
+        new BankWiserApp().changeScene("EmployeeMenuReportError.fxml");
     }
 
     public void onUserAccReqClicked(ActionEvent event) {
     }
 
-    public void onCustomerAccReqClicked(ActionEvent event) {
+    public void onCustomerAccReqClicked(ActionEvent event) throws IOException {
+        new BankWiserApp().changeScene("EmployeeMenuCustomerAccountRequest.fxml");
     }
 
 }

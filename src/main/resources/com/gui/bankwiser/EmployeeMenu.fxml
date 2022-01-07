@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.EmployeeMenuController">
+<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.EmployeeMenuController">
     <children>
         <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0" style="-fx-background-color: #5AB8BF;">
             <children>
@@ -50,7 +48,7 @@
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="reportError2" layoutX="316.0" layoutY="117.0" mnemonicParsing="false" onAction="#onReportErrorClicked" text="Report Error" AnchorPane.leftAnchor="316.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="reportError2" layoutX="316.0" layoutY="117.0" mnemonicParsing="false" onAction="#onReportErrorClicked" text="Report Error" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="117.0">
                     <font>
                         <Font size="18.0" />
                     </font>
