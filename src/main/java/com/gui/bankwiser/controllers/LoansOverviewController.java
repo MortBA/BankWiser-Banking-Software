@@ -132,7 +132,7 @@ public class LoansOverviewController {
     }
 
     public void onApplyVechileLoanClicked(MouseEvent mouseEvent) throws Exception {
-        new BankWiserApp().changeScene("LoansVechile.fxml");
+        new BankWiserApp().changeScene("LoansVehicle.fxml");
     }
 
 

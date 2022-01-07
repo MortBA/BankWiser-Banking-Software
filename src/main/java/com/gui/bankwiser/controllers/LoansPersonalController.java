@@ -1,6 +1,7 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoansPersonalController {
+
+    Facade facade = Facade.getInstance();
 
     @FXML
     private MenuItem accountSettings;
@@ -55,9 +58,11 @@ public class LoansPersonalController {
     @FXML
     private TextField totalMonthlyExpense;
     @FXML
-    private TextField liabilitiesDependencies;
+    private TextField loanAmount;
     @FXML
     private TextField durationOfLoan;
+    @FXML
+    private TextField personalLoanNote;
 
     @FXML
     public Stage stg = new Stage();
@@ -144,8 +149,8 @@ public class LoansPersonalController {
         new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 
-    public void onApplyVechileLoanClicked(MouseEvent mouseEvent) throws Exception {
-        new BankWiserApp().changeScene("LoansVechile.fxml");
+    public void onApplyVehicleLoanClicked(MouseEvent mouseEvent) throws Exception {
+        new BankWiserApp().changeScene("LoansVehicle.fxml");
     }
 
     @FXML
@@ -204,22 +209,16 @@ public class LoansPersonalController {
     }
 
 
-    public void onTotalMonthlyIncomeClicked(ActionEvent event) {
-    }
-
-    public void onTotalMonthlyExpenseClicked(ActionEvent event) {
-    }
-
-    public void onLiabilitiesDependenciesClicked(ActionEvent event) {
-    }
-
-    public void durationOfLoanClicked(ActionEvent event) {
-    }
-
     public void onConfirmClicked(ActionEvent event) {
+
+        facade.personalLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()), Double.parseDouble(totalMonthlyExpense.getText()),
+        Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()), personalLoanNote.getText());
+
     }
 
-    public void onCancelClicked(ActionEvent event) {
+    public void onCancelClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("LoansPersonal.fxml");
     }
 
     @FXML
