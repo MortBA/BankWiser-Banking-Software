@@ -1,14 +1,19 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.accounts.UserAccount;
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +25,37 @@ import java.io.IOException;
  */
 public class AccountSettingsScreenController {
 
+
+    Facade facade = Facade.getInstance();
+
+    @FXML
+    public MenuItem transactionHistory;
+    @FXML
+    public TextField firstName;
+    @FXML
+    public TextField surName;
+    @FXML
+    public TextField phoneNumber;
+    @FXML
+    public TextField email;
+    @FXML
+    public TextField address2;
+    @FXML
+    public TextField address1;
+    @FXML
+    public Label socialSecurityNum;
+    @FXML
+    public Label setFirstName;
+    @FXML
+    public Label setSurname;
+    @FXML
+    public Label setPhoneNumber;
+    @FXML
+    public Label setEmail;
+    @FXML
+    public Label setAddress1;
+    @FXML
+    public Label setAddress2;
     @FXML
     private MenuItem accountSettings;
     @FXML
@@ -34,7 +70,10 @@ public class AccountSettingsScreenController {
     private MenuItem myCards;
     @FXML
     private MenuItem transferMoney;
-
+    @FXML
+    public Button cancelSettings;
+    @FXML
+    public Button submitChanges;
     @FXML
     private Button overview;
     @FXML
@@ -60,6 +99,9 @@ public class AccountSettingsScreenController {
      */
     @FXML
     public void initialize() {
+
+        updateScreenInformation(facade.getActiveUser());
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/ChangePasswordScreen.fxml"));
         try {
             Parent root = loader.load();
@@ -151,5 +193,26 @@ public class AccountSettingsScreenController {
     @FXML
     void onChangePasswordClicked() throws Exception {
         stg.showAndWait();
+    }
+
+    @FXML
+    void updateScreenInformation(UserAccount userAccount){
+        setPhoneNumber.setText(userAccount.getPhoneNumber());
+        setAddress1.setText(userAccount.getAddress());
+        setEmail.setText(userAccount.getEmailID());
+        setFirstName.setText(userAccount.getFullName());
+        socialSecurityNum.setText(userAccount.getSocialSecurityNum());
+    }
+
+
+    public void submitChangesClicked() throws Exception {
+        updateUserInformation(facade.getActiveUser());
+    }
+
+    @FXML
+    public void updateUserInformation(UserAccount userAccount){
+        userAccount.setPhoneNumber(phoneNumber.getText());
+        userAccount.setAddress(address1.getText());
+        userAccount.setFullName(firstName.getText());
     }
 }
