@@ -9,10 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,6 +18,10 @@ import java.util.UUID;
 
 public class DeleteCustomerAccountScreenController implements Initializable {
 
+    public Button buttonLogOut;
+    public Button reportError1;
+    public Button reportError;
+    public Button customerAccountReq;
     private ArrayList<UserAccount> userAccounts;
     private Facade facade;
 

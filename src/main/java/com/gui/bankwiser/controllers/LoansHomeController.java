@@ -17,6 +17,8 @@ import java.util.Optional;
 
 public class LoansHomeController {
 
+    public MenuItem transactionHistory;
+    public Button logOut;
     Facade facade = Facade.getInstance();
 
     @FXML

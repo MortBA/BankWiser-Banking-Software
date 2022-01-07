@@ -17,6 +17,8 @@ import java.util.Optional;
 
 public class LoansVehicleController {
 
+    public Button logOut;
+    public MenuItem transactionHistory;
     Facade facade = Facade.getInstance();
     @FXML
     private MenuItem accountSettings;

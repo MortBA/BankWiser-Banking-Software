@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.DeleteCardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5ab9bf;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.DeleteCardController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="175.0" prefWidth="1280.0" style="-fx-background-color: #017c83;" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -31,7 +39,6 @@
                 </Button>
                 <MenuButton layoutX="215.0" layoutY="62.0" mnemonicParsing="false" text="My Account" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="personalInfo" mnemonicParsing="false" text="Personal Info" />
                         <MenuItem fx:id="accountSettings" mnemonicParsing="false" onAction="#onAccountSettingsClicked" text="Account Settings" />
                         <MenuItem fx:id="myCards" mnemonicParsing="false" onAction="#onMyCardsClicked" text="My Cards" />
                     </items>
@@ -41,7 +48,7 @@
                 </MenuButton>
                 <MenuButton layoutX="402.0" layoutY="81.0" mnemonicParsing="false" text="Payments" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="117.0">
                     <items>
-                        <MenuItem fx:id="transferMoney" mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transaction History" />
+                        <MenuItem fx:id="transferMoney" mnemonicParsing="false" onAction="#onTransferMoneyClicked" text="Transfer Money" />
                   <MenuItem fx:id="transactionsHistory" mnemonicParsing="false" onAction="#onTransactionHistoryClicked" text="Transaction History" />
                     </items>
                     <font>
@@ -113,18 +120,18 @@
                         <Font name="System Bold" size="38.0" />
                     </font>
                 </Label>
-                <Label fx:id="newDebitCard1" layoutX="178.0" layoutY="95.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number " textFill="#017c83">
+                <Label layoutX="178.0" layoutY="95.0" text="Card number " textFill="#017c83">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="newDebitCard11" layoutX="178.0" layoutY="159.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card Pin" textFill="#017c83">
+                <Label layoutX="178.0" layoutY="159.0" text="Card Pin" textFill="#017c83">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
                 <PasswordField fx:id="cardPinToDelete" layoutX="358.0" layoutY="159.0" prefHeight="35.0" prefWidth="274.0" />
-                <Label fx:id="newDebitCard111" layoutX="178.0" layoutY="217.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Reason to Delete Card" textFill="#017c83">
+                <Label layoutX="178.0" layoutY="217.0" onMouseClicked="#onDebitCardClicked" text="Reason to Delete Card" textFill="#017c83">
                     <font>
                         <Font size="24.0" />
                     </font>

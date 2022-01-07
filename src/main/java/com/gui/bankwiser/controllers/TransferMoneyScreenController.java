@@ -23,6 +23,9 @@ import java.io.IOException;
 
 public class TransferMoneyScreenController {
 
+    public Button buttonLogin;
+    public Button buttonCancel;
+    public MenuItem transactionHistory;
     @FXML
     private MenuItem accountSettings;
 

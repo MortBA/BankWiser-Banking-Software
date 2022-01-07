@@ -22,6 +22,17 @@ public class DeleteCardController {
 
     @FXML
     public TextArea reasonToDelete;
+    public Button logOut;
+    public MenuItem personalInfo;
+    public MenuItem myCards;
+    public MenuItem accountSettings;
+    public MenuItem transferMoney;
+    public MenuItem transactionsHistory;
+    public MenuItem deleteBankAccount;
+    public MenuItem deleteUserAccount;
+    public Label newDebitCard1;
+    public Label newDebitCard11;
+    public Label newDebitCard111;
 
     @FXML
     private Button cancelDeleteCard;

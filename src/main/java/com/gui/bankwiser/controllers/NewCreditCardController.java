@@ -22,6 +22,15 @@ public class NewCreditCardController {
     public TextField monthlyExpense;
     @FXML
     public TextField monthlyIncome;
+    public MenuItem deleteBankAccount;
+    public MenuItem deleteUserAccount;
+    public MenuItem loans;
+    public MenuItem transactionsHistory;
+    public MenuItem transferMoney;
+    public MenuItem myCards;
+    public MenuItem accountSettings;
+    public Button overview;
+    public Button logOut;
 
     @FXML
     private Button cancelCreditCard;
@@ -276,4 +285,5 @@ public class NewCreditCardController {
     private void cancelHoverOut2() {
         cancelCreditCard.setStyle("-fx-background-color: #ed2762;");
     }
+
 }

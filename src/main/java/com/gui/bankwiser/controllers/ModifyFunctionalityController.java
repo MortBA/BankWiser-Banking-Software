@@ -22,6 +22,15 @@ import java.util.Optional;
 public class ModifyFunctionalityController {
 
     private final Facade facade = Facade.getInstance();
+    public Button logOut;
+    public Button overview;
+    public MenuItem personalInfo;
+    public MenuItem accountSettings;
+    public MenuItem myCards;
+    public MenuItem transferMoney;
+    public MenuItem transactionsHistory1;
+    public MenuItem deleteBankAccount;
+    public MenuItem deleteUserAccount;
 
     @FXML
     private Button cancelFunc;

@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,6 +34,15 @@ import java.util.*;
  * @author Chanisra
  */
 public class TransactionHistoryScreenController implements Initializable {
+    public MenuItem deleteBankAccount;
+    public MenuItem deleteUserAccount;
+    public MenuItem loans;
+    public MenuItem transferMoney;
+    public MenuItem transactionHistory;
+    public MenuItem myCards;
+    public MenuItem accountSettings;
+    public Button overview;
+    public Button buttonLogOut;
     Facade facade = Facade.getInstance();
     @FXML
     private TableView<Transaction> transactionHistoryTable;
@@ -161,7 +172,7 @@ public class TransactionHistoryScreenController implements Initializable {
 
     @FXML
     void onLoansClicked() throws Exception {
-        new BankWiserApp().changeScene("LoanOverview.fxml");
+        new BankWiserApp().changeScene("LoansOverview.fxml");
     }
 
 

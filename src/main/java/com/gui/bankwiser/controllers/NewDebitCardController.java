@@ -17,6 +17,14 @@ import java.util.Optional;
 public class NewDebitCardController {
 
     private final Facade facade = Facade.getInstance();
+    public MenuItem accountSettings;
+    public MenuItem myCards;
+    public MenuItem transactionHistory;
+    public MenuItem loans;
+    public MenuItem deleteBankAccount;
+    public MenuItem deleteUserAccount;
+    public Button overview;
+    public Button logOut;
 
     @FXML
     private TextField debitCardPin;
@@ -38,6 +46,11 @@ public class NewDebitCardController {
     private Label newCreditCard;
     @FXML
     private Label newDebitCard;
+
+    @FXML
+    private MenuButton payments;
+    @FXML
+    private MenuItem transferMoney;
 
     @FXML
     private Stage stg = new Stage();
@@ -267,4 +280,5 @@ public class NewDebitCardController {
     private void cancelHoverOut3() {
         cancelDebitCard.setStyle("-fx-background-color: #ed2762;");
     }
+
 }
