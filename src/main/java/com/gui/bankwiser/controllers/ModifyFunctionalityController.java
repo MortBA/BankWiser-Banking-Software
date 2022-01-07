@@ -113,11 +113,6 @@ public class ModifyFunctionalityController {
     }
 
     @FXML
-    public void onCardNumberChanged() {
-        updateScreenInformation(facade.getActiveBankAccount().getCard(cardListChoiceBox.getValue()));
-    }
-
-    @FXML
     public void updateScreenInformation(DebitCard debitCard) {
         cardFrozenStatus.setText((debitCard.getFrozenStatus() ? "Card is currently: Frozen" : "Card is currently: Open"));
         cardBlockedStatus.setText((debitCard.getOnlineStatus() ? "Card is currently: Blocked" : "Card is currently: Open"));
