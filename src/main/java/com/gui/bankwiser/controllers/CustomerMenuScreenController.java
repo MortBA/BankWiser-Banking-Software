@@ -122,12 +122,7 @@ public class CustomerMenuScreenController {
             accountIDLabel.setText(bankAccountNumbers.get(0));
         }
 
-
-
         List<String> bankacounts = facade.getBankAccounts();
-
-
-
 
     }
 
