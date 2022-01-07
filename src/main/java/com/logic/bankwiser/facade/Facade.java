@@ -266,7 +266,8 @@ public class Facade {
     /**
      * Sends an application for a vehicle-loan to be processed.
      *
-     * @param monthlyIncome     total income on a monthly basis of the user
+     * @param monthlyIncome     total income on a m.
+     *                          onthly basis of the user
      * @param monthlyExpenses   total expenses on a monthly basis of the user
      * @param mileage           the age of the car by miles
      * @param vehicleType       the type of the vehicle
