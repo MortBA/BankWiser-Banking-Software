@@ -1,7 +1,9 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.facade.Facade;
+import com.logic.bankwiser.utils.Input;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.ListActionView;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -29,9 +32,9 @@ public class ModifyFunctionalityController {
     private TextField transactionLimit;
 
     @FXML
-    private RadioButton blockCard;
+    private RadioButton toggleCardBlocked;
     @FXML
-    private RadioButton unblockCard;
+    private RadioButton toggleCardFreeze;
     @FXML
     private RadioButton blockTransaction;
     @FXML
@@ -47,11 +50,19 @@ public class ModifyFunctionalityController {
     private Label newCreditCard;
     @FXML
     private Label newDebitCard;
+    @FXML
+    private Label cardFrozenStatus;
+    @FXML
+    private Label cardBlockedStatus;
+    @FXML
+    private Label transactionLimitLabel;
+    @FXML
+    private Label currentRegionLabel;
 
     @FXML
-    private ChoiceBox cardList;
+    private ChoiceBox<String> cardListChoiceBox;
     @FXML
-    private ChoiceBox regionsChoiceBox;
+    private ChoiceBox<String> regionsChoiceBox;
 
     @FXML
     private Stage stg = new Stage();
@@ -70,9 +81,15 @@ public class ModifyFunctionalityController {
 
     @FXML
     public void initialize() {
-        regionsChoiceBox.setItems(activeRegions);
-        regionsChoiceBox.setValue("Europe");
+        cardListChoiceBox.setOnAction((actionEvent -> {
+            updateScreenInformation(facade.getActiveBankAccount().getCard(cardListChoiceBox.getValue()));
+        }));
         regionsData();
+        regionsChoiceBox.setItems(activeRegions);
+        ObservableList<String> cardList = FXCollections.observableArrayList(facade.getActiveBankAccount().getCardMap().keySet());
+        cardListChoiceBox.setItems(cardList);
+        cardListChoiceBox.setValue(cardList.get(0));
+        updateScreenInformation(facade.getActiveBankAccount().getCard(cardListChoiceBox.getValue()));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
@@ -96,18 +113,45 @@ public class ModifyFunctionalityController {
     }
 
     @FXML
+    public void onCardNumberChanged() {
+        updateScreenInformation(facade.getActiveBankAccount().getCard(cardListChoiceBox.getValue()));
+    }
+
+    @FXML
+    public void updateScreenInformation(DebitCard debitCard) {
+        cardFrozenStatus.setText((debitCard.getFrozenStatus() ? "Card is currently: Frozen" : "Card is currently: Open"));
+        cardBlockedStatus.setText((debitCard.getOnlineStatus() ? "Card is currently: Blocked" : "Card is currently: Open"));
+        transactionLimitLabel.setText("Transaction limit: " + debitCard.getExpenditureMax());
+        currentRegionLabel.setText("Current region: " + debitCard.getRegion());
+    }
+
+    @FXML
     public void onSubmitFuncClicked() throws Exception {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
-        alertBox.setContentText("Your card pin is changed successfully.");
+        Alert alertBox = new Alert(Alert.AlertType.INFORMATION);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("You've made the following changes:").append(Input.EOL);
         alertBox.setTitle("Success!");
+        if (toggleCardFreeze.isSelected()) {
+            System.out.println("toggled freeze");
+            stringBuilder.append(facade.toggleFreezeCard(cardListChoiceBox.getSelectionModel().getSelectedItem())).append(Input.EOL);
+        }
+        if (toggleCardBlocked.isSelected()) {
+            System.out.println("toggled block");
+            stringBuilder.append(facade.toggleOnlineTransactions(cardListChoiceBox.getSelectionModel().getSelectedItem())).append(Input.EOL);
+        }
+        if (!transactionLimit.getText().isEmpty()) {
+            System.out.println("changed transaction limit");
+            stringBuilder.append(facade.changeSpendingLimit(cardListChoiceBox.getSelectionModel().getSelectedItem(), Double.parseDouble(transactionLimit.getText()))).append(Input.EOL);
+        }
+        if (regionsChoiceBox.getValue() != null) {
+            System.out.println("changed region");
+            stringBuilder.append(facade.modifyRegion(cardListChoiceBox.getSelectionModel().getSelectedItem(), regionsChoiceBox.getValue())).append(Input.EOL);
+        }
+        alertBox.setContentText(stringBuilder.toString());
         Optional<ButtonType> result = alertBox.showAndWait();
         if (result.get() == ButtonType.OK) {
             BankWiserApp app = new BankWiserApp();
             app.changeScene("BankCardMenu.fxml");
-            facade.toggleFreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
-            facade.toggleFreezeCard(cardList.getSelectionModel().getSelectedItem().toString());
-            facade.toggleOnlineTransactions(cardList.getSelectionModel().getSelectedItem().toString());
-            facade.changeSpendingLimit(cardList.getSelectionModel().getSelectedItem().toString(), Double.parseDouble(transactionLimit.getText()));
         }
     }
 

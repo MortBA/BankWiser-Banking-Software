@@ -33,6 +33,15 @@ public final class Transaction {
      * @param balanceAfterTransaction
      */
 
+    /**
+     * Constructor for the Transaction class.
+     * @param transactionID
+     * @param bankAccountID
+     * @param moneyTransferred
+     * @param note
+     * @param transactionDate
+     * @param balanceAfterTransaction
+     */
     public Transaction(String transactionID, String bankAccountID, BigDecimal moneyTransferred,
                        String note, LocalDateTime transactionDate, BigDecimal balanceAfterTransaction) {
         String TRANSACTION_IDENTIFIER = "T";

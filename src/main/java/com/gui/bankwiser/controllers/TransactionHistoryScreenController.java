@@ -9,10 +9,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -27,8 +32,7 @@ import java.util.*;
  * @author Chanisra
  */
 public class TransactionHistoryScreenController implements Initializable {
-    private Facade facade;
-
+    Facade facade = Facade.getInstance();
     @FXML
     private TableView<Transaction> transactionHistoryTable;
     @FXML
@@ -41,6 +45,11 @@ public class TransactionHistoryScreenController implements Initializable {
     private TableColumn<Transaction, String> accountNumberColumn;
     @FXML
     private TableColumn<Transaction, BigDecimal> balanceColumn;
+    @FXML
+    public Stage stg = new Stage();
+
+    @FXML
+    public Stage stg2 = new Stage();
 
 
     //***********//just to test//**********//
@@ -130,22 +139,59 @@ public class TransactionHistoryScreenController implements Initializable {
         new BankWiserApp().changeScene("TransactionHistoryScreen.fxml");
     }
 
-
-    //Todo loan screen
     @FXML
     void onLoansClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+        new BankWiserApp().changeScene("LoanOverview.fxml");
     }
 
-    //todo Sejal input fxml
+    /**
+     * Initializes new stages to delete user account and bank account.
+     * Both stages have initModality functionality.
+     *
+     * @author Sejal
+     */
     @FXML
-    void onDeleteBankAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+    private void initialize() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteBankAccountScreenPopup.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stg2.setScene(scene);
+            stg2.initModality(Modality.APPLICATION_MODAL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
+    /**
+     * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
+     *
+     * @throws IOException IOException
+     * @author Sejal
+     */
     @FXML
-    void onDeleteUserAccountClicked() throws Exception {
-        new BankWiserApp().changeScene("");
+    public void onDeleteUserAccountClicked() throws IOException {
+        stg.showAndWait();
     }
 
+    /**
+     * Opens new stage to delete the bank account when 'delete bank account' option in customer menu screen is clicked.
+     *
+     * @throws IOException IOException
+     */
+    @FXML
+    public void onDeleteBankAccountClicked() throws IOException {
+        stg2.showAndWait();
+    }
 }

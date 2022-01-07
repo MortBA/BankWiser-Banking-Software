@@ -49,7 +49,6 @@ public class BankAccountController {
         return sb.toString();
     }
 
-
     /**
      * The method allows the user to rename the selected bank account.
      *
@@ -73,12 +72,10 @@ public class BankAccountController {
     }
 
     /**
-     * A method that allows for the deletion of a user's bank account.
-     * Checks existing balance of the account before proceeding.
+     * The method allows the user to delete the selected bank account.
      *
-     * @param userAccount
-     * @param bankAccountID
-     * @return
+     * @return A string that either confirms the bank account being deleted or
+     * informs the user that the bank account could not be deleted due to a specific reason.
      */
     public String deleteBankAccount(UserAccount userAccount, String bankAccountID) {
         if (userAccount.getBankAccountList().contains(bankAccountID)) {

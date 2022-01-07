@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,6 +16,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -114,10 +112,18 @@ public class LoginScreenCustomerController implements Initializable {
     //Login Button
     @FXML
     private void LoginClicked() throws IOException {
-        BankWiserApp app = new BankWiserApp();
-        facade.userLogin(UsernameBox.getText(), PasswordBox.getText());
-        app.changeScene("CustomerMenuScreen.fxml");
-
+        String loginResult = facade.userLogin(UsernameBox.getText(), PasswordBox.getText());
+        if (loginResult.equals("Successfully logged in.")) {
+            BankWiserApp app = new BankWiserApp();
+            app.changeScene("CustomerMenuScreen.fxml");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText(loginResult);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
     }
 
     @FXML

@@ -122,22 +122,9 @@ public class CustomerMenuScreenController {
             accountIDLabel.setText(bankAccountNumbers.get(0));
         }
 
-
-
         List<String> bankacounts = facade.getBankAccounts();
 
-
-
-
     }
-
-
-
-
-
-
-
-
 
     /**
      * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked

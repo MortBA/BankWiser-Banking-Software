@@ -119,51 +119,58 @@
                         <Font name="System Bold" size="38.0" />
                     </font>
                 </Label>
-                <Label layoutX="190.0" layoutY="103.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number:" textFill="#017c83" AnchorPane.leftAnchor="190.0">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-                <ChoiceBox fx:id="cardList" layoutX="341.0" layoutY="103.0" prefHeight="35.0" prefWidth="252.0" />
-                <Label layoutX="33.0" layoutY="170.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" textFill="#017c83">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-                <AnchorPane layoutX="234.0" layoutY="168.0" prefHeight="40.0" prefWidth="418.0">
+                <AnchorPane layoutX="26.0" layoutY="69.0" prefHeight="314.0" prefWidth="840.0">
                     <children>
-                        <RadioButton fx:id="blockCard" layoutX="-45.0" mnemonicParsing="false" text="Block Card" textFill="#017c83" AnchorPane.leftAnchor="-45.0">
+                      <Label layoutY="30.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Card number:" textFill="#017c83" AnchorPane.leftAnchor="0.0">
+                          <font>
+                              <Font size="24.0" />
+                          </font>
+                      </Label>
+                      <ChoiceBox fx:id="cardListChoiceBox" layoutX="200.0" layoutY="30.0" onContextMenuRequested="#onCardNumberChanged" onMouseClicked="#onCardNumberChanged" onMousePressed="#onCardNumberChanged" prefHeight="35.0" prefWidth="252.0" />
+                  <Label fx:id="cardFrozenStatus" layoutY="142.0" prefHeight="35.0" prefWidth="399.0" text="Card is currently: " textFill="#017c83">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                        <RadioButton fx:id="toggleCardBlocked" layoutX="535.0" layoutY="144.0" mnemonicParsing="false" text="Toggle Online Transactions" textFill="#017c83" AnchorPane.leftAnchor="535.0">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </RadioButton>
-                        <RadioButton fx:id="unblockCard" layoutX="236.0" mnemonicParsing="false" text="Unblock Card" textFill="#017c83" AnchorPane.leftAnchor="236.0">
+                  <Label fx:id="cardBlockedStatus" layoutY="88.0" prefHeight="35.0" prefWidth="399.0" text="Card is currently: " textFill="#017c83">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                        <RadioButton fx:id="toggleCardFreeze" layoutX="535.0" layoutY="90.0" mnemonicParsing="false" text="Toggle Freeze" textFill="#017c83" AnchorPane.leftAnchor="535.0">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </RadioButton>
+                      <Label fx:id="transactionLimitLabel" layoutY="199.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" prefHeight="35.0" prefWidth="399.0" text="Transaction limit:" textFill="#017c83" AnchorPane.leftAnchor="0.0">
+                          <font>
+                              <Font size="24.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="transactionLimit" layoutX="535.0" layoutY="197.0" prefHeight="35.0" prefWidth="273.0" />
+                      <Label fx:id="currentRegionLabel" layoutY="250.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" prefHeight="35.0" prefWidth="399.0" text="Current region:" textFill="#017c83">
+                          <font>
+                              <Font size="24.0" />
+                          </font>
+                      </Label>
+                  <ChoiceBox fx:id="regionsChoiceBox" layoutX="535.0" layoutY="248.0" prefHeight="35.0" prefWidth="273.0" />
+                  <Label layoutX="412.0" layoutY="248.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" prefHeight="35.0" prefWidth="112.0" text="Switch to:" textFill="#017c83">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="412.0" layoutY="197.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" prefHeight="35.0" prefWidth="112.0" text="New limit:" textFill="#017c83">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="234.0" layoutY="213.0" prefHeight="40.0" prefWidth="418.0">
-                    <children>
-                        <RadioButton fx:id="blockTransaction" layoutX="-46.0" mnemonicParsing="false" text="Block online transactions" textFill="#017c83" AnchorPane.leftAnchor="-45.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </RadioButton>
-                        <RadioButton fx:id="unblockTransaction" layoutX="233.0" mnemonicParsing="false" text="Unblock online transactions" textFill="#017c83" AnchorPane.leftAnchor="236.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </RadioButton>
-                    </children>
-                </AnchorPane>
-                <Label layoutX="190.0" layoutY="260.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Transaction limit (SEK):" textFill="#017c83" AnchorPane.leftAnchor="190.0">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="transactionLimit" layoutX="443.0" layoutY="260.0" prefHeight="35.0" prefWidth="273.0" />
                 <Button fx:id="submitFunc" layoutX="531.0" layoutY="404.0" mnemonicParsing="false" onAction="#onSubmitFuncClicked" onMouseEntered="#confirmHoverIn4" onMouseExited="#confirmHoverOut4" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="65.0" AnchorPane.rightAnchor="215.0">
                     <font>
                         <Font name="Calibri Bold" size="18.0" />
@@ -174,12 +181,6 @@
                         <Font name="Calibri Bold" size="18.0" />
                     </font>
                 </Button>
-                <Label layoutX="190.0" layoutY="314.0" onMouseClicked="#onDebitCardClicked" onMouseEntered="#debitCardHoverIn" onMouseExited="#debitCardHoverOut" text="Regions:" textFill="#017c83">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-            <ChoiceBox fx:id="regionsChoiceBox" layoutX="443.0" layoutY="319.0" prefHeight="35.0" prefWidth="273.0" />
             </children>
         </AnchorPane>
     </children>
