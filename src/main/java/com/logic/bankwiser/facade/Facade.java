@@ -98,6 +98,10 @@ public class Facade {
         return loginRequest.getValue();
     }
 
+    public UserAccount getActiveUser() {
+        return activeUser;
+    }
+
     /**
      * A method checks payments on current user in regards to existing credit cards and loans.
      *
