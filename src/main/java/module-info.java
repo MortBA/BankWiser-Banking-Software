@@ -9,6 +9,9 @@ module main {
     requires org.kordamp.bootstrapfx.core;
     requires com.google.gson;
     requires org.junit.jupiter.api;
+    requires org.junit.jupiter.engine;
+    requires org.junit.platform.commons;
+    requires org.junit.platform.engine;
 
     opens com.gui.bankwiser to javafx.fxml;
     opens com.gui.bankwiser.controllers to javafx.fxml;
@@ -18,7 +21,6 @@ module main {
     opens com.logic.bankwiser.controllers to com.google.gson;
     opens com.logic.bankwiser.cards to com.google.gson;
     opens com.logic.bankwiser.loans to com.google.gson;
-    opens com.logic.bankwiser.facade to org.junit.platform.commons;
 
     exports com.gui.bankwiser;
     exports com.gui.bankwiser.controllers;

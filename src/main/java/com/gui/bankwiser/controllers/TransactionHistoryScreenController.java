@@ -34,15 +34,25 @@ import java.util.*;
  * @author Chanisra
  */
 public class TransactionHistoryScreenController implements Initializable {
+    @FXML
     public MenuItem deleteBankAccount;
+    @FXML
     public MenuItem deleteUserAccount;
+    @FXML
     public MenuItem loans;
+    @FXML
     public MenuItem transferMoney;
+    @FXML
     public MenuItem transactionHistory;
+    @FXML
     public MenuItem myCards;
+    @FXML
     public MenuItem accountSettings;
+    @FXML
     public Button overview;
+    @FXML
     public Button buttonLogOut;
+    @FXML
     Facade facade = Facade.getInstance();
     @FXML
     private TableView<Transaction> transactionHistoryTable;
@@ -174,7 +184,6 @@ public class TransactionHistoryScreenController implements Initializable {
     void onLoansClicked() throws Exception {
         new BankWiserApp().changeScene("LoansOverview.fxml");
     }
-
 
 
     /**

@@ -1,9 +1,12 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.facade.Facade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class ChangePinController {
@@ -66,7 +70,7 @@ public class ChangePinController {
     private CheckBox termsAndConditions;
 
     @FXML
-    private ChoiceBox cardList;
+    private ChoiceBox<String> cardChoiceBox;
 
     @FXML
     private Stage stg = new Stage();
@@ -74,7 +78,13 @@ public class ChangePinController {
     @FXML
     public void initialize() {
 
-        // cardList.setItems(activeCards);
+        HashMap<String, DebitCard> cardHashMap = facade.getActiveBankAccount().getCardMap();
+        if (!cardHashMap.isEmpty()) {
+            ObservableList<String> cardNumberList = FXCollections.observableArrayList();
+            cardNumberList.addAll(cardHashMap.keySet().stream().toList());
+            cardChoiceBox.setItems(cardNumberList);
+            cardChoiceBox.setValue(cardNumberList.get(0));
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
@@ -109,14 +119,14 @@ public class ChangePinController {
     @FXML
     void changeCardPin(ActionEvent event) throws IOException {
         if (!termsAndConditions.isSelected() || newPin.getText().trim().isEmpty() || currentPin.getText().trim().isEmpty()
-                || confirmPin.getText().trim().isEmpty() || cardList.getSelectionModel().getSelectedItem().toString().trim().isEmpty()) {
+                || confirmPin.getText().trim().isEmpty() || cardChoiceBox.getSelectionModel().getSelectedItem().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please fill the required fields.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else if(!(newPin.getText().trim().equals(confirmPin.getText().trim()))){
+        } else if (!(newPin.getText().trim().equals(confirmPin.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both new pins should match");
             Optional<ButtonType> result = alert.showAndWait();
@@ -132,7 +142,7 @@ public class ChangePinController {
             if (result.get() == ButtonType.OK) {
                 BankWiserApp app = new BankWiserApp();
                 app.changeScene("BankCardMenu.fxml");
-                facade.changePin(cardList.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(currentPin.getText()),
+                facade.changePin(cardChoiceBox.getSelectionModel().getSelectedItem(), Integer.parseInt(currentPin.getText()),
                         Integer.parseInt(newPin.getText()), Integer.parseInt(confirmPin.getText()));
             }
         }

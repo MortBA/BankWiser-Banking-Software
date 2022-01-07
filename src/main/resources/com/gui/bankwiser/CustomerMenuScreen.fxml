@@ -142,7 +142,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="cardStatusLabel" alignment="TOP_CENTER" layoutX="813.0" layoutY="53.0" prefHeight="135.0" prefWidth="370.0" textFill="#017c83" AnchorPane.rightAnchor="17.0">
+                <Label fx:id="cardStatusLabel" alignment="TOP_LEFT" layoutX="813.0" layoutY="53.0" prefHeight="135.0" prefWidth="370.0" textFill="#017c83" AnchorPane.rightAnchor="17.0">
                     <font>
                         <Font size="20.0" />
                     </font>

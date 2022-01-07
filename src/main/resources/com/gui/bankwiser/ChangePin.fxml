@@ -182,7 +182,7 @@
                         <Font name="Calibri Bold" size="20.0" />
                     </font>
                 </Button>
-            <ChoiceBox fx:id="cardList" layoutX="178.0" layoutY="121.0" prefHeight="35.0" prefWidth="234.0" />
+            <ChoiceBox fx:id="cardChoiceBox" layoutX="178.0" layoutY="121.0" prefHeight="35.0" prefWidth="234.0" />
             </children>
         </AnchorPane>
     </children>
