@@ -1,22 +1,23 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
-public class LoansVechileController {
+public class LoansVehicleController {
+
+    Facade facade = Facade.getInstance();
     @FXML
     private MenuItem accountSettings;
     @FXML
@@ -48,13 +49,20 @@ public class LoansVechileController {
     private Label applyHomeLoan;
     @FXML
     private Label applyVehicleLoan;
-
+    @FXML
+    public TextField loanAmount;
+    @FXML
+    public TextField vehicleType;
+    @FXML
+    public TextField manufactureYear;
+    @FXML
+    public TextField vehicleMileage;
+    @FXML
+    public TextField fuelType;
     @FXML
     private TextField totalMonthlyIncome;
     @FXML
     private TextField totalMonthlyExpense;
-    @FXML
-    private TextField liabilitiesDependencies;
     @FXML
     private TextField durationOfLoan;
 
@@ -85,8 +93,8 @@ public class LoansVechileController {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -144,7 +152,7 @@ public class LoansVechileController {
     }
 
     public void onApplyVechileLoanClicked(MouseEvent mouseEvent) throws Exception {
-        new BankWiserApp().changeScene("LoansVechile.fxml");
+        new BankWiserApp().changeScene("LoansVehicle.fxml");
     }
 
 
@@ -160,7 +168,7 @@ public class LoansVechileController {
      */
     @FXML
     public void onDeleteBankAccountClicked() throws IOException {
-        stg2.showAndWait();
+        stg.showAndWait();
     }
 
     @FXML
@@ -203,43 +211,37 @@ public class LoansVechileController {
         applyVehicleLoan.setUnderline(false);
     }
 
+    public void onConfirmClicked(ActionEvent event) throws IOException {
+        if (totalMonthlyExpense.getText().trim().isEmpty() || totalMonthlyIncome.getText().trim().isEmpty() ||
+                loanAmount.getText().trim().isEmpty() || durationOfLoan.getText().trim().isEmpty() ||
+                vehicleMileage.getText().trim().isEmpty() || vehicleType.getText().trim().isEmpty() ||
+                manufactureYear.getText().trim().isEmpty() || fuelType.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Loan application accepted.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                facade.vehicleLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()), Double.parseDouble(totalMonthlyExpense.getText()),
+                        Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()), Double.parseDouble(vehicleMileage.getText()),
+                        vehicleType.getText(), fuelType.getText(), Integer.parseInt(manufactureYear.getText()));
+                app.changeScene("LoansOverview.fxml");
 
-    public void onTotalMonthlyIncomeClicked(ActionEvent event) {
+            }
+        }
+
     }
 
-    public void onTotalMonthlyExpenseClicked(ActionEvent event) {
-    }
-
-    public void onLiabilitiesDependenciesClicked(ActionEvent event) {
-    }
-
-    public void durationOfLoanClicked(ActionEvent event) {
-    }
-
-    public void onConfirmClicked(ActionEvent event) {
-    }
-
-    public void onCancelClicked(ActionEvent event) {
-    }
-
-    @FXML
-    private void confirmHoverIn3() {
-        confirm.setStyle("-fx-background-color: #4bacf7;");
-    }
-
-    @FXML
-    private void confirmHoverOut3() {
-        confirm.setStyle("-fx-background-color: #2d9bf0;");
-    }
-
-    @FXML
-    private void cancelHoverIn3() {
-        cancel.setStyle("-fx-background-color: #fc4a7f;");
-    }
-
-    @FXML
-    private void cancelHoverOut3() {
-        cancel.setStyle("-fx-background-color: #ed2762;");
+    public void onCancelClicked(ActionEvent event) throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("LoansVehicle.fxml");
     }
 
 }

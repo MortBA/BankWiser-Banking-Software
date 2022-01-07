@@ -57,7 +57,7 @@
             </MenuButton>
             <MenuButton layoutX="825.0" layoutY="100.0" mnemonicParsing="false" text="Support" AnchorPane.leftAnchor="680.0" AnchorPane.topAnchor="117.0">
                <items>
-                  <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" text="Delete Bank Account" />
+                  <MenuItem fx:id="deleteBankAccount" mnemonicParsing="false" onAction="#onDeleteBankAccountClicked" text="Delete Bank Account" />
                   <MenuItem fx:id="deleteUserAccount" mnemonicParsing="false" onAction="#onDeleteUserAccountClicked" text="Delete User Account" />
                </items>
                <font>

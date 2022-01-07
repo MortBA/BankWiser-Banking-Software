@@ -7,15 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class LoansHomeController {
 
@@ -96,8 +94,8 @@ public class LoansHomeController {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,7 +168,7 @@ public class LoansHomeController {
      */
     @FXML
     public void onDeleteBankAccountClicked() throws IOException {
-        stg2.showAndWait();
+        stg.showAndWait();
     }
 
     @FXML
@@ -214,11 +212,32 @@ public class LoansHomeController {
     }
 
 
-    public void onConfirmClicked(ActionEvent event) {
-        facade.homeLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()), Double.parseDouble(totalMonthlyExpense.getText()),
-                Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()), Double.parseDouble(propertySize.getText()),
-                address.getText(), propertyType.getText(), Integer.parseInt(propertyFloor.getText()));
-
+    public void onConfirmClicked(ActionEvent event) throws IOException {
+        if (totalMonthlyExpense.getText().trim().isEmpty() || totalMonthlyIncome.getText().trim().isEmpty() ||
+                loanAmount.getText().trim().isEmpty() || durationOfLoan.getText().trim().isEmpty() ||
+                propertyFloor.getText().trim().isEmpty() || propertySize.getText().trim().isEmpty() ||
+                propertyType.getText().trim().isEmpty() || address.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Loan application accepted.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                facade.homeLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()),
+                        Double.parseDouble(totalMonthlyExpense.getText()),
+                        Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()),
+                        Double.parseDouble(propertySize.getText()),
+                        address.getText(), propertyType.getText(), Integer.parseInt(propertyFloor.getText()));
+                app.changeScene("LoansOverview.fxml");
+            }
+        }
     }
 
     public void onCancelClicked(ActionEvent event) throws IOException {

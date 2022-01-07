@@ -7,15 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class LoansPersonalController {
 
@@ -91,8 +89,8 @@ public class LoansPersonalController {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            stg2.setScene(scene);
-            stg2.initModality(Modality.APPLICATION_MODAL);
+            stg.setScene(scene);
+            stg.initModality(Modality.APPLICATION_MODAL);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -165,7 +163,7 @@ public class LoansPersonalController {
      */
     @FXML
     public void onDeleteBankAccountClicked() throws IOException {
-        stg2.showAndWait();
+        stg.showAndWait();
     }
 
     @FXML
@@ -209,10 +207,33 @@ public class LoansPersonalController {
     }
 
 
-    public void onConfirmClicked(ActionEvent event) {
+    public void onConfirmClicked(ActionEvent event) throws IOException {
+        if (totalMonthlyExpense.getText().trim().isEmpty() || totalMonthlyIncome.getText().trim().isEmpty() ||
+                loanAmount.getText().trim().isEmpty() || durationOfLoan.getText().trim().isEmpty() ||
+                personalLoanNote.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill the required fields.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        }
+        else {
+            Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
+            alertBox.setContentText("Loan application accepted.");
+            Optional<ButtonType> result = alertBox.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                BankWiserApp app = new BankWiserApp();
+                facade.personalLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()),
+                        Double.parseDouble(totalMonthlyExpense.getText()),
+                        Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()),
+                        personalLoanNote.getText());
+                app.changeScene("LoansOverview.fxml");
 
-        facade.personalLoanApplication(Double.parseDouble(totalMonthlyIncome.getText()), Double.parseDouble(totalMonthlyExpense.getText()),
-        Double.parseDouble(loanAmount.getText()), Integer.parseInt(durationOfLoan.getText()), personalLoanNote.getText());
+            }
+        }
+
+
 
     }
 
