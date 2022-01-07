@@ -8,17 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class EmployeeMenuRequestsController {
 
     private final Facade facade = Facade.getInstance();
 
     @FXML
-    private Button reportError;
-    @FXML
-    private Button userAccountReq;
+    private Button customerAccountRequests;
     @FXML
     private Button viewRequestButton;
 
@@ -46,7 +42,8 @@ public class EmployeeMenuRequestsController {
     String currentRequest;
 
     @FXML
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
+        requestList = new ListView<>();
         requestList.getItems().addAll(requests);
         requestList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -70,7 +67,7 @@ public class EmployeeMenuRequestsController {
     @FXML
     public void onReportErrorClicked() throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("EMreportError.fxml");
+        app.changeScene("EmployeeMenuReportError.fxml");
     }
 
     @FXML

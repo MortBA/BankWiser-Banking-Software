@@ -46,6 +46,8 @@ public class TransactionController {
             sb.append("Cannot transfer: {receiver} was not found.");
         } else if (moneyTransferred.compareTo(BigDecimal.ZERO) == 0) {
             sb.append("Cannot transfer: You need to enter an amount to send.");
+        } else if (senderBankAccount.equals(receiverBankAccount)) {
+            sb.append("Cannot transfer: You cannot transfer to the same bank account.");
         } else {
             senderBankAccount.processPaymentRequest(false, moneyTransferred);
             BigDecimal senderNewBalance = senderBankAccount.getBalance();

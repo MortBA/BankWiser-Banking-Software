@@ -47,12 +47,12 @@
                         <Font name="Calibri Bold" size="24.0" />
                     </font>
                 </Label>
-                <Button fx:id="reportError" layoutX="315.0" layoutY="117.0" mnemonicParsing="false" onAction="#onReportErrorClicked" text="Report error" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="reportErrorButton" layoutX="315.0" layoutY="117.0" mnemonicParsing="false" text="Report error" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="117.0">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="customerAccountReq" layoutX="-23.0" layoutY="89.0" mnemonicParsing="false" onAction="#onCustomerAccReqClicked" text="Customer Account Requests" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="customerAccountRequests" layoutX="-23.0" layoutY="89.0" mnemonicParsing="false" onAction="#onCustomerAccReqClicked" text="Customer Account Requests" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                     <font>
                         <Font size="18.0" />
                     </font>

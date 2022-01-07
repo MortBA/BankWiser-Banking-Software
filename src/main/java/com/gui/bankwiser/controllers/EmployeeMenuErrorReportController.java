@@ -2,8 +2,6 @@ package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
 import com.logic.bankwiser.facade.Facade;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +11,7 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class EmployeeMenuErrorReportController {
 
@@ -23,9 +19,13 @@ public class EmployeeMenuErrorReportController {
 
     @FXML
     private Label logOut;
+    @FXML
+    private Button reportErrorButton;
+    @FXML
+    private Button customerAccountRequests;
 
-
-    public void initialize(URL url, ResourceBundle rb){
+    @FXML
+    public void initialize(){
         ObservableList<String> items = FXCollections.observableArrayList("test1", "test2");
         ListView<String> list = new ListView<>(items);
 
@@ -77,6 +77,12 @@ public class EmployeeMenuErrorReportController {
     @FXML
     private void logOutHoverOut() {
         logOut.setUnderline(false);
+    }
+
+    @FXML
+    public void onCustomerAccReqClicked() throws IOException {
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("EmployeeMenuCustomerAccountRequest.fxml");
     }
 
     @FXML

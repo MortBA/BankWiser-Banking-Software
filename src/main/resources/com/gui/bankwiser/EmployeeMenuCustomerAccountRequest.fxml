@@ -13,7 +13,7 @@
     <children>
         <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0" style="-fx-background-color: #5AB8BF;">
             <children>
-                <Label layoutX="52.0" layoutY="24.0" text="User account requests">
+                <Label layoutX="61.0" layoutY="23.0" text="Customer account requests">
                     <font>
                         <Font name="System Bold" size="36.0" />
                     </font>
@@ -44,16 +44,16 @@
                         <Font name="Calibri Bold" size="24.0" />
                     </font>
                 </Label>
-                <Button fx:id="userAccountReq" layoutX="50.0" layoutY="102.0" mnemonicParsing="false" onAction="#onUserAccReqClicked" text="User account requests">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button fx:id="reportError" layoutX="336.0" layoutY="102.0" mnemonicParsing="false" onAction="#onReportErrorClicked" text="Report error">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
+            <Button fx:id="reportError1" layoutX="331.0" layoutY="96.0" mnemonicParsing="false" onAction="#onReportErrorClicked" text="Report error">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="customerAccountRequests" layoutX="55.0" layoutY="96.0" mnemonicParsing="false" text="Customer Account Requests">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </children>

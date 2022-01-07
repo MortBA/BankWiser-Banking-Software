@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Starting class for the entire project.
@@ -58,7 +59,7 @@ public class BankWiserApp extends Application {
      */
     public void changeScene(String fxml) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
             stg.setScene(new Scene(root));
             stg.show();
         } catch (Exception e) {

@@ -72,7 +72,7 @@ public class TransactionHistoryScreenController implements Initializable {
         facade = Facade.getInstance();
 
         try {
-            BankAccount temporary ;
+            BankAccount temporary;
             facade.userLogin("second@gmail.com", "password");
             System.out.println(facade.createBankAccount("Savings"));
             facade.selectedBankAccount("63136517");

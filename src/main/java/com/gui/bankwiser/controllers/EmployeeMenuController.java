@@ -5,26 +5,28 @@ import com.logic.bankwiser.bank_accounts.BankAccount;
 import com.logic.bankwiser.facade.Facade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class EmployeeMenuController {
 
-    private final Facade facade = Facade.getInstance();
-
     @FXML
-    private MenuButton customerRequests;
+    private Button customerAccountRequests;
 
     @FXML
     private Label logOut;
 
-    @FXML
-    private TextArea textArea;
 
     @FXML
-    public void initialize() {
+    private Label dateLabel;
+
+    @FXML
+    public void initialize(URL url, ResourceBundle rb) {
 
 
     }
@@ -48,18 +50,14 @@ public class EmployeeMenuController {
 
     @FXML
     public void onCustomerAccReqClicked(ActionEvent event) throws IOException {
-        new BankWiserApp().changeScene("DeleteCustomerAccountScreen.fxml");
-    }
-
-    @FXML
-    public void onUserAccReqClicked() throws IOException {
-        new BankWiserApp().changeScene("DeleteCustomerAccountScreen.fxml");
+        BankWiserApp app = new BankWiserApp();
+        app.changeScene("EmployeeMenuCustomerAccountRequest.fxml");
     }
 
     @FXML
     public void onReportErrorClicked() throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("EMreportError.fxml");
+        app.changeScene("EmployeeMenuReportError.fxml");
     }
 }
 
