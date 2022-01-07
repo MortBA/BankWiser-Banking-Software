@@ -1,7 +1,12 @@
 package com.gui.bankwiser.controllers;
 
 import com.gui.bankwiser.BankWiserApp;
+import com.logic.bankwiser.bank_accounts.BankAccount;
+import com.logic.bankwiser.cards.DebitCard;
 import com.logic.bankwiser.facade.Facade;
+import com.logic.bankwiser.utils.Input;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +17,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.EventListener;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -70,22 +78,19 @@ public class CustomerMenuScreenController {
 
 
     @FXML
-    private Label accountIDLabel;
-
-    @FXML
     private Label accountNameLabel;
 
     @FXML
-    private Label availableAmount;
+    private Label amountLabel;
 
     @FXML
-    private Label cardAmount;
+    private Label cardStatusLabel;
 
     @FXML
-    private ChoiceBox cardSelector;
+    private ChoiceBox<String> cardChoiceBox;
 
     @FXML
-    private ChoiceBox accountSelector;
+    private ChoiceBox<String> bankAccountChoiceBox;
 
 
 
@@ -97,6 +102,14 @@ public class CustomerMenuScreenController {
      */
     @FXML
     private void initialize() {
+        bankAccountChoiceBox.setOnAction((actionEvent -> {
+            updateScreenInformation(facade.getBankAccount(bankAccountChoiceBox.getValue()));
+        }));
+        cardChoiceBox.setOnAction((actionEvent -> {
+            updateScreenInformation(facade.getActiveBankAccount().getCard(cardChoiceBox.getValue()));
+        }));
+
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gui/bankwiser/DeleteAccountScreenUserPopup.fxml"));
         try {
             Parent root = loader.load();
@@ -118,14 +131,38 @@ public class CustomerMenuScreenController {
         }
 
         if (!facade.getBankAccounts().isEmpty()) {
-            List<String> bankAccountNumbers = facade.getBankAccounts();
-            accountIDLabel.setText(bankAccountNumbers.get(0));
+            ObservableList<String> bankAccountNumbers = FXCollections.observableArrayList();
+
+            bankAccountNumbers.addAll(facade.getBankAccounts());
+
+            bankAccountChoiceBox.setItems(bankAccountNumbers);
+            bankAccountChoiceBox.setValue(bankAccountNumbers.get(0));
         }
 
-        List<String> bankacounts = facade.getBankAccounts();
-
+        HashMap<String, DebitCard> cardHashMap = facade.getAllCards();
+        if (!cardHashMap.isEmpty()) {
+            ObservableList<String> cardNumberList = FXCollections.observableArrayList();
+            cardNumberList.addAll(cardHashMap.keySet().stream().toList());
+            cardChoiceBox.setItems(cardNumberList);
+            cardChoiceBox.setValue(cardNumberList.get(0));
+        }
     }
 
+    @FXML
+    public void updateScreenInformation(BankAccount bankAccount) {
+        accountNameLabel.setText(bankAccount.getBankAccountName());
+        amountLabel.setText(bankAccount.getBalance().toString());
+    }
+
+    @FXML
+    public void updateScreenInformation(DebitCard debitCard) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append((debitCard.getFrozenStatus() ? "Card is currently: Frozen" : "Card is currently: Not frozen")).append(Input.EOL);
+        stringBuilder.append((debitCard.getOnlineStatus() ? "Card is currently: Blocked" : "Card is currently: Open to transactions")).append(Input.EOL);
+        stringBuilder.append("Transaction limit: ").append(debitCard.getExpenditureMax()).append(Input.EOL);
+        stringBuilder.append("Current region: ").append(debitCard.getRegion()).append(Input.EOL);
+        cardStatusLabel.setText(stringBuilder.toString());
+    }
     /**
      * Opens new stage to delete the user account when 'delete user account' option in customer menu screen is clicked
      *

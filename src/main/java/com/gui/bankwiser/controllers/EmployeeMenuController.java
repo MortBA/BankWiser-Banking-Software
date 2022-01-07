@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 public class EmployeeMenuController {
 
     @FXML
-    private Button customerAccountRequests;
+    private Button customerAccountRequestsButton;
 
     @FXML
     private Label logOut;
