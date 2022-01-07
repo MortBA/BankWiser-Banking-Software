@@ -73,13 +73,13 @@ public class TransactionHistoryScreenController implements Initializable {
 
         try {
             BankAccount temporary ;
-           facade.userLogin("second@gmail.com", "password");
-            System.out.println(facade.createBankAccount("savings"));
+            facade.userLogin("second@gmail.com", "password");
+            System.out.println(facade.createBankAccount("Savings"));
             facade.selectedBankAccount("63136517");
             temporary = facade.getActiveBankAccount();
-            temporary.addTransaction(new Transaction("001", temporary.getBankAccountID(), new BigDecimal("69.42" ), "", LocalDateTime.of(2021, 3, 21, 14, 59), new BigDecimal("2401.40")));
-            temporary.addTransaction(new Transaction("002", temporary.getBankAccountID(), new BigDecimal("69.52" ), "", LocalDateTime.of(2021, 3, 21, 15, 5), new BigDecimal("2413.40")));
-            temporary.addTransaction(new Transaction("003", temporary.getBankAccountID(), new BigDecimal("-69.62" ), "", LocalDateTime.of(2021, 3, 21, 17, 1), new BigDecimal("240183.40")));
+            facade.transferMoney(temporary.getBankAccountID(), "0", "testing", 100);
+            facade.transferMoney(temporary.getBankAccountID(), "0", "testing", 342);
+            facade.transferMoney(temporary.getBankAccountID(), "0", "testing", 3466);
 
         } catch (Exception e) {
             e.printStackTrace();
