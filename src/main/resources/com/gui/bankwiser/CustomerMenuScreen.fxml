@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -106,14 +107,15 @@
                         <Font size="20.0" />
                     </font>
                 </Label>
-            <MenuButton fx:id="accountSelector" alignment="CENTER" layoutX="30.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="226.0" text="Select an account">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </MenuButton>
-            <Label fx:id="acccountNameLabel" alignment="CENTER" layoutX="64.0" layoutY="166.0" prefHeight="30.0" prefWidth="158.0" textFill="#017c83">
+            <Label fx:id="acccountNameLabel" alignment="CENTER" layoutX="29.0" layoutY="161.0" prefHeight="30.0" prefWidth="158.0" textFill="#017c83">
                <font>
                   <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="accountSelector" layoutX="23.0" layoutY="123.0" prefHeight="26.0" prefWidth="199.0" />
+            <Label fx:id="accontNameLabel" layoutX="30.0" layoutY="148.0" textFill="#017c83">
+               <font>
+                  <Font size="24.0" />
                </font>
             </Label>
             </children>
@@ -145,18 +147,14 @@
                         <Font size="28.0" />
                     </font>
                 </Label>
-                <Label fx:id="expirationLabel" layoutX="544.0" layoutY="122.0" />
-            <MenuButton fx:id="cardSelector" alignment="CENTER" layoutX="401.0" layoutY="105.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="331.0" text="Select a card">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </MenuButton>
-            <Label fx:id="cardNumberLabel" alignment="CENTER" layoutX="487.0" layoutY="155.0" prefHeight="30.0" prefWidth="158.0" textFill="#017c83">
+                <Label fx:id="expirationLabel" layoutX="544.0" layoutY="122.0" prefHeight="18.0" prefWidth="30.0" />
+            <Label fx:id="cardNumberLabel" alignment="CENTER" layoutX="488.0" layoutY="105.0" prefHeight="30.0" prefWidth="158.0" textFill="#017c83">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            </children>
+            <ChoiceBox fx:id="cardNumberSelector" layoutX="487.0" layoutY="73.0" prefHeight="26.0" prefWidth="199.0" />
+            </children> 
         </AnchorPane>
     </children>
 </AnchorPane>

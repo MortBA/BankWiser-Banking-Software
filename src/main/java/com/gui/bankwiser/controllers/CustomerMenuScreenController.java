@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -85,10 +82,10 @@ public class CustomerMenuScreenController {
     private Label cardAmount;
 
     @FXML
-    private MenuButton cardSelector;
+    private ChoiceBox cardSelector;
 
     @FXML
-    private MenuButton accountSelector;
+    private ChoiceBox accountSelector;
 
 
 
