@@ -21,6 +21,7 @@ public class VehicleLoan extends Loan {
     /**
      * Constructor for Loans of type VehicleLoan, that uses different parameters that receive input from user.
      * Uses the current bankAccount as a parameter in order to link the created loan to it.
+     *
      * @param bankAccount
      * @param loanID
      * @param loanAmount
@@ -57,8 +58,8 @@ public class VehicleLoan extends Loan {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString() + Input.EOL);
-        sb.append("Type of fuel: " + TYPE_OF_FUEL + Input.EOL+
-                "Mileage of vehicle: " + TYPE_OF_FUEL + Input.EOL+
+        sb.append("Type of fuel: " + TYPE_OF_FUEL + Input.EOL +
+                "Mileage of vehicle: " + TYPE_OF_FUEL + Input.EOL +
                 "Manufacture year of vehicle: " + MANUFACTURING_YEAR);
         return sb.toString();
     }

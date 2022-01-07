@@ -1,57 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.EmployeeMenuErrorReportController">
+<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gui.bankwiser.controllers.EmployeeMenuErrorReportController">
     <children>
-        <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0" style="-fx-background-color: #5AB8BF;">
+        <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0"
+                    style="-fx-background-color: #5AB8BF;">
             <children>
                 <Label layoutX="49.0" layoutY="43.0" text="Report error">
                     <font>
-                        <Font name="Calibri" size="30.0" />
+                        <Font name="Calibri" size="30.0"/>
                     </font>
                 </Label>
-                <TextArea layoutX="49.0" layoutY="115.0" prefHeight="212.0" prefWidth="690.0" />
-                <Button fx:id="cancelError" layoutX="156.0" layoutY="378.0" mnemonicParsing="false" onAction="#onCancelErrorClick" prefHeight="40.0" prefWidth="99.0" style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE">
+                <TextArea layoutX="49.0" layoutY="115.0" prefHeight="212.0" prefWidth="690.0"/>
+                <Button fx:id="cancelError" layoutX="156.0" layoutY="378.0" mnemonicParsing="false"
+                        onAction="#onCancelErrorClick" prefHeight="40.0" prefWidth="99.0"
+                        style="-fx-background-color: #ed2762;" text="Cancel" textFill="WHITE">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
-                <Button fx:id="submitError" layoutX="500.0" layoutY="378.0" mnemonicParsing="false" onAction="#onSubmitErrorClick" prefHeight="40.0" prefWidth="99.0" style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE">
+                <Button fx:id="submitError" layoutX="500.0" layoutY="378.0" mnemonicParsing="false"
+                        onAction="#onSubmitErrorClick" prefHeight="40.0" prefWidth="99.0"
+                        style="-fx-background-color: #2d9bf0;" text="Submit" textFill="WHITE">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="-6.0" layoutY="-6.0" prefHeight="150.0" prefWidth="1288.0" style="-fx-background-color: #007C82;" AnchorPane.bottomAnchor="544.6666666666666" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutX="-6.0" layoutY="-6.0" prefHeight="150.0" prefWidth="1288.0"
+                    style="-fx-background-color: #007C82;" AnchorPane.bottomAnchor="544.6666666666666"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <ImageView fitHeight="83.0" fitWidth="328.0" layoutX="528.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="83.0" fitWidth="328.0" layoutX="528.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../../img/BwLogo.png" />
+                        <Image url="@../../../img/BwLogo.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="101.0" fitWidth="99.0" layoutX="1137.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="101.0" fitWidth="99.0" layoutX="1137.0" layoutY="16.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../../img/EmployeeIconBW.png" />
+                        <Image url="@../../../img/EmployeeIconBW.png"/>
                     </image>
                 </ImageView>
-                <Label fx:id="logOut" layoutX="1143.0" layoutY="115.0" onMouseClicked="#logOutClick" onMouseEntered="#logOutHoverIn" onMouseExited="#logOutHoverOut" prefHeight="34.0" prefWidth="88.0" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+                <Label fx:id="logOut" layoutX="1143.0" layoutY="115.0" onMouseClicked="#logOutClick"
+                       onMouseEntered="#logOutHoverIn" onMouseExited="#logOutHoverOut" prefHeight="34.0"
+                       prefWidth="88.0" text="Log Out" textAlignment="CENTER" textFill="WHITE">
                     <font>
-                        <Font name="Calibri Bold" size="24.0" />
+                        <Font name="Calibri Bold" size="24.0"/>
                     </font>
                 </Label>
-                <Button fx:id="reportErrorButton" layoutX="315.0" layoutY="117.0" mnemonicParsing="false" text="Report error" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="reportErrorButton" layoutX="315.0" layoutY="117.0" mnemonicParsing="false"
+                        text="Report error" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="117.0">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
-                <Button fx:id="customerAccountRequests" layoutX="-23.0" layoutY="89.0" mnemonicParsing="false" onAction="#onCustomerAccReqClicked" text="Customer Account Requests" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="customerAccountRequests" layoutX="-23.0" layoutY="89.0" mnemonicParsing="false"
+                        onAction="#onCustomerAccReqClicked" text="Customer Account Requests"
+                        AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
             </children>

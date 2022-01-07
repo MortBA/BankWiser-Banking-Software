@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gui.bankwiser.controllers.DeleteCustomerAccountScreenController">
+            fx:controller="com.gui.bankwiser.controllers.EmployeeMenuRequestsController">
     <children>
         <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0"
                     style="-fx-background-color: #5AB8BF;">

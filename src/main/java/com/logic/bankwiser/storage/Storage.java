@@ -48,7 +48,7 @@ public class Storage {
     protected final HashMap<UUID, UserAccount> userAccountMap;
     protected final HashMap<String, UUID> userEmailMap;
     protected final HashMap<String, BankAccount> bankAccountMap;
-    private final HashMap<Integer, UserAccount> requestMap;
+    private final HashMap<String, UserAccount> requestMap;
     private final List<String> errorReportList;
     protected final Gson gson;
     private boolean tests = false;
@@ -106,7 +106,7 @@ public class Storage {
         return bankAccountMap.get(bankAccountID);
     }
 
-    public HashMap<Integer, UserAccount> getRequestMap() {
+    public HashMap<String, UserAccount> getRequestMap() {
         return requestMap;
     }
 
@@ -134,7 +134,7 @@ public class Storage {
     }
 
     public void addDeleteUserRequest(UserAccount userAccount) {
-        requestMap.put(requestMap.size(), userAccount);
+        requestMap.put(String.valueOf(requestMap.size()), userAccount);
     }
 
     public void addErrorReport(String errorReport) {

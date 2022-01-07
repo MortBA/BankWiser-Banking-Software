@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.controlsfx.control.ListActionView;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -88,14 +87,14 @@ public class ModifyFunctionalityController {
 
     ObservableList<String> activeRegions = FXCollections.observableArrayList();
 
-    private void regionsData(){
+    private void regionsData() {
         String a = "Europe";
         String b = "North America";
         String c = "Asia";
         String d = "South America";
         String e = "Oceania";
         String f = "Africa";
-        activeRegions.addAll(a,b,c,d,e,f);
+        activeRegions.addAll(a, b, c, d, e, f);
     }
 
     @FXML
@@ -177,6 +176,7 @@ public class ModifyFunctionalityController {
     void onDeleteUserAccountClicked(ActionEvent event) {
         stg.showAndWait();
     }
+
     @FXML
     void onDeleteBankAccountClicked(ActionEvent event) {
         stg.showAndWait();

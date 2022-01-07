@@ -149,6 +149,16 @@ public class Facade {
     }
 
     /**
+     * Gets the current list of deletion requests.
+     *
+     * @return HashMap of deletion requests
+     */
+    public HashMap<String, UserAccount> getDeletionRequests() {
+        return storage.getRequestMap();
+    }
+
+
+    /**
      * Resets the users' password.
      *
      * @return String confirmation of reset password.
@@ -292,7 +302,7 @@ public class Facade {
 
         StringBuilder sb = new StringBuilder();
 
-        for(Loan loans : activeBankAccount.getLoanMap().values()) {
+        for (Loan loans : activeBankAccount.getLoanMap().values()) {
 
             sb.append(loans.toString()).append(Input.EOL);
 
@@ -341,6 +351,7 @@ public class Facade {
         }
         return cardHashMap;
     }
+
     /**
      * Toggle the card to unfreeze
      *

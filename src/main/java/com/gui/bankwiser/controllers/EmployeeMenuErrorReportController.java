@@ -25,7 +25,7 @@ public class EmployeeMenuErrorReportController {
     private Button customerAccountRequests;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         ObservableList<String> items = FXCollections.observableArrayList("test1", "test2");
         ListView<String> list = new ListView<>(items);
 
@@ -82,7 +82,7 @@ public class EmployeeMenuErrorReportController {
     @FXML
     public void onCustomerAccReqClicked() throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("EmployeeMenuCustomerAccountRequest.fxml");
+        app.changeScene("EmployeeMenuRequests.fxml");
     }
 
     @FXML

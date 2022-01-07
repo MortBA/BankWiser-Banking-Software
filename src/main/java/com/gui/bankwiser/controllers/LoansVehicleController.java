@@ -227,8 +227,7 @@ public class LoansVehicleController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Loan application accepted.");
             Optional<ButtonType> result = alertBox.showAndWait();

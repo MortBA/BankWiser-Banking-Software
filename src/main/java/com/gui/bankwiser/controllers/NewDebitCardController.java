@@ -110,15 +110,14 @@ public class NewDebitCardController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        } else if(!(debitCardPin.getText().trim().equals(confirmDebitCardPin.getText().trim()))){
+        } else if (!(debitCardPin.getText().trim().equals(confirmDebitCardPin.getText().trim()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Both pins should match");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Application accepted. We’ll let you know when the card is shipped");
             Optional<ButtonType> result = alertBox.showAndWait();
@@ -134,6 +133,7 @@ public class NewDebitCardController {
     void onDeleteUserAccountClicked(ActionEvent event) {
         stg.showAndWait();
     }
+
     @FXML
     void onDeleteBankAccountClicked(ActionEvent event) {
         stg.showAndWait();

@@ -18,8 +18,8 @@ public class ClerkController {
 
     /**
      * This method stores the error report so that the development team can consider it.
-     * @param errorReport   A message that a clerk would type to submit
      *
+     * @param errorReport A message that a clerk would type to submit
      * @return
      */
     public String reportError(String errorReport) {

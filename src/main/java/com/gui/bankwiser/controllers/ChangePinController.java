@@ -133,8 +133,7 @@ public class ChangePinController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }
-        else {
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Your card pin is changed successfully.");
             alertBox.setTitle("Success!");
@@ -178,17 +177,19 @@ public class ChangePinController {
         newPin.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if(!t1.matches("\\d*")){
+                if (!t1.matches("\\d*")) {
                     newPin.setText(t1.replaceAll("[^\\d]", ""));
                 }
             }
         });
         return newPin;
     }
+
     @FXML
     void onDeleteUserAccountClicked(ActionEvent event) {
         stg.showAndWait();
     }
+
     @FXML
     void onDeleteBankAccountClicked(ActionEvent event) {
         stg.showAndWait();

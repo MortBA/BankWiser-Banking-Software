@@ -19,6 +19,7 @@ public class ClerkAccount {
 
     /**
      * Constructor for the ClerkAccount class
+     *
      * @param fullName
      * @param emailID
      * @param password

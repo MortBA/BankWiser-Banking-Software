@@ -3,7 +3,9 @@ package com.gui.bankwiser.controllers;
 import com.gui.bankwiser.BankWiserApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import java.io.IOException;
 
 public class EmployeeMenuController {
@@ -34,7 +36,7 @@ public class EmployeeMenuController {
     @FXML
     public void onCustomerAccReqClicked(ActionEvent event) throws IOException {
         BankWiserApp app = new BankWiserApp();
-        app.changeScene("EmployeeMenuCustomerAccountRequest.fxml");
+        app.changeScene("EmployeeMenuRequests.fxml");
     }
 
     @FXML

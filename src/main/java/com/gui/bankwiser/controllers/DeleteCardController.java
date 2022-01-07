@@ -125,10 +125,12 @@ public class DeleteCardController {
             }
         }
     }
+
     @FXML
     void onDeleteUserAccountClicked(ActionEvent event) {
         stg.showAndWait();
     }
+
     @FXML
     void onDeleteBankAccountClicked(ActionEvent event) {
         stg.showAndWait();

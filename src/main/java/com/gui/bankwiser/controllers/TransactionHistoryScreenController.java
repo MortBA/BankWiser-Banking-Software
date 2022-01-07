@@ -25,8 +25,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Controller class for transaction history screen.
@@ -113,15 +114,15 @@ public class TransactionHistoryScreenController implements Initializable {
 
     private ObservableList<Transaction> getObservableTransactionList() {
 
-        List<String> bankaccounts                   = facade.getBankAccounts();
-        ObservableList<Transaction> transactions    = FXCollections.observableArrayList();
+        List<String> bankaccounts = facade.getBankAccounts();
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
 
         for (String bankaccount : bankaccounts) {
             facade.selectedBankAccount(bankaccount);
             BankAccount bankAccount = facade.getActiveBankAccount();
 
             HashMap<String, Transaction> transactionHashMap = bankAccount.getTransactionMap();
-            transactionHashMap.forEach( (id, transaction) -> {
+            transactionHashMap.forEach((id, transaction) -> {
                 transactions.add(transaction);
             });
         }

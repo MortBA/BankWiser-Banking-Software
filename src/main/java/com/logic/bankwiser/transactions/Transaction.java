@@ -35,6 +35,7 @@ public final class Transaction {
 
     /**
      * Constructor for the Transaction class.
+     *
      * @param transactionID
      * @param bankAccountID
      * @param moneyTransferred

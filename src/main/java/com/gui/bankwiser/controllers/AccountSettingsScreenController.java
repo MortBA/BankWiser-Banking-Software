@@ -189,7 +189,7 @@ public class AccountSettingsScreenController {
     }
 
     @FXML
-    void updateScreenInformation(UserAccount userAccount){
+    void updateScreenInformation(UserAccount userAccount) {
         setPhoneNumber.setText(userAccount.getPhoneNumber());
         setAddress1.setText(userAccount.getAddress());
         setEmail.setText(userAccount.getEmailID());
@@ -212,7 +212,7 @@ public class AccountSettingsScreenController {
     }
 
     @FXML
-    public void updateUserInformation(UserAccount userAccount){
+    public void updateUserInformation(UserAccount userAccount) {
         userAccount.setPhoneNumber(phoneNumber.getText());
         userAccount.setAddress(address1.getText());
         userAccount.setFullName(firstName.getText());

@@ -38,10 +38,10 @@ public class Epic4RegularTests {
 
     @Test
     public void requestMapAccessed() {
-        HashMap<Integer, UserAccount> expectedValue = new HashMap<>();
-        expectedValue.put(0, facade.storage.getUserFromMap("john@gmail.com"));
+        HashMap<String, UserAccount> expectedValue = new HashMap<>();
+        expectedValue.put("0", facade.storage.getUserFromMap("john@gmail.com"));
         facade.deleteUserAccount("john@gmail.com");
-        HashMap<Integer, UserAccount> actualValue = facade.storage.getRequestMap();
+        HashMap<String, UserAccount> actualValue = facade.storage.getRequestMap();
         assertEquals(expectedValue, actualValue);
     }
 }

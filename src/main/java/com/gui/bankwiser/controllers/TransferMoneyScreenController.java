@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -156,7 +155,7 @@ public class TransferMoneyScreenController {
             if (result.get() == ButtonType.OK) {
                 alert.close();
             }
-        }else{
+        } else {
             Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION);
             alertBox.setContentText("Money transferred successfully.");
             Optional<ButtonType> result = alertBox.showAndWait();

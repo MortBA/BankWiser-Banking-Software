@@ -48,7 +48,7 @@ public class ForgotPasswordCustomerController {
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("An email will be sent to set new password.");
+            alert.setContentText("An email will be sent to set new password.");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();

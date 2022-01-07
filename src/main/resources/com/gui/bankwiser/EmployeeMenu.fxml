@@ -4,53 +4,65 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.EmployeeMenuController">
+<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.bankwiser.controllers.EmployeeMenuController">
     <children>
-        <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0" style="-fx-background-color: #5AB8BF;">
+        <AnchorPane accessibleRole="MENU_ITEM" layoutX="-6.0" layoutY="142.0" prefHeight="578.0" prefWidth="1288.0"
+                    style="-fx-background-color: #5AB8BF;">
             <children>
                 <Label layoutX="49.0" layoutY="43.0" text="Welcome to Bankwiser">
                     <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="24.0"/>
                     </font>
                 </Label>
-                <ImageView fitHeight="418.0" fitWidth="657.0" layoutX="312.0" layoutY="103.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="418.0" fitWidth="657.0" layoutX="312.0" layoutY="103.0" opacity="0.13"
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../img/BWLogoShort.png" />
+                        <Image url="@../../../img/BWLogoShort.png"/>
                     </image>
                 </ImageView>
                 <Label fx:id="dateLabel" layoutX="903.0" layoutY="43.0" text="Date:">
                     <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="24.0"/>
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="-6.0" layoutY="-6.0" prefHeight="150.0" prefWidth="1288.0" style="-fx-background-color: #007C82;" AnchorPane.bottomAnchor="544.6666666666666" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutX="-6.0" layoutY="-6.0" prefHeight="150.0" prefWidth="1288.0"
+                    style="-fx-background-color: #007C82;" AnchorPane.bottomAnchor="544.6666666666666"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <ImageView fitHeight="83.0" fitWidth="328.0" layoutX="528.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="83.0" fitWidth="328.0" layoutX="528.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../../img/BwLogo.png" />
+                        <Image url="@../../../img/BwLogo.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="101.0" fitWidth="99.0" layoutX="1137.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="101.0" fitWidth="99.0" layoutX="1137.0" layoutY="16.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../../img/EmployeeIconBW.png" />
+                        <Image url="@../../../img/EmployeeIconBW.png"/>
                     </image>
                 </ImageView>
-                <Label fx:id="logOut" layoutX="1143.0" layoutY="115.0" onMouseClicked="#logOutClick" onMouseEntered="#logOutHoverIn" onMouseExited="#logOutHoverOut" prefHeight="34.0" prefWidth="88.0" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+                <Label fx:id="logOut" layoutX="1143.0" layoutY="115.0" onMouseClicked="#logOutClick"
+                       onMouseEntered="#logOutHoverIn" onMouseExited="#logOutHoverOut" prefHeight="34.0"
+                       prefWidth="88.0" text="Log Out" textAlignment="CENTER" textFill="WHITE">
                     <font>
-                        <Font name="Calibri Bold" size="24.0" />
+                        <Font name="Calibri Bold" size="24.0"/>
                     </font>
                 </Label>
-                <Button fx:id="customerAccountRequestsButton" layoutX="24.0" layoutY="104.0" mnemonicParsing="false" onAction="#onCustomerAccReqClicked" text="Customer Account Requests" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="customerAccountRequestsButton" layoutX="24.0" layoutY="104.0" mnemonicParsing="false"
+                        onAction="#onCustomerAccReqClicked" text="Customer Account Requests"
+                        AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="117.0">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
-                <Button fx:id="reportError2" layoutX="316.0" layoutY="117.0" mnemonicParsing="false" onAction="#onReportErrorClicked" text="Report Error" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="117.0">
+                <Button fx:id="reportError2" layoutX="316.0" layoutY="117.0" mnemonicParsing="false"
+                        onAction="#onReportErrorClicked" text="Report Error" AnchorPane.leftAnchor="330.0"
+                        AnchorPane.topAnchor="117.0">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                 </Button>
             </children>
