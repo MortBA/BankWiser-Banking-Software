@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -47,6 +49,9 @@ public class TransferMoneyScreenController {
 
     @FXML
     private Button buttonLogOut;
+
+    @FXML
+    private ChoiceBox fromAccount;
 
     @FXML
     private Stage stg = new Stage();
@@ -123,4 +128,6 @@ public class TransferMoneyScreenController {
         stg.showAndWait();
     }
 
+    public void fromAccountClicked(MouseEvent mouseEvent) {
+    }
 }
